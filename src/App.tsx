@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import { Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import IndexPage from './pages/index';
+import LoginPage from './pages/login';
+import SettingPage from './pages/setting';
+import StatusPage from './pages/status';
+import ElectronPage from './pages/electron';
+import BiddingPage from './pages/bidding';
+import ErrorPage from './pages/_error';
+
+const App: React.FC = () => (
+  <Switch>
+    <Route exact path="/">
+      <IndexPage />
+    </Route>
+    <Route path="/login">
+      <LoginPage />
+    </Route>
+    <Route path="/setting">
+      <SettingPage />
+    </Route>
+    <Route path="/status">
+      <StatusPage />
+    </Route>
+    <Route path="/electron">
+      <ElectronPage />
+    </Route>
+    <Route path="/bidding">
+      <BiddingPage />
+    </Route>
+    <Route component={ErrorPage} />
+  </Switch>
+);
 
 export default App;
