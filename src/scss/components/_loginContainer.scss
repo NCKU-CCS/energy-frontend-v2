@@ -1,0 +1,25 @@
+.login-container {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  background-color: #f1f2f1;
+}
+
+.login-container--left {
+  background-image: url("../../images/login_pic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media all and (max-width: 720px) {
+    display: none;
+  }
+}
+
+.login-container--right {
+  @media all and (max-width: 720px) {
+    width: 100%;
+    background-image: url("../../images/login_pic.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
