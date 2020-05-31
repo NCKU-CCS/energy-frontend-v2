@@ -30,7 +30,12 @@ const LoginForm: React.FC = () => {
     );
     if (response.status >= 200) {
       const successMsg: SuccessReturn = await response.json();
-      localStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
+      if (isRemember) {
+        localStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
+      } else {
+        sessionStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
+      }
+      window.location.replace('/');
     } else {
       const failureMsg: FailureReturn = await response.json();
       // eslint-disable-next-line no-alert

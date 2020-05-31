@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import AuthRequire from './utils/AuthRequire';
 
 import IndexPage from './pages/index';
-import LoginPage from './pages/login';
 import SettingPage from './pages/setting';
 import StatusPage from './pages/status';
 import ElectronPage from './pages/electron';
@@ -11,24 +11,11 @@ import ErrorPage from './pages/_error';
 
 const App: React.FC = () => (
   <Switch>
-    <Route exact path="/">
-      <IndexPage />
-    </Route>
-    <Route path="/login">
-      <LoginPage />
-    </Route>
-    <Route path="/setting">
-      <SettingPage />
-    </Route>
-    <Route path="/status">
-      <StatusPage />
-    </Route>
-    <Route path="/electron">
-      <ElectronPage />
-    </Route>
-    <Route path="/bidding">
-      <BiddingPage />
-    </Route>
+    <Route exact path="/" component={AuthRequire(IndexPage)} />
+    <Route path="/setting" component={AuthRequire(SettingPage)} />
+    <Route path="/status" component={AuthRequire(StatusPage)} />
+    <Route path="/electron" component={AuthRequire(ElectronPage)} />
+    <Route path="/bidding" component={AuthRequire(BiddingPage)} />
     <Route component={ErrorPage} />
   </Switch>
 );
