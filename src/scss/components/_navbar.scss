@@ -1,0 +1,142 @@
+.navbar {
+  color: #fff;
+  background-color: #39625e;
+  font-family: NotoSerifTC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  span {
+    font-family: NotoSerifTC;
+    color: #fff;
+  }
+}
+
+.navbar-content {
+  .navbar-button {
+    cursor: pointer;
+  }
+  .navbar-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &--show {
+      display: block;
+    }
+  }
+}
+
+.navbar-time {
+  color: #f1f2f1;
+  font-family: Roboto;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px) {
+  .navbar {
+    flex-direction: column;
+    width: 262px;
+    font-size: 27px;
+    padding: 32px 0px 54px 0px;
+  }
+  .navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navbar-button {
+      display: none;
+    }
+    .navbar-dropdown {
+      display: block;
+    }
+  }
+  .navbar-time {
+    font-size: 20px;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .navbar {
+    flex-direction: column;
+    width: 175px;
+    font-size: 18px;
+    padding: 22px 0px 36px 0px;
+  }
+  .navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navbar-button {
+      display: none;
+    }
+    .navbar-dropdown {
+      display: block;
+    }
+  }
+  .navbar-time {
+    font-size: 16px;
+  }
+}
+
+// 320 < size <= 720px - horizen layout
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .navbar {
+    width: 100%;
+    height: 64px;
+    font-size: 20px;
+    padding: 0px 24px;
+  }
+  .navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navbar-dropdown {
+      display: none;
+      &--show {
+        position: fixed;
+        right: 0;
+        top: 64px;
+        background-color: #4B817B;
+        width: 40%;
+      }
+    }
+  }
+  .navbar-link {
+    padding-left: 10%;
+  }
+  .navbar-time {
+    display: none;
+  }
+}
+
+// size <= 320px
+@media all and (max-width: 320px) {
+  .navbar {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    padding: 0px 15px;
+  }
+  .navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navbar-dropdown {
+      display: none;
+      &--show {
+        position: fixed;
+        right: 0;
+        top: 48px;
+        background-color: #4B817B;
+        width: 100%;
+      }
+    }
+  }
+  .navbar-time {
+    display: none;
+  }
+}
