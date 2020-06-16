@@ -1,3 +1,6 @@
 import React from 'react';
+import Layout from '../layouts/generalLayout';
 
-export default (() => <div>Bigging page</div>) as React.FC;
+const BiddingPage: React.FC = () => <Layout>hello</Layout>;
+
+export default BiddingPage;

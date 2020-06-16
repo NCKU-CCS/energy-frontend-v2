@@ -1,3 +1,6 @@
 import React from 'react';
+import Layout from '../layouts/generalLayout';
 
-export default (() => <div>Electron page</div>) as React.FC;
+const ElectronPage: React.FC = () => <Layout>hello</Layout>;
+
+export default ElectronPage;

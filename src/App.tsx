@@ -8,6 +8,7 @@ import SettingPage from './pages/setting';
 import StatusPage from './pages/status';
 import ElectronPage from './pages/electron';
 import BiddingPage from './pages/bidding';
+import PowerInfoPage from './pages/powerInfo';
 import ErrorPage from './pages/_error';
 
 const App: React.FC = () => (
@@ -17,6 +18,7 @@ const App: React.FC = () => (
     <Route path="/status" component={withAuthorization(StatusPage)} />
     <Route path="/electron" component={withAuthorization(ElectronPage)} />
     <Route path="/bidding" component={withAuthorization(BiddingPage)} />
+    <Route path="/power_info" component={withAuthorization(PowerInfoPage)} />
     <Route path="/login" component={LoginPage} />
     <Route component={ErrorPage} />
   </Switch>

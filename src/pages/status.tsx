@@ -1,3 +1,6 @@
 import React from 'react';
+import Layout from '../layouts/generalLayout';
 
-export default (() => <div>Status page</div>) as React.FC;
+const StatusPage: React.FC = () => <Layout>hello</Layout>;
+
+export default StatusPage;

@@ -1,0 +1,46 @@
+.navbar-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 15px;
+  .navbar-avatar {
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 28px 0px;
+  }
+  .navbar-username {
+    font-family: Roboto;
+    text-align: center;
+  }
+}
+
+// 1280 < size
+@media all and (min-width: 1280px) {
+  .navbar-avatar {
+    width: 200px;
+    height: 200px;
+  }
+  .navbar-username {
+    font-size: 20px;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .navbar-avatar {
+    width: 133px;
+    height: 133px;
+  }
+  .navbar-username {
+    font-size: 16px;
+  }
+}
+
+// size <= 720px
+@media all and (max-width: 720px) {
+  .navbar-user {
+    display: none;
+  }
+}
