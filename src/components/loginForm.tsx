@@ -17,9 +17,10 @@ const LoginForm: React.FC = () => {
   const [account, setAccount] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // event handler
+  // Submit Event Handler
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    // POST to LOGIN API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/login`,
       {
@@ -28,7 +29,8 @@ const LoginForm: React.FC = () => {
         body: JSON.stringify({ account, password }),
       },
     );
-    if (response.status >= 200) {
+    if (response.status === 200) {
+      // Login Success
       const successMsg: SuccessReturn = await response.json();
       if (isRemember) {
         localStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
@@ -37,17 +39,20 @@ const LoginForm: React.FC = () => {
       }
       window.location.replace('/');
     } else {
+      // Login Fail
       const failureMsg: FailureReturn = await response.json();
       // eslint-disable-next-line no-alert
       alert(failureMsg.error);
     }
   };
 
+  // OnChange Event for Account Input
   const handleAccountChange = () => {
     const value = document.querySelector<HTMLInputElement>('#account')?.value;
     setAccount(value || account);
   };
 
+  // OnChange Event for Password Input
   const handlePasswordChange = () => {
     const value = document.querySelector<HTMLInputElement>('#password')?.value;
     setPassword(value || password);

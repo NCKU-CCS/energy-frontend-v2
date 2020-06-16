@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import Navbar from '../components/navbar';
+import Navbar from '../components/nav';
 
 interface IProps {
   children: React.ReactNode;

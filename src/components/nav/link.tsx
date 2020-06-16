@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 
 interface IProps {
   name: string;
@@ -9,7 +8,7 @@ interface IProps {
 }
 
 const NavLink: React.FC<IProps> = ({ pathname, name, imgName, onLogout }) => (
-  <div className={classnames('navbar-link')}>
+  <div className="navbar-link">
     <div>
       <img
         alt=""
