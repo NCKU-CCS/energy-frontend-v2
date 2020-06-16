@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Route } from 'react-router-dom';
-import LoginPage from '../pages/login';
+import { Redirect } from 'react-router-dom';
 
-const AuthRequire = <P extends object>(
+const withAuthorization = <P extends object>(
   Component: React.ComponentType<P>,
 ): React.FC<P> => {
   const AuthHOC = ({ ...props }: P) => {
@@ -13,7 +12,7 @@ const AuthRequire = <P extends object>(
         '{}',
     );
     return JSON.stringify(user) === '{}' ? (
-      <Route component={LoginPage} />
+      <Redirect to="/login" />
     ) : (
       <Component {...props} />
     );
@@ -21,4 +20,4 @@ const AuthRequire = <P extends object>(
   return AuthHOC;
 };
 
-export default AuthRequire;
+export default withAuthorization;

@@ -8,7 +8,8 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "airbnb-typescript"
+    "airbnb-typescript",
+    "prettier"
   ],
   "rules": {
     "react/jsx-one-expression-per-line": 0,

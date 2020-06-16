@@ -9,16 +9,20 @@
 */
 @import "base/reset";
 @import "base/all";
-@import "base/htmlAndBody";
+@import "base/html";
+@import "base/body";
 @import "base/main";
+@import "base/a";
 
 /*
   layout
 */
 @import "layout/loginLayout";
+@import "layout/generalLayout";
 
 /*
   components
 */
 @import "components/loginContainer";
 @import "components/loginForm";
+@import "components/nav/";

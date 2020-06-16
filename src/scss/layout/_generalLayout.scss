@@ -1,0 +1,10 @@
+.general-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+@media all and (max-width: 720px) {
+  .general-layout {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,25 @@
+.navbar-time {
+  color: #f1f2f1;
+  font-family: Roboto;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px) {
+  .navbar-time {
+    font-size: 20px;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .navbar-time {
+    font-size: 16px;
+  }
+}
+
+// size <= 720px - horizen layout
+@media all and (max-width: 720px) {
+  .navbar-time {
+    display: none;
+  }
+}

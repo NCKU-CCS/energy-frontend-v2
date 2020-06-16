@@ -6,7 +6,7 @@
 }
 
 .login-container--left {
-  background-image: url("../../images/login_pic.png");
+  background-image: url("/login/login_pic.png");
   background-repeat: no-repeat;
   background-size: cover;
   @media all and (max-width: 720px) {
@@ -17,7 +17,7 @@
 .login-container--right {
   @media all and (max-width: 720px) {
     width: 100%;
-    background-image: url("../../images/login_pic.png");
+    background-image: url("/login/login_pic.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

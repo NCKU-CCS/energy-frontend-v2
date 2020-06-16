@@ -1,3 +1,6 @@
 import React from 'react';
+import Layout from '../layouts/generalLayout';
 
-export default (() => <div>Setting page</div>) as React.FC;
+const SettingPage: React.FC = () => <Layout>hello</Layout>;
+
+export default SettingPage;

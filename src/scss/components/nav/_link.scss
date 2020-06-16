@@ -1,0 +1,43 @@
+.navbar-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  > div {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  > a {
+    font-size: 16px;
+    font-family: Roboto;
+    &:visited, &:link {
+      color: #fff;
+    }
+    &:active {
+      color: #ffa200;
+    }
+  }
+}
+
+// 1280 < size
+// @media all and (min-width: 1280px) {}
+
+// 720 < size <= 1280
+// @media all and (min-width: 720px) and (max-width: 1280px) {}
+
+// 320 < size <= 720px - horizen layout
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .navbar-link {
+    padding-left: 10%;
+  }
+}
+
+// size <= 320px
+@media all and (max-width: 320px) {
+  .navbar-link {
+    justify-content: center;
+  }
+}
