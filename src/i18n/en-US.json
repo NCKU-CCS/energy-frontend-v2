@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "home": "Home",
+    "bidding": "Bidding",
+    "status": "Bidding Status",
+    "powerInfo": "Power Information",
+    "setting": "Setting",
+    "logout": "Logout"
+  }
+}
