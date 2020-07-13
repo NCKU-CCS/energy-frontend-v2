@@ -49,6 +49,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .navbar-button {
+      display: block;
+    }
     .navbar-dropdown {
       display: none;
       &--show {
