@@ -1,5 +1,6 @@
 {
   "navbar": {
+    "title": "Energy Trading Platform",
     "home": "Home",
     "bidding": "Bidding",
     "status": "Bidding Status",
