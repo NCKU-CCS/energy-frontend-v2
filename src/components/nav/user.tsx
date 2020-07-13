@@ -27,10 +27,10 @@ const User: React.FC = () => {
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`,
       {
         method: 'GET',
+        mode: 'cors',
         headers: new Headers({
           Authorization: `Bearer ${user.bearer}`,
-          'Content-Tpye': 'application/json',
-          'API-version': '0.1',
+          'Content-Type': 'application/json',
         }),
       },
     );
