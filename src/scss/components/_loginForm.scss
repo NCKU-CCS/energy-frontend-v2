@@ -12,7 +12,6 @@
   transform: translate(-50%, -50%);
 
   > h1 {
-    font-family: NotoSerifTC;
     font-size: 37px;
     margin: 0;
     color: #39625e;
@@ -20,7 +19,6 @@
 
   > button {
     width: 100%;
-    font-family: Roboto;
     color: #fff;
     background-color: #39625e;
     border-radius: 5px;
@@ -43,21 +41,17 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: Roboto;
     color: #707070;
   }
 
   > input::placeholder {
-    font-family: Roboto;
     color: #707070;
   }
 
   > label {
-    font-family: Roboto;
     color: #707070;
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: Roboto;
   }
 }
 
@@ -68,7 +62,6 @@
   align-items: center;
 
   > span {
-    font-family: Roboto;
     font-size: 15px;
     color: #707070;
   }
