@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 type SuccessReturn = {
   id: string;
@@ -12,6 +13,9 @@ type FailureReturn = {
 };
 
 const LoginForm: React.FC = () => {
+  // i18n
+  const { t } = useTranslation();
+
   // component state and reference
   const [isRemember, setRemember] = React.useState(false);
   const [account, setAccount] = React.useState('');
@@ -60,16 +64,16 @@ const LoginForm: React.FC = () => {
 
   return (
     <form className={classnames('login-form')} onSubmit={handleSubmit}>
-      <h1>綠能交易平台</h1>
+      <h1>{t('loginpage.title')}</h1>
       <div className={classnames('login-form-input')}>
-        <label htmlFor="account">帳號</label>
+        <label htmlFor="account">{t('loginpage.account')}</label>
         <input
           type="text"
           id="account"
           name="account"
           onChange={handleAccountChange}
         />
-        <label htmlFor="password">密碼</label>
+        <label htmlFor="password">{t('loginpage.password')}</label>
         <input
           type="password"
           id="password"
@@ -86,12 +90,12 @@ const LoginForm: React.FC = () => {
               'login-form-span--select': isRemember,
             })}
           >
-            記住我
+            {t('loginpage.remember')}
           </span>
-          <span>忘記密碼？</span>
+          <span>{t('loginpage.forget')}</span>
         </div>
       </div>
-      <button type="submit">登入</button>
+      <button type="submit">{t('loginpage.login')}</button>
     </form>
   );
 };

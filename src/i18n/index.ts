@@ -12,9 +12,11 @@ const dictionary = {
 // init setting
 i18n.use(initReactI18next).init({
   resources: dictionary,
-  lng: 'en-US', // default language
+  lng: 'zh-TW', // default language
   returnObjects: true, // allow array structure in json
   interpolation: {
     escapeValue: false,
   },
 });
+
+export default i18n;
