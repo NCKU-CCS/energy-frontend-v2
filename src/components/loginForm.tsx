@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 type SuccessReturn = {
   id: string;
@@ -15,6 +16,13 @@ type FailureReturn = {
 const LoginForm: React.FC = () => {
   // i18n
   const { t } = useTranslation();
+  const changeLanguage = (lng: any) => {
+    if (i18n.languages[0] === 'zh-TW') {
+      i18n.changeLanguage(lng);
+    } else {
+      i18n.changeLanguage('zh-TW');
+    }
+  };
 
   // component state and reference
   const [isRemember, setRemember] = React.useState(false);
@@ -96,6 +104,9 @@ const LoginForm: React.FC = () => {
         </div>
       </div>
       <button type="submit">{t('loginpage.login')}</button>
+      <button type="button" onClick={() => changeLanguage('en-US')}>
+        {t('loginpage.language')}
+      </button>
     </form>
   );
 };
