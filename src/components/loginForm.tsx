@@ -104,7 +104,11 @@ const LoginForm: React.FC = () => {
         </div>
       </div>
       <button type="submit">{t('loginpage.login')}</button>
-      <button id="lng" type="button" onClick={() => changeLanguage('en-US')}>
+      <button
+        className="login-form-lng"
+        type="button"
+        onClick={() => changeLanguage('en-US')}
+      >
         {t('loginpage.language')}
       </button>
     </form>
