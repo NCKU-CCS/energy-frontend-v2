@@ -1,0 +1,23 @@
+.setting-left--imgcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 30%;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.setting-left--img{
+  margin-top: 0px;
+  padding-top: 0px;
+  height: 200px;
+  width: 200px;
+  background-color: chartreuse;
+}
+
+.setting-left--imgtext{
+  font-size: 20px;
+  color: rgb(112,112,112);
+  vertical-align: middle;
+}
