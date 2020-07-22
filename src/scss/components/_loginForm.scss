@@ -15,6 +15,7 @@
     font-size: 37px;
     margin: 0;
     color: #39625e;
+    text-align: center;
   }
 
   > button {
@@ -29,6 +30,7 @@
     width: auto;
     color: #ffa200;
     background-color: white;
+    outline: none;
     border: 0px;
     padding: 8px;
   }
@@ -68,7 +70,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   > span {
     font-size: 15px;
     color: #707070;
@@ -172,3 +173,4 @@
     border-radius: 20px 20px 0 0;
   }
 }
+
