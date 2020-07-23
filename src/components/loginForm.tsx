@@ -16,13 +16,6 @@ type FailureReturn = {
 const LoginForm: React.FC = () => {
   // i18n
   const { t } = useTranslation();
-  const changeLanguage = (lng: any) => {
-    if (i18n.languages[0] === 'zh-TW') {
-      i18n.changeLanguage(lng);
-    } else {
-      i18n.changeLanguage('zh-TW');
-    }
-  };
 
   // component state and reference
   const [isRemember, setRemember] = React.useState(false);
@@ -107,9 +100,13 @@ const LoginForm: React.FC = () => {
       <button
         className="login-form-lng"
         type="button"
-        onClick={() => changeLanguage('en-US')}
+        onClick={() =>
+          i18n.language === 'en-US'
+            ? i18n.changeLanguage('zh-TW')
+            : i18n.changeLanguage('en-US')
+        }
       >
-        {t('loginpage.language')}
+        {i18n.language === 'en-US' ? '中文' : 'ENGLISH'}
       </button>
     </form>
   );

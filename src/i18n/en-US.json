@@ -14,7 +14,6 @@
     "password": "Password",
     "remember": "Remember me",
     "forget": "Forget password?",
-    "login": "Login",
-    "language": "中文"
+    "login": "Login"
   }
 }

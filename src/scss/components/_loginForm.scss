@@ -70,6 +70,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   > span {
     font-size: 15px;
     color: #707070;
@@ -92,7 +93,6 @@
 .login-form-span--select {
   &::before {
     background-color: #39625e;
-
   }
 }
 
@@ -174,4 +174,3 @@
     border-radius: 20px 20px 0 0;
   }
 }
-
