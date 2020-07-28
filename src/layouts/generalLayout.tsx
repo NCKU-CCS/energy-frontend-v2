@@ -8,14 +8,11 @@ interface IProps {
 }
 
 const GeneralLayout: React.FC<IProps> = ({ children, title }) => {
-  const className = classnames('general-layout');
-  const titleClass = classnames('general-title');
-  const rightContainer = classnames('general-container');
   return (
-    <main className={className}>
+    <main className={classnames('general-layout')}>
       <Navbar />
-      <div className={rightContainer}>
-        <div className={titleClass}>{title}</div>
+      <div className={classnames('general-container')}>
+        <div className={classnames('general-title')}>{title}</div>
         {children}
       </div>
     </main>

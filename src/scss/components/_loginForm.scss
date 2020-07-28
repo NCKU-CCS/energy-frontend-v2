@@ -15,6 +15,7 @@
     font-size: 37px;
     margin: 0;
     color: #39625e;
+    text-align: center;
   }
 
   > button {
@@ -22,6 +23,15 @@
     color: #fff;
     background-color: #39625e;
     border-radius: 5px;
+    padding: 8px;
+  }
+
+  > .login-form-lng {
+    width: auto;
+    color: #ffa200;
+    background-color: white;
+    outline: none;
+    border: 0px;
     padding: 8px;
   }
 }

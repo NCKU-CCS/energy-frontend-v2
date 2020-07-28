@@ -5,11 +5,8 @@
 }
 
 .general-title{
-  margin-top: 90px;
-  margin-left: 60px;
   width: auto;
   height: auto;
-  font-size: 40px;
   text-align: left;
   color:rgb(112, 112, 112);
 }
@@ -19,6 +16,14 @@
   height: 100%;
 }
 
+// 1280 < size
+@media all and (min-width: 1280px) {
+  .general-title {
+    margin-top: 90px;
+    margin-left: 60px;
+    font-size: 40px;
+  }
+}
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
