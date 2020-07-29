@@ -1,8 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import data from './test.json';
+import { useTranslation } from 'react-i18next';
 
 const RightContainer: React.FC = () => {
+  const { t } = useTranslation();
+
   const listcontainer = classnames('setting-right--listcontainer');
   const number = classnames('setting-right--number');
   const code = classnames('setting-right--code');
@@ -36,11 +39,13 @@ const RightContainer: React.FC = () => {
 
   return (
     <div className={classnames('setting-right--container')}>
-      <div className={classnames('setting-right--title')}>已連接電錶</div>
+      <div className={classnames('setting-right--title')}>
+        {t('settingpage.energyMeter')}
+      </div>
       <div className={listcontainer}>
-        <div className={number}>電錶編號</div>
-        <div className={code}>電錶辨識碼</div>
-        <div className={name}>名稱</div>
+        <div className={number}>{t('settingpage.number')}</div>
+        <div className={code}>{t('settingpage.code')}</div>
+        <div className={name}>{t('settingpage.name')}</div>
       </div>
       <div className={contentcontainer}>{listItems}</div>
     </div>

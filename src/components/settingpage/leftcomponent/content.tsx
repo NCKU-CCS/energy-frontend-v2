@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import data from './test.json';
 import Dialog from './dialogbox';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../../i18n';
 
 const Content: React.FC = () => {
+  const { t } = useTranslation();
+
   const datacontainer = classnames('setting-left--datacontainer');
   const content = classnames('setting-left--datacontent');
   const title = classnames('setting-left--datatitle');
@@ -20,29 +24,38 @@ const Content: React.FC = () => {
   return (
     <div className={classnames('setting-left--contentcontainer')}>
       <div className={datacontainer}>
-        <div className={title}>帳號：</div>
+        <div className={title}>{t('settingpage.account')}</div>
         <div className={content}>{data[0].account}</div>
       </div>
       <div id="passwordcontainer1">
         <div id="passwordcontainer2">
-          <div className={title}>密碼：</div>
+          <div className={title}>{t('settingpage.password')}</div>
           <div className={content}>{password()}</div>
         </div>
         <button type="button" onClick={() => setDialog(true)}>
-          更改密碼
+          {t('settingpage.changePassword')}
         </button>
       </div>
       <div className={datacontainer}>
-        <div className={title}>地址：</div>
+        <div className={title}>{t('settingpage.address')}</div>
         <div className={content}>{data[0].address}</div>
       </div>
       <div className={datacontainer}>
-        <div className={title}>乙太坊地址：</div>
+        <div className={title}>{t('settingpage.ethereumAddress')}</div>
         <div className={content}>{data[0].ethereum}</div>
       </div>
       <div className={datacontainer}>
-        <div className={title}>語言：</div>
-        <button type="button">ENGLISH</button>
+        <div className={title}>{t('settingpage.language')}</div>
+        <button
+          type="button"
+          onClick={() =>
+            i18n.language === 'en-US'
+              ? i18n.changeLanguage('zh-TW')
+              : i18n.changeLanguage('en-US')
+          }
+        >
+          {t('settingpage.changelanguage')}
+        </button>
       </div>
       {dialogState && <Dialog changestate={setDialog} />}
     </div>

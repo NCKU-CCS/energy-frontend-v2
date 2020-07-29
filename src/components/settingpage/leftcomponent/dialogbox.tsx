@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import data from './test.json';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   changestate: (display: boolean) => void;
 }
 
 const DialogBox: React.FC<IProps> = ({ changestate }) => {
+  const { t } = useTranslation();
+
   const title = classnames('setting-left--dialogtitle');
   const passwordinput = classnames('setting-left--passwordInput');
 
@@ -17,11 +20,11 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
   function changePassword() {
     if (oldPassword === data[0].password) {
       if (newPassword === confirmPassword) {
-        window.confirm('修改成功');
+        window.alert(t('settingpage.successChange'));
         // change password
       } else if (newPassword !== confirmPassword)
-        window.confirm('新密碼確認錯誤');
-    } else window.confirm('舊密碼輸入錯誤');
+        window.alert(t('settingpage.newPasswordWrong'));
+    } else window.alert(t('settingpage.oldPasswordWrong'));
     changeoldPassword('');
     changenewPassword('');
     changeconfirmPassword('');
@@ -38,7 +41,7 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
           ✕
         </button>
         <div className={classnames('setting-left--changePasswordContainer')}>
-          <div className={title}>輸入舊密碼</div>
+          <div className={title}>{t('settingpage.oldPassword')}</div>
           <input
             type="password"
             id="oldPassword"
@@ -46,7 +49,7 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
             onChange={(event) => changeoldPassword(event.target.value)}
             className={passwordinput}
           />
-          <div className={title}>輸入新密碼</div>
+          <div className={title}>{t('settingpage.newPassword')}</div>
           <input
             type="password"
             id="newPassword"
@@ -54,7 +57,7 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
             onChange={(event) => changenewPassword(event.target.value)}
             className={passwordinput}
           />
-          <div className={title}>再次輸入新密碼</div>
+          <div className={title}>{t('settingpage.confirmPassword')}</div>
           <input
             type="password"
             id="confirmPassword"
@@ -67,7 +70,7 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
             className={classnames('setting-left--changePasswordButton')}
             onClick={changePassword}
           >
-            更改密碼
+            {t('settingpage.changePassword')}
           </button>
         </div>
       </div>
