@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import data from './test.json';
 import { useTranslation } from 'react-i18next';
+import data from './test.json';
 
 const RightContainer: React.FC = () => {
   const { t } = useTranslation();
