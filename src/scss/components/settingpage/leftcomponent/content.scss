@@ -1,3 +1,5 @@
+@import './dialogbox.scss/';
+
 .setting-left--contentcontainer{
     height: 50%;
     margin-top: 5%;
@@ -31,6 +33,7 @@ button{
     outline:none;
     font-size: 20px;
     border-radius: 4px;
+    cursor:pointer;
 }
 
 #passwordcontainer1{
