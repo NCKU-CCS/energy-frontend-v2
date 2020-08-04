@@ -3,7 +3,6 @@ import Chart from './chart';
 
 const BiddingPageContainer: React.FC = () => (
   <div>
-    BiddingPageContainer
     <Chart />
   </div>
 );

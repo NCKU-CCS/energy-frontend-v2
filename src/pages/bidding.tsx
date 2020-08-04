@@ -5,7 +5,6 @@ import Container from '../components/biddingPage';
 const BiddingPage: React.FC = () => {
   return (
     <Layout>
-      BIDDING
       <Container />
     </Layout>
   );
