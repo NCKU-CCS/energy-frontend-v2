@@ -7,46 +7,47 @@ const Chart: React.FC = () => {
   const chartContainer = useRef(null);
   const [data, setData] = useState(data1);
 
+  // variables
+  const width = 800;
+  const height = 500;
+  const barWidth = 30;
+  const padding = {
+    top: 100,
+    bottom: 50,
+    left: 50,
+    right: 75,
+  };
+
+  // scales
+  const scaleX = d3
+    .scaleLinear()
+    .range([0, width - 1 * barWidth - padding.left - padding.right])
+    .domain([7, 19]);
+
+  const scaleY = d3
+    .scaleLinear()
+    .range([0, height - padding.top - padding.bottom])
+    .domain([0, 10]);
+
+  const scaleAxisY = d3
+    .scaleLinear()
+    .range([height - padding.top - padding.bottom, 0])
+    .domain([0, 10]);
+
+  // axis
+  const axisX = d3
+    .axisBottom(scaleX)
+    .tickValues([7, 9, 11, 13, 15, 17, 19])
+    .tickSize(0)
+    .tickPadding(15);
+
+  const axisY = d3
+    .axisLeft(scaleAxisY)
+    .tickValues([2, 4, 6, 8, 10])
+    .tickSize(0)
+    .tickPadding(15);
+
   useEffect(() => {
-    console.log(data);
-    // variables
-    const width = 800;
-    const height = 500;
-    const barWidth = 30;
-    const paddingTop = 100;
-    const paddingBottom = 50;
-    const paddingLeft = 50;
-    const paddingRight = 75;
-
-    // scales
-    const scaleX = d3
-      .scaleLinear()
-      .range([0, width - 1 * barWidth - paddingLeft - paddingRight])
-      .domain([7, 19]);
-
-    const scaleY = d3
-      .scaleLinear()
-      .range([0, height - paddingTop - paddingBottom])
-      .domain([0, 10]);
-
-    const scaleAxisY = d3
-      .scaleLinear()
-      .range([height - paddingTop - paddingBottom, 0])
-      .domain([0, 10]);
-
-    // axis
-    const axisX = d3
-      .axisBottom(scaleX)
-      .tickValues([7, 9, 11, 13, 15, 17, 19])
-      .tickSize(0)
-      .tickPadding(15);
-
-    const axisY = d3
-      .axisLeft(scaleAxisY)
-      .tickValues([2, 4, 6, 8, 10])
-      .tickSize(0)
-      .tickPadding(15);
-
     // append svg
     const svg = d3.select(chartContainer.current);
     svg
@@ -61,8 +62,8 @@ const Chart: React.FC = () => {
       .data(data)
       .enter()
       .append('rect')
-      .attr('x', (d) => scaleX(d.time) + paddingLeft)
-      .attr('y', (d) => height - scaleY(d.DR) - paddingBottom)
+      .attr('x', (d) => scaleX(d.time) + padding.left)
+      .attr('y', (d) => height - scaleY(d.DR) - padding.bottom)
       .attr('width', barWidth)
       .attr('height', (d) => scaleY(d.DR))
       .attr('fill', (d) => {
@@ -79,7 +80,7 @@ const Chart: React.FC = () => {
       .attr('color', '#707070')
       .attr(
         'transform',
-        `translate(${barWidth / 2 + paddingLeft},${height - paddingBottom})`,
+        `translate(${barWidth / 2 + padding.left},${height - padding.bottom})`,
       );
     svg
       .append('g')
@@ -87,7 +88,39 @@ const Chart: React.FC = () => {
       .call((g) => g.select('.domain').remove())
       .attr('font-size', '15px')
       .attr('color', '#707070')
-      .attr('transform', `translate(${paddingLeft},${paddingTop})`);
+      .attr('transform', `translate(${padding.left},${padding.top})`);
+
+    // append axis title
+    svg
+      .append('text')
+      .attr('text-anchor', 'end')
+      .attr('x', width - padding.right / 3.5)
+      .attr('y', height - padding.bottom / 2)
+      .attr('fill', '#707070')
+      .attr('font-size', '20px')
+      .text('時間');
+    svg
+      .append('text')
+      .attr('text-anchor', 'end')
+      .attr('x', padding.left * 1.1)
+      .attr('y', padding.top / 2)
+      .attr('fill', '#707070')
+      .attr('font-size', '20px')
+      .text('DR量');
+    svg
+      .append('text')
+      .attr('text-anchor', 'end')
+      .attr('x', width - padding.right / 1.5)
+      .attr('y', padding.top / 2)
+      .attr('fill', '#707070')
+      .attr('font-size', '20px')
+      .attr('font-weight', 'bold')
+      .text('每小時DR量預覽');
+
+    // clear effect
+    return () => {
+      svg.selectAll('*').remove();
+    };
   }, [data]);
 
   return (
