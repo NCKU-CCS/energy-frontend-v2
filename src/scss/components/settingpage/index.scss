@@ -2,9 +2,24 @@
 @import './rightcomponent/';
 
 .setting-container{
-    display: flex;
-    align-items: center;
-    margin-top: 3%;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 3%;
+  width: 100%;
+}
+
+// 950 < size
+@media all and (min-width: 950px) {
+  .setting-container{
+    flex-direction: row;
     height: 75%;
+  }
+}
+
+//size <= 950
+@media all and (max-width: 950px) {
+  .setting-container{
+    flex-direction: column;
+    height: 90%;
+  }
 }

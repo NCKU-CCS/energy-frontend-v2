@@ -1,5 +1,4 @@
 .setting-right--container{
-    margin: 0 auto;
     width: 50%;
     margin-right: 5%;
     height: 60%;
@@ -17,15 +16,18 @@
 	color: rgb(112, 112, 112);
 }
 
-.setting-right--listcontainer{
+.setting-right--listTitleContainer{
   display: flex;
   height: 5%;
+  width: 98%;
   margin-bottom: 2%;
+  margin-right: 2%;
 }
 
 .setting-right--contentcontainer{
   overflow-y: auto;
   height: 65%;
+  width: 100%;
 }
 
 .setting-right--number{
@@ -33,7 +35,6 @@
   justify-content: center;
   align-items: center;
   color: rgb(112, 112, 112);
-  font-size: 22px;
   width: 25%;
 }
 
@@ -42,8 +43,13 @@
   justify-content: flex-start;
   align-items: center;
   color: rgb(112, 112, 112);
-  font-size: 22px;
-  width: 63%;
+  width: 58%;
+}
+
+.setting-right--codeChild{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .setting-right--name{
@@ -51,7 +57,6 @@
   justify-content: flex-start;
   align-items: center;
   color: rgb(112, 112, 112);
-  font-size: 22px;
   width: 17%;
 }
 
@@ -61,7 +66,180 @@
 }
 
 .setting-right--content{
-  font-size: 20px;
-  border-collapse: collapse;
   border-bottom:0.4px solid black;
+}
+
+// 1700 < size
+@media all and (min-width: 1700px) {
+  .setting-right--title{
+    font-size: 22px;
+  }
+  .setting-right--number{
+    font-size: 22px;
+  }
+  .setting-right--code{
+    font-size: 22px;
+  }
+  .setting-right--name{
+    font-size: 22px;
+  }
+  .setting-right--content{
+    font-size: 20px;
+  }
+}
+
+// 1560 < size <= 1700
+@media all and (min-width: 1560px) and (max-width: 1700px) {
+  .setting-right--title{
+    font-size: 20px;
+  }
+  .setting-right--number{
+    font-size: 20spx;
+  }
+  .setting-right--code{
+    font-size: 20px;
+  }
+  .setting-right--name{
+    font-size: 20px;
+  }
+  .setting-right--content{
+    font-size: 18px;
+  }
+}
+
+// 1430 < size <= 1560
+@media all and (min-width: 1430px) and (max-width: 1560px) {
+  .setting-right--title{
+    font-size: 18px;
+  }
+  .setting-right--number{
+    font-size: 18px;
+  }
+  .setting-right--code{
+    font-size: 18px;
+  }
+  .setting-right--name{
+    font-size: 18px;
+  }
+  .setting-right--content{
+    font-size: 16px;
+  }
+}
+
+// 1300 < size <= 1430px 
+@media all and (min-width: 1300px) and (max-width: 1430px) {
+  .setting-right--title{
+    font-size: 16px;
+  }
+  .setting-right--number{
+    font-size: 16px;
+  }
+  .setting-right--code{
+    font-size: 16px;
+  }
+  .setting-right--name{
+    font-size: 16px;
+  }
+  .setting-right--content{
+    font-size: 14px;
+  }
+}
+
+// 1100 < size <= 1300px 
+@media all and (min-width: 1100px) and (max-width: 1300px) {
+  .setting-right--title{
+    font-size: 14px;
+  }
+  .setting-right--number{
+    font-size: 14px;
+  }
+  .setting-right--code{
+    font-size: 14px;
+  }
+  .setting-right--name{
+    font-size: 14px;
+  }
+  .setting-right--content{
+    font-size: 12px;
+  }
+}
+
+// 950 < size <= 1100px 
+@media all and (min-width: 950px) and (max-width: 1100px) {
+  .setting-right--title{
+    font-size: 12px;
+  }
+  .setting-right--number{
+    font-size: 12px;
+  }
+  .setting-right--code{
+    font-size: 12px;
+  }
+  .setting-right--name{
+    font-size: 12px;
+  }
+  .setting-right--content{
+    font-size: 10px;
+  }
+}
+
+// 550 < size <= 950
+@media all and (min-width: 550px) and (max-width: 950px) {
+  .setting-right--title{
+    font-size: 16px;
+  }
+  .setting-right--number{
+    font-size: 16px;
+  }
+  .setting-right--code{
+    font-size: 16px;
+  }
+  .setting-right--name{
+    font-size: 16px;
+  }
+  .setting-right--content{
+    font-size: 14px;
+  }
+  .setting-right--container{
+    width: 95%;
+    height: 50%;
+    margin-bottom: 5%;
+    margin-right: 0%;
+  }
+  .setting-right--contentlistcontainer{
+    height: 25%;
+  }
+}
+
+// 450 < size <= 550
+@media all and (min-width: 450px) and (max-width: 550px) {
+  .setting-right--title{
+    font-size: 14px;
+  }
+  .setting-right--number{
+    font-size: 14px;
+  }
+  .setting-right--code{
+    font-size: 14px;
+  }
+  .setting-right--name{
+    font-size: 14px;
+  }
+  .setting-right--content{
+    font-size: 12px;
+  }
+  .setting-right--container{
+    width: 95%;
+    height: 50%;
+    margin-bottom: 5%;
+    margin-right: 0%;
+  }
+  .setting-right--contentlistcontainer{
+    height: 25%;
+  }
+}
+
+// size <= 320 for phone
+@media all and (max-width: 320px) and (max-device-height: 600px) {
+  
 }

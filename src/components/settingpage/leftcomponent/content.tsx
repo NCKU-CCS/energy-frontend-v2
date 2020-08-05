@@ -11,6 +11,7 @@ const Content: React.FC = () => {
   const datacontainer = classnames('setting-left--datacontainer');
   const content = classnames('setting-left--datacontent');
   const title = classnames('setting-left--datatitle');
+  const buttonStyle = classnames('setting-left--buttonStyle');
 
   const password = () => {
     const long = data[0].password.length;
@@ -32,7 +33,11 @@ const Content: React.FC = () => {
           <div className={title}>{t('settingpage.password')}</div>
           <div className={content}>{password()}</div>
         </div>
-        <button type="button" onClick={() => setDialog(true)}>
+        <button
+          type="button"
+          onClick={() => setDialog(true)}
+          className={buttonStyle}
+        >
           {t('settingpage.changePassword')}
         </button>
       </div>
@@ -42,7 +47,9 @@ const Content: React.FC = () => {
       </div>
       <div className={datacontainer}>
         <div className={title}>{t('settingpage.ethereumAddress')}</div>
-        <div className={content}>{data[0].ethereum}</div>
+        <div className={content} id="ethAddress">
+          {data[0].ethereum}
+        </div>
       </div>
       <div className={datacontainer}>
         <div className={title}>{t('settingpage.language')}</div>
@@ -53,6 +60,7 @@ const Content: React.FC = () => {
               ? i18n.changeLanguage('zh-TW')
               : i18n.changeLanguage('en-US')
           }
+          className={buttonStyle}
         >
           {t('settingpage.changelanguage')}
         </button>
