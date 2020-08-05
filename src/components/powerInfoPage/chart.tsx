@@ -27,7 +27,10 @@ const Chart: React.FC = () => {
   const scaleX = d3
     .scaleTime()
     .range([0, width - padding.left - padding.right - 2 * padding.axisX])
-    .domain([new Date('2018/08/25'), new Date('2018/08/31')]);
+    .domain([
+      new Date(data.dataSolar[0].date),
+      new Date(data.dataSolar[6].date),
+    ]);
 
   const scaleY = d3
     .scaleLinear()
