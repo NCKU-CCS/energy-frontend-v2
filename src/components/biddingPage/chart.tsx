@@ -121,7 +121,7 @@ const Chart: React.FC = () => {
     return () => {
       svg.selectAll('*').remove();
     };
-  }, [data]);
+  });
 
   return (
     <div>
