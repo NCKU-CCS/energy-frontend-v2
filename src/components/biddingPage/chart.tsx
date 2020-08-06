@@ -250,7 +250,7 @@ const Chart: React.FC = () => {
           `translate(${transactionProps.padding.left}, ${transactionProps.padding.top})`,
         );
 
-      // append path od dataSell
+      // append path of dataSell
       svg
         .append('path')
         .datum(transactionData.dataSell)
