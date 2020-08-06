@@ -54,7 +54,7 @@ const Chart: React.FC = () => {
     .range([height - padding.top - padding.bottom, 0])
     .domain([0, 40]);
 
-  // axis
+  // axisX
   const equipAxisX = d3
     .axisBottom(equipScaleX)
     .ticks(7)
