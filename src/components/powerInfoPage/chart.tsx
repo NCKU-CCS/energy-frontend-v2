@@ -123,8 +123,142 @@ const Chart: React.FC = () => {
   };
 
   useEffect(() => {
-    // append svg
     const svg = d3.select(chartContainer.current);
+
+    const timeFormat = d3.timeFormat('%Y/%m/%d');
+
+    const tooltipRect = svg
+      .append('rect')
+      .attr('width', 110)
+      .attr('height', 100)
+      .attr('fill', '#e5e5e5')
+      .style('display', 'none');
+
+    const tooltipLine = svg
+      .append('line')
+      .attr('stroke', 'black')
+      .attr('stroke-width', '2px')
+      .style('display', 'none');
+
+    const tooltipTextSolar = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipTextWind = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipTextStorage = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipTextCharge = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const bisectDate = d3.bisector((d: IData) => d.date).left;
+
+    // test for tooltip
+    svg
+      .on('mouseover', () => {
+        tooltipRect.style('display', 'block');
+        tooltipLine.style('display', 'block');
+        tooltipTextSolar.style('display', 'block');
+        tooltipTextWind.style('display', 'block');
+        tooltipTextStorage.style('display', 'block');
+        tooltipTextCharge.style('display', 'block');
+      })
+      .on('mousemove', () => {
+        tooltipRect
+          .attr('x', `${d3.event.pageX - 200}`)
+          .attr('y', `${d3.event.pageY - 100}`);
+
+        tooltipLine
+          .attr(
+            'x1',
+            equipScaleX(
+              new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+            ),
+          )
+          .attr('y1', padding.top)
+          .attr(
+            'x2',
+            equipScaleX(
+              new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+            ),
+          )
+          .attr('y2', height - padding.bottom);
+
+        tooltipTextSolar
+          .text(
+            `太陽能:      ${
+              equipData.dataSolar[
+                bisectDate(
+                  equipData.dataSolar,
+                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                )
+              ].value
+            }`,
+          )
+          .attr('x', `${d3.event.pageX - 198}`)
+          .attr('y', `${d3.event.pageY - 80}`);
+
+        tooltipTextWind
+          .text(
+            `風能:  ${
+              equipData.dataWind[
+                bisectDate(
+                  equipData.dataWind,
+                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                )
+              ].value
+            }`,
+          )
+          .attr('x', `${d3.event.pageX - 198}`)
+          .attr('y', `${d3.event.pageY - 55}`);
+
+        tooltipTextStorage
+          .text(
+            `儲能系統:  ${
+              equipData.dataStorage[
+                bisectDate(
+                  equipData.dataStorage,
+                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                )
+              ].value
+            }`,
+          )
+          .attr('x', `${d3.event.pageX - 198}`)
+          .attr('y', `${d3.event.pageY - 30}`);
+
+        tooltipTextCharge
+          .text(
+            `充電樁: ${
+              equipData.dataCharge[
+                bisectDate(
+                  equipData.dataCharge,
+                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                )
+              ].value
+            }`,
+          )
+          .attr('x', `${d3.event.pageX - 198}`)
+          .attr('y', `${d3.event.pageY - 5}`);
+      })
+      .on('mouseout', () => {
+        tooltipRect.style('display', 'none');
+        tooltipLine.style('display', 'none');
+        tooltipTextSolar.style('display', 'none');
+        tooltipTextWind.style('display', 'none');
+        tooltipTextStorage.style('display', 'none');
+        tooltipTextCharge.style('display', 'none');
+      });
+
+    // append svg
     svg
       .attr('width', width)
       .attr('height', height)
