@@ -142,8 +142,6 @@ const Chart: React.FC = () => {
     // tooltip-rect
     const tooltipRect = svg
       .append('rect')
-      .attr('width', 110)
-      .attr('height', 100)
       .attr('fill', '#e5e5e5')
       .style('display', 'none');
 
@@ -154,39 +152,76 @@ const Chart: React.FC = () => {
       .attr('stroke-width', '1px')
       .style('display', 'none');
 
-    // tooltip-text-equip
-    const tooltipTextSolar = svg
+    // tooltip-text-title-equip
+    const tooltipTitleSolar = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTextWind = svg
+    const tooltipTitleWind = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTextStorage = svg
+    const tooltipTitleStorage = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTextCharge = svg
+    const tooltipTitleCharge = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    // tooltip-text-load
-    const tooltipTextUse = svg
+    // tooltip-text-data-equip
+    const tooltipDataSolar = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTextMake = svg
+    const tooltipDataWind = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTextNet = svg
+    const tooltipDataStorage = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipDataCharge = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    // tooltip-text-title-load
+    const tooltipTitleUse = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipTitleMake = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipTitleNet = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    // tooltip-text-Data-load
+    const tooltipDataUse = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipDataMake = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
+
+    const tooltipDataNet = svg
       .append('text')
       .text('text')
       .style('display', 'none');
@@ -376,12 +411,20 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
-          tooltipRect.style('display', 'block').raise();
+          tooltipRect
+            .style('display', 'block')
+            .attr('width', 135)
+            .attr('height', 113)
+            .raise();
           tooltipLine.style('display', 'block');
-          tooltipTextSolar.style('display', 'block').raise();
-          tooltipTextWind.style('display', 'block').raise();
-          tooltipTextStorage.style('display', 'block').raise();
-          tooltipTextCharge.style('display', 'block').raise();
+          tooltipTitleSolar.style('display', 'block').raise();
+          tooltipTitleWind.style('display', 'block').raise();
+          tooltipTitleStorage.style('display', 'block').raise();
+          tooltipTitleCharge.style('display', 'block').raise();
+          tooltipDataSolar.style('display', 'block').raise();
+          tooltipDataWind.style('display', 'block').raise();
+          tooltipDataStorage.style('display', 'block').raise();
+          tooltipDataCharge.style('display', 'block').raise();
           tooltipCircleSolar.style('display', 'block');
         })
         .on('mousemove', () => {
@@ -423,9 +466,14 @@ const Chart: React.FC = () => {
             )
             .attr('y2', height - padding.bottom);
 
-          tooltipTextSolar
+          tooltipTitleSolar
+            .text('太陽能:')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 75}`);
+
+          tooltipDataSolar
             .text(
-              `太陽能:      ${
+              `${
                 equipData.dataSolar[
                   bisectDate(
                     equipData.dataSolar,
@@ -434,12 +482,18 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 80}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 75}`);
 
-          tooltipTextWind
+          tooltipTitleWind
+            .text('風能:')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 50}`);
+
+          tooltipDataWind
             .text(
-              `風能:  ${
+              `${
                 equipData.dataWind[
                   bisectDate(
                     equipData.dataWind,
@@ -448,12 +502,18 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 55}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 50}`);
 
-          tooltipTextStorage
+          tooltipTitleStorage
+            .text('儲能系統:')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 25}`);
+
+          tooltipDataStorage
             .text(
-              `儲能系統:  ${
+              `${
                 equipData.dataStorage[
                   bisectDate(
                     equipData.dataStorage,
@@ -462,12 +522,18 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 30}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 25}`);
 
-          tooltipTextCharge
+          tooltipTitleCharge
+            .text('充電樁:')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 0}`);
+
+          tooltipDataCharge
             .text(
-              `充電樁: ${
+              `${
                 equipData.dataCharge[
                   bisectDate(
                     equipData.dataCharge,
@@ -476,8 +542,9 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 5}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 0}`);
 
           tooltipCircleSolar
             .attr(
@@ -501,10 +568,14 @@ const Chart: React.FC = () => {
         .on('mouseout', () => {
           tooltipRect.style('display', 'none');
           tooltipLine.style('display', 'none');
-          tooltipTextSolar.style('display', 'none');
-          tooltipTextWind.style('display', 'none');
-          tooltipTextStorage.style('display', 'none');
-          tooltipTextCharge.style('display', 'none');
+          tooltipTitleSolar.style('display', 'none').raise();
+          tooltipTitleWind.style('display', 'none').raise();
+          tooltipTitleStorage.style('display', 'none').raise();
+          tooltipTitleCharge.style('display', 'none').raise();
+          tooltipDataSolar.style('display', 'none').raise();
+          tooltipDataWind.style('display', 'none').raise();
+          tooltipDataStorage.style('display', 'none').raise();
+          tooltipDataCharge.style('display', 'none').raise();
           tooltipCircleSolar.style('display', 'none');
         });
     } else {
@@ -597,11 +668,18 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
-          tooltipRect.style('display', 'block').raise();
+          tooltipRect
+            .style('display', 'block')
+            .attr('width', 135)
+            .attr('height', 87)
+            .raise();
           tooltipLine.style('display', 'block');
-          tooltipTextUse.style('display', 'block').raise();
-          tooltipTextMake.style('display', 'block').raise();
-          tooltipTextNet.style('display', 'block').raise();
+          tooltipTitleUse.style('display', 'block').raise();
+          tooltipTitleMake.style('display', 'block').raise();
+          tooltipTitleNet.style('display', 'block').raise();
+          tooltipDataUse.style('display', 'block').raise();
+          tooltipDataMake.style('display', 'block').raise();
+          tooltipDataNet.style('display', 'block').raise();
         })
         .on('mousemove', () => {
           tooltipRect
@@ -624,9 +702,14 @@ const Chart: React.FC = () => {
             )
             .attr('y2', height - padding.bottom);
 
-          tooltipTextUse
+          tooltipTitleUse
+            .text('用電:')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 75}`);
+
+          tooltipDataUse
             .text(
-              `用電:      ${
+              `${
                 loadData.dataUse[
                   bisectDate(
                     loadData.dataUse,
@@ -635,12 +718,18 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 80}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 75}`);
 
-          tooltipTextMake
+          tooltipTitleMake
+            .text('產電')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 50}`);
+
+          tooltipDataMake
             .text(
-              `產電:  ${
+              `${
                 loadData.dataMake[
                   bisectDate(
                     loadData.dataMake,
@@ -649,12 +738,18 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 55}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 50}`);
 
-          tooltipTextNet
+          tooltipTitleNet
+            .text('淨負載')
+            .attr('x', `${d3.event.pageX - 190}`)
+            .attr('y', `${d3.event.pageY - 25}`);
+
+          tooltipDataNet
             .text(
-              `淨負載:  ${
+              `${
                 loadData.dataUse[
                   bisectDate(
                     loadData.dataUse,
@@ -669,15 +764,19 @@ const Chart: React.FC = () => {
                 ].value
               }`,
             )
-            .attr('x', `${d3.event.pageX - 198}`)
-            .attr('y', `${d3.event.pageY - 30}`);
+            .attr('text-anchor', 'end')
+            .attr('x', `${d3.event.pageX - 80}`)
+            .attr('y', `${d3.event.pageY - 25}`);
         })
         .on('mouseout', () => {
           tooltipRect.style('display', 'none');
           tooltipLine.style('display', 'none');
-          tooltipTextUse.style('display', 'none');
-          tooltipTextMake.style('display', 'none');
-          tooltipTextNet.style('display', 'none');
+          tooltipTitleUse.style('display', 'none');
+          tooltipTitleMake.style('display', 'none');
+          tooltipTitleNet.style('display', 'none');
+          tooltipDataUse.style('display', 'none');
+          tooltipDataMake.style('display', 'none');
+          tooltipDataNet.style('display', 'none');
         });
     }
 
