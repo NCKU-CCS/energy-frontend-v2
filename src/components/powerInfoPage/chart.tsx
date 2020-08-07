@@ -16,7 +16,7 @@ const Chart: React.FC = () => {
   const [loadData, setLoadData] = useState(data3);
   const [mode, setMode] = useState('產能設備');
 
-  // variables
+  // props
   const width = 1300;
   const height = 400;
   const padding = {
@@ -122,11 +122,24 @@ const Chart: React.FC = () => {
     }
   };
 
+  // React-Hook: useEffect
   useEffect(() => {
     const svg = d3.select(chartContainer.current);
 
     const timeFormat = d3.timeFormat('%Y/%m/%d');
 
+    const bisectDate = d3.bisector((d: IData) => d.date).left;
+
+    // tooltip-canvas
+    const tooltipCvs = svg
+      .append('rect')
+      .attr('width', width - padding.right - padding.left - padding.axisX)
+      .attr('height', height - padding.top - padding.bottom)
+      .attr('x', padding.right - padding.axisX / 2)
+      .attr('y', padding.top)
+      .attr('opacity', 0);
+
+    // tooltip-rect
     const tooltipRect = svg
       .append('rect')
       .attr('width', 110)
@@ -134,12 +147,14 @@ const Chart: React.FC = () => {
       .attr('fill', '#e5e5e5')
       .style('display', 'none');
 
+    // tooltip-line
     const tooltipLine = svg
       .append('line')
-      .attr('stroke', 'black')
-      .attr('stroke-width', '2px')
+      .attr('stroke', '#717171')
+      .attr('stroke-width', '1px')
       .style('display', 'none');
 
+    // tooltip-text-equip
     const tooltipTextSolar = svg
       .append('text')
       .text('text')
@@ -160,103 +175,28 @@ const Chart: React.FC = () => {
       .text('text')
       .style('display', 'none');
 
-    const bisectDate = d3.bisector((d: IData) => d.date).left;
+    // tooltip-text-load
+    const tooltipTextUse = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
 
-    // test for tooltip
-    svg
-      .on('mouseover', () => {
-        tooltipRect.style('display', 'block');
-        tooltipLine.style('display', 'block');
-        tooltipTextSolar.style('display', 'block');
-        tooltipTextWind.style('display', 'block');
-        tooltipTextStorage.style('display', 'block');
-        tooltipTextCharge.style('display', 'block');
-      })
-      .on('mousemove', () => {
-        tooltipRect
-          .attr('x', `${d3.event.pageX - 200}`)
-          .attr('y', `${d3.event.pageY - 100}`);
+    const tooltipTextMake = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
 
-        tooltipLine
-          .attr(
-            'x1',
-            equipScaleX(
-              new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-            ),
-          )
-          .attr('y1', padding.top)
-          .attr(
-            'x2',
-            equipScaleX(
-              new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-            ),
-          )
-          .attr('y2', height - padding.bottom);
+    const tooltipTextNet = svg
+      .append('text')
+      .text('text')
+      .style('display', 'none');
 
-        tooltipTextSolar
-          .text(
-            `太陽能:      ${
-              equipData.dataSolar[
-                bisectDate(
-                  equipData.dataSolar,
-                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                )
-              ].value
-            }`,
-          )
-          .attr('x', `${d3.event.pageX - 198}`)
-          .attr('y', `${d3.event.pageY - 80}`);
-
-        tooltipTextWind
-          .text(
-            `風能:  ${
-              equipData.dataWind[
-                bisectDate(
-                  equipData.dataWind,
-                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                )
-              ].value
-            }`,
-          )
-          .attr('x', `${d3.event.pageX - 198}`)
-          .attr('y', `${d3.event.pageY - 55}`);
-
-        tooltipTextStorage
-          .text(
-            `儲能系統:  ${
-              equipData.dataStorage[
-                bisectDate(
-                  equipData.dataStorage,
-                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                )
-              ].value
-            }`,
-          )
-          .attr('x', `${d3.event.pageX - 198}`)
-          .attr('y', `${d3.event.pageY - 30}`);
-
-        tooltipTextCharge
-          .text(
-            `充電樁: ${
-              equipData.dataCharge[
-                bisectDate(
-                  equipData.dataCharge,
-                  timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                )
-              ].value
-            }`,
-          )
-          .attr('x', `${d3.event.pageX - 198}`)
-          .attr('y', `${d3.event.pageY - 5}`);
-      })
-      .on('mouseout', () => {
-        tooltipRect.style('display', 'none');
-        tooltipLine.style('display', 'none');
-        tooltipTextSolar.style('display', 'none');
-        tooltipTextWind.style('display', 'none');
-        tooltipTextStorage.style('display', 'none');
-        tooltipTextCharge.style('display', 'none');
-      });
+    // tooltip-circle
+    const tooltipCircleSolar = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
 
     // append svg
     svg
@@ -431,6 +371,142 @@ const Chart: React.FC = () => {
         .attr('fill', '#707070')
         .attr('font-size', '20px')
         .text('充電樁');
+
+      // test for tooltip
+      tooltipCvs
+        .raise()
+        .on('mouseover', () => {
+          tooltipRect.style('display', 'block').raise();
+          tooltipLine.style('display', 'block');
+          tooltipTextSolar.style('display', 'block').raise();
+          tooltipTextWind.style('display', 'block').raise();
+          tooltipTextStorage.style('display', 'block').raise();
+          tooltipTextCharge.style('display', 'block').raise();
+          tooltipCircleSolar.style('display', 'block');
+        })
+        .on('mousemove', () => {
+          tooltipRect
+            .attr('x', `${d3.event.pageX - 200}`)
+            .attr('y', `${d3.event.pageY - 100}`);
+
+          tooltipLine
+            .attr(
+              'x1',
+              equipScaleX(
+                new Date(
+                  timeFormat(
+                    equipScaleX.invert(
+                      d3.event.pageX - 160 >
+                        width - padding.right - padding.axisX
+                        ? width - padding.right - padding.axisX
+                        : d3.event.pageX - 160,
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .attr('y1', padding.top)
+            .attr(
+              'x2',
+              equipScaleX(
+                new Date(
+                  timeFormat(
+                    equipScaleX.invert(
+                      d3.event.pageX - 160 >
+                        width - padding.right - padding.axisX
+                        ? width - padding.right - padding.axisX
+                        : d3.event.pageX - 160,
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .attr('y2', height - padding.bottom);
+
+          tooltipTextSolar
+            .text(
+              `太陽能:      ${
+                equipData.dataSolar[
+                  bisectDate(
+                    equipData.dataSolar,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 80}`);
+
+          tooltipTextWind
+            .text(
+              `風能:  ${
+                equipData.dataWind[
+                  bisectDate(
+                    equipData.dataWind,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 55}`);
+
+          tooltipTextStorage
+            .text(
+              `儲能系統:  ${
+                equipData.dataStorage[
+                  bisectDate(
+                    equipData.dataStorage,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 30}`);
+
+          tooltipTextCharge
+            .text(
+              `充電樁: ${
+                equipData.dataCharge[
+                  bisectDate(
+                    equipData.dataCharge,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 5}`);
+
+          tooltipCircleSolar
+            .attr(
+              'cx',
+              equipScaleX(
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              equipScaleY(
+                equipData.dataSolar[
+                  bisectDate(
+                    equipData.dataSolar,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
+              ) + padding.top,
+            );
+        })
+        .on('mouseout', () => {
+          tooltipRect.style('display', 'none');
+          tooltipLine.style('display', 'none');
+          tooltipTextSolar.style('display', 'none');
+          tooltipTextWind.style('display', 'none');
+          tooltipTextStorage.style('display', 'none');
+          tooltipTextCharge.style('display', 'none');
+          tooltipCircleSolar.style('display', 'none');
+        });
     } else {
       // append line of dataUse
       svg
@@ -516,6 +592,93 @@ const Chart: React.FC = () => {
         .attr('fill', '#707070')
         .attr('font-size', '20px')
         .text('產電');
+
+      // test for tooltip
+      tooltipCvs
+        .raise()
+        .on('mouseover', () => {
+          tooltipRect.style('display', 'block').raise();
+          tooltipLine.style('display', 'block');
+          tooltipTextUse.style('display', 'block').raise();
+          tooltipTextMake.style('display', 'block').raise();
+          tooltipTextNet.style('display', 'block').raise();
+        })
+        .on('mousemove', () => {
+          tooltipRect
+            .attr('x', `${d3.event.pageX - 200}`)
+            .attr('y', `${d3.event.pageY - 100}`);
+
+          tooltipLine
+            .attr(
+              'x1',
+              loadScaleX(
+                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr('y1', padding.top)
+            .attr(
+              'x2',
+              loadScaleX(
+                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr('y2', height - padding.bottom);
+
+          tooltipTextUse
+            .text(
+              `用電:      ${
+                loadData.dataUse[
+                  bisectDate(
+                    loadData.dataUse,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 80}`);
+
+          tooltipTextMake
+            .text(
+              `產電:  ${
+                loadData.dataMake[
+                  bisectDate(
+                    loadData.dataMake,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 55}`);
+
+          tooltipTextNet
+            .text(
+              `淨負載:  ${
+                loadData.dataUse[
+                  bisectDate(
+                    loadData.dataUse,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value -
+                loadData.dataMake[
+                  bisectDate(
+                    loadData.dataMake,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value
+              }`,
+            )
+            .attr('x', `${d3.event.pageX - 198}`)
+            .attr('y', `${d3.event.pageY - 30}`);
+        })
+        .on('mouseout', () => {
+          tooltipRect.style('display', 'none');
+          tooltipLine.style('display', 'none');
+          tooltipTextUse.style('display', 'none');
+          tooltipTextMake.style('display', 'none');
+          tooltipTextNet.style('display', 'none');
+        });
     }
 
     // clear effect
