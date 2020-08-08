@@ -1,12 +1,24 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import data from './test.json';
 
-const RightContainer: React.FC = () => {
+interface IAmis {
+  index: number;
+  id?: string;
+  name: string;
+  description?: string;
+}
+
+interface IAmisArray {
+  IAmisList: IAmis[];
+}
+
+const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
   const { t } = useTranslation();
 
-  const listItems = data.map((content) => {
+  const listItems = IAmisList.map((content) => {
+    // const code =content.code.substr(0,32)+'...';
+
     return (
       <div className={classnames('setting-right--contentlistcontainer')}>
         <div
@@ -15,7 +27,7 @@ const RightContainer: React.FC = () => {
             'setting-right--content',
           )}
         >
-          {content.number}
+          {content.index}
         </div>
         <div
           className={classnames(
@@ -23,9 +35,7 @@ const RightContainer: React.FC = () => {
             'setting-right--content',
           )}
         >
-          <div className={classnames('setting-right--codeChild')}>
-            {content.code}
-          </div>
+          H2s0Zqv4CLpHQ83il
         </div>
         <div
           className={classnames(

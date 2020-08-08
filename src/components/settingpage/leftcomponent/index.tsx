@@ -3,11 +3,23 @@ import classnames from 'classnames';
 import Img from './img';
 import Content from './content';
 
-const LeftContainer: React.FC = () => {
+interface IUserInfo {
+  username: string;
+  avatar: string;
+  address: string;
+  ethAddress: string;
+}
+
+const LeftContainer: React.FC<IUserInfo> = ({
+  username,
+  avatar,
+  address,
+  ethAddress,
+}) => {
   return (
     <div className={classnames('setting-left--container')}>
-      <Img />
-      <Content />
+      <Img img={avatar} username={username} />
+      <Content address={address} ethAddress={ethAddress} />
     </div>
   );
 };

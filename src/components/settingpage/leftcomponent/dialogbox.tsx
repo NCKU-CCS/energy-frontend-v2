@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import data from './test.json';
 
 interface IProps {
   changestate: (display: boolean) => void;
@@ -17,14 +16,44 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
   const [newPassword, changenewPassword] = useState<string>('');
   const [confirmPassword, changeconfirmPassword] = useState<string>('');
 
+  const changeRequest = async () => {
+    const password = JSON.stringify({
+      original_passwd: oldPassword,
+      new_passwd: newPassword,
+    });
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+    // GET to User Info API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`,
+      {
+        method: 'PUT',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: password,
+      },
+    );
+    if (response.status === 200) {
+      // fetch success
+      window.alert(t('settingpage.successChange'));
+      changestate(false);
+    } else {
+      // fetch failure
+      window.alert(t('settingpage.oldPasswordWrong'));
+    }
+  };
+
   function changePassword() {
-    if (oldPassword === data[0].password) {
-      if (newPassword === confirmPassword) {
-        window.alert(t('settingpage.successChange'));
-        // change password
-      } else if (newPassword !== confirmPassword)
-        window.alert(t('settingpage.newPasswordWrong'));
-    } else window.alert(t('settingpage.oldPasswordWrong'));
+    if (newPassword !== confirmPassword)
+      window.alert(t('settingpage.newPasswordWrong'));
+    else changeRequest();
     changeoldPassword('');
     changenewPassword('');
     changeconfirmPassword('');

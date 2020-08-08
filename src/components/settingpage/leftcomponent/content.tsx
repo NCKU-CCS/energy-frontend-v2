@@ -5,7 +5,12 @@ import data from './test.json';
 import Dialog from './dialogbox';
 import i18n from '../../../i18n';
 
-const Content: React.FC = () => {
+interface IUserInfo {
+  address: string;
+  ethAddress: string;
+}
+
+const Content: React.FC<IUserInfo> = ({ address, ethAddress }) => {
   const { t } = useTranslation();
 
   const datacontainer = classnames('setting-left--datacontainer');
@@ -19,6 +24,7 @@ const Content: React.FC = () => {
     for (let i = 0; i < long; i += 1) word += '*';
     return word;
   };
+  const ShortEthAddress = `${ethAddress.substr(0, 22)}...`;
 
   const [dialogState, setDialog] = useState<boolean>(false);
 
@@ -43,12 +49,12 @@ const Content: React.FC = () => {
       </div>
       <div className={datacontainer}>
         <div className={title}>{t('settingpage.address')}</div>
-        <div className={content}>{data[0].address}</div>
+        <div className={content}>{address}</div>
       </div>
       <div className={datacontainer}>
         <div className={title}>{t('settingpage.ethereumAddress')}</div>
         <div className={content} id="ethAddress">
-          {data[0].ethereum}
+          {ShortEthAddress}
         </div>
       </div>
       <div className={datacontainer}>
