@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Layout from '../layouts/generalLayout';
 
-const PowerInfoPage: React.FC = () => (
-  <Layout title="電力資訊">POWERINFO</Layout>
-);
+const PowerInfoPage: React.FC = () => {
+  const { t } = useTranslation();
+  return <Layout title={t('powerinfopage.pageTitle')}>POWERINFO</Layout>;
+};
 
 export default PowerInfoPage;

@@ -17,6 +17,7 @@
     "login": "登入"
   },
   "settingpage": {
+    "pageTitle": "設定",
     "oldPassword": "輸入舊密碼",
     "newPassword": "輸入新密碼",
     "confirmPassword": "再次輸入新密碼",
@@ -34,5 +35,17 @@
     "number": "電錶編號",
     "code": "電錶辨識碼",
     "name": "名稱"
+  },
+  "biddingpage": {
+    "pageTitle": "投標"
+  },
+  "indexpage": {
+    "pageTitle": "首頁"
+  },
+  "powerinfopage": {
+    "pageTitle": "電力資訊"
+  },
+  "statuspage": {
+    "pageTitle": "競標動態"
   }
 }

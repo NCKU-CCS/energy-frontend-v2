@@ -103,7 +103,7 @@ const SettingContainer: React.FC = () => {
         username={info.username}
         avatar={info.avatar}
         address={info.address}
-        eth_address={info.eth_address}
+        ethAddress={info.eth_address}
       />
       <RightContainer IAmisList={amis} />
     </div>

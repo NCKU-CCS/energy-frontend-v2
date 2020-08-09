@@ -17,6 +17,7 @@
     "login": "Login"
   },
   "settingpage": {
+    "pageTitle": "Setting",
     "oldPassword": "Enter old password",
     "newPassword": "Enter new password",
     "confirmPassword": "Enter new password again",
@@ -34,5 +35,17 @@
     "number": "number",
     "code": "identification code",
     "name": "name"
+  },
+  "biddingpage": {
+    "pageTitle": "Bidding"
+  },
+  "indexpage": {
+    "pageTitle": "Home"
+  },
+  "powerinfopage": {
+    "pageTitle": "Power Information"
+  },
+  "statuspage": {
+    "pageTitle": "Bidding Status"
   }
 }
