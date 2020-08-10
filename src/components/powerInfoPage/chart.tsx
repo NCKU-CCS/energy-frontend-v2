@@ -226,8 +226,57 @@ const Chart: React.FC = () => {
       .text('text')
       .style('display', 'none');
 
+    // interpolate
+    const ipSolar = d3.interpolateBasis(
+      equipData.dataSolar.map((d) => d.value),
+    );
+
+    const ipWind = d3.interpolateBasis(equipData.dataWind.map((d) => d.value));
+
+    const ipStorage = d3.interpolateBasis(
+      equipData.dataStorage.map((d) => d.value),
+    );
+
+    const ipCharge = d3.interpolateBasis(
+      equipData.dataCharge.map((d) => d.value),
+    );
+
+    const ipUse = d3.interpolateBasis(loadData.dataUse.map((d) => d.value));
+
+    const ipMake = d3.interpolateBasis(loadData.dataMake.map((d) => d.value));
+
     // tooltip-circle
     const tooltipCircleSolar = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
+
+    const tooltipCircleWind = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
+
+    const tooltipCircleStorage = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
+
+    const tooltipCircleCharge = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
+
+    const tooltipCircleUse = svg
+      .append('circle')
+      .attr('fill', '#717171')
+      .attr('r', 6)
+      .style('display', 'none');
+
+    const tooltipCircleMake = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
@@ -411,27 +460,41 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
+          // tooltip-line
           tooltipLine.style('display', 'block');
+
+          // tooltip-circle
           tooltipCircleSolar.style('display', 'block').raise();
+          tooltipCircleWind.style('display', 'block').raise();
+          tooltipCircleStorage.style('display', 'block').raise();
+          tooltipCircleCharge.style('display', 'block').raise();
+
+          // tooltip-rect
           tooltipRect
             .style('display', 'block')
             .attr('width', 135)
             .attr('height', 113)
             .raise();
+
+          // tooltip-title
           tooltipTitleSolar.style('display', 'block').raise();
           tooltipTitleWind.style('display', 'block').raise();
           tooltipTitleStorage.style('display', 'block').raise();
           tooltipTitleCharge.style('display', 'block').raise();
+
+          // tooltip-data
           tooltipDataSolar.style('display', 'block').raise();
           tooltipDataWind.style('display', 'block').raise();
           tooltipDataStorage.style('display', 'block').raise();
           tooltipDataCharge.style('display', 'block').raise();
         })
         .on('mousemove', () => {
+          // tooltip-rect
           tooltipRect
             .attr('x', `${d3.event.pageX - 200}`)
             .attr('y', `${d3.event.pageY - 100}`);
 
+          // tooltip-line
           tooltipLine
             .attr(
               'x1',
@@ -448,7 +511,64 @@ const Chart: React.FC = () => {
                 ),
               ),
             )
-            .attr('y1', padding.top)
+            .attr(
+              'y1',
+              padding.top +
+                Math.min(
+                  equipScaleY(
+                    ipSolar(
+                      equipScaleX(
+                        new Date(
+                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                  equipScaleY(
+                    ipWind(
+                      equipScaleX(
+                        new Date(
+                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                  equipScaleY(
+                    ipStorage(
+                      equipScaleX(
+                        new Date(
+                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                  equipScaleY(
+                    ipCharge(
+                      equipScaleX(
+                        new Date(
+                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                ),
+            )
             .attr(
               'x2',
               equipScaleX(
@@ -466,11 +586,13 @@ const Chart: React.FC = () => {
             )
             .attr('y2', height - padding.bottom);
 
+          // tooltip-title-solar
           tooltipTitleSolar
             .text('太陽能:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
+          // tooltip-data-solar
           tooltipDataSolar
             .text(
               `${
@@ -486,11 +608,13 @@ const Chart: React.FC = () => {
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
+          // tooltip-title-wind
           tooltipTitleWind
             .text('風能:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
+          // tooltip-data-wind
           tooltipDataWind
             .text(
               `${
@@ -506,11 +630,13 @@ const Chart: React.FC = () => {
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
+          // tooltip-title-storage
           tooltipTitleStorage
             .text('儲能系統:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
+          // tooltip-data-storage
           tooltipDataStorage
             .text(
               `${
@@ -526,11 +652,13 @@ const Chart: React.FC = () => {
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
+          // tooltip-title-charge
           tooltipTitleCharge
             .text('充電樁:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 0}`);
 
+          // tooltip-data-charge
           tooltipDataCharge
             .text(
               `${
@@ -546,10 +674,7 @@ const Chart: React.FC = () => {
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 0}`);
 
-          const interpolate = d3.interpolateBasis(
-            equipData.dataSolar.map((d) => d.value),
-          );
-
+          // tooltip-circle
           tooltipCircleSolar
             .attr(
               'cx',
@@ -560,7 +685,70 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                interpolate(
+                ipSolar(
+                  equipScaleX(
+                    new Date(
+                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
+              ) + padding.top,
+            );
+
+          tooltipCircleWind
+            .attr(
+              'cx',
+              equipScaleX(
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              equipScaleY(
+                ipWind(
+                  equipScaleX(
+                    new Date(
+                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
+              ) + padding.top,
+            );
+
+          tooltipCircleStorage
+            .attr(
+              'cx',
+              equipScaleX(
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              equipScaleY(
+                ipStorage(
+                  equipScaleX(
+                    new Date(
+                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
+              ) + padding.top,
+            );
+
+          tooltipCircleCharge
+            .attr(
+              'cx',
+              equipScaleX(
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              equipScaleY(
+                ipCharge(
                   equipScaleX(
                     new Date(
                       timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
@@ -572,17 +760,29 @@ const Chart: React.FC = () => {
             );
         })
         .on('mouseout', () => {
+          // tooltip-rect
           tooltipRect.style('display', 'none');
+
+          // tooltip-line
           tooltipLine.style('display', 'none');
+
+          // tooltip-title
           tooltipTitleSolar.style('display', 'none');
           tooltipTitleWind.style('display', 'none');
           tooltipTitleStorage.style('display', 'none');
           tooltipTitleCharge.style('display', 'none');
+
+          // tooltip-data
           tooltipDataSolar.style('display', 'none');
           tooltipDataWind.style('display', 'none');
           tooltipDataStorage.style('display', 'none');
           tooltipDataCharge.style('display', 'none');
+
+          // tooltip-circle
           tooltipCircleSolar.style('display', 'none');
+          tooltipCircleWind.style('display', 'none');
+          tooltipCircleStorage.style('display', 'none');
+          tooltipCircleCharge.style('display', 'none');
         });
     } else {
       // append line of dataUse
@@ -674,15 +874,26 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
+          // tooltip-line
+          tooltipLine.style('display', 'block');
+
+          // tooltip-circle
+          tooltipCircleUse.style('display', 'block').raise();
+          tooltipCircleMake.style('display', 'block').raise();
+
+          // tooltip-rect
           tooltipRect
             .style('display', 'block')
             .attr('width', 135)
             .attr('height', 87)
             .raise();
-          tooltipLine.style('display', 'block');
+
+          // tooltip-title
           tooltipTitleUse.style('display', 'block').raise();
           tooltipTitleMake.style('display', 'block').raise();
           tooltipTitleNet.style('display', 'block').raise();
+
+          // tooltip-data
           tooltipDataUse.style('display', 'block').raise();
           tooltipDataMake.style('display', 'block').raise();
           tooltipDataNet.style('display', 'block').raise();
@@ -699,7 +910,38 @@ const Chart: React.FC = () => {
                 new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
               ),
             )
-            .attr('y1', padding.top)
+            .attr(
+              'y1',
+              padding.top +
+                Math.min(
+                  loadScaleY(
+                    ipUse(
+                      loadScaleX(
+                        new Date(
+                          timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                  loadScaleY(
+                    ipMake(
+                      loadScaleX(
+                        new Date(
+                          timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                        ),
+                      ) /
+                        (width -
+                          padding.right -
+                          padding.left -
+                          2 * padding.axisX),
+                    ),
+                  ),
+                ),
+            )
             .attr(
               'x2',
               loadScaleX(
@@ -773,13 +1015,67 @@ const Chart: React.FC = () => {
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 25}`);
+
+          // tooltip-circle
+          tooltipCircleUse
+            .attr(
+              'cx',
+              loadScaleX(
+                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              loadScaleY(
+                ipUse(
+                  loadScaleX(
+                    new Date(
+                      timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
+              ) + padding.top,
+            );
+
+          tooltipCircleMake
+            .attr(
+              'cx',
+              loadScaleX(
+                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
+              ),
+            )
+            .attr(
+              'cy',
+              loadScaleY(
+                ipMake(
+                  loadScaleX(
+                    new Date(
+                      timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
+              ) + padding.top,
+            );
         })
         .on('mouseout', () => {
+          // tooltip-rect
           tooltipRect.style('display', 'none');
+
+          // tooltip-line
           tooltipLine.style('display', 'none');
+
+          // tooltip-circle
+          tooltipCircleUse.style('display', 'none');
+          tooltipCircleMake.style('display', 'none');
+
+          // tooltip-title
           tooltipTitleUse.style('display', 'none');
           tooltipTitleMake.style('display', 'none');
           tooltipTitleNet.style('display', 'none');
+
+          // tooltip-data
           tooltipDataUse.style('display', 'none');
           tooltipDataMake.style('display', 'none');
           tooltipDataNet.style('display', 'none');
