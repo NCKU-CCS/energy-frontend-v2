@@ -411,12 +411,13 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
+          tooltipLine.style('display', 'block');
+          tooltipCircleSolar.style('display', 'block').raise();
           tooltipRect
             .style('display', 'block')
             .attr('width', 135)
             .attr('height', 113)
             .raise();
-          tooltipLine.style('display', 'block');
           tooltipTitleSolar.style('display', 'block').raise();
           tooltipTitleWind.style('display', 'block').raise();
           tooltipTitleStorage.style('display', 'block').raise();
@@ -425,7 +426,6 @@ const Chart: React.FC = () => {
           tooltipDataWind.style('display', 'block').raise();
           tooltipDataStorage.style('display', 'block').raise();
           tooltipDataCharge.style('display', 'block').raise();
-          tooltipCircleSolar.style('display', 'block');
         })
         .on('mousemove', () => {
           tooltipRect
@@ -546,6 +546,10 @@ const Chart: React.FC = () => {
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 0}`);
 
+          const interpolate = d3.interpolateBasis(
+            equipData.dataSolar.map((d) => d.value),
+          );
+
           tooltipCircleSolar
             .attr(
               'cx',
@@ -556,26 +560,28 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                equipData.dataSolar[
-                  bisectDate(
-                    equipData.dataSolar,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                  )
-                ].value,
+                interpolate(
+                  equipScaleX(
+                    new Date(
+                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    ),
+                  ) /
+                    (width - padding.right - padding.left - 2 * padding.axisX),
+                ),
               ) + padding.top,
             );
         })
         .on('mouseout', () => {
           tooltipRect.style('display', 'none');
           tooltipLine.style('display', 'none');
-          tooltipTitleSolar.style('display', 'none').raise();
-          tooltipTitleWind.style('display', 'none').raise();
-          tooltipTitleStorage.style('display', 'none').raise();
-          tooltipTitleCharge.style('display', 'none').raise();
-          tooltipDataSolar.style('display', 'none').raise();
-          tooltipDataWind.style('display', 'none').raise();
-          tooltipDataStorage.style('display', 'none').raise();
-          tooltipDataCharge.style('display', 'none').raise();
+          tooltipTitleSolar.style('display', 'none');
+          tooltipTitleWind.style('display', 'none');
+          tooltipTitleStorage.style('display', 'none');
+          tooltipTitleCharge.style('display', 'none');
+          tooltipDataSolar.style('display', 'none');
+          tooltipDataWind.style('display', 'none');
+          tooltipDataStorage.style('display', 'none');
+          tooltipDataCharge.style('display', 'none');
           tooltipCircleSolar.style('display', 'none');
         });
     } else {
@@ -723,7 +729,7 @@ const Chart: React.FC = () => {
             .attr('y', `${d3.event.pageY - 75}`);
 
           tooltipTitleMake
-            .text('產電')
+            .text('產電:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
@@ -743,7 +749,7 @@ const Chart: React.FC = () => {
             .attr('y', `${d3.event.pageY - 50}`);
 
           tooltipTitleNet
-            .text('淨負載')
+            .text('淨負載:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
