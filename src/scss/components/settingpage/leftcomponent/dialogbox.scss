@@ -1,9 +1,8 @@
 .setting-left--dialogcontainer{
   position: fixed;
-  height: 470px;
-  width: 460px;
-  top: 300px;
-  right: 725px;
+  height: 50%;
+  top: 30%;
+  left: 50%;
   background-color: white;
   position: fixed;
 }
@@ -32,21 +31,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 80%;
+  height: 100%;
   width: 70%;
   margin-top: 10%;
   margin-left: 15%;
 }
 
 .setting-left--dialogtitle{
-  margin-top: 5%;
-  margin-bottom: 7%;
+  display: flex;
+  align-items: center;
+  height: 10%;
   color: rgb(54, 54, 54);  
-  font-size: 20px;
 }
 
 .setting-left--passwordInput{
   width: 100%;
+  height: 10%;
   margin-bottom: 5%;
   border: none;
   border-bottom: rgb(54, 54, 54) 1px solid;
@@ -55,11 +55,107 @@
 .setting-left--changePasswordButton{
   width: 100%;
   height: 15%;
-  margin-top: 5%;
+  margin-top: 3%;
   background-color: rgb(255, 160, 0);
   border: 1px solid rgb(255, 160, 0);
+  transition-duration: 0.3s;
 }
 
 .setting-left--changePasswordButton:hover {
   background-color: rgb(255, 136, 0);
+  cursor:pointer;
+}
+
+// 1700 < size
+@media all and (min-width: 1700px) {
+  .setting-left--dialogcontainer{
+    width: 24%;
+    margin-left: -12%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 22px;
+  }
+}
+
+// 1300 < size <= 1700
+@media all and (min-width: 1300px) and (max-width: 1700px) {
+  .setting-left--dialogcontainer{
+    width: 30%;
+    margin-left: -10%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 22px;
+  }
+}
+
+// 950 < size <= 1300
+@media all and (min-width: 950px) and (max-width: 1300px) {
+  .setting-left--dialogcontainer{
+    width: 38%;
+    margin-left: -14%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 20px;
+  }
+}
+
+// 800 < size <= 950
+@media all and (min-width: 800px) and (max-width: 950px) {
+  .setting-left--dialogcontainer{
+    width: 44%;
+    margin-left: -17%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 18px;
+  }
+}
+
+// 720 < size <= 800
+@media all and (min-width: 720px) and (max-width: 800px) {
+  .setting-left--dialogcontainer{
+    width: 48%;
+    margin-left: -19%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 18px;
+  }
+}
+
+// 550 < size <= 720
+@media all and (min-width: 550px) and (max-width: 720px) {
+  .setting-left--dialogcontainer{
+    width: 70%;
+    margin-left: -35%;
+    height: 70%;
+    top: 20%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 20px;
+  }
+}
+
+// 400 < size <= 550
+@media all and (min-width: 400px) and (max-width: 550px) {
+  .setting-left--dialogcontainer{
+    width: 80%;
+    margin-left: -40%;
+    height: 60%;
+    top: 20%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 20px;
+  }
+}
+
+// size <= 400
+@media all and (max-width: 400px) {
+  .setting-left--dialogcontainer{
+    width: 90%;
+    margin-left: -45%;
+    height: 45%;
+    top: 25%;
+  }
+  .setting-left--changePasswordContainer{
+    font-size: 16px;
+  }
 }
