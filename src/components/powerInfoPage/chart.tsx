@@ -99,13 +99,13 @@ const Chart: React.FC = () => {
     .line<IData>()
     .x((d: IData) => equipScaleX(new Date(d.date)))
     .y((d: IData) => equipScaleY(d.value))
-    .curve(d3.curveBasis);
+    .curve(d3.curveCardinal);
 
   const loadLine = d3
     .line<IData>()
     .x((d: IData) => loadScaleX(new Date(d.date)))
     .y((d: IData) => loadScaleY(d.value))
-    .curve(d3.curveBasis);
+    .curve(d3.curveCardinal);
 
   // handle change data
   const changeData = () => {
@@ -226,12 +226,15 @@ const Chart: React.FC = () => {
       .text('text')
       .style('display', 'none');
 
+    /*
     // interpolate
     const ipSolar = d3.interpolateBasis(
       equipData.dataSolar.map((d) => d.value),
     );
 
-    const ipWind = d3.interpolateBasis(equipData.dataWind.map((d) => d.value));
+    const ipWind = d3.interpolateBasis(
+      equipData.dataWind.map((d) => d.value),
+    );
 
     const ipStorage = d3.interpolateBasis(
       equipData.dataStorage.map((d) => d.value),
@@ -241,9 +244,14 @@ const Chart: React.FC = () => {
       equipData.dataCharge.map((d) => d.value),
     );
 
-    const ipUse = d3.interpolateBasis(loadData.dataUse.map((d) => d.value));
+    const ipUse = d3.interpolateBasis(
+      loadData.dataUse.map((d) => d.value),
+    );
 
-    const ipMake = d3.interpolateBasis(loadData.dataMake.map((d) => d.value));
+    const ipMake = d3.interpolateBasis(
+      loadData.dataMake.map((d) => d.value),
+    );
+    */
 
     // tooltip-circle
     const tooltipCircleSolar = svg
@@ -499,16 +507,7 @@ const Chart: React.FC = () => {
             .attr(
               'x1',
               equipScaleX(
-                new Date(
-                  timeFormat(
-                    equipScaleX.invert(
-                      d3.event.pageX - 160 >
-                        width - padding.right - padding.axisX
-                        ? width - padding.right - padding.axisX
-                        : d3.event.pageX - 160,
-                    ),
-                  ),
-                ),
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
               ),
             )
             .attr(
@@ -516,72 +515,43 @@ const Chart: React.FC = () => {
               padding.top +
                 Math.min(
                   equipScaleY(
-                    ipSolar(
-                      equipScaleX(
-                        new Date(
-                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    equipData.dataSolar[
+                      bisectDate(
+                        equipData.dataSolar,
+                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                   equipScaleY(
-                    ipWind(
-                      equipScaleX(
-                        new Date(
-                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    equipData.dataWind[
+                      bisectDate(
+                        equipData.dataSolar,
+                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                   equipScaleY(
-                    ipStorage(
-                      equipScaleX(
-                        new Date(
-                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    equipData.dataStorage[
+                      bisectDate(
+                        equipData.dataSolar,
+                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                   equipScaleY(
-                    ipCharge(
-                      equipScaleX(
-                        new Date(
-                          timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    equipData.dataCharge[
+                      bisectDate(
+                        equipData.dataSolar,
+                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                 ),
             )
             .attr(
               'x2',
               equipScaleX(
-                new Date(
-                  timeFormat(
-                    equipScaleX.invert(
-                      d3.event.pageX - 160 >
-                        width - padding.right - padding.axisX
-                        ? width - padding.right - padding.axisX
-                        : d3.event.pageX - 160,
-                    ),
-                  ),
-                ),
+                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
               ),
             )
             .attr('y2', height - padding.bottom);
@@ -685,14 +655,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                ipSolar(
-                  equipScaleX(
-                    new Date(
-                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                equipData.dataSolar[
+                  bisectDate(
+                    equipData.dataSolar,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
 
@@ -706,14 +674,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                ipWind(
-                  equipScaleX(
-                    new Date(
-                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                equipData.dataWind[
+                  bisectDate(
+                    equipData.dataWind,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
 
@@ -727,14 +693,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                ipStorage(
-                  equipScaleX(
-                    new Date(
-                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                equipData.dataStorage[
+                  bisectDate(
+                    equipData.dataStorage,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
 
@@ -748,14 +712,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               equipScaleY(
-                ipCharge(
-                  equipScaleX(
-                    new Date(
-                      timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                equipData.dataCharge[
+                  bisectDate(
+                    equipData.dataCharge,
+                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
         })
@@ -915,30 +877,20 @@ const Chart: React.FC = () => {
               padding.top +
                 Math.min(
                   loadScaleY(
-                    ipUse(
-                      loadScaleX(
-                        new Date(
-                          timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    loadData.dataUse[
+                      bisectDate(
+                        loadData.dataUse,
+                        timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                   loadScaleY(
-                    ipMake(
-                      loadScaleX(
-                        new Date(
-                          timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
-                        ),
-                      ) /
-                        (width -
-                          padding.right -
-                          padding.left -
-                          2 * padding.axisX),
-                    ),
+                    loadData.dataMake[
+                      bisectDate(
+                        loadData.dataMake,
+                        timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                      )
+                    ].value,
                   ),
                 ),
             )
@@ -1027,14 +979,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               loadScaleY(
-                ipUse(
-                  loadScaleX(
-                    new Date(
-                      timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                loadData.dataUse[
+                  bisectDate(
+                    loadData.dataUse,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
 
@@ -1048,14 +998,12 @@ const Chart: React.FC = () => {
             .attr(
               'cy',
               loadScaleY(
-                ipMake(
-                  loadScaleX(
-                    new Date(
-                      timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
-                    ),
-                  ) /
-                    (width - padding.right - padding.left - 2 * padding.axisX),
-                ),
+                loadData.dataMake[
+                  bisectDate(
+                    loadData.dataMake,
+                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                  )
+                ].value,
               ) + padding.top,
             );
         })
