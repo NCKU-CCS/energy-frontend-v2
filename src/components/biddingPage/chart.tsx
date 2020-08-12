@@ -10,11 +10,14 @@ interface IData {
   price: number;
 }
 
-const Chart: React.FC = () => {
+interface IProps {
+  mode: string;
+}
+
+const Chart: React.FC<IProps> = ({ mode }) => {
   const chartContainer = useRef(null);
   const [transactionData, setTransactionData] = useState(data3);
   const [reactionData, setReactionData] = useState(data1);
-  const [mode, setMode] = useState('需量反應');
 
   // transaction
   const transactionProps = {
@@ -438,7 +441,6 @@ const Chart: React.FC = () => {
       tooltipCvs
         .raise()
         .on('mouseover', () => {
-          console.log('mouseover');
           // tooltip-line
           tooltipLine.style('display', 'block').raise();
 
@@ -458,7 +460,6 @@ const Chart: React.FC = () => {
           tooltipDataSell.style('display', 'block').raise();
         })
         .on('mousemove', () => {
-          console.log('mousemove');
           // tooltip-rect
           tooltipRect
             .attr('x', d3.event.pageX - 225)
@@ -630,7 +631,6 @@ const Chart: React.FC = () => {
             );
         })
         .on('mouseout', () => {
-          console.log('mouseout');
           // tooltip-line
           tooltipLine.style('display', 'none');
 
@@ -662,12 +662,6 @@ const Chart: React.FC = () => {
       <svg className="chart" ref={chartContainer} />
       <button type="button" onClick={() => changeData()}>
         Change Data
-      </button>
-      <button type="button" onClick={() => setMode('綠能交易')}>
-        綠能交易
-      </button>
-      <button type="button" onClick={() => setMode('需量反應')}>
-        需量反應
       </button>
     </div>
   );

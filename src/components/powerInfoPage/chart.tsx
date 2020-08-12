@@ -10,11 +10,14 @@ interface IData {
   value: number;
 }
 
-const Chart: React.FC = () => {
+interface IProps {
+  mode: string;
+}
+
+const Chart: React.FC<IProps> = ({ mode }) => {
   const chartContainer = useRef(null);
   const [equipData, setEquipData] = useState(data1);
   const [loadData, setLoadData] = useState(data3);
-  const [mode, setMode] = useState('產能設備');
 
   // props
   const width = 1300;
@@ -464,7 +467,7 @@ const Chart: React.FC = () => {
         .attr('font-size', '20px')
         .text('充電樁');
 
-      // test for tooltip
+      // append tooltip
       tooltipCvs
         .raise()
         .on('mouseover', () => {
@@ -1040,12 +1043,6 @@ const Chart: React.FC = () => {
     <div>
       <button type="button" onClick={() => changeData()}>
         Change Data
-      </button>
-      <button type="button" onClick={() => setMode('淨負載')}>
-        淨負載
-      </button>
-      <button type="button" onClick={() => setMode('產能設備')}>
-        產能設備
       </button>
       <svg className="chart" ref={chartContainer} />
     </div>
