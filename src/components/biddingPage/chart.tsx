@@ -59,9 +59,9 @@ const Chart: React.FC = () => {
 
     grid: d3
       .axisLeft(transactionScales.scaleY)
-      .ticks(4)
+      .ticks(5)
+      .tickValues([10, 20, 30])
       .tickPadding(15)
-      .tickFormat(null)
       .tickSize(
         0 -
           transactionProps.width +
@@ -74,7 +74,7 @@ const Chart: React.FC = () => {
     .line<IData>()
     .x((d: IData) => transactionScales.scaleX(d.amount))
     .y((d: IData) => transactionScales.scaleY(d.price))
-    .curve(d3.curveBasis);
+    .curve(d3.curveCardinal);
 
   //  reaction
   const reactionProps = {
@@ -154,6 +154,7 @@ const Chart: React.FC = () => {
   useEffect(() => {
     // append svg
     const svg = d3.select(chartContainer.current);
+
     if (mode === '需量反應') {
       svg
         .attr('width', reactionProps.width)
@@ -236,6 +237,82 @@ const Chart: React.FC = () => {
         .attr('font-weight', 'bold')
         .text('每小時DR量預覽');
     } else if (mode === '綠能交易') {
+      // bisect
+      const bisectX = d3.bisector((d: IData) => d.amount).left;
+
+      // append tooltip-canvas
+      const tooltipCvs = svg
+        .append('rect')
+        .attr(
+          'width',
+          transactionProps.width -
+            2 * transactionProps.padding.right -
+            2 * transactionProps.padding.left -
+            40,
+        )
+        .attr(
+          'height',
+          transactionProps.height -
+            transactionProps.padding.top -
+            transactionProps.padding.bottom,
+        )
+        .attr(
+          'x',
+          transactionProps.padding.right + transactionProps.padding.left + 20,
+        )
+        .attr('y', transactionProps.padding.top)
+        .attr('opacity', 0);
+
+      // tooltip-rect
+      const tooltipRect = svg
+        .append('rect')
+        .attr('width', 115)
+        .attr('height', 70)
+        .attr('fill', '#e5e5e5')
+        .style('display', 'none');
+
+      // tooltip-line
+      const tooltipLine = svg
+        .append('line')
+        .attr('stroke', '#717171')
+        .attr('stroke-width', '1px')
+        .style('display', 'none');
+
+      // tooltip-text-title
+      const tooltipTitleBuy = svg
+        .append('text')
+        .text('text')
+        .style('display', 'none');
+
+      const tooltipTitleSell = svg
+        .append('text')
+        .text('text')
+        .style('display', 'none');
+
+      // tooltip-text-data
+      const tooltipDataBuy = svg
+        .append('text')
+        .text('text')
+        .style('display', 'none');
+
+      const tooltipDataSell = svg
+        .append('text')
+        .text('text')
+        .style('display', 'none');
+
+      // tooltip-circle
+      const tooltipCircleBuy = svg
+        .append('circle')
+        .attr('fill', '#717171')
+        .attr('r', 6)
+        .attr('display', 'none');
+
+      const tooltipCircleSell = svg
+        .append('circle')
+        .attr('fill', '#717171')
+        .attr('r', 6)
+        .style('display', 'none');
+
       // append path of dataBuy
       svg
         .append('path')
@@ -268,8 +345,9 @@ const Chart: React.FC = () => {
       svg
         .append('g')
         .call(transactionAxes.axisX)
-        .call((g) => g.select('.domain').remove())
+        /* .call((g) => g.select('.domain').remove()) */
         .attr('color', '#707070')
+        .attr('stroke-width', '0.5px')
         .attr('font-size', '15px')
         .attr(
           'transform',
@@ -283,7 +361,7 @@ const Chart: React.FC = () => {
         .append('g')
         .call(transactionAxes.grid)
         .call((g) => g.select('.domain').remove())
-        .call((g) => g.select('.tick:last-of-type').remove())
+        /* .call((g) => g.select('.tick:last-of-type').remove()) */
         .call((g) => g.selectAll('.tick').attr('color', 'gray'))
         .attr('stroke-width', '0.5px')
         .attr('font-size', '15px')
@@ -355,6 +433,222 @@ const Chart: React.FC = () => {
         .attr('fill', '#707070')
         .attr('font-size', '20px')
         .text('賣');
+
+      // append tooltip
+      tooltipCvs
+        .raise()
+        .on('mouseover', () => {
+          console.log('mouseover');
+          // tooltip-line
+          tooltipLine.style('display', 'block').raise();
+
+          // tooltip-circle
+          tooltipCircleBuy.style('display', 'block').raise();
+          tooltipCircleSell.style('display', 'block').raise();
+
+          // tooltip-rect
+          tooltipRect.style('display', 'block').raise();
+
+          // tooltip-title
+          tooltipTitleBuy.style('display', 'block').raise();
+          tooltipTitleSell.style('display', 'block').raise();
+
+          // tooltip-data
+          tooltipDataBuy.style('display', 'block').raise();
+          tooltipDataSell.style('display', 'block').raise();
+        })
+        .on('mousemove', () => {
+          console.log('mousemove');
+          // tooltip-rect
+          tooltipRect
+            .attr('x', d3.event.pageX - 225)
+            .attr('y', d3.event.pageY - 100);
+
+          // tooltip-line
+          tooltipLine
+            .attr(
+              'x1',
+              transactionProps.padding.right +
+                transactionScales.scaleX(
+                  transactionData.dataBuy[
+                    bisectX(
+                      transactionData.dataBuy,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].amount,
+                ),
+            )
+            .attr(
+              'y1',
+              transactionProps.padding.top +
+                Math.min(
+                  transactionScales.scaleY(
+                    transactionData.dataBuy[
+                      bisectX(
+                        transactionData.dataBuy,
+                        transactionScales.scaleX.invert(d3.event.pageX - 375),
+                      )
+                    ].price,
+                  ),
+                  transactionScales.scaleY(
+                    transactionData.dataSell[
+                      bisectX(
+                        transactionData.dataSell,
+                        transactionScales.scaleX.invert(d3.event.pageX - 375),
+                      )
+                    ].price,
+                  ),
+                ),
+            )
+            .attr(
+              'x2',
+              transactionProps.padding.right +
+                transactionScales.scaleX(
+                  transactionData.dataBuy[
+                    bisectX(
+                      transactionData.dataBuy,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].amount,
+                ),
+            )
+            .attr(
+              'y2',
+              transactionProps.height - transactionProps.padding.bottom,
+            );
+
+          // tooltip-title-buy
+          tooltipTitleBuy
+            .text('買')
+            .attr('x', d3.event.pageX - 215)
+            .attr('y', d3.event.pageY - 75);
+
+          // tooltip-title-buy
+          tooltipTitleSell
+            .text('賣')
+            .attr('x', d3.event.pageX - 215)
+            .attr('y', d3.event.pageY - 45);
+
+          // tooltip-data-buy
+          tooltipDataBuy
+            .text(
+              `(${
+                transactionData.dataBuy[
+                  bisectX(
+                    transactionData.dataBuy,
+                    transactionScales.scaleX.invert(d3.event.pageX - 375),
+                  )
+                ].amount
+              }, ${
+                transactionData.dataBuy[
+                  bisectX(
+                    transactionData.dataBuy,
+                    transactionScales.scaleX.invert(d3.event.pageX - 375),
+                  )
+                ].price
+              })`,
+            )
+            .attr('text-anchor', 'end')
+            .attr('x', d3.event.pageX - 120)
+            .attr('y', d3.event.pageY - 76);
+
+          // tooltip-data-sell
+          tooltipDataSell
+            .text(
+              `(${
+                transactionData.dataSell[
+                  bisectX(
+                    transactionData.dataSell,
+                    transactionScales.scaleX.invert(d3.event.pageX - 375),
+                  )
+                ].amount
+              }, ${
+                transactionData.dataSell[
+                  bisectX(
+                    transactionData.dataSell,
+                    transactionScales.scaleX.invert(d3.event.pageX - 375),
+                  )
+                ].price
+              })`,
+            )
+            .attr('text-anchor', 'end')
+            .attr('x', d3.event.pageX - 120)
+            .attr('y', d3.event.pageY - 46);
+
+          // tooltip-circle-buy
+          tooltipCircleBuy
+            .attr(
+              'cx',
+              transactionProps.padding.right +
+                transactionScales.scaleX(
+                  transactionData.dataBuy[
+                    bisectX(
+                      transactionData.dataBuy,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].amount,
+                ),
+            )
+            .attr(
+              'cy',
+              transactionProps.padding.top +
+                transactionScales.scaleY(
+                  transactionData.dataBuy[
+                    bisectX(
+                      transactionData.dataBuy,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].price,
+                ),
+            );
+
+          // tooltip-circle-sell
+          tooltipCircleSell
+            .attr(
+              'cx',
+              transactionProps.padding.right +
+                transactionScales.scaleX(
+                  transactionData.dataSell[
+                    bisectX(
+                      transactionData.dataSell,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].amount,
+                ),
+            )
+            .attr(
+              'cy',
+              transactionProps.padding.top +
+                transactionScales.scaleY(
+                  transactionData.dataSell[
+                    bisectX(
+                      transactionData.dataSell,
+                      transactionScales.scaleX.invert(d3.event.pageX - 375),
+                    )
+                  ].price,
+                ),
+            );
+        })
+        .on('mouseout', () => {
+          console.log('mouseout');
+          // tooltip-line
+          tooltipLine.style('display', 'none');
+
+          // tooltip-circle
+          tooltipCircleBuy.style('display', 'none');
+          tooltipCircleSell.style('display', 'none');
+
+          // tooltip-rect
+          tooltipRect.style('display', 'none');
+
+          // tooltip-title
+          tooltipTitleBuy.style('display', 'none');
+          tooltipTitleSell.style('display', 'none');
+
+          // tooltip-data
+          tooltipDataBuy.style('display', 'none');
+          tooltipDataSell.style('display', 'none');
+        });
     }
 
     // clear effect

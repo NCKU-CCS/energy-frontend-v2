@@ -2,165 +2,61 @@
   "dataBuy": [
     {
       "amount": 0,
-      "price": 2
-    },
-    {
-      "amount": 15,
-      "price": 5
-    },
-    {
-      "amount": 24,
-      "price": 6
-    },
-    {
-      "amount": 35,
-      "price": 8
-    },
-    {
-      "amount": 45,
-      "price": 9
-    },
-    {
-      "amount": 63,
-      "price": 6
-    },
-    {
-      "amount": 80,
-      "price": 8
-    },
-    {
-      "amount": 95,
-      "price": 12
-    },
-    {
-      "amount": 101,
       "price": 15
     },
     {
-      "amount": 121,
-      "price": 20
+      "amount": 50,
+      "price": 10
     },
     {
-      "amount": 160,
-      "price": 22
+      "amount": 100,
+      "price": 5
     },
     {
-      "amount": 180,
-      "price": 22
+      "amount": 150,
+      "price": 10
     },
     {
-      "amount": 203,
-      "price": 23
-    },
-    {
-      "amount": 206,
-      "price": 24
-    },
-    {
-      "amount": 218,
-      "price": 25
-    },
-    {
-      "amount": 221,
-      "price": 26
-    },
-    {
-      "amount": 223,
-      "price": 27
-    },
-    {
-      "amount": 240,
-      "price": 28
+      "amount": 200,
+      "price": 5
     },
     {
       "amount": 250,
-      "price": 28
+      "price": 5
     },
     {
-      "amount": 279,
-      "price": 27
+      "amount": 300,
+      "price": 20
     }
   ],
   "dataSell": [
     {
-      "amount": 2,
-      "price": 10
+      "amount": 0,
+      "price": 5
     },
     {
-      "amount": 10,
-      "price": 12
-    },
-    {
-      "amount": 14,
-      "price": 13
-    },
-    {
-      "amount": 38,
-      "price": 12
-    },
-    {
-      "amount": 56,
+      "amount": 50,
       "price": 15
     },
     {
-      "amount": 59,
-      "price": 14
-    },
-    {
-      "amount": 70,
-      "price": 13
-    },
-    {
-      "amount": 92,
-      "price": 14
-    },
-    {
-      "amount": 103,
-      "price": 15
-    },
-    {
-      "amount": 150,
-      "price": 21
-    },
-    {
-      "amount": 173,
+      "amount": 100,
       "price": 25
     },
     {
+      "amount": 150,
+      "price": 15
+    },
+    {
       "amount": 200,
-      "price": 31
-    },
-    {
-      "amount": 212,
-      "price": 31
-    },
-    {
-      "amount": 221,
-      "price": 32
-    },
-    {
-      "amount": 223,
-      "price": 32
-    },
-    {
-      "amount": 240,
-      "price": 32
+      "price": 10
     },
     {
       "amount": 250,
-      "price": 24
-    },
-    {
-      "amount": 261,
-      "price": 19
-    },
-    {
-      "amount": 289,
-      "price": 12
-    },
-    {
-      "amount": 290,
       "price": 5
+    },
+    {
+      "amount": 300,
+      "price": 15
     }
   ]
 }
