@@ -14,7 +14,7 @@ interface IUserInfo {
 
 interface IAmis {
   index: number;
-  id?: string;
+  id: string;
   name: string;
   description?: string;
 }
@@ -28,12 +28,13 @@ const SettingContainer: React.FC = () => {
   });
 
   const [amis, setAmis] = useState<IAmis[]>([]);
-  const addAMis = (amisname: string) => {
+  const addAMis = (amisName: string, amisID: string) => {
     setAmis([
       ...amis,
       {
         index: amis.length + 1,
-        name: amisname,
+        id: amisID,
+        name: amisName,
       },
     ]);
   };
@@ -86,13 +87,20 @@ const SettingContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const data = await response.json();
-      data.map((item: string) => addAMis(Object.values(item)[2]));
+      data.map((item: string) =>
+        addAMis(Object.values(item)[2], Object.values(item)[1]),
+      );
     }
   };
 
   useEffect(() => {
     (async () => {
       await fetchUser();
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
       await fetchAmis();
     })();
   }, []);

@@ -34,7 +34,8 @@
     "energyMeter": "已連接電錶",
     "number": "電錶編號",
     "code": "電錶辨識碼",
-    "name": "名稱"
+    "name": "名稱",
+    "view": "查看"
   },
   "biddingpage": {
     "pageTitle": "投標"

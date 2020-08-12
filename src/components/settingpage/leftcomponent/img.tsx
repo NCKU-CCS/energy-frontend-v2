@@ -11,7 +11,7 @@ const Img: React.FC<IUserImg> = ({ img, username }) => {
     <div className={classnames('setting-left--imgcontainer')}>
       <img
         className="setting-left--img"
-        alt="can't show"
+        alt="img"
         src="https://i.imgur.com/1T8X1XS.png"
       />
       <div className={classnames('setting-left--imgtext')}>{username}</div>

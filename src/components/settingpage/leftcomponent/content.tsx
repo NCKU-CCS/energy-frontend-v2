@@ -24,7 +24,12 @@ const Content: React.FC<IUserInfo> = ({ address, ethAddress }) => {
     for (let i = 0; i < long; i += 1) word += '*';
     return word;
   };
-  const ShortEthAddress = `${ethAddress.substr(0, 22)}...`;
+  let ShortEthAddress = '';
+  if (i18n.language === 'en-US') {
+    ShortEthAddress = `${ethAddress.substr(0, 15)}...`;
+  } else if (i18n.language === 'zh-TW') {
+    ShortEthAddress = `${ethAddress.substr(0, 22)}...`;
+  }
 
   const [dialogState, setDialog] = useState<boolean>(false);
 

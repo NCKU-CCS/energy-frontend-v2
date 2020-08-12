@@ -34,7 +34,8 @@
     "energyMeter": "Connected energy meters",
     "number": "number",
     "code": "identification code",
-    "name": "name"
+    "name": "name",
+    "view": "view"
   },
   "biddingpage": {
     "pageTitle": "Bidding"

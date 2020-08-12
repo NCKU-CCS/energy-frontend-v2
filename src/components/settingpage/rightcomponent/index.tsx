@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import InfoBox from './infoBox';
 
 interface IAmis {
   index: number;
-  id?: string;
+  id: string;
   name: string;
   description?: string;
 }
@@ -16,8 +17,10 @@ interface IAmisArray {
 const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
   const { t } = useTranslation();
 
+  const [infoBoxState, setInfoBox] = useState<boolean>(false);
+
   const listItems = IAmisList.map((content) => {
-    // const code =content.code.substr(0,32)+'...';
+    const code = `${content.id.substr(0, 32)}...`;
 
     return (
       <div className={classnames('setting-right--contentlistcontainer')}>
@@ -31,11 +34,11 @@ const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
         </div>
         <div
           className={classnames(
-            'setting-right--code',
+            'setting-right-code--generalWidth',
             'setting-right--content',
           )}
         >
-          H2s0Zqv4CLpHQ83il
+          {code}
         </div>
         <div
           className={classnames(
@@ -45,6 +48,23 @@ const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
         >
           {content.name}
         </div>
+        <div className={classnames('setting-right-viewButtonContainer')}>
+          <button
+            type="button"
+            className={classnames('setting-right-viewButton')}
+            onClick={() => setInfoBox(true)}
+          >
+            {t('settingpage.view')}
+          </button>
+        </div>
+        {infoBoxState && (
+          <InfoBox
+            changeState={setInfoBox}
+            index={content.index}
+            id={content.id}
+            name={content.name}
+          />
+        )}
       </div>
     );
   });
@@ -58,11 +78,14 @@ const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
         <div className={classnames('setting-right--number')}>
           {t('settingpage.number')}
         </div>
-        <div className={classnames('setting-right--code')}>
+        <div className={classnames('setting-right-code--generalWidth')}>
           {t('settingpage.code')}
         </div>
         <div className={classnames('setting-right--name')}>
           {t('settingpage.name')}
+        </div>
+        <div className={classnames('setting-right-code--width450')}>
+          {t('settingpage.code')}
         </div>
       </div>
       <div className={classnames('setting-right--contentcontainer')}>
