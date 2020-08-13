@@ -4,7 +4,7 @@ interface IProps {
   changeDate(date: string): void;
 }
 
-const Calendar: React.FC<IProps> = ({ changeDate }) => {
+const DatePicker: React.FC<IProps> = ({ changeDate }) => {
   return (
     <div>
       <input type="date" onChange={(event) => changeDate(event.target.value)} />
@@ -12,4 +12,4 @@ const Calendar: React.FC<IProps> = ({ changeDate }) => {
   );
 };
 
-export default Calendar;
+export default DatePicker;
