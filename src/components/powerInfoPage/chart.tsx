@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
+import dayjs from 'dayjs';
 import data1 from './test1.json';
 import data2 from './test2.json';
 import data3 from './test3.json';
@@ -12,9 +13,10 @@ interface IData {
 
 interface IProps {
   mode: string;
+  date: string;
 }
 
-const Chart: React.FC<IProps> = ({ mode }) => {
+const Chart: React.FC<IProps> = ({ mode, date }) => {
   const chartContainer = useRef(null);
   const [equipData, setEquipData] = useState(data1);
   const [loadData, setLoadData] = useState(data3);
@@ -1038,6 +1040,10 @@ const Chart: React.FC<IProps> = ({ mode }) => {
       svg.selectAll('*').remove();
     };
   });
+
+  useEffect(() => {
+    console.log(dayjs(date).format('YYYY/MM/DD'));
+  }, [date]);
 
   return (
     <div>
