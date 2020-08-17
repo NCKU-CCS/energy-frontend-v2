@@ -1,10 +1,19 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect /* , useState */ } from 'react';
 import * as d3 from 'd3';
 import dayjs from 'dayjs';
 import data1 from './test1.json';
-import data2 from './test2.json';
 import data3 from './test3.json';
-import data4 from './test4.json';
+
+interface IApiData {
+  Consume: number;
+  Date: string;
+  Demand: number;
+  ESS: number;
+  EV: number;
+  Generate: number;
+  PV: number;
+  WT: number;
+}
 
 interface IData {
   date: string;
@@ -13,13 +22,17 @@ interface IData {
 
 interface IProps {
   mode: string;
-  date: string;
+  date: Date;
 }
 
 const Chart: React.FC<IProps> = ({ mode, date }) => {
   const chartContainer = useRef(null);
-  const [equipData, setEquipData] = useState(data1);
-  const [loadData, setLoadData] = useState(data3);
+  const equipData = data1;
+  const loadData = data3;
+  // Api Data Array
+  // const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
+
+  // fetch Api Data
 
   // props
   const width = 1300;
@@ -111,21 +124,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .x((d: IData) => loadScaleX(new Date(d.date)))
     .y((d: IData) => loadScaleY(d.value))
     .curve(d3.curveCardinal);
-
-  // handle change data
-  const changeData = () => {
-    if (mode === '淨負載') {
-      if (loadData === data3) {
-        setLoadData(data4);
-      } else {
-        setLoadData(data3);
-      }
-    } else if (equipData === data1) {
-      setEquipData(data2);
-    } else {
-      setEquipData(data1);
-    }
-  };
 
   // React-Hook: useEffect
   useEffect(() => {
@@ -1047,9 +1045,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div>
-      <button type="button" onClick={() => changeData()}>
-        Change Data
-      </button>
       <svg className="chart" ref={chartContainer} />
     </div>
   );

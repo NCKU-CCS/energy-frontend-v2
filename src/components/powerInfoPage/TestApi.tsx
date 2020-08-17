@@ -13,18 +13,6 @@ interface IApiData {
 
 const TestApi: React.FC = () => {
   const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
-  /*
-  const [apiData, setApiData] = useState<IApiData>({
-    Consume: 0,
-    Date: 'YYYY/MM/DD',
-    Demand: 0,
-    ESS: 0,
-    EV: 0,
-    Generate: 0,
-    PV: 0,
-    WT: 0
-  });
-  */
 
   const chartDate = '2020/07/29';
 

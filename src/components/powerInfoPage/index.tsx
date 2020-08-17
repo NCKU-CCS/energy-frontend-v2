@@ -7,14 +7,14 @@ import DatePicker from './datePicker';
 const PowerInfoPageContainer: React.FC = () => {
   // mode -> 淨負載 or 產能設備
   const [mode, setMode] = useState('產能設備');
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <div>
+      <DatePicker changeDate={setDate} />
       <ModeButton changeMode={setMode} />
       <Chart mode={mode} date={date} />
       <TestApi />
-      <DatePicker changeDate={setDate} />
     </div>
   );
 };
