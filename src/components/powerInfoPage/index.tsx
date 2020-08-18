@@ -12,7 +12,7 @@ const PowerInfoPageContainer: React.FC = () => {
     <div>
       <DatePicker changeDate={setDate} />
       <ModeButton changeMode={setMode} />
-      <Chart mode={mode} lastDate={date} />
+      <Chart mode={mode} date={date} />
     </div>
   );
 };

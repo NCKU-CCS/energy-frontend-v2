@@ -13,18 +13,16 @@ interface IApiData {
   WT: number;
 }
 
-interface IData {
-  date: string;
-  value: number;
-}
-
 interface IProps {
   mode: string;
-  lastDate: Date;
+  date: Date;
 }
 
-const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
+const Chart: React.FC<IProps> = ({ mode, date }) => {
   const chartContainer = useRef(null);
+
+  // check whether lastDate is after today or not
+  const lastDate = date.getTime() > new Date().getTime() ? new Date() : date;
 
   // time format
   const timeFormat = d3.timeFormat('%Y/%m/%d');
@@ -355,69 +353,13 @@ const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - padding.right)
+      .attr('x', width - padding.right / 1.5)
       .attr('y', height - padding.bottom / 2.7)
       .attr('fill', '#707070')
       .attr('font-size', '20px')
       .text('日期');
 
     if (mode === '產能設備') {
-      // append line of dataPV
-      svg
-        .append('path')
-        .datum(apiDataArr)
-        .attr('d', linePV)
-        .attr('y', 0)
-        .attr('stroke', '#f7c015')
-        .attr('stroke-width', '2px')
-        .attr('fill', 'none')
-        .attr(
-          'transform',
-          `translate(${padding.axisX + padding.left}, ${padding.top})`,
-        );
-
-      // append line of dataEV
-      svg
-        .append('path')
-        .datum(apiDataArr)
-        .attr('d', lineEV)
-        .attr('y', 0)
-        .attr('stroke', '#a243c9')
-        .attr('stroke-width', '2px')
-        .attr('fill', 'none')
-        .attr(
-          'transform',
-          `translate(${padding.axisX + padding.left}, ${padding.top})`,
-        );
-
-      // append line of dataESS
-      svg
-        .append('path')
-        .datum(apiDataArr)
-        .attr('d', lineESS)
-        .attr('y', 0)
-        .attr('stroke', '#696464')
-        .attr('stroke-width', '2px')
-        .attr('fill', 'none')
-        .attr(
-          'transform',
-          `translate(${padding.axisX + padding.left}, ${padding.top})`,
-        );
-
-      // append line of dataWT
-      svg
-        .append('path')
-        .datum(apiDataArr)
-        .attr('d', lineWT)
-        .attr('y', 0)
-        .attr('stroke', '#2d3361')
-        .attr('stroke-width', '2px')
-        .attr('fill', 'none')
-        .attr(
-          'transform',
-          `translate(${padding.axisX + padding.left}, ${padding.top})`,
-        );
-
       // append axis
       svg
         .append('g')
@@ -439,10 +381,15 @@ const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
         .call((g) => g.select('.domain').remove())
         .call((g) => g.selectAll('.tick').attr('color', 'gray'))
         .call((g) =>
-          g.select(':nth-child(3) line').attr('stroke-dasharray', '3'),
+          g
+            .select(':nth-child(3)')
+            .select('line')
+            .attr('stroke-dasharray', '3'),
         )
         .attr('stroke-width', '0.5px')
-        .call((g) => g.select(':nth-child(3) line').attr('stroke-width', '2px'))
+        .call((g) =>
+          g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
+        )
         .attr('fill', 'none')
         .attr('font-size', '15px')
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
@@ -508,6 +455,62 @@ const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
         .attr('fill', '#707070')
         .attr('font-size', '20px')
         .text('充電樁');
+
+      // append line of dataPV
+      svg
+        .append('path')
+        .datum(apiDataArr)
+        .attr('d', linePV)
+        .attr('y', 0)
+        .attr('stroke', '#f7c015')
+        .attr('stroke-width', '2px')
+        .attr('fill', 'none')
+        .attr(
+          'transform',
+          `translate(${padding.axisX + padding.left}, ${padding.top})`,
+        );
+
+      // append line of dataEV
+      svg
+        .append('path')
+        .datum(apiDataArr)
+        .attr('d', lineEV)
+        .attr('y', 0)
+        .attr('stroke', '#a243c9')
+        .attr('stroke-width', '2px')
+        .attr('fill', 'none')
+        .attr(
+          'transform',
+          `translate(${padding.axisX + padding.left}, ${padding.top})`,
+        );
+
+      // append line of dataESS
+      svg
+        .append('path')
+        .datum(apiDataArr)
+        .attr('d', lineESS)
+        .attr('y', 0)
+        .attr('stroke', '#696464')
+        .attr('stroke-width', '2px')
+        .attr('fill', 'none')
+        .attr(
+          'transform',
+          `translate(${padding.axisX + padding.left}, ${padding.top})`,
+        );
+
+      // append line of dataWT
+      svg
+        .append('path')
+        .datum(apiDataArr)
+        .attr('d', lineWT)
+        .attr('y', 0)
+        .attr('stroke', '#2d3361')
+        .attr('stroke-width', '2px')
+        .attr('fill', 'none')
+        .attr(
+          'transform',
+          `translate(${padding.axisX + padding.left}, ${padding.top})`,
+        );
 
       // append tooltip
       tooltipCvs
@@ -1069,7 +1072,9 @@ const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
   }, [lastDate]);
 
   // React-Hook: useEffect -> define variables depends on api data
-  useEffect(() => {}, [apiDataArr]);
+  useEffect(() => {
+    console.log(apiDataArr);
+  }, [apiDataArr]);
 
   return (
     <div>
