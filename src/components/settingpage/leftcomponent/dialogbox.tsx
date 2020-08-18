@@ -3,24 +3,20 @@ import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
-  changestate: (display: boolean) => void;
+  changeState: (display: boolean) => void;
 }
 
-const DialogBox: React.FC<IProps> = ({ changestate }) => {
+const DialogBox: React.FC<IProps> = ({ changeState }) => {
   const { t } = useTranslation();
 
-  const title = classnames('setting-left--dialogtitle');
-  const passwordinput = classnames('setting-left--passwordInput');
+  const title = classnames('setting-left-dialogtitle');
+  const passwordInput = classnames('setting-left-passwordInput');
 
-  const [oldPassword, changeoldPassword] = useState<string>('');
-  const [newPassword, changenewPassword] = useState<string>('');
-  const [confirmPassword, changeconfirmPassword] = useState<string>('');
+  const [oldPassword, changeOldPassword] = useState<string>('');
+  const [newPassword, changeNewPassword] = useState<string>('');
+  const [confirmPassword, changeConfirmPassword] = useState<string>('');
 
   const changeRequest = async () => {
-    const password = JSON.stringify({
-      original_passwd: oldPassword,
-      new_passwd: newPassword,
-    });
     // get bearer token
     const user = JSON.parse(
       localStorage.getItem('BEMS_USER') ||
@@ -37,66 +33,72 @@ const DialogBox: React.FC<IProps> = ({ changestate }) => {
           Authorization: `Bearer ${user.bearer}`,
           'Content-Type': 'application/json',
         }),
-        body: password,
+        body: JSON.stringify({
+          original_passwd: oldPassword,
+          new_passwd: newPassword,
+        }),
       },
     );
     if (response.status === 200) {
       // fetch success
+      // eslint-disable-next-line no-alert
       window.alert(t('settingpage.successChange'));
-      changestate(false);
+      changeState(false);
     } else {
       // fetch failure
+      // eslint-disable-next-line no-alert
       window.alert(t('settingpage.oldPasswordWrong'));
     }
   };
 
   function changePassword() {
     if (newPassword !== confirmPassword)
+      // eslint-disable-next-line no-alert
       window.alert(t('settingpage.newPasswordWrong'));
     else changeRequest();
-    changeoldPassword('');
-    changenewPassword('');
-    changeconfirmPassword('');
+    changeOldPassword('');
+    changeNewPassword('');
+    changeConfirmPassword('');
   }
 
   return (
-    <div className={classnames('setting-left--background')}>
-      <div className={classnames('setting-left--dialogcontainer')}>
+    <div className={classnames('setting-left-background')}>
+      <div className={classnames('setting-left-dialogcontainer')}>
         <button
           type="button"
-          className={classnames('setting-left--fork')}
-          onClick={() => changestate(false)}
+          className={classnames('setting-left-fork')}
+          onClick={() => changeState(false)}
         >
           ✕
         </button>
-        <div className={classnames('setting-left--changePasswordContainer')}>
+        <div className={classnames('setting-left-changePasswordContainer')}>
           <div className={title}>{t('settingpage.oldPassword')}</div>
           <input
             type="password"
             id="oldPassword"
             value={oldPassword}
-            onChange={(event) => changeoldPassword(event.target.value)}
-            className={passwordinput}
+            onChange={(event) => changeOldPassword(event.target.value)}
+            className={passwordInput}
           />
           <div className={title}>{t('settingpage.newPassword')}</div>
           <input
             type="password"
             id="newPassword"
             value={newPassword}
-            onChange={(event) => changenewPassword(event.target.value)}
-            className={passwordinput}
+            onChange={(event) => changeNewPassword(event.target.value)}
+            className={passwordInput}
           />
           <div className={title}>{t('settingpage.confirmPassword')}</div>
           <input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
-            onChange={(event) => changeconfirmPassword(event.target.value)}
-            className={passwordinput}
+            onChange={(event) => changeConfirmPassword(event.target.value)}
+            className={passwordInput}
           />
           <button
             type="button"
-            className={classnames('setting-left--changePasswordButton')}
+            className={classnames('setting-left-changePasswordButton')}
             onClick={changePassword}
           >
             {t('settingpage.changePassword')}

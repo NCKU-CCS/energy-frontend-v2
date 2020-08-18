@@ -1,7 +1,7 @@
 @import './img.scss/';
 @import './content.scss/';
 
-.setting-left--container{
+.setting-left-container{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@
 
 // 950 < size
 @media all and (min-width: 950px) {
-  .setting-left--container{
+  .setting-left-container{
     flex-direction: column;
     width: 38%;
   }   
@@ -21,7 +21,7 @@
   
 // 450 < size <= 950
 @media all and (min-width: 450px) and (max-width: 950px) {
-  .setting-left--container{
+  .setting-left-container{
     flex-direction: row;
     width: 100%;
     height: 35%;
@@ -35,7 +35,7 @@
 
 //size <= 450
 @media all and (max-width: 450px) {
-  .setting-left--container{
+  .setting-left-container{
     flex-direction: column;
     width: 100%;
     height: 50%;

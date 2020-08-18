@@ -8,6 +8,7 @@ interface IUserInfo {
   avatar: string;
   address: string;
   ethAddress: string;
+  account: string;
 }
 
 const LeftContainer: React.FC<IUserInfo> = ({
@@ -15,11 +16,12 @@ const LeftContainer: React.FC<IUserInfo> = ({
   avatar,
   address,
   ethAddress,
+  account,
 }) => {
   return (
-    <div className={classnames('setting-left--container')}>
+    <div className={classnames('setting-left-container')}>
       <Img img={avatar} username={username} />
-      <Content address={address} ethAddress={ethAddress} />
+      <Content address={address} ethAddress={ethAddress} account={account} />
     </div>
   );
 };

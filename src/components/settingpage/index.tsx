@@ -4,12 +4,13 @@ import LeftContainer from './leftcomponent';
 import RightContainer from './rightcomponent';
 
 interface IUserInfo {
-  username: string;
+  account: string;
   avatar: string;
   balance?: number;
   address: string;
   eth_address: string;
   is_aggregator?: boolean;
+  username: string;
 }
 
 interface IAmis {
@@ -21,6 +22,7 @@ interface IAmis {
 
 const SettingContainer: React.FC = () => {
   const [info, setInfo] = useState<IUserInfo>({
+    account: '--',
     username: '--',
     avatar: `${process.env.PUBLIC_URL}/nav/avatar.png`,
     address: '--',
@@ -87,7 +89,7 @@ const SettingContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const data = await response.json();
-      data.map((item: string) =>
+      data.map((item: object) =>
         addAMis(Object.values(item)[2], Object.values(item)[1]),
       );
     }
@@ -96,11 +98,6 @@ const SettingContainer: React.FC = () => {
   useEffect(() => {
     (async () => {
       await fetchUser();
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
       await fetchAmis();
     })();
   }, []);
@@ -112,6 +109,7 @@ const SettingContainer: React.FC = () => {
         avatar={info.avatar}
         address={info.address}
         ethAddress={info.eth_address}
+        account={info.account}
       />
       <RightContainer IAmisList={amis} />
     </div>
