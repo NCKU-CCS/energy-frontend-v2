@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Chart from './chart';
 import ModeButton from './modeButton';
-import TestApi from './TestApi';
 import DatePicker from './datePicker';
 
 const PowerInfoPageContainer: React.FC = () => {
@@ -13,8 +12,7 @@ const PowerInfoPageContainer: React.FC = () => {
     <div>
       <DatePicker changeDate={setDate} />
       <ModeButton changeMode={setMode} />
-      <Chart mode={mode} date={date} />
-      <TestApi />
+      <Chart mode={mode} lastDate={date} />
     </div>
   );
 };

@@ -1,8 +1,6 @@
-import React, { useRef, useEffect /* , useState */ } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import dayjs from 'dayjs';
-import data1 from './test1.json';
-import data3 from './test3.json';
 
 interface IApiData {
   Consume: number;
@@ -22,17 +20,54 @@ interface IData {
 
 interface IProps {
   mode: string;
-  date: Date;
+  lastDate: Date;
 }
 
-const Chart: React.FC<IProps> = ({ mode, date }) => {
+const Chart: React.FC<IProps> = ({ mode, lastDate }) => {
   const chartContainer = useRef(null);
-  const equipData = data1;
-  const loadData = data3;
+
+  // time format
+  const timeFormat = d3.timeFormat('%Y/%m/%d');
+
+  // bisector
+  const bisectDate = d3.bisector((d: IApiData) => d.Date).left;
+
+  // calculate first of the chart
+  const firstDate = new Date(lastDate.getTime() - 6 * 24 * 60 * 60 * 1000);
+
   // Api Data Array
-  // const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
+  const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
 
   // fetch Api Data
+  const fetchApiData = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+
+    // GET to Power Info API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/power_info?chart_date=${dayjs(
+        lastDate,
+      ).format('YYYY/MM/DD')}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+
+    // get response successfully or not
+    if (response.status === 200) {
+      const tmp = await response.json();
+      setApiDataArr(tmp);
+    }
+  };
 
   // props
   const width = 1300;
@@ -46,20 +81,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   };
 
   // scales
-  const equipScaleX = d3
+  const scaleX = d3
     .scaleTime()
     .range([0, width - padding.left - padding.right - 2 * padding.axisX])
     .domain([
-      new Date(equipData.dataSolar[0].date),
-      new Date(equipData.dataSolar[6].date),
-    ]);
-
-  const loadScaleX = d3
-    .scaleTime()
-    .range([0, width - padding.left - padding.right - 2 * padding.axisX])
-    .domain([
-      new Date(loadData.dataUse[0].date),
-      new Date(loadData.dataUse[6].date),
+      new Date(dayjs(firstDate).format('YYYY/MM/DD')),
+      new Date(dayjs(lastDate).format('YYYY/MM/DD')),
     ]);
 
   const equipScaleY = d3
@@ -73,20 +100,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .domain([0, 40]);
 
   // axisX
-  const equipAxisX = d3
-    .axisBottom(equipScaleX)
-    .ticks(7)
-    .tickSize(0)
-    .tickPadding(20)
-    .tickFormat(
-      d3.timeFormat('%Y/%m/%d') as (
-        value: Date | { valueOf(): number },
-        i: number,
-      ) => string,
-    );
-
-  const loadAxisX = d3
-    .axisBottom(loadScaleX)
+  const axisX = d3
+    .axisBottom(scaleX)
     .ticks(7)
     .tickSize(0)
     .tickPadding(20)
@@ -112,26 +127,53 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
-  // line
-  const equipLine = d3
-    .line<IData>()
-    .x((d: IData) => equipScaleX(new Date(d.date)))
-    .y((d: IData) => equipScaleY(d.value))
+  // line -> equipLine
+  // PV -> 太陽能
+  const linePV = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => equipScaleY(d.PV))
     .curve(d3.curveCardinal);
 
-  const loadLine = d3
-    .line<IData>()
-    .x((d: IData) => loadScaleX(new Date(d.date)))
-    .y((d: IData) => loadScaleY(d.value))
+  // WT -> 風能
+  const lineWT = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => equipScaleY(d.WT))
     .curve(d3.curveCardinal);
 
-  // React-Hook: useEffect
+  // ESS -> 儲能系統
+  const lineESS = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => equipScaleY(d.ESS))
+    .curve(d3.curveCardinal);
+
+  // EV -> 充電樁
+  const lineEV = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => equipScaleY(d.EV))
+    .curve(d3.curveCardinal);
+
+  // line -> loadLine
+  // Consume -> 用電
+  const lineConsume = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => loadScaleY(d.Consume))
+    .curve(d3.curveCardinal);
+
+  // Generate -> 產電
+  const lineGenerate = d3
+    .line<IApiData>()
+    .x((d: IApiData) => scaleX(new Date(d.Date)))
+    .y((d: IApiData) => loadScaleY(d.Generate))
+    .curve(d3.curveCardinal);
+
+  // React-Hook: useEffect -> render chart
   useEffect(() => {
     const svg = d3.select(chartContainer.current);
-
-    const timeFormat = d3.timeFormat('%Y/%m/%d');
-
-    const bisectDate = d3.bisector((d: IData) => d.date).left;
 
     // tooltip-canvas
     const tooltipCvs = svg
@@ -156,75 +198,75 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .style('display', 'none');
 
     // tooltip-text-title-equip
-    const tooltipTitleSolar = svg
+    const tooltipTitlePV = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTitleWind = svg
+    const tooltipTitleWT = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTitleStorage = svg
+    const tooltipTitleESS = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTitleCharge = svg
+    const tooltipTitleEV = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
     // tooltip-text-data-equip
-    const tooltipDataSolar = svg
+    const tooltipDataPV = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipDataWind = svg
+    const tooltipDataWT = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipDataStorage = svg
+    const tooltipDataESS = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipDataCharge = svg
+    const tooltipDataEV = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
     // tooltip-text-title-load
-    const tooltipTitleUse = svg
+    const tooltipTitleConsume = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTitleMake = svg
+    const tooltipTitleGenerate = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipTitleNet = svg
+    const tooltipTitleDemand = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
     // tooltip-text-Data-load
-    const tooltipDataUse = svg
+    const tooltipDataConsume = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipDataMake = svg
+    const tooltipDataGenerate = svg
       .append('text')
       .text('text')
       .style('display', 'none');
 
-    const tooltipDataNet = svg
+    const tooltipDataDemand = svg
       .append('text')
       .text('text')
       .style('display', 'none');
@@ -257,37 +299,37 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     */
 
     // tooltip-circle
-    const tooltipCircleSolar = svg
+    const tooltipCirclePV = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
       .style('display', 'none');
 
-    const tooltipCircleWind = svg
+    const tooltipCircleWT = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
       .style('display', 'none');
 
-    const tooltipCircleStorage = svg
+    const tooltipCircleESS = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
       .style('display', 'none');
 
-    const tooltipCircleCharge = svg
+    const tooltipCircleEV = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
       .style('display', 'none');
 
-    const tooltipCircleUse = svg
+    const tooltipCircleConsume = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
       .style('display', 'none');
 
-    const tooltipCircleMake = svg
+    const tooltipCircleGenerate = svg
       .append('circle')
       .attr('fill', '#717171')
       .attr('r', 6)
@@ -320,11 +362,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .text('日期');
 
     if (mode === '產能設備') {
-      // append line of dataSolar
+      // append line of dataPV
       svg
         .append('path')
-        .datum(equipData.dataSolar)
-        .attr('d', equipLine)
+        .datum(apiDataArr)
+        .attr('d', linePV)
         .attr('y', 0)
         .attr('stroke', '#f7c015')
         .attr('stroke-width', '2px')
@@ -334,11 +376,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           `translate(${padding.axisX + padding.left}, ${padding.top})`,
         );
 
-      // append line of dataCharge
+      // append line of dataEV
       svg
         .append('path')
-        .datum(equipData.dataCharge)
-        .attr('d', equipLine)
+        .datum(apiDataArr)
+        .attr('d', lineEV)
         .attr('y', 0)
         .attr('stroke', '#a243c9')
         .attr('stroke-width', '2px')
@@ -348,11 +390,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           `translate(${padding.axisX + padding.left}, ${padding.top})`,
         );
 
-      // append line of dataStorage
+      // append line of dataESS
       svg
         .append('path')
-        .datum(equipData.dataStorage)
-        .attr('d', equipLine)
+        .datum(apiDataArr)
+        .attr('d', lineESS)
         .attr('y', 0)
         .attr('stroke', '#696464')
         .attr('stroke-width', '2px')
@@ -362,11 +404,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           `translate(${padding.axisX + padding.left}, ${padding.top})`,
         );
 
-      // append line of dataWind
+      // append line of dataWT
       svg
         .append('path')
-        .datum(equipData.dataWind)
-        .attr('d', equipLine)
+        .datum(apiDataArr)
+        .attr('d', lineWT)
         .attr('y', 0)
         .attr('stroke', '#2d3361')
         .attr('stroke-width', '2px')
@@ -379,7 +421,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       // append axis
       svg
         .append('g')
-        .call(equipAxisX)
+        .call(axisX)
         .call((g) => g.select('.domain').remove())
         .attr('color', '#707070')
         .attr('font-size', '15px')
@@ -475,10 +517,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine.style('display', 'block');
 
           // tooltip-circle
-          tooltipCircleSolar.style('display', 'block').raise();
-          tooltipCircleWind.style('display', 'block').raise();
-          tooltipCircleStorage.style('display', 'block').raise();
-          tooltipCircleCharge.style('display', 'block').raise();
+          tooltipCirclePV.style('display', 'block').raise();
+          tooltipCircleWT.style('display', 'block').raise();
+          tooltipCircleESS.style('display', 'block').raise();
+          tooltipCircleEV.style('display', 'block').raise();
 
           // tooltip-rect
           tooltipRect
@@ -488,16 +530,16 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .raise();
 
           // tooltip-title
-          tooltipTitleSolar.style('display', 'block').raise();
-          tooltipTitleWind.style('display', 'block').raise();
-          tooltipTitleStorage.style('display', 'block').raise();
-          tooltipTitleCharge.style('display', 'block').raise();
+          tooltipTitlePV.style('display', 'block').raise();
+          tooltipTitleWT.style('display', 'block').raise();
+          tooltipTitleESS.style('display', 'block').raise();
+          tooltipTitleEV.style('display', 'block').raise();
 
           // tooltip-data
-          tooltipDataSolar.style('display', 'block').raise();
-          tooltipDataWind.style('display', 'block').raise();
-          tooltipDataStorage.style('display', 'block').raise();
-          tooltipDataCharge.style('display', 'block').raise();
+          tooltipDataPV.style('display', 'block').raise();
+          tooltipDataWT.style('display', 'block').raise();
+          tooltipDataESS.style('display', 'block').raise();
+          tooltipDataEV.style('display', 'block').raise();
         })
         .on('mousemove', () => {
           // tooltip-rect
@@ -509,138 +551,134 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine
             .attr(
               'x1',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'y1',
               padding.top +
                 Math.min(
                   equipScaleY(
-                    equipData.dataSolar[
+                    apiDataArr[
                       bisectDate(
-                        equipData.dataSolar,
-                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].PV,
                   ),
                   equipScaleY(
-                    equipData.dataWind[
+                    apiDataArr[
                       bisectDate(
-                        equipData.dataSolar,
-                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].WT,
                   ),
                   equipScaleY(
-                    equipData.dataStorage[
+                    apiDataArr[
                       bisectDate(
-                        equipData.dataSolar,
-                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].ESS,
                   ),
                   equipScaleY(
-                    equipData.dataCharge[
+                    apiDataArr[
                       bisectDate(
-                        equipData.dataSolar,
-                        timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].EV,
                   ),
                 ),
             )
             .attr(
               'x2',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr('y2', height - padding.bottom);
 
-          // tooltip-title-solar
-          tooltipTitleSolar
+          // tooltip-title-PV
+          tooltipTitlePV
             .text('太陽能:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
-          // tooltip-data-solar
-          tooltipDataSolar
+          // tooltip-data-PV
+          tooltipDataPV
             .text(
               `${
-                equipData.dataSolar[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataSolar,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].PV
               }`,
             )
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
-          // tooltip-title-wind
-          tooltipTitleWind
+          // tooltip-title-WT
+          tooltipTitleWT
             .text('風能:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
-          // tooltip-data-wind
-          tooltipDataWind
+          // tooltip-data-WT
+          tooltipDataWT
             .text(
               `${
-                equipData.dataWind[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataWind,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].WT
               }`,
             )
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
-          // tooltip-title-storage
-          tooltipTitleStorage
+          // tooltip-title-ESS
+          tooltipTitleESS
             .text('儲能系統:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
-          // tooltip-data-storage
-          tooltipDataStorage
+          // tooltip-data-ESS
+          tooltipDataESS
             .text(
               `${
-                equipData.dataStorage[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataStorage,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].ESS
               }`,
             )
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
-          // tooltip-title-charge
-          tooltipTitleCharge
+          // tooltip-title-EV
+          tooltipTitleEV
             .text('充電樁:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 0}`);
 
-          // tooltip-data-charge
-          tooltipDataCharge
+          // tooltip-data-EV
+          tooltipDataEV
             .text(
               `${
-                equipData.dataCharge[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataCharge,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].EV
               }`,
             )
             .attr('text-anchor', 'end')
@@ -648,79 +686,71 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('y', `${d3.event.pageY - 0}`);
 
           // tooltip-circle
-          tooltipCircleSolar
+          tooltipCirclePV
             .attr(
               'cx',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               equipScaleY(
-                equipData.dataSolar[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataSolar,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].PV,
               ) + padding.top,
             );
 
-          tooltipCircleWind
+          tooltipCircleWT
             .attr(
               'cx',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               equipScaleY(
-                equipData.dataWind[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataWind,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].WT,
               ) + padding.top,
             );
 
-          tooltipCircleStorage
+          tooltipCircleESS
             .attr(
               'cx',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               equipScaleY(
-                equipData.dataStorage[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataStorage,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].ESS,
               ) + padding.top,
             );
 
-          tooltipCircleCharge
+          tooltipCircleEV
             .attr(
               'cx',
-              equipScaleX(
-                new Date(timeFormat(equipScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               equipScaleY(
-                equipData.dataCharge[
+                apiDataArr[
                   bisectDate(
-                    equipData.dataCharge,
-                    timeFormat(equipScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].EV,
               ) + padding.top,
             );
         })
@@ -732,29 +762,29 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine.style('display', 'none');
 
           // tooltip-title
-          tooltipTitleSolar.style('display', 'none');
-          tooltipTitleWind.style('display', 'none');
-          tooltipTitleStorage.style('display', 'none');
-          tooltipTitleCharge.style('display', 'none');
+          tooltipTitlePV.style('display', 'none');
+          tooltipTitleWT.style('display', 'none');
+          tooltipTitleESS.style('display', 'none');
+          tooltipTitleEV.style('display', 'none');
 
           // tooltip-data
-          tooltipDataSolar.style('display', 'none');
-          tooltipDataWind.style('display', 'none');
-          tooltipDataStorage.style('display', 'none');
-          tooltipDataCharge.style('display', 'none');
+          tooltipDataPV.style('display', 'none');
+          tooltipDataWT.style('display', 'none');
+          tooltipDataESS.style('display', 'none');
+          tooltipDataEV.style('display', 'none');
 
           // tooltip-circle
-          tooltipCircleSolar.style('display', 'none');
-          tooltipCircleWind.style('display', 'none');
-          tooltipCircleStorage.style('display', 'none');
-          tooltipCircleCharge.style('display', 'none');
+          tooltipCirclePV.style('display', 'none');
+          tooltipCircleWT.style('display', 'none');
+          tooltipCircleESS.style('display', 'none');
+          tooltipCircleEV.style('display', 'none');
         });
     } else {
-      // append line of dataUse
+      // append line of dataConsume
       svg
         .append('path')
-        .datum(loadData.dataUse)
-        .attr('d', loadLine)
+        .datum(apiDataArr)
+        .attr('d', lineConsume)
         .attr('y', 0)
         .attr('stroke', '#d32f2f')
         .attr('stroke-width', '2px')
@@ -764,11 +794,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           `translate(${padding.axisX + padding.left}, ${padding.top})`,
         );
 
-      // append line of dataMake
+      // append line of dataGenerate
       svg
         .append('path')
-        .datum(loadData.dataMake)
-        .attr('d', loadLine)
+        .datum(apiDataArr)
+        .attr('d', lineGenerate)
         .attr('y', 0)
         .attr('stroke', '#2e7d32')
         .attr('stroke-width', '2px')
@@ -781,7 +811,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       // append axis
       svg
         .append('g')
-        .call(loadAxisX)
+        .call(axisX)
         .call((g) => g.select('.domain').remove())
         .attr('color', '#707070')
         .attr('font-size', '15px')
@@ -843,8 +873,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine.style('display', 'block');
 
           // tooltip-circle
-          tooltipCircleUse.style('display', 'block').raise();
-          tooltipCircleMake.style('display', 'block').raise();
+          tooltipCircleConsume.style('display', 'block').raise();
+          tooltipCircleGenerate.style('display', 'block').raise();
 
           // tooltip-rect
           tooltipRect
@@ -854,14 +884,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .raise();
 
           // tooltip-title
-          tooltipTitleUse.style('display', 'block').raise();
-          tooltipTitleMake.style('display', 'block').raise();
-          tooltipTitleNet.style('display', 'block').raise();
+          tooltipTitleConsume.style('display', 'block').raise();
+          tooltipTitleGenerate.style('display', 'block').raise();
+          tooltipTitleDemand.style('display', 'block').raise();
 
           // tooltip-data
-          tooltipDataUse.style('display', 'block').raise();
-          tooltipDataMake.style('display', 'block').raise();
-          tooltipDataNet.style('display', 'block').raise();
+          tooltipDataConsume.style('display', 'block').raise();
+          tooltipDataGenerate.style('display', 'block').raise();
+          tooltipDataDemand.style('display', 'block').raise();
         })
         .on('mousemove', () => {
           tooltipRect
@@ -871,100 +901,96 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine
             .attr(
               'x1',
-              loadScaleX(
-                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'y1',
               padding.top +
                 Math.min(
                   loadScaleY(
-                    loadData.dataUse[
+                    apiDataArr[
                       bisectDate(
-                        loadData.dataUse,
-                        timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].Consume,
                   ),
                   loadScaleY(
-                    loadData.dataMake[
+                    apiDataArr[
                       bisectDate(
-                        loadData.dataMake,
-                        timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                        apiDataArr,
+                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
                       )
-                    ].value,
+                    ].Generate,
                   ),
                 ),
             )
             .attr(
               'x2',
-              loadScaleX(
-                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr('y2', height - padding.bottom);
 
-          tooltipTitleUse
+          tooltipTitleConsume
             .text('用電:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
-          tooltipDataUse
+          tooltipDataConsume
             .text(
               `${
-                loadData.dataUse[
+                apiDataArr[
                   bisectDate(
-                    loadData.dataUse,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].Consume
               }`,
             )
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 75}`);
 
-          tooltipTitleMake
+          tooltipTitleGenerate
             .text('產電:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
-          tooltipDataMake
+          tooltipDataGenerate
             .text(
               `${
-                loadData.dataMake[
+                apiDataArr[
                   bisectDate(
-                    loadData.dataMake,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].Generate
               }`,
             )
             .attr('text-anchor', 'end')
             .attr('x', `${d3.event.pageX - 80}`)
             .attr('y', `${d3.event.pageY - 50}`);
 
-          tooltipTitleNet
+          tooltipTitleDemand
             .text('淨負載:')
             .attr('x', `${d3.event.pageX - 190}`)
             .attr('y', `${d3.event.pageY - 25}`);
 
-          tooltipDataNet
+          tooltipDataDemand
             .text(
               `${
-                loadData.dataUse[
+                apiDataArr[
                   bisectDate(
-                    loadData.dataUse,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value -
-                loadData.dataMake[
+                ].Consume -
+                apiDataArr[
                   bisectDate(
-                    loadData.dataMake,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value
+                ].Generate
               }`,
             )
             .attr('text-anchor', 'end')
@@ -972,41 +998,37 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('y', `${d3.event.pageY - 25}`);
 
           // tooltip-circle
-          tooltipCircleUse
+          tooltipCircleConsume
             .attr(
               'cx',
-              loadScaleX(
-                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               loadScaleY(
-                loadData.dataUse[
+                apiDataArr[
                   bisectDate(
-                    loadData.dataUse,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].Consume,
               ) + padding.top,
             );
 
-          tooltipCircleMake
+          tooltipCircleGenerate
             .attr(
               'cx',
-              loadScaleX(
-                new Date(timeFormat(loadScaleX.invert(d3.event.pageX - 160))),
-              ),
+              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
             )
             .attr(
               'cy',
               loadScaleY(
-                loadData.dataMake[
+                apiDataArr[
                   bisectDate(
-                    loadData.dataMake,
-                    timeFormat(loadScaleX.invert(d3.event.pageX - 310)),
+                    apiDataArr,
+                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
                   )
-                ].value,
+                ].Generate,
               ) + padding.top,
             );
         })
@@ -1018,18 +1040,18 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine.style('display', 'none');
 
           // tooltip-circle
-          tooltipCircleUse.style('display', 'none');
-          tooltipCircleMake.style('display', 'none');
+          tooltipCircleConsume.style('display', 'none');
+          tooltipCircleGenerate.style('display', 'none');
 
           // tooltip-title
-          tooltipTitleUse.style('display', 'none');
-          tooltipTitleMake.style('display', 'none');
-          tooltipTitleNet.style('display', 'none');
+          tooltipTitleConsume.style('display', 'none');
+          tooltipTitleGenerate.style('display', 'none');
+          tooltipTitleDemand.style('display', 'none');
 
           // tooltip-data
-          tooltipDataUse.style('display', 'none');
-          tooltipDataMake.style('display', 'none');
-          tooltipDataNet.style('display', 'none');
+          tooltipDataConsume.style('display', 'none');
+          tooltipDataGenerate.style('display', 'none');
+          tooltipDataDemand.style('display', 'none');
         });
     }
 
@@ -1039,9 +1061,15 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     };
   });
 
+  // React-Hook: useEffect -> get api data
   useEffect(() => {
-    console.log(dayjs(date).format('YYYY/MM/DD'));
-  }, [date]);
+    (async () => {
+      await fetchApiData();
+    })();
+  }, [lastDate]);
+
+  // React-Hook: useEffect -> define variables depends on api data
+  useEffect(() => {}, [apiDataArr]);
 
   return (
     <div>
