@@ -4,14 +4,17 @@ import Navbar from '../components/nav';
 
 interface IProps {
   children: React.ReactNode;
+  title: string;
 }
 
-const GeneralLayout: React.FC<IProps> = ({ children }) => {
-  const className = classnames('general-layout');
+const GeneralLayout: React.FC<IProps> = ({ children, title }) => {
   return (
-    <main className={className}>
+    <main className={classnames('general-layout')}>
       <Navbar />
-      {children}
+      <div className={classnames('general-container')}>
+        <div className={classnames('general-title')}>{title}</div>
+        {children}
+      </div>
     </main>
   );
 };

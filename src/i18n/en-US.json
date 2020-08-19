@@ -15,5 +15,38 @@
     "remember": "Remember me",
     "forget": "Forget password?",
     "login": "Login"
+  },
+  "settingpage": {
+    "pageTitle": "Setting",
+    "oldPassword": "Enter old password",
+    "newPassword": "Enter new password",
+    "confirmPassword": "Enter new password again",
+    "changePassword": "Change Password",
+    "changelanguage": "CHINESE",
+    "successChange": "Successfully change",
+    "oldPasswordWrong": "Old password is wrong",
+    "newPasswordWrong": "Please confirm your new password again",
+    "account": "Account：",
+    "password": "Password：",
+    "address": "Address：",
+    "ethereumAddress": "Ethereum address：",
+    "language": "Language：",
+    "energyMeter": "Connected energy meters",
+    "number": "number",
+    "code": "identification code",
+    "name": "name",
+    "view": "view"
+  },
+  "biddingpage": {
+    "pageTitle": "Bidding"
+  },
+  "indexpage": {
+    "pageTitle": "Home"
+  },
+  "powerinfopage": {
+    "pageTitle": "Power Information"
+  },
+  "statuspage": {
+    "pageTitle": "Bidding Status"
   }
 }
