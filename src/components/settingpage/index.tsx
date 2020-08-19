@@ -89,9 +89,7 @@ const SettingContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const data = await response.json();
-      data.map((item: object) =>
-        addAMis(Object.values(item)[2], Object.values(item)[1]),
-      );
+      data.forEach((item: IAmis) => addAMis(item.name, item.id));
     }
   };
 

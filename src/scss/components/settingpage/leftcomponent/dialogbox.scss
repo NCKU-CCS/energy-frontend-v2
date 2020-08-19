@@ -1,7 +1,7 @@
 .setting-left-dialogcontainer{
   position: fixed;
-  height: 50%;
-  top: 30%;
+  height: 60%;
+  top: 20%;
   left: 50%;
   background-color: white;
   position: fixed;
@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
+  height: 90%;
   width: 70%;
   margin-top: 10%;
   margin-left: 15%;
@@ -56,6 +56,7 @@
   width: 100%;
   height: 15%;
   margin-top: 3%;
+  margin-bottom: 7%;
   background-color: rgb(255, 160, 0);
   border: 1px solid rgb(255, 160, 0);
   transition-duration: 0.3s;
@@ -157,5 +158,40 @@
   }
   .setting-left-changePasswordContainer{
     font-size: 16px;
+  }
+}
+
+@media all and (min-width: 450px)and (max-device-height: 500px) {
+  .setting-left-dialogcontainer{
+    height: 75%;
+    top: 15%;
+  }
+}
+
+@media all and (min-width: 550px)and (min-device-height: 800px) and (max-device-height: 1000px){
+  .setting-left-dialogcontainer{
+    height: 50%;
+    top: 25%;
+  }
+}
+
+@media all and (min-width: 550px)and (min-device-height: 1000px) {
+  .setting-left-dialogcontainer{
+    height: 40%;
+    top: 25%;
+  }
+}
+
+@media all and (min-width: 350px)and (max-device-height: 400px) {
+  .setting-left-dialogcontainer{
+    height: 85%;
+    top: 10%;
+  }
+}
+
+@media all and (min-width: 300px)and (max-device-height: 350px) {
+  .setting-left-dialogcontainer{
+    height: 90%;
+    top: 5%;
   }
 }
