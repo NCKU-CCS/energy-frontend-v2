@@ -1,11 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const Img: React.FC = () => {
+interface IUserImg {
+  img: string;
+  username: string;
+}
+
+const Img: React.FC<IUserImg> = ({ img, username }) => {
   return (
-    <div className={classnames('setting-left--imgcontainer')}>
-      <div className={classnames('setting-left--img')} />
-      <div className={classnames('setting-left--imgtext')}>一期建物BEMS</div>
+    <div className={classnames('setting-left-imgcontainer')}>
+      <img className="setting-left-img" alt="img" src={img} />
+      <div className={classnames('setting-left-imgtext')}>{username}</div>
     </div>
   );
 };

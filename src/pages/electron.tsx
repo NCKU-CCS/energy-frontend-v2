@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '../layouts/generalLayout';
 
-const ElectronPage: React.FC = () => <Layout title="">ELECTRON</Layout>;
+const ElectronPage: React.FC = () => {
+  return <Layout title="">ELECTRON</Layout>;
+};
 
 export default ElectronPage;

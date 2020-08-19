@@ -17,11 +17,12 @@
     "login": "Login"
   },
   "settingpage": {
+    "pageTitle": "Setting",
     "oldPassword": "Enter old password",
     "newPassword": "Enter new password",
     "confirmPassword": "Enter new password again",
     "changePassword": "Change Password",
-    "changelanguage": "中文",
+    "changelanguage": "CHINESE",
     "successChange": "Successfully change",
     "oldPasswordWrong": "Old password is wrong",
     "newPasswordWrong": "Please confirm your new password again",
@@ -33,6 +34,19 @@
     "energyMeter": "Connected energy meters",
     "number": "number",
     "code": "identification code",
-    "name": "name"
+    "name": "name",
+    "view": "view"
+  },
+  "biddingpage": {
+    "pageTitle": "Bidding"
+  },
+  "indexpage": {
+    "pageTitle": "Home"
+  },
+  "powerinfopage": {
+    "pageTitle": "Power Information"
+  },
+  "statuspage": {
+    "pageTitle": "Bidding Status"
   }
 }

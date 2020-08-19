@@ -1,53 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import data from './test.json';
+import InfoBox from './infoBox';
 
-const RightContainer: React.FC = () => {
+interface IAmis {
+  index: number;
+  id: string;
+  name: string;
+  description?: string;
+}
+
+interface IAmisArray {
+  IAmisList: IAmis[];
+}
+
+const RightContainer: React.FC<IAmisArray> = ({ IAmisList }) => {
   const { t } = useTranslation();
 
-  const listcontainer = classnames('setting-right--listcontainer');
-  const number = classnames('setting-right--number');
-  const code = classnames('setting-right--code');
-  const name = classnames('setting-right--name');
-  const contentlistcontainer = classnames(
-    'setting-right--contentlistcontainer',
-  );
-  const contentcontainer = classnames('setting-right--contentcontainer');
-  const contentnumber = classnames(
-    'setting-right--number',
-    'setting-right--content',
-  );
-  const contentcode = classnames(
-    'setting-right--code',
-    'setting-right--content',
-  );
-  const contentname = classnames(
-    'setting-right--name',
-    'setting-right--content',
-  );
+  const [infoBoxState, setInfoBox] = useState<boolean>(false);
 
-  const listItems = data.map((content) => {
+  const listItems = IAmisList.map((content) => {
+    const code = `${content.id.substr(0, 32)}...`;
+
     return (
-      <div className={contentlistcontainer}>
-        <div className={contentnumber}>{content.number}</div>
-        <div className={contentcode}>{content.code}</div>
-        <div className={contentname}>{content.name}</div>
+      <div className={classnames('setting-right-contentlistcontainer')}>
+        <div
+          className={classnames(
+            'setting-right-number',
+            'setting-right-content',
+          )}
+        >
+          {content.index}
+        </div>
+        <div
+          className={classnames(
+            'setting-right-code-generalWidth',
+            'setting-right-content',
+          )}
+        >
+          {code}
+        </div>
+        <div
+          className={classnames('setting-right-name', 'setting-right-content')}
+        >
+          {content.name}
+        </div>
+        <div className={classnames('setting-right-viewButtonContainer')}>
+          <button
+            type="button"
+            className={classnames('setting-right-viewButton')}
+            onClick={() => setInfoBox(true)}
+          >
+            {t('settingpage.view')}
+          </button>
+        </div>
+        {infoBoxState && (
+          <InfoBox
+            changeState={setInfoBox}
+            index={content.index}
+            id={content.id}
+            name={content.name}
+          />
+        )}
       </div>
     );
   });
 
   return (
-    <div className={classnames('setting-right--container')}>
-      <div className={classnames('setting-right--title')}>
+    <div className={classnames('setting-right-container')}>
+      <div className={classnames('setting-right-title')}>
         {t('settingpage.energyMeter')}
       </div>
-      <div className={listcontainer}>
-        <div className={number}>{t('settingpage.number')}</div>
-        <div className={code}>{t('settingpage.code')}</div>
-        <div className={name}>{t('settingpage.name')}</div>
+      <div className={classnames('setting-right-listTitleContainer')}>
+        <div className={classnames('setting-right-number')}>
+          {t('settingpage.number')}
+        </div>
+        <div className={classnames('setting-right-code-generalWidth')}>
+          {t('settingpage.code')}
+        </div>
+        <div className={classnames('setting-right-name')}>
+          {t('settingpage.name')}
+        </div>
+        <div className={classnames('setting-right-code-width450')}>
+          {t('settingpage.code')}
+        </div>
       </div>
-      <div className={contentcontainer}>{listItems}</div>
+      <div className={classnames('setting-right-contentcontainer')}>
+        {listItems}
+      </div>
     </div>
   );
 };
