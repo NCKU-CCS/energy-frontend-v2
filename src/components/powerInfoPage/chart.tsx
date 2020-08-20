@@ -1072,9 +1072,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   }, [lastDate]);
 
   // React-Hook: useEffect -> define variables depends on api data
-  useEffect(() => {
-    console.log(apiDataArr);
-  }, [apiDataArr]);
+  useEffect(() => {}, [apiDataArr]);
 
   return (
     <div>
