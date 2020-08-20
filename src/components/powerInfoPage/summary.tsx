@@ -96,7 +96,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '16px')
       .attr('font-weight', 'bold')
-      .text(`${dayjs(correctDate).format('YYYY/MM/DD')}`);
+      .text(dayjs(correctDate).format('YYYY/MM/DD'));
 
     // append title-mode
     const titleMode = svg
@@ -108,6 +108,17 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('font-weight', 'bold')
       .attr('font-size', '16px');
 
+    // append divide line
+    const divideLine = svg
+      .append('line')
+      .attr('x1', 40)
+      .attr('y1', 270)
+      .attr('x2', width - 40)
+      .attr('y2', 270)
+      .attr('stroke', '#707070')
+      .attr('stroke-width', '0.5px');
+
+    // mode: 淨負載
     // append title-consume
     const titleConsume = svg
       .append('text')
@@ -147,16 +158,6 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('x', 60)
       .attr('font-size', '16px')
       .text('太陽能');
-
-    // append divide line
-    const divideLine = svg
-      .append('line')
-      .attr('x1', 40)
-      .attr('y1', 270)
-      .attr('x2', width - 40)
-      .attr('y2', 270)
-      .attr('stroke', '#707070')
-      .attr('stroke-width', '0.5px');
 
     // append title-demand
     const titleDemand = svg
@@ -248,9 +249,49 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('r', 4)
       .attr('fill', '#2e7d32');
 
+    // 產能設備模式
+    // scale
+    const scale = d3.scaleLinear().domain([0, 40]).range([0, 80]);
+
+    // append rect-PV
+    const rectPV = svg
+      .append('rect')
+      .attr('x', 50)
+      .attr('y', apiData.PV >= 0 ? 220 : 220 - scale(40))
+      .attr('width', 40)
+      .attr('height', scale(Math.abs(apiData.PV)))
+      .attr('fill', '#f7be16');
+
+    // append rect-WT
+    const rectWT = svg
+      .append('rect')
+      .attr('x', 90)
+      .attr('y', apiData.WT >= 0 ? 220 : 220 - scale(40))
+      .attr('width', 40)
+      .attr('height', scale(Math.abs(apiData.WT)))
+      .attr('fill', '#2d3361');
+
+    // append rect-ESS
+    const rectESS = svg
+      .append('rect')
+      .attr('x', 130)
+      .attr('y', apiData.ESS >= 0 ? 220 : 220 - scale(40))
+      .attr('width', 40)
+      .attr('height', scale(Math.abs(apiData.ESS)))
+      .attr('fill', '#696464');
+
+    // append rect-EV
+    const rectEV = svg
+      .append('rect')
+      .attr('x', 170)
+      .attr('y', apiData.EV >= 0 ? 220 : 220 - scale(40))
+      .attr('width', 40)
+      .attr('height', scale(Math.abs(apiData.EV)))
+      .attr('fill', '#ab50ce');
+
     // 淨負載模式
     if (mode === '淨負載') {
-      // determine position of datum
+      // positive or negative
       if (apiData.Consume >= 0) posData.push('Consume');
       else negData.push('Consume');
 
@@ -320,7 +361,24 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       negCircle
         .attr('cy', 125 + posData.length * 30)
         .style('display', negData.length === 0 ? 'none' : 'block');
+
+      // display none of mode: 產能設備
+      // rect-PV
+      rectPV.style('display', 'none');
+
+      // rect-WT
+      rectWT.style('display', 'none');
+
+      // rect-ESS
+      rectESS.style('display', 'none');
+
+      // rect-EV
+      rectEV.style('display', 'none');
     } else {
+      // divide-line
+      divideLine.attr('y1', 220).attr('y2', 220);
+
+      // display none of mode: 淨負載
       // title-mode
       titleMode.text('產電總量統計(kWh)');
 
@@ -338,9 +396,6 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
 
       // title-PV
       titlePV.style('display', 'none');
-
-      // divide-line
-      divideLine.style('display', 'none');
 
       // title-demand
       titleDemand.style('display', 'none');
