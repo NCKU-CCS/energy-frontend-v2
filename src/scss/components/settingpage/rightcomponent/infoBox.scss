@@ -1,0 +1,84 @@
+.setting-right-background{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 3000px;
+  width: 3000px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.setting-right-fork{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  outline:none;
+  background-color: white;
+  border: none;
+  color: black;
+  cursor:pointer;
+}
+
+.setting-right-infoBoxContainer{
+  position: fixed;
+  height: 30%;
+  top: 30%;
+  left: 50%;
+  width: 90%;
+  margin-left: -45%;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.setting-right-infoUp{
+  display: flex;
+  margin-top: 10%;
+  height: 30%;
+  color: rgb(61, 61, 61);
+}
+
+.setting-right-infoIndex{
+  display: flex;
+  align-items: center;
+  width: 35%;
+  margin-left: 5%;
+}
+
+.setting-right-infoNameContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 55%;
+  margin-right: 5%;
+}
+
+.setting-right-infoNameContent{
+  width: 57%;
+  color: green;
+}
+
+.setting-right-infoNameTitle{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 3%;
+  width: 40%;
+}
+
+.setting-right-infoCodeTitle{
+  height: 13%;
+  width: 95%;
+  margin-top: 3%;
+  margin-left: 5%;
+  color: rgb(61, 61, 61);
+}
+
+.setting-right-infoCodeContent{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 12%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space : nowrap;
+  color: rgb(80, 80, 80);
+}

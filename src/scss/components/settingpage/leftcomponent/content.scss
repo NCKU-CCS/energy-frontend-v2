@@ -1,0 +1,237 @@
+@import './dialogbox.scss/';
+
+.setting-left-contentcontainer{
+  width: 100%;
+  height: 50%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.setting-left-datacontainer{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 13%;
+  white-space:nowrap;
+}
+
+.setting-left-datatitle{
+  color: rgb(75, 75, 75);
+}
+
+.setting-left-datacontent{
+  color: rgb(75, 75, 75);
+}
+
+.setting-left-buttonStyle{
+  background-color: rgb(107, 107, 107);
+  color: white;
+  width: auto;
+  outline:none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor:pointer;
+}
+
+.setting-left-ethAddress{
+  color: rgb(255, 160, 0);
+}
+
+.setting-left-passwordcontainer1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-right: 20%;
+  height: 13%;
+}
+
+.setting-left-passwordcontainer2{
+  display: flex;
+  align-items: center;
+}
+
+// 1700 < size
+@media all and (min-width: 1700px) {
+  .setting-left-datatitle{
+    font-size: 22px;
+  }
+  .setting-left-datacontent{
+    font-size: 20px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 20px;
+  }
+}
+
+// 1560 < size <= 1700
+@media all and (min-width: 1560px) and (max-width: 1700px) {
+  .setting-left-datatitle{
+    font-size: 20px;
+  }
+  .setting-left-datacontent{
+    font-size: 18px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 18px;
+  }
+}
+
+// 1430 < size <= 1560
+@media all and (min-width: 1430px) and (max-width: 1560px) {
+  .setting-left-datatitle{
+    font-size: 18px;
+  }
+  .setting-left-datacontent{
+    font-size: 16px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 16px;
+  }
+}
+
+// 1300 < size <= 1430
+@media all and (min-width: 1300px) and (max-width: 1430px) {
+  .setting-left-datatitle{
+    font-size: 16px;
+  }
+  .setting-left-datacontent{
+    font-size: 14px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 14px;
+  }
+}
+
+// 1100 < size <= 1300
+@media all and (min-width: 1100px) and (max-width: 1300px) {
+  .setting-left-datatitle{
+    font-size: 15px;
+  }
+  .setting-left-datacontent{
+    font-size: 13px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 13px;
+  }
+}
+
+// 950 < size <= 1100
+@media all and (min-width: 950px) and (max-width: 1100px) {
+  .setting-left-datatitle{
+    font-size: 13px;
+  }
+  .setting-left-datacontent{
+    font-size: 12px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 12px;
+  }
+}
+
+// 550 < size <= 950
+@media all and (min-width: 550px) and (max-width: 950px) {
+  .setting-left-datatitle{
+    font-size: 18px;
+  }
+  .setting-left-datacontent{
+    font-size: 16px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 16px;
+  }
+  .setting-left-contentcontainer{
+    width: 60%;
+    height: 100%;
+    margin-right: 5%;
+  }
+  .setting-left-datacontainer{
+    height: 20%;
+  }
+  .setting-left-passwordcontainer1{
+    height: 20%;
+    width: 100%;
+  }
+  .setting-left-buttonStyle{
+    font-size: 12px;
+  }
+}
+
+// 450 < size <= 550
+@media all and (min-width: 450px) and (max-width: 550px) {
+  .setting-left-datatitle{
+    font-size: 14px;
+  }
+  .setting-left-datacontent{
+    font-size: 12px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 12px;
+  }
+  .setting-left-contentcontainer{
+    width: 60%;
+    height: 100%;
+    margin-right: 5%;
+  }
+  .setting-left-datacontainer{
+    height: 20%;
+  }
+  .setting-left-passwordcontainer1{
+    width: 90%;
+    height: 20%;
+  }
+}
+
+// 320 < size <= 450
+@media all and (min-width: 320px) and (max-width: 450px){
+  .setting-left-datatitle{
+    font-size: 14px;
+  }
+  .setting-left-datacontent{
+    font-size: 12px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 12px;
+  }
+  .setting-left-contentcontainer{
+    width: 100%;
+    height: 65%;
+    margin-left: 20%;
+    margin-top: 0%;
+  }
+  .setting-left-datacontainer{
+    height: 20%;
+  }
+  .setting-left-passwordcontainer1{
+    width: 85%;
+    height: 20%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px){
+  .setting-left-datatitle{
+    font-size: 13px;
+  }
+  .setting-left-datacontent{
+    font-size: 11px;
+  }
+  .setting-left-buttonStyle{
+    font-size: 11px;
+  }
+  .setting-left-contentcontainer{
+    width: 100%;
+    height: 65%;
+    margin-left: 12%;
+    margin-top: 0%;
+  }
+  .setting-left-datacontainer{
+    height: 20%;
+  }
+  .setting-left-passwordcontainer1{
+    width: 85%;
+    height: 20%;
+  }
+}
