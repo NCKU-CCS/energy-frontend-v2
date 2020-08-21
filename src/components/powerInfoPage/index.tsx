@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import Chart from './chart';
 import ModeButton from './modeButton';
 import DatePicker from './datePicker';
@@ -15,7 +16,7 @@ const PowerInfoPageContainer: React.FC = () => {
       <DatePicker changeDate={setDate} />
       <ModeButton changeMode={setMode} />
       <Chart mode={mode} date={date} />
-      <div>
+      <div className={classNames('powerinfo-down-container')}>
         <Summary mode={mode} date={date} />
         <Table date={date} />
       </div>

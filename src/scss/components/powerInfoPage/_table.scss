@@ -1,0 +1,32 @@
+.text {
+  color: #707070;
+}
+
+.powerinfo-table-container {
+  width: 70%;
+  margin: 1%;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.powerinfo-table-title-container {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 100%;
+  font-weight: bold;
+}
+
+.powerinfo-table-list-item-container {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 100%;
+}
