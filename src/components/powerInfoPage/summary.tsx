@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import * as d3 from 'd3';
+import classNames from 'classnames';
 
 interface IProps {
   mode: string;
@@ -445,8 +446,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
   useEffect(() => {}, [apiData]);
 
   return (
-    <div>
-      <svg ref={container} />
+    <div className={classNames('powerinfo-summary-container')}>
+      <svg ref={container} className={classNames('powerinfo-summary-svg')} />
     </div>
   );
 };

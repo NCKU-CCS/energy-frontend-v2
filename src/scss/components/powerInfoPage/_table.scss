@@ -3,30 +3,90 @@
 }
 
 .powerinfo-table-container {
-  width: 70%;
+  width: 71%;
   margin: 1%;
-  height: 200px;
+  margin-right: 3%;
+  margin-bottom: 3%;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: white;
   border-radius: 5px;
+  border: black solid 1px;
 }
 
 .powerinfo-table-title-container {
   display: flex;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   width: 100%;
   font-weight: bold;
 }
 
+.powerinfo-table-title-date {
+  width: 20%;
+}
+
+.powerinfo-table-title-time {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-title-value {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-title-type {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-title-url {
+  text-align: center;
+  width: 17%;
+}
+
 .powerinfo-table-list-item-container {
   display: flex;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 7%;
+  margin-right: 7%;
   margin-top: 3%;
   margin-bottom: 3%;
   width: 100%;
+}
+
+.powerinfo-table-list-item-date {
+  width: 20%;
+}
+
+.powerinfo-table-list-item-time {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-list-item-value {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-list-item-type {
+  text-align: center;
+  width: 17%;
+}
+
+.powerinfo-table-list-item-url {
+  text-align: center;
+  width: 17%;
+}
+
+a {
+  color: #ffa000;
+}
+
+hr {
+  border: 0;
+  height: 0.5px;
+  background-color: #707070;
 }

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import dayjs from 'dayjs';
+import classNames from 'classnames';
 
 interface IApiData {
   Consume: number;
@@ -1075,8 +1076,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   useEffect(() => {}, [apiDataArr]);
 
   return (
-    <div>
-      <svg className="chart" ref={chartContainer} />
+    <div className={classNames('powerinfo-chart-container')}>
+      <svg className={classNames('powerinfo-chart-svg')} ref={chartContainer} />
     </div>
   );
 };

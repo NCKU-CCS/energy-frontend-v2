@@ -12,10 +12,14 @@ const PowerInfoPageContainer: React.FC = () => {
   const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <div>
-      <DatePicker changeDate={setDate} />
-      <ModeButton changeMode={setMode} />
-      <Chart mode={mode} date={date} />
+    <div className={classNames('powerinfo-container')}>
+      <div className={classNames('powerinfo-up-container')}>
+        <DatePicker changeDate={setDate} />
+        <ModeButton changeMode={setMode} />
+      </div>
+      <div className={classNames('powerinfo-mid-container')}>
+        <Chart mode={mode} date={date} />
+      </div>
       <div className={classNames('powerinfo-down-container')}>
         <Summary mode={mode} date={date} />
         <Table date={date} />

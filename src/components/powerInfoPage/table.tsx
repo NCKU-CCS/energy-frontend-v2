@@ -96,28 +96,30 @@ const Table: React.FC<IProps> = ({ date }) => {
   // create list
   const dataList = apiData.data.map((d) => {
     return (
-      <div
-        className={classNames('powerinfo-table-list-item-container', 'text')}
-      >
-        <div className={classNames('powerinfo-table-list-item-date')}>
-          {d.date}
-        </div>
-        <div className={classNames('powerinfo-table-list-item-time')}>
-          {d.time}
-        </div>
-        <div className={classNames('powerinfo-table-list-item-value')}>
-          {d.power_display}
-        </div>
+      <div>
         <div
-          className={classNames('powerinfo-table-list-item-type')}
-          style={d.power_display >= 0 ? redText : greenText}
+          className={classNames('powerinfo-table-list-item-container', 'text')}
         >
-          {dataType(d.data_type)}
+          <div className={classNames('powerinfo-table-list-item-date')}>
+            {d.date}
+          </div>
+          <div className={classNames('powerinfo-table-list-item-time')}>
+            {d.time}
+          </div>
+          <div className={classNames('powerinfo-table-list-item-value')}>
+            {d.power_display}
+          </div>
+          <div
+            className={classNames('powerinfo-table-list-item-type')}
+            style={d.power_display >= 0 ? redText : greenText}
+          >
+            {dataType(d.data_type)}
+          </div>
+          <div className={classNames('powerinfo-table-list-item-url')}>
+            <a href={d.address}>URL</a>
+          </div>
         </div>
-        <div className={classNames('powerinfo-table-list-item-url')}>
-          <a href={d.address}>URL</a>
-        </div>
-        <hr />
+        <hr className={classNames('powerinfo-table-list-item-line')} />
       </div>
     );
   });
@@ -133,11 +135,15 @@ const Table: React.FC<IProps> = ({ date }) => {
   return (
     <div className={classNames('powerinfo-table-container')}>
       <div className={classNames('powerinfo-table-title-container', 'text')}>
-        <div>日期</div>
-        <div>紀錄時間</div>
-        <div>電力(kW)</div>
-        <div>用產電種類</div>
-        <div>連結</div>
+        <div className={classNames('powerinfo-table-title-date')}>日期</div>
+        <div className={classNames('powerinfo-table-title-time')}>紀錄時間</div>
+        <div className={classNames('powerinfo-table-title-value')}>
+          電力(kW)
+        </div>
+        <div className={classNames('powerinfo-table-title-type')}>
+          用產電種類
+        </div>
+        <div className={classNames('powerinfo-table-title-url')}>連結</div>
       </div>
       <div>{dataList}</div>
     </div>
