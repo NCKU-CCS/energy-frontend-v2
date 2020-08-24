@@ -1,9 +1,19 @@
+a {
+  color: #ffa000;
+}
+
+hr {
+  border: 0;
+  height: 0.5px;
+  background-color: #a0a0a0;
+}
+
 .text {
   color: #707070;
 }
 
 .powerinfo-table-container {
-  width: 71%;
+  width: 80%;
   margin: 1%;
   margin-right: 3%;
   margin-bottom: 3%;
@@ -11,7 +21,7 @@
   overflow-y: auto;
   background-color: white;
   border-radius: 5px;
-  border: black solid 1px;
+  // border: black solid 1px;
 }
 
 .powerinfo-table-title-container {
@@ -79,14 +89,4 @@
 .powerinfo-table-list-item-url {
   text-align: center;
   width: 17%;
-}
-
-a {
-  color: #ffa000;
-}
-
-hr {
-  border: 0;
-  height: 0.5px;
-  background-color: #707070;
 }

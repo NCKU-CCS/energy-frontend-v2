@@ -85,7 +85,6 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     svg
       .attr('width', width)
       .attr('height', height)
-      .style('border-radius', '10px')
       .style('background-color', 'white');
 
     // append date title
@@ -95,7 +94,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('x', width / 2)
       .attr('y', 50)
       .attr('fill', '#707070')
-      .attr('font-size', '16px')
+      .attr('font-size', '20px')
       .attr('font-weight', 'bold')
       .text(dayjs(correctDate).format('YYYY/MM/DD'));
 
@@ -107,14 +106,14 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .attr('y', 80)
       .attr('fill', '#707070')
       .attr('font-weight', 'bold')
-      .attr('font-size', '16px');
+      .attr('font-size', '20px');
 
     // append divide line
     const divideLine = svg
       .append('line')
-      .attr('x1', 40)
+      .attr('x1', 20)
       .attr('y1', 270)
-      .attr('x2', width - 40)
+      .attr('x2', width - 20)
       .attr('y2', 270)
       .attr('stroke', '#707070')
       .attr('stroke-width', '0.5px');
@@ -124,50 +123,50 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const titleConsume = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
-      .attr('font-size', '16px')
+      .attr('x', 40)
+      .attr('font-size', '20px')
       .text('正常用電');
 
     // append title-ESS
     const titleESS = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
-      .attr('font-size', '16px')
+      .attr('x', 40)
+      .attr('font-size', '20px')
       .text('儲能系統');
 
     // append title-EV
     const titleEV = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
-      .attr('font-size', '16px')
+      .attr('x', 40)
+      .attr('font-size', '20px')
       .text('充電樁');
 
     // append title-WT
     const titleWT = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
-      .attr('font-size', '16px')
+      .attr('x', 40)
+      .attr('font-size', '20px')
       .text('風能');
 
     // append title-consume
     const titlePV = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
-      .attr('font-size', '16px')
+      .attr('x', 40)
+      .attr('font-size', '20px')
       .text('太陽能');
 
     // append title-demand
     const titleDemand = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 60)
+      .attr('x', 40)
       .attr('y', 300)
       .attr('fill', '#707070')
-      .attr('font-size', '16px')
+      .attr('font-size', '20px')
       .attr('font-weight', 'bold')
       .text('總淨負載');
 
@@ -175,8 +174,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataConsume = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
-      .attr('font-size', '16px')
+      .attr('x', width - 40)
+      .attr('font-size', '20px')
       .attr('fill', '#707070')
       .text(Math.abs(apiData.Consume));
 
@@ -184,8 +183,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataESS = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
-      .attr('font-size', '16px')
+      .attr('x', width - 40)
+      .attr('font-size', '20px')
       .attr('fill', '#707070')
       .text(Math.abs(apiData.ESS));
 
@@ -193,8 +192,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataEV = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
-      .attr('font-size', '16px')
+      .attr('x', width - 40)
+      .attr('font-size', '20px')
       .attr('fill', '#707070')
       .text(Math.abs(apiData.EV));
 
@@ -202,8 +201,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataWT = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
-      .attr('font-size', '16px')
+      .attr('x', width - 40)
+      .attr('font-size', '20px')
       .attr('fill', '#707070')
       .text(Math.abs(apiData.WT));
 
@@ -211,8 +210,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataPV = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
-      .attr('font-size', '16px')
+      .attr('x', width - 40)
+      .attr('font-size', '20px')
       .attr('fill', '#707070')
       .text(Math.abs(apiData.PV));
 
@@ -220,33 +219,33 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataDemand = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 60)
+      .attr('x', width - 40)
       .attr('y', 300)
       .attr('fill', '#707070')
-      .attr('font-size', '16px')
+      .attr('font-size', '20px')
       .text(apiData.Demand);
 
     // append unit
     const unit = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', width - 57)
+      .attr('x', width - 37)
       .attr('y', 300)
       .attr('fill', '#707070')
-      .attr('font-size', '10px')
+      .attr('font-size', '14px')
       .text('kWh');
 
     // append positive circle
     const posCircle = svg
       .append('circle')
-      .attr('cx', 50)
+      .attr('cx', 30)
       .attr('r', 4)
       .attr('fill', '#d32f2f');
 
     // append negative circle
     const negCircle = svg
       .append('circle')
-      .attr('cx', 50)
+      .attr('cx', 30)
       .attr('r', 4)
       .attr('fill', '#2e7d32');
 
@@ -355,12 +354,12 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
 
       // positive circle
       posCircle
-        .attr('cy', 125)
+        .attr('cy', 123)
         .style('display', posData.length === 0 ? 'none' : 'block');
 
       // negative circle
       negCircle
-        .attr('cy', 125 + posData.length * 30)
+        .attr('cy', 123 + posData.length * 30)
         .style('display', negData.length === 0 ? 'none' : 'block');
 
       // display none of mode: 產能設備
@@ -447,7 +446,12 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div className={classNames('powerinfo-summary-container')}>
-      <svg ref={container} className={classNames('powerinfo-summary-svg')} />
+      <svg
+        ref={container}
+        className={classNames('powerinfo-summary-svg')}
+        viewBox="0 0 259 352"
+        preserveAspectRatio="xMidYMid meet"
+      />
     </div>
   );
 };

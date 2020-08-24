@@ -116,7 +116,7 @@ const Table: React.FC<IProps> = ({ date }) => {
             {dataType(d.data_type)}
           </div>
           <div className={classNames('powerinfo-table-list-item-url')}>
-            <a href={d.address}>URL</a>
+            <a href={d.address}>&#60;URL&#62;</a>
           </div>
         </div>
         <hr className={classNames('powerinfo-table-list-item-line')} />
@@ -146,6 +146,13 @@ const Table: React.FC<IProps> = ({ date }) => {
         <div className={classNames('powerinfo-table-title-url')}>連結</div>
       </div>
       <div>{dataList}</div>
+      <div className={classNames('powerinfo-table-button-container')}>
+        <button type="button">&#171;</button>
+        <button type="button">&#60;</button>
+        now / total
+        <button type="button">&#62;</button>
+        <button type="button">&#187;</button>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import classNames from 'classnames';
 
 interface IProps {
   changeDate(date: Date): void;
@@ -23,8 +24,12 @@ const DatePicker: React.FC<IProps> = ({ changeDate }) => {
   };
 
   return (
-    <div>
-      <input type="date" onChange={(event) => onChangeDate(event)} />
+    <div className={classNames('powerinfo-datepicker-container')}>
+      <input
+        className={classNames('powerinfo-datepicker-input')}
+        type="date"
+        onChange={(event) => onChangeDate(event)}
+      />
       {dateText}
     </div>
   );

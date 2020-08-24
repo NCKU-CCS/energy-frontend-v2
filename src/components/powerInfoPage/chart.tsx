@@ -69,14 +69,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   };
 
   // props
-  const width = 1300;
-  const height = 400;
+  const width = 1020;
+  const height = 220;
   const padding = {
-    top: 100,
-    bottom: 50,
-    left: 50,
-    right: 150,
-    axisX: 100,
+    top: 50,
+    bottom: 40,
+    left: 25,
+    right: 75,
+    axisX: 50,
   };
 
   // scales
@@ -96,7 +96,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const loadScaleY = d3
     .scaleLinear()
     .range([height - padding.top - padding.bottom, 0])
-    .domain([0, 40]);
+    .domain([-10, 10]);
 
   // axisX
   const axisX = d3
@@ -338,7 +338,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     svg
       .attr('width', width)
       .attr('height', height)
-      .style('border-radius', '10px')
       .style('background-color', 'white');
 
     // append axis title
@@ -1077,7 +1076,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div className={classNames('powerinfo-chart-container')}>
-      <svg className={classNames('powerinfo-chart-svg')} ref={chartContainer} />
+      <svg
+        className={classNames('powerinfo-chart-svg')}
+        ref={chartContainer}
+        viewBox="0 0 1020 220"
+        preserveAspectRatio="xMidYMid meet"
+      />
     </div>
   );
 };

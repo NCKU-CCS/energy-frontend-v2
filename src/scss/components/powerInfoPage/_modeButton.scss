@@ -1,2 +1,28 @@
 .powerinfo-mode-container {
+  display: flex;
+  width: 20%;
+}
+
+.powerinfo-mode-button-load {
+  width: 100%;
+  background-color: #ffa000;
+  color: white;
+  border: 0;
+  // outline: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.powerinfo-mode-button-load :disabled{
+  background-color: #707070;
+}
+
+.powerinfo-mode-button-equip {
+  width: 100%;
+  color: #707070;
+  background-color: white;
+  border: 0;
+  // outline: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
