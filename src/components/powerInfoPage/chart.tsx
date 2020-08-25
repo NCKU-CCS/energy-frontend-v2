@@ -74,7 +74,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const padding = {
     top: 50,
     bottom: 40,
-    left: 25,
+    left: 5,
     right: 75,
     axisX: 50,
   };
@@ -115,14 +115,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const equipGrid = d3
     .axisLeft(equipScaleY)
     .ticks(4)
-    .tickPadding(15)
+    .tickPadding(10)
     .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
   const loadGrid = d3
     .axisLeft(loadScaleY)
     .ticks(4)
-    .tickPadding(15)
+    .tickPadding(10)
     .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
@@ -344,19 +344,19 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', padding.left / 1.1)
+      .attr('x', 0)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
-      .attr('font-size', '20px')
+      .attr('font-size', '15px')
       .text('kW');
 
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - padding.right / 1.5)
+      .attr('x', width - padding.right / 2)
       .attr('y', height - padding.bottom / 2.7)
       .attr('fill', '#707070')
-      .attr('font-size', '20px')
+      .attr('font-size', '15px')
       .text('日期');
 
     if (mode === '產能設備') {
@@ -366,7 +366,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(axisX)
         .call((g) => g.select('.domain').remove())
         .attr('color', '#707070')
-        .attr('font-size', '15px')
+        .attr('font-size', '12px')
         .attr(
           'transform',
           `translate(${padding.axisX + padding.left}, ${
@@ -391,7 +391,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
         )
         .attr('fill', 'none')
-        .attr('font-size', '15px')
+        .attr('font-size', '12px')
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
@@ -399,61 +399,61 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 1.3)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#f7c015');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 1.9)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#2d3361');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 2.5)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#696464');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 3.1)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#a243c9');
 
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 1.35)
+        .attr('y', padding.top * 1.4)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '14px')
         .text('太陽能');
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 1.95)
+        .attr('y', padding.top * 2)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '14px')
         .text('風能');
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.55)
+        .attr('y', padding.top * 2.6)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '14px')
         .text('儲能系統');
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 3.15)
+        .attr('y', padding.top * 3.2)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '14px')
         .text('充電樁');
 
       // append line of dataPV
@@ -817,7 +817,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(axisX)
         .call((g) => g.select('.domain').remove())
         .attr('color', '#707070')
-        .attr('font-size', '15px')
+        .attr('font-size', '12px')
         .attr(
           'transform',
           `translate(${padding.axisX + padding.left}, ${
@@ -833,7 +833,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call((g) => g.selectAll('.tick').attr('color', 'gray'))
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
-        .attr('font-size', '15px')
+        .attr('font-size', '12px')
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
@@ -841,31 +841,31 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 1.9)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#d32f2f');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
         .attr('cy', padding.top * 2.5)
-        .attr('r', 7)
+        .attr('r', 5)
         .attr('fill', '#2e7d32');
 
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 1.95)
+        .attr('y', padding.top * 2)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '15px')
         .text('用電');
       svg
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.55)
+        .attr('y', padding.top * 2.6)
         .attr('fill', '#707070')
-        .attr('font-size', '20px')
+        .attr('font-size', '15px')
         .text('產電');
 
       // test for tooltip

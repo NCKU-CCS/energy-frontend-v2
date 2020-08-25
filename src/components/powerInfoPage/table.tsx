@@ -25,8 +25,8 @@ const Table: React.FC<IProps> = ({ date }) => {
   // api parameters
   const correctDate = date.getTime() > new Date().getTime() ? new Date() : date;
   // eslint-disable-next-line @typescript-eslint/camelcase
-  const per_page = 10;
-  const page = 1;
+  const [per_page, setPerPage] = useState('5');
+  const [page, setPage] = useState(1);
 
   // style
   const redText = { color: '#d32f2f' };
@@ -124,11 +124,44 @@ const Table: React.FC<IProps> = ({ date }) => {
     );
   });
 
+  const selectChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPage(1);
+    setPerPage(event.target.value);
+  };
+
+  const clickFirstPageHandler = () => {
+    setPage(1);
+  };
+
+  const clickPrevPageHandler = () => {
+    if (page > 1) setPage(page - 1);
+    else setPage(1);
+  };
+
+  const clickNextPageHandler = () => {
+    const lastPage =
+      apiData.totalCount % parseInt(per_page, 10) === 0
+        ? apiData.totalCount / parseInt(per_page, 10)
+        : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1;
+    if (page < lastPage) setPage(page + 1);
+    else setPage(lastPage);
+  };
+
+  const clickLastPageHandler = () => {
+    const lastPage =
+      apiData.totalCount % parseInt(per_page, 10) === 0
+        ? apiData.totalCount / parseInt(per_page, 10)
+        : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1;
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    setPage(lastPage);
+  };
+
   useEffect(() => {
     (async () => {
       await fetchApiData();
     })();
-  }, [correctDate]);
+    // eslint-disable-next-line @typescript-eslint/camelcase
+  }, [correctDate, per_page, page]);
 
   useEffect(() => {}, [apiData]);
 
@@ -146,12 +179,44 @@ const Table: React.FC<IProps> = ({ date }) => {
         <div className={classNames('powerinfo-table-title-url')}>連結</div>
       </div>
       <div>{dataList}</div>
-      <div className={classNames('powerinfo-table-button-container')}>
-        <button type="button">&#171;</button>
-        <button type="button">&#60;</button>
-        now / total
-        <button type="button">&#62;</button>
-        <button type="button">&#187;</button>
+      <div className={classNames('powerinfo-table-pagecontrol-container')}>
+        <select onChange={(e) => selectChangeHandler(e)}>
+          <option value="5">5 rows</option>
+          <option value="10">10 rows</option>
+          <option value="20">20 rows</option>
+        </select>
+        <button
+          name="First Page"
+          type="button"
+          onClick={() => clickFirstPageHandler()}
+        >
+          &#171;
+        </button>
+        <button
+          name="Previous Page"
+          type="button"
+          onClick={() => clickPrevPageHandler()}
+        >
+          &#60;
+        </button>
+        {page} /{' '}
+        {apiData.totalCount % parseInt(per_page, 10) === 0
+          ? apiData.totalCount / parseInt(per_page, 10)
+          : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1}
+        <button
+          name="Next Page"
+          type="button"
+          onClick={() => clickNextPageHandler()}
+        >
+          &#62;
+        </button>
+        <button
+          name="Last Page"
+          type="button"
+          onClick={() => clickLastPageHandler()}
+        >
+          &#187;
+        </button>
       </div>
     </div>
   );
