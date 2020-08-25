@@ -1,5 +1,65 @@
 .home-time-info {
-	border: solid 1px black;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.home-time-info-title{
+	margin-left: 5%;
+	height: 25%;
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	color: rgb(112,112,112);
+	font-weight: bold;;
+}
+
+.home-time-info-timeContainer{
+	display: flex;
+	height: 40%;
+	align-items: center;
+	justify-content: center;
+	width: 97%;
+	margin-right: 3%;
+}
+
+.home-time-info-timeIcon{
+	width: 40px;
+	height: 40px;
+	margin-right: 2%;
+}
+
+.home-time-info-timeContent{
+	width: auto;
+	font-size: 56px;
+	color: rgb(255,160,0);
+}
+
+.home-time-info-priceContainer{
+	display: flex;
+	height: 25%;
+	width: 94%;
+	margin-left: 6%;
+	align-items: center;
+	justify-content: center;
+}
+
+.home-time-info-buy{
+	color: #d32f2f;
+	font-size: 32px;
+}
+
+.home-time-info-sell{
+	color: #2e7d32;
+	font-size: 32px;
+	margin-left: 2%;
+}
+
+.home-time-info-content{
+	width: auto;
+	margin-right: 1.5%;
+	margin-left: 1.5%;
+	color: rgb(60,60,60);
+	font-size: 28px;
 }
 
 // 1280 < size

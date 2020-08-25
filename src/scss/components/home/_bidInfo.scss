@@ -1,7 +1,54 @@
 .home-bid-info {
-	border: solid 1px black;
+	background-color: white;
+	border-radius: 10px;
 }
 
+.home-bid-info-title{
+	display: flex;
+	margin-left: 5%;
+	width: 90%;
+	height: 20%;
+	align-items: center;
+	color: rgb(80,80,80);
+	font-size:24px;
+}
+
+.home-bid-info-list{
+  height: 75%;
+  margin-bottom: 5%;
+	width: 95%;
+	margin-left: 4%;
+	margin-right: 1%;
+  font-size:20px;
+  color: rgb(50,50,50);
+  overflow-y: auto;
+}
+
+.home-bid-info-listContainer{
+  display: flex;
+  height: 17%;
+  align-items: center;
+}
+
+.home-bid-info-listContent-date{
+  width: 20%;
+}
+
+.home-bid-info-listContent-time{
+  width: 20%;
+}
+
+.home-bid-info-listContent-success{
+  width: 15%;
+}
+
+.home-bid-info-listContent-number{
+  width: 25%;
+}
+
+.home-bid-info-listContent-price{
+  width: 20%;
+}
 // 1280 < size
 // @media all and (min-width: 1280px) {}
 
