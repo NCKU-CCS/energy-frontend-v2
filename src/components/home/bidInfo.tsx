@@ -16,10 +16,10 @@ const BidInfo: React.FC = () => {
           {content.success}
         </div>
         <div className={classnames('home-bid-info-listContent-number')}>
-          得標度數 :{content.number}kWh
+          得標度數:{content.number}kWh
         </div>
         <div className={classnames('home-bid-info-listContent-price')}>
-          單價 :${content.price}/kWh
+          單價:${content.price}/kWh
         </div>
       </div>
     );
