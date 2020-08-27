@@ -55,8 +55,8 @@
 	color: rgb(60,60,60);
 }
 
-// 1450 < size
-@media all and (min-width: 1450px) {
+// 1550 < size
+@media all and (min-width: 1550px) {
 	.home-time-info-title{
 		font-size: 24px;
 	}
@@ -78,8 +78,8 @@
 	}
 }
 
-// 1320 < size <= 1450
-@media all and (min-width: 1320px) and (max-width: 1450px) {
+// 1320 < size <= 1550
+@media all and (min-width: 1320px) and (max-width: 1550px) {
   .home-time-info-title{
 		font-size: 20px;
 	}
@@ -124,14 +124,117 @@
 	}
 }
 
-// 1280 < size
-// @media all and (min-width: 1280px) {}
+// 600 < size <= 720
+@media all and (min-width: 600px) and (max-width: 720px) {
+	.home-time-info-title{
+		font-size: 22px;
+	}
+	.home-time-info-timeContent{
+		font-size: 40px;
+	}
+	.home-time-info-timeIcon{
+		width: 36px;
+		height: 36px;
+	}
+	.home-time-info-buy{
+		font-size: 24px;
+	}
+	.home-time-info-sell{
+		font-size: 24px;
+	}
+	.home-time-info-content{
+		font-size: 24px;
+	}
+}
 
-// 720 < size <= 1280
-// @media all and (min-width: 720px) and (max-width: 1280px) {}
+// 500 < size <= 600
+@media all and (min-width: 500px) and (max-width: 600px) {
+	.home-time-info-title{
+		font-size: 19px;
+	}
+	.home-time-info-timeContent{
+		font-size: 32px;
+	}
+	.home-time-info-timeIcon{
+		width: 30px;
+		height: 30px;
+	}
+	.home-time-info-buy{
+		font-size: 21px;
+	}
+	.home-time-info-sell{
+		font-size: 21px;
+	}
+	.home-time-info-content{
+		font-size: 21px;
+	}
+}
 
-// 320 < size <= 720px - horizen layout
-// @media all and (min-width: 320px) and (max-width: 720px) {}
+// 390 < size <= 500
+@media all and (min-width: 390px) and (max-width: 500px) {
+	.home-time-info-title{
+		font-size: 18px;
+	}
+	.home-time-info-timeContent{
+		font-size: 26px;
+	}
+	.home-time-info-timeIcon{
+		width: 28px;
+		height: 28px;
+	}
+	.home-time-info-buy{
+		font-size: 18px;
+	}
+	.home-time-info-sell{
+		font-size: 18px;
+	}
+	.home-time-info-content{
+		font-size: 18px;
+	}
+}
+
+// 320 < size <= 390
+@media all and (min-width: 320px) and (max-width: 390px) {
+	.home-time-info-title{
+		font-size: 14px;
+	}
+	.home-time-info-timeContent{
+		font-size: 24px;
+	}
+	.home-time-info-timeIcon{
+		width: 26px;
+		height: 26px;
+	}
+	.home-time-info-buy{
+		font-size: 14px;
+	}
+	.home-time-info-sell{
+		font-size: 14px;
+	}
+	.home-time-info-content{
+		font-size: 14px;
+	}
+}
 
 // size <= 320px
-// @media all and (max-width: 320px) {}
+@media all and (max-width: 320px) {
+	.home-time-info-title{
+		font-size: 12px;
+	}
+	.home-time-info-timeContent{
+		font-size: 22px;
+	}
+	.home-time-info-timeIcon{
+		width: 24px;
+		height: 24px;
+	}
+	.home-time-info-buy{
+		font-size: 12px;
+	}
+	.home-time-info-sell{
+		font-size: 12px;
+	}
+	.home-time-info-content{
+		font-size: 12px;
+	}
+}
