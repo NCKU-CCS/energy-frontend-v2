@@ -91,20 +91,17 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   const [width, setWidth] = useState(1227);
   const [height, setHeight] = useState(241);
-  const [tooltipWidth, setTooltipWidth] = useState(width * 0.11);
-  const [tooltipHeightOfEquip, setTooltipHeightOfEquip] = useState(
-    height * 0.469,
-  );
-  const [tooltipHeightOfLoad, setTooltipHeightOfLoad] = useState(
-    height * 0.361,
-  );
-  const [padding, setPadding] = useState<IPadding>({
+  // test
+  let tooltipWidth = width * 0.11;
+  let tooltipHeightOfEquip = height * 0.469;
+  let tooltipHeightOfLoad = height * 0.361;
+  let padding = {
     top: height * 0.207,
     bottom: height * 0.166,
     left: width * 0.0407,
     right: width * 0.097,
     axisX: width * 0.065,
-  });
+  };
 
   // scales
   const scaleX = d3
@@ -204,34 +201,32 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     // first time determine sizes
     setWidth(svg.node().getBoundingClientRect().width);
     setHeight(svg.node().getBoundingClientRect().height);
-    setPadding({
+    padding = {
       top: height * 0.207,
       bottom: height * 0.166,
       left: width * 0.0407,
       right: width * 0.097,
       axisX: width * 0.065,
-    });
-    setTooltipWidth(width * 0.11);
-    setTooltipHeightOfEquip(height * 0.469);
-    setTooltipHeightOfLoad(height * 0.361);
+    };
+    tooltipWidth = width * 0.11;
+    tooltipHeightOfEquip = height * 0.469;
+    tooltipHeightOfLoad = height * 0.361;
 
-    /*
     // determine sizes when window resized
     window.addEventListener('resize', () => {
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
-      setPadding({
+      padding = {
         top: height * 0.207,
         bottom: height * 0.166,
         left: width * 0.0407,
         right: width * 0.097,
         axisX: width * 0.065,
-      });
-      setTooltipWidth(width * 0.11);
-      setTooltipHeightOfEquip(height * 0.469);
-      setTooltipHeightOfLoad(height * 0.361);
+      };
+      tooltipWidth = width * 0.11;
+      tooltipHeightOfEquip = height * 0.469;
+      tooltipHeightOfLoad = height * 0.361;
     });
-    */
 
     // tooltip-canvas
     const tooltipCvs = svg
@@ -1397,7 +1392,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .on('mouseout', () => {
           // tooltip-rect
           tooltipRect.style('display', 'none');
-          console.log('out');
 
           // tooltip-line
           tooltipLine.style('display', 'none');

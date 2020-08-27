@@ -74,8 +74,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
   let sortedData: string[] = [];
 
   // svg props
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(240);
+  const [height, setHeight] = useState(279);
   const [titleTextSize, setTitleTextSize] = useState('');
   const [contentTextSize, setContentTextSize] = useState('');
   const [unitTextSize, setUnitTextSize] = useState('');
