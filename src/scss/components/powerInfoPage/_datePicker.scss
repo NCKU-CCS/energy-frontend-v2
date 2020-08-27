@@ -1,4 +1,5 @@
 .powerinfo-datepicker-container {
+  display: flex;
   color: #707070;
   // border: black solid 1px;
   margin-right: 1%;
@@ -8,4 +9,8 @@
 .powerinfo-datepicker-input {
   color: #707070;
   cursor: pointer;
+  border: #d8d8d8 solid 0.5px;
+  border-radius: 5px;
+  height: 100%;
+  text-align: center;
 }

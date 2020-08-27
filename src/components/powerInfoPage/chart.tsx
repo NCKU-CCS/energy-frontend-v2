@@ -76,22 +76,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     }
   };
 
-  /*
-  // props
-  const width = 1020;
-  const height = 220;
-  const padding = {
-    top: 50,
-    bottom: 40,
-    left: 5,
-    right: 75,
-    axisX: 50,
-  };
-  */
-
   const [width, setWidth] = useState(1227);
   const [height, setHeight] = useState(241);
-  // test
   let tooltipWidth = width * 0.11;
   let tooltipHeightOfEquip = height * 0.469;
   let tooltipHeightOfLoad = height * 0.361;
@@ -102,6 +88,11 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     right: width * 0.097,
     axisX: width * 0.065,
   };
+
+  const [axisTextSize, setAxisTextSize] = useState('');
+  const [unitTextSize, setUnitTextSize] = useState('');
+  const [legendTextSize, setLegendTextSize] = useState('');
+  const [tooltipTextSize, setTooltipTextSize] = useState('');
 
   // scales
   const scaleX = d3
@@ -211,6 +202,28 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     tooltipWidth = width * 0.11;
     tooltipHeightOfEquip = height * 0.469;
     tooltipHeightOfLoad = height * 0.361;
+    // text size
+    if (window.innerWidth >= 1920) {
+      setAxisTextSize('16px');
+      setUnitTextSize('20px');
+      setLegendTextSize('21px');
+      setTooltipTextSize('20px');
+    } else if (window.innerWidth >= 1280) {
+      setAxisTextSize('11px');
+      setUnitTextSize('13px');
+      setLegendTextSize('14px');
+      setTooltipTextSize('14px');
+    } else if (window.innerWidth >= 720) {
+      setAxisTextSize('10px');
+      setUnitTextSize('12px');
+      setLegendTextSize('12px');
+      setTooltipTextSize('10px');
+    } else {
+      setAxisTextSize('10px');
+      setUnitTextSize('10px');
+      setLegendTextSize('10px');
+      setTooltipTextSize('10px');
+    }
 
     // determine sizes when window resized
     window.addEventListener('resize', () => {
@@ -226,6 +239,28 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       tooltipWidth = width * 0.11;
       tooltipHeightOfEquip = height * 0.469;
       tooltipHeightOfLoad = height * 0.361;
+      // text size
+      if (window.innerWidth >= 1920) {
+        setAxisTextSize('16px');
+        setUnitTextSize('20px');
+        setLegendTextSize('21px');
+        setTooltipTextSize('20px');
+      } else if (window.innerWidth >= 1280) {
+        setAxisTextSize('11px');
+        setUnitTextSize('13px');
+        setLegendTextSize('14px');
+        setTooltipTextSize('14px');
+      } else if (window.innerWidth >= 720) {
+        setAxisTextSize('14px');
+        setUnitTextSize('14px');
+        setLegendTextSize('14px');
+        setTooltipTextSize('14px');
+      } else {
+        setAxisTextSize('10px');
+        setUnitTextSize('10px');
+        setLegendTextSize('10px');
+        setTooltipTextSize('10px');
+      }
     });
 
     // tooltip-canvas
@@ -241,6 +276,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     const tooltipRect = svg
       .append('rect')
       .attr('fill', '#e5e5e5')
+      .attr('rx', '5px')
       .style('display', 'none');
 
     // tooltip-line
@@ -254,74 +290,88 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     const tooltipTitlePV = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipTitleWT = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipTitleESS = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipTitleEV = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     // tooltip-text-data-equip
     const tooltipDataPV = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipDataWT = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipDataESS = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipDataEV = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     // tooltip-text-title-load
     const tooltipTitleConsume = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipTitleGenerate = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipTitleDemand = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     // tooltip-text-Data-load
     const tooltipDataConsume = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipDataGenerate = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     const tooltipDataDemand = svg
       .append('text')
       .text('text')
+      .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
     /*
@@ -401,7 +451,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .attr('x', padding.left / 1.2)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', unitTextSize)
       .text('kW');
 
     svg
@@ -410,7 +460,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .attr('x', width - padding.right / 1.3)
       .attr('y', height - padding.bottom / 2.5)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', unitTextSize)
       .text('日期');
 
     if (mode === '產能設備') {
@@ -420,7 +470,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(axisX)
         .call((g: any) => g.select('.domain').remove())
         .attr('color', '#707070')
-        .attr('font-size', '12px')
+        .attr('font-size', axisTextSize)
         .attr(
           'transform',
           `translate(${padding.axisX + padding.left}, ${
@@ -445,7 +495,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
         )
         .attr('fill', 'none')
-        .attr('font-size', '12px')
+        .attr('font-size', axisTextSize)
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
@@ -483,7 +533,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('x', width - padding.right / 1.5)
         .attr('y', padding.top * 1.5) // 1.4 -> 1.5
         .attr('fill', '#707070')
-        .attr('font-size', '14px')
+        .attr('font-size', legendTextSize)
         .text('太陽能');
       svg
         .append('text')
@@ -491,7 +541,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('x', width - padding.right / 1.5)
         .attr('y', padding.top * 2.25) // 2 -> 2.25
         .attr('fill', '#707070')
-        .attr('font-size', '14px')
+        .attr('font-size', legendTextSize)
         .text('風能');
       svg
         .append('text')
@@ -499,7 +549,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('x', width - padding.right / 1.5)
         .attr('y', padding.top * 2.95) // 2.6 -> 2.95
         .attr('fill', '#707070')
-        .attr('font-size', '14px')
+        .attr('font-size', legendTextSize)
         .text('儲能系統');
       svg
         .append('text')
@@ -507,7 +557,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('x', width - padding.right / 1.5)
         .attr('y', padding.top * 3.7) // 3.2 -> 3.7
         .attr('fill', '#707070')
-        .attr('font-size', '14px')
+        .attr('font-size', legendTextSize)
         .text('充電樁');
 
       // append line of dataPV
@@ -701,12 +751,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .text('太陽能:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] -
-                tooltipHeightOfEquip * 0.221,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.221 -
+                50,
             );
 
           // tooltip-data-PV
@@ -729,12 +780,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] -
-                tooltipHeightOfEquip * 0.221,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.221 -
+                50,
             );
 
           // tooltip-title-WT
@@ -742,9 +794,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .text('風能:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
-            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.442 -
+                50,
+            );
 
           // tooltip-data-WT
           tooltipDataWT
@@ -766,21 +823,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
-            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.442 -
+                50,
+            );
 
           // tooltip-title-ESS
           tooltipTitleESS
             .text('儲能系統:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
             .attr(
               'y',
               d3.mouse(d3.event.currentTarget)[1] +
-                tooltipHeightOfEquip * 0.221,
+                tooltipHeightOfEquip * 0.663 -
+                50,
             );
 
           // tooltip-data-ESS
@@ -803,12 +866,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
             .attr(
               'y',
               d3.mouse(d3.event.currentTarget)[1] +
-                tooltipHeightOfEquip * 0.221,
+                tooltipHeightOfEquip * 0.663 -
+                50,
             );
 
           // tooltip-title-EV
@@ -816,12 +880,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .text('充電樁:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
             .attr(
               'y',
               d3.mouse(d3.event.currentTarget)[1] +
-                tooltipHeightOfEquip * 0.442,
+                tooltipHeightOfEquip * 0.884 -
+                50,
             );
 
           // tooltip-data-EV
@@ -844,12 +909,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
             .attr(
               'y',
               d3.mouse(d3.event.currentTarget)[1] +
-                tooltipHeightOfEquip * 0.442,
+                tooltipHeightOfEquip * 0.884 -
+                50,
             );
 
           // tooltip-circle
@@ -1045,7 +1111,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(axisX)
         .call((g: any) => g.select('.domain').remove())
         .attr('color', '#707070')
-        .attr('font-size', '12px')
+        .attr('font-size', axisTextSize)
         .attr(
           'transform',
           `translate(${padding.axisX + padding.left}, ${
@@ -1061,7 +1127,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
-        .attr('font-size', '12px')
+        .attr('font-size', axisTextSize)
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
@@ -1094,7 +1160,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           padding.bottom + (height - padding.top - padding.bottom) * 0.49,
         )
         .attr('fill', '#707070')
-        .attr('font-size', '15px')
+        .attr('font-size', legendTextSize)
         .text('用電');
       svg
         .append('text')
@@ -1105,7 +1171,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           padding.bottom + (height - padding.top - padding.bottom) * 0.71,
         )
         .attr('fill', '#707070')
-        .attr('font-size', '15px')
+        .attr('font-size', legendTextSize)
         .text('產電');
 
       // test for tooltip
@@ -1210,11 +1276,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .text('用電:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] - tooltipHeightOfLoad * 0.287,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.287 -
+                50,
             );
 
           tooltipDataConsume
@@ -1236,20 +1304,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] - tooltipHeightOfLoad * 0.287,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.287 -
+                50,
             );
 
           tooltipTitleGenerate
             .text('產電:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
-            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.574 -
+                50,
+            );
 
           tooltipDataGenerate
             .text(
@@ -1270,19 +1345,26 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
-            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.574 -
+                50,
+            );
 
           tooltipTitleDemand
             .text('淨負載:')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] + tooltipHeightOfLoad * 0.287,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.861 -
+                50,
             );
 
           tooltipDataDemand
@@ -1315,11 +1397,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('text-anchor', 'end')
             .attr(
               'x',
-              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.904 + 50,
             )
             .attr(
               'y',
-              d3.mouse(d3.event.currentTarget)[1] + tooltipHeightOfLoad * 0.287,
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfLoad * 0.861 -
+                50,
             );
 
           // tooltip-circle

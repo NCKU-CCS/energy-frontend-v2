@@ -116,6 +116,11 @@ hr {
   background-color: #e8e8e8;
 }
 
+.powerinfo-table-pagecontrol-btn:disabled {
+  color: #d1d1d1;
+}
+
+
 .powerinfo-table-pagecontrol-row {
   cursor: pointer;
   background-color: #f1f2f1;

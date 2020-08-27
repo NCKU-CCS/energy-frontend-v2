@@ -30,7 +30,7 @@ const DatePicker: React.FC<IProps> = ({ changeDate }) => {
         type="date"
         onChange={(event) => onChangeDate(event)}
       />
-      {dateText}
+      {/* {dateText} */}
     </div>
   );
 };

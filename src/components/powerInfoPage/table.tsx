@@ -156,6 +156,29 @@ const Table: React.FC<IProps> = ({ date }) => {
     setPage(lastPage);
   };
 
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
+
+  useEffect(() => {
+    const lastPage =
+      apiData.totalCount % parseInt(per_page, 10) === 0
+        ? apiData.totalCount / parseInt(per_page, 10)
+        : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1;
+    if (page === 1 && lastPage === 1) {
+      setPrevDisabled(true);
+      setNextDisabled(true);
+    } else if (page === 1) {
+      setPrevDisabled(true);
+      setNextDisabled(false);
+    } else if (page === lastPage) {
+      setPrevDisabled(false);
+      setNextDisabled(true);
+    } else {
+      setPrevDisabled(false);
+      setNextDisabled(false);
+    }
+  }, [page]);
+
   useEffect(() => {
     (async () => {
       await fetchApiData();
@@ -196,6 +219,7 @@ const Table: React.FC<IProps> = ({ date }) => {
           title="First Page"
           type="button"
           onClick={() => clickFirstPageHandler()}
+          disabled={prevDisabled}
         >
           &Iota;&#60;
         </button>
@@ -207,6 +231,7 @@ const Table: React.FC<IProps> = ({ date }) => {
           title="Previous Page"
           type="button"
           onClick={() => clickPrevPageHandler()}
+          disabled={prevDisabled}
         >
           &#60;
         </button>
@@ -224,6 +249,7 @@ const Table: React.FC<IProps> = ({ date }) => {
           title="Next Page"
           type="button"
           onClick={() => clickNextPageHandler()}
+          disabled={nextDisabled}
         >
           &#62;
         </button>
@@ -235,6 +261,7 @@ const Table: React.FC<IProps> = ({ date }) => {
           title="Last Page"
           type="button"
           onClick={() => clickLastPageHandler()}
+          disabled={nextDisabled}
         >
           &#62;&Iota;
         </button>
