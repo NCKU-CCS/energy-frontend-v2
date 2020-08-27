@@ -8,7 +8,7 @@ import Table from './table';
 
 const PowerInfoPageContainer: React.FC = () => {
   // mode -> 淨負載 or 產能設備
-  const [mode, setMode] = useState('產能設備');
+  const [mode, setMode] = useState('淨負載');
   const [date, setDate] = useState<Date>(new Date());
 
   return (

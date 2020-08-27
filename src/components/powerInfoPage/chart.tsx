@@ -19,6 +19,14 @@ interface IProps {
   date: Date;
 }
 
+interface IPadding {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+  axisX: number;
+}
+
 const Chart: React.FC<IProps> = ({ mode, date }) => {
   const chartContainer = useRef(null);
 
@@ -68,6 +76,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     }
   };
 
+  /*
   // props
   const width = 1020;
   const height = 220;
@@ -78,6 +87,24 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     right: 75,
     axisX: 50,
   };
+  */
+
+  const [width, setWidth] = useState(1227);
+  const [height, setHeight] = useState(241);
+  const [tooltipWidth, setTooltipWidth] = useState(width * 0.11);
+  const [tooltipHeightOfEquip, setTooltipHeightOfEquip] = useState(
+    height * 0.469,
+  );
+  const [tooltipHeightOfLoad, setTooltipHeightOfLoad] = useState(
+    height * 0.361,
+  );
+  const [padding, setPadding] = useState<IPadding>({
+    top: height * 0.207,
+    bottom: height * 0.166,
+    left: width * 0.0407,
+    right: width * 0.097,
+    axisX: width * 0.065,
+  });
 
   // scales
   const scaleX = d3
@@ -103,7 +130,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .axisBottom(scaleX)
     .ticks(7)
     .tickSize(0)
-    .tickPadding(20)
+    .tickPadding(15)
     .tickFormat(
       d3.timeFormat('%Y/%m/%d') as (
         value: Date | { valueOf(): number },
@@ -172,14 +199,46 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   // React-Hook: useEffect -> render chart
   useEffect(() => {
-    const svg = d3.select(chartContainer.current);
+    const svg: any = d3.select(chartContainer.current);
+
+    // first time determine sizes
+    setWidth(svg.node().getBoundingClientRect().width);
+    setHeight(svg.node().getBoundingClientRect().height);
+    setPadding({
+      top: height * 0.207,
+      bottom: height * 0.166,
+      left: width * 0.0407,
+      right: width * 0.097,
+      axisX: width * 0.065,
+    });
+    setTooltipWidth(width * 0.11);
+    setTooltipHeightOfEquip(height * 0.469);
+    setTooltipHeightOfLoad(height * 0.361);
+
+    /*
+    // determine sizes when window resized
+    window.addEventListener('resize', () => {
+      setWidth(svg.node().getBoundingClientRect().width);
+      setHeight(svg.node().getBoundingClientRect().height);
+      setPadding({
+        top: height * 0.207,
+        bottom: height * 0.166,
+        left: width * 0.0407,
+        right: width * 0.097,
+        axisX: width * 0.065,
+      });
+      setTooltipWidth(width * 0.11);
+      setTooltipHeightOfEquip(height * 0.469);
+      setTooltipHeightOfLoad(height * 0.361);
+    });
+    */
 
     // tooltip-canvas
     const tooltipCvs = svg
       .append('rect')
-      .attr('width', width - padding.right - padding.left - padding.axisX)
+      .attr('width', width - padding.right - padding.left - padding.axisX * 1.5)
       .attr('height', height - padding.top - padding.bottom)
-      .attr('x', padding.right - padding.axisX / 2)
+      .attr('x', padding.left + padding.axisX)
       .attr('y', padding.top)
       .attr('opacity', 0);
 
@@ -344,7 +403,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', 0)
+      .attr('x', padding.left / 1.2)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
       .attr('font-size', '15px')
@@ -353,8 +412,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - padding.right / 2)
-      .attr('y', height - padding.bottom / 2.7)
+      .attr('x', width - padding.right / 1.3)
+      .attr('y', height - padding.bottom / 2.5)
       .attr('fill', '#707070')
       .attr('font-size', '15px')
       .text('日期');
@@ -364,7 +423,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('g')
         .call(axisX)
-        .call((g) => g.select('.domain').remove())
+        .call((g: any) => g.select('.domain').remove())
         .attr('color', '#707070')
         .attr('font-size', '12px')
         .attr(
@@ -378,16 +437,16 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('g')
         .call(equipGrid)
-        .call((g) => g.select('.domain').remove())
-        .call((g) => g.selectAll('.tick').attr('color', 'gray'))
-        .call((g) =>
+        .call((g: any) => g.select('.domain').remove())
+        .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
+        .call((g: any) =>
           g
             .select(':nth-child(3)')
             .select('line')
             .attr('stroke-dasharray', '3'),
         )
         .attr('stroke-width', '0.5px')
-        .call((g) =>
+        .call((g: any) =>
           g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
         )
         .attr('fill', 'none')
@@ -398,28 +457,28 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 1.3)
+        .attr('cy', padding.top * 1.4)
         .attr('r', 5)
         .attr('fill', '#f7c015');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 1.9)
+        .attr('cy', padding.top * 2.15)
         .attr('r', 5)
         .attr('fill', '#2d3361');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 2.5)
+        .attr('cy', padding.top * 2.85)
         .attr('r', 5)
         .attr('fill', '#696464');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 3.1)
+        .attr('cy', padding.top * 3.6)
         .attr('r', 5)
         .attr('fill', '#a243c9');
 
@@ -427,7 +486,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 1.4)
+        .attr('y', padding.top * 1.5) // 1.4 -> 1.5
         .attr('fill', '#707070')
         .attr('font-size', '14px')
         .text('太陽能');
@@ -435,7 +494,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2)
+        .attr('y', padding.top * 2.25) // 2 -> 2.25
         .attr('fill', '#707070')
         .attr('font-size', '14px')
         .text('風能');
@@ -443,7 +502,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.6)
+        .attr('y', padding.top * 2.95) // 2.6 -> 2.95
         .attr('fill', '#707070')
         .attr('font-size', '14px')
         .text('儲能系統');
@@ -451,7 +510,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 3.2)
+        .attr('y', padding.top * 3.7) // 3.2 -> 3.7
         .attr('fill', '#707070')
         .attr('font-size', '14px')
         .text('充電樁');
@@ -528,8 +587,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           // tooltip-rect
           tooltipRect
             .style('display', 'block')
-            .attr('width', 135)
-            .attr('height', 113)
+            .attr('width', tooltipWidth)
+            .attr('height', tooltipHeightOfEquip)
             .raise();
 
           // tooltip-title
@@ -547,14 +606,25 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .on('mousemove', () => {
           // tooltip-rect
           tooltipRect
-            .attr('x', `${d3.event.pageX - 200}`)
-            .attr('y', `${d3.event.pageY - 100}`);
+            .attr('x', d3.mouse(d3.event.currentTarget)[0] + 50) // -200
+            .attr('y', d3.mouse(d3.event.currentTarget)[1] - 50); // -100
 
           // tooltip-line
           tooltipLine
             .attr(
               'x1',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'y1',
@@ -564,7 +634,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].PV,
                   ),
@@ -572,7 +647,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].WT,
                   ),
@@ -580,7 +660,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].ESS,
                   ),
@@ -588,7 +673,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].EV,
                   ),
@@ -596,15 +686,33 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'x2',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr('y2', height - padding.bottom);
 
           // tooltip-title-PV
           tooltipTitlePV
             .text('太陽能:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 75}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] -
+                tooltipHeightOfEquip * 0.221,
+            );
 
           // tooltip-data-PV
           tooltipDataPV
@@ -613,20 +721,35 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].PV
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 75}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] -
+                tooltipHeightOfEquip * 0.221,
+            );
 
           // tooltip-title-WT
           tooltipTitleWT
             .text('風能:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 50}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
 
           // tooltip-data-WT
           tooltipDataWT
@@ -635,20 +758,35 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].WT
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 50}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
 
           // tooltip-title-ESS
           tooltipTitleESS
             .text('儲能系統:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 25}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.221,
+            );
 
           // tooltip-data-ESS
           tooltipDataESS
@@ -657,20 +795,39 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].ESS
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 25}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.221,
+            );
 
           // tooltip-title-EV
           tooltipTitleEV
             .text('充電樁:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 0}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.442,
+            );
 
           // tooltip-data-EV
           tooltipDataEV
@@ -679,20 +836,43 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].EV
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 0}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] +
+                tooltipHeightOfEquip * 0.442,
+            );
 
           // tooltip-circle
           tooltipCirclePV
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -700,7 +880,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].PV,
               ) + padding.top,
@@ -709,7 +894,18 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCircleWT
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -717,7 +913,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].WT,
               ) + padding.top,
@@ -726,7 +927,18 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCircleESS
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -734,7 +946,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].ESS,
               ) + padding.top,
@@ -743,7 +960,18 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCircleEV
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -751,7 +979,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].EV,
               ) + padding.top,
@@ -815,7 +1048,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('g')
         .call(axisX)
-        .call((g) => g.select('.domain').remove())
+        .call((g: any) => g.select('.domain').remove())
         .attr('color', '#707070')
         .attr('font-size', '12px')
         .attr(
@@ -829,8 +1062,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('g')
         .call(loadGrid)
-        .call((g) => g.select('.domain').remove())
-        .call((g) => g.selectAll('.tick').attr('color', 'gray'))
+        .call((g: any) => g.select('.domain').remove())
+        .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
         .attr('font-size', '12px')
@@ -840,14 +1073,20 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 1.9)
+        .attr(
+          'cy',
+          padding.bottom + (height - padding.top - padding.bottom) * 0.46,
+        )
         .attr('r', 5)
         .attr('fill', '#d32f2f');
 
       svg
         .append('circle')
         .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 2.5)
+        .attr(
+          'cy',
+          padding.bottom + (height - padding.top - padding.bottom) * 0.68,
+        )
         .attr('r', 5)
         .attr('fill', '#2e7d32');
 
@@ -855,7 +1094,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2)
+        .attr(
+          'y',
+          padding.bottom + (height - padding.top - padding.bottom) * 0.49,
+        )
         .attr('fill', '#707070')
         .attr('font-size', '15px')
         .text('用電');
@@ -863,7 +1105,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .append('text')
         .attr('text-anchor', 'start')
         .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.6)
+        .attr(
+          'y',
+          padding.bottom + (height - padding.top - padding.bottom) * 0.71,
+        )
         .attr('fill', '#707070')
         .attr('font-size', '15px')
         .text('產電');
@@ -882,8 +1127,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           // tooltip-rect
           tooltipRect
             .style('display', 'block')
-            .attr('width', 135)
-            .attr('height', 87)
+            .attr('width', tooltipWidth)
+            .attr('height', tooltipHeightOfLoad)
             .raise();
 
           // tooltip-title
@@ -898,13 +1143,24 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         })
         .on('mousemove', () => {
           tooltipRect
-            .attr('x', `${d3.event.pageX - 200}`)
-            .attr('y', `${d3.event.pageY - 100}`);
+            .attr('x', d3.mouse(d3.event.currentTarget)[0] + 50)
+            .attr('y', d3.mouse(d3.event.currentTarget)[1] - 50);
 
           tooltipLine
             .attr(
               'x1',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'y1',
@@ -914,7 +1170,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].Consume,
                   ),
@@ -922,7 +1183,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                     apiDataArr[
                       bisectDate(
                         apiDataArr,
-                        timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
                       )
                     ].Generate,
                   ),
@@ -930,14 +1196,31 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'x2',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr('y2', height - padding.bottom);
 
           tooltipTitleConsume
             .text('用電:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 75}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] - tooltipHeightOfLoad * 0.287,
+            );
 
           tooltipDataConsume
             .text(
@@ -945,19 +1228,33 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Consume
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 75}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] - tooltipHeightOfLoad * 0.287,
+            );
 
           tooltipTitleGenerate
             .text('產電:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 50}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
 
           tooltipDataGenerate
             .text(
@@ -965,19 +1262,33 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Generate
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 50}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr('y', d3.mouse(d3.event.currentTarget)[1]);
 
           tooltipTitleDemand
             .text('淨負載:')
-            .attr('x', `${d3.event.pageX - 190}`)
-            .attr('y', `${d3.event.pageY - 25}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.444,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] + tooltipHeightOfLoad * 0.287,
+            );
 
           tooltipDataDemand
             .text(
@@ -985,26 +1296,53 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Consume -
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Generate
               }`,
             )
             .attr('text-anchor', 'end')
-            .attr('x', `${d3.event.pageX - 80}`)
-            .attr('y', `${d3.event.pageY - 25}`);
+            .attr(
+              'x',
+              d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 1.274,
+            )
+            .attr(
+              'y',
+              d3.mouse(d3.event.currentTarget)[1] + tooltipHeightOfLoad * 0.287,
+            );
 
           // tooltip-circle
           tooltipCircleConsume
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -1012,7 +1350,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Consume,
               ) + padding.top,
@@ -1021,7 +1364,18 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCircleGenerate
             .attr(
               'cx',
-              scaleX(new Date(timeFormat(scaleX.invert(d3.event.pageX - 160)))),
+              scaleX(
+                new Date(
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
+                    ),
+                  ),
+                ),
+              ) +
+                padding.axisX +
+                padding.left,
             )
             .attr(
               'cy',
@@ -1029,7 +1383,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 apiDataArr[
                   bisectDate(
                     apiDataArr,
-                    timeFormat(scaleX.invert(d3.event.pageX - 310)),
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
+                    ),
                   )
                 ].Generate,
               ) + padding.top,
@@ -1038,6 +1397,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .on('mouseout', () => {
           // tooltip-rect
           tooltipRect.style('display', 'none');
+          console.log('out');
 
           // tooltip-line
           tooltipLine.style('display', 'none');
@@ -1076,12 +1436,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div className={classNames('powerinfo-chart-container')}>
-      <svg
-        className={classNames('powerinfo-chart-svg')}
-        ref={chartContainer}
-        viewBox="0 0 1020 220"
-        preserveAspectRatio="xMidYMid meet"
-      />
+      <svg className={classNames('powerinfo-chart-svg')} ref={chartContainer} />
     </div>
   );
 };

@@ -180,42 +180,63 @@ const Table: React.FC<IProps> = ({ date }) => {
       </div>
       <div>{dataList}</div>
       <div className={classNames('powerinfo-table-pagecontrol-container')}>
-        <select onChange={(e) => selectChangeHandler(e)}>
+        <select
+          className={classNames('powerinfo-table-pagecontrol-row')}
+          onChange={(e) => selectChangeHandler(e)}
+        >
           <option value="5">5 rows</option>
           <option value="10">10 rows</option>
           <option value="20">20 rows</option>
         </select>
         <button
-          name="First Page"
+          className={classNames(
+            'powerinfo-table-pagecontrol-btn-first',
+            'powerinfo-table-pagecontrol-btn',
+          )}
+          title="First Page"
           type="button"
           onClick={() => clickFirstPageHandler()}
         >
-          &#171;
+          &Iota;&#60;
         </button>
         <button
-          name="Previous Page"
+          className={classNames(
+            'powerinfo-table-pagecontrol-btn-prev',
+            'powerinfo-table-pagecontrol-btn',
+          )}
+          title="Previous Page"
           type="button"
           onClick={() => clickPrevPageHandler()}
         >
           &#60;
         </button>
-        {page} /{' '}
-        {apiData.totalCount % parseInt(per_page, 10) === 0
-          ? apiData.totalCount / parseInt(per_page, 10)
-          : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1}
+        <div className={classNames('powerinfo-table-pagecontrol-text')}>
+          {page} /{' '}
+          {apiData.totalCount % parseInt(per_page, 10) === 0
+            ? apiData.totalCount / parseInt(per_page, 10)
+            : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1}
+        </div>
         <button
-          name="Next Page"
+          className={classNames(
+            'powerinfo-table-pagecontrol-btn-next',
+            'powerinfo-table-pagecontrol-btn',
+          )}
+          title="Next Page"
           type="button"
           onClick={() => clickNextPageHandler()}
         >
           &#62;
         </button>
         <button
-          name="Last Page"
+          className={classNames(
+            'powerinfo-table-pagecontrol-btn-last',
+            'powerinfo-table-pagecontrol-btn',
+          )}
+          title="Last Page"
           type="button"
           onClick={() => clickLastPageHandler()}
         >
-          &#187;
+          &#62;&Iota;
         </button>
       </div>
     </div>

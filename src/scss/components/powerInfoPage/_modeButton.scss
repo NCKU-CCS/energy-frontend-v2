@@ -4,21 +4,45 @@
 }
 
 .powerinfo-mode-button-load {
+  cursor: pointer;
   width: 100%;
-  background-color: #ffa000;
-  color: white;
-  border: 0;
-  // outline: 0;
+  background-color: white;
+  color: #707070;
+  border: #d8d8d8 solid 0.5px;
+  border-right: 0.25px;
+  outline: 0;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
+.powerinfo-mode-button-load:active {
+  background-color: #e8e8e8;
+}
+
+.powerinfo-mode-button-load:disabled {
+  cursor: default;
+  background-color: #ffa000;
+  color: white;
+}
+
 .powerinfo-mode-button-equip {
+  cursor: pointer;
   width: 100%;
   color: #707070;
   background-color: white;
-  border: 0;
-  // outline: 0;
+  border: #d8d8d8 solid 0.5px;
+  border-left: 0.25px;
+  outline: 0;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.powerinfo-mode-button-equip:disabled {
+  cursor: default;
+  background-color: #ffa000;
+  color: white;
+}
+
+.powerinfo-mode-button-equip:active {
+  background-color: #e8e8e8;
 }

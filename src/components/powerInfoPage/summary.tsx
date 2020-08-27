@@ -74,12 +74,59 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
   let sortedData: string[] = [];
 
   // svg props
-  const width = 259;
-  const height = 352;
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [titleTextSize, setTitleTextSize] = useState('');
+  const [contentTextSize, setContentTextSize] = useState('');
+  const [unitTextSize, setUnitTextSize] = useState('');
 
   // React-Hook: useEffect -> render content
   useEffect(() => {
-    const svg = d3.select(container.current);
+    const svg: any = d3.select(container.current);
+
+    // first time determine sizes
+    setWidth(svg.node().getBoundingClientRect().width);
+    setHeight(svg.node().getBoundingClientRect().height);
+    if (window.innerWidth >= 1920) {
+      setTitleTextSize('22px');
+      setContentTextSize('20px');
+      setUnitTextSize('14px');
+    } else if (window.innerWidth >= 1280) {
+      setTitleTextSize('16px');
+      setContentTextSize('16px');
+      setUnitTextSize('10px');
+    } else if (window.innerWidth >= 720) {
+      setTitleTextSize('14px');
+      setContentTextSize('14px');
+      setUnitTextSize('8px');
+    } else {
+      setTitleTextSize('12px');
+      setContentTextSize('12px');
+      setUnitTextSize('6px');
+    }
+
+    // determine sizes when window resized
+    window.addEventListener('resize', () => {
+      setWidth(svg.node().getBoundingClientRect().width);
+      setHeight(svg.node().getBoundingClientRect().height);
+      if (window.innerWidth >= 1920) {
+        setTitleTextSize('22px');
+        setContentTextSize('20px');
+        setUnitTextSize('14px');
+      } else if (window.innerWidth >= 1280) {
+        setTitleTextSize('16px');
+        setContentTextSize('16px');
+        setUnitTextSize('10px');
+      } else if (window.innerWidth >= 720) {
+        setTitleTextSize('14px');
+        setContentTextSize('14px');
+        setUnitTextSize('8px');
+      } else {
+        setTitleTextSize('12px');
+        setContentTextSize('12px');
+        setUnitTextSize('6px');
+      }
+    });
 
     // svg
     svg
@@ -92,9 +139,9 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .append('text')
       .attr('text-anchor', 'middle')
       .attr('x', width / 2)
-      .attr('y', 50)
+      .attr('y', height * 0.142)
       .attr('fill', '#707070')
-      .attr('font-size', '20px')
+      .attr('font-size', titleTextSize)
       .attr('font-weight', 'bold')
       .text(dayjs(correctDate).format('YYYY/MM/DD'));
 
@@ -103,18 +150,18 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       .append('text')
       .attr('text-anchor', 'middle')
       .attr('x', width / 2)
-      .attr('y', 80)
+      .attr('y', height * 0.227)
       .attr('fill', '#707070')
       .attr('font-weight', 'bold')
-      .attr('font-size', '20px');
+      .attr('font-size', titleTextSize);
 
     // append divide line
     const divideLine = svg
       .append('line')
-      .attr('x1', 20)
-      .attr('y1', 270)
-      .attr('x2', width - 20)
-      .attr('y2', 270)
+      .attr('x1', width * 0.077)
+      .attr('y1', height * 0.767)
+      .attr('x2', width - width * 0.077)
+      .attr('y2', height * 0.767)
       .attr('stroke', '#707070')
       .attr('stroke-width', '0.5px');
 
@@ -123,50 +170,50 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const titleConsume = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('font-size', '20px')
+      .attr('x', width * 0.154)
+      .attr('font-size', contentTextSize)
       .text('正常用電');
 
     // append title-ESS
     const titleESS = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('font-size', '20px')
+      .attr('x', width * 0.154)
+      .attr('font-size', contentTextSize)
       .text('儲能系統');
 
     // append title-EV
     const titleEV = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('font-size', '20px')
+      .attr('x', width * 0.154)
+      .attr('font-size', contentTextSize)
       .text('充電樁');
 
     // append title-WT
     const titleWT = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('font-size', '20px')
+      .attr('x', width * 0.154)
+      .attr('font-size', contentTextSize)
       .text('風能');
 
     // append title-consume
     const titlePV = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('font-size', '20px')
+      .attr('x', width * 0.154)
+      .attr('font-size', contentTextSize)
       .text('太陽能');
 
     // append title-demand
     const titleDemand = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', 40)
-      .attr('y', 300)
+      .attr('x', width * 0.154)
+      .attr('y', height * 0.852)
       .attr('fill', '#707070')
-      .attr('font-size', '20px')
+      .attr('font-size', contentTextSize)
       .attr('font-weight', 'bold')
       .text('總淨負載');
 
@@ -174,8 +221,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataConsume = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('font-size', '20px')
+      .attr('x', width - width * 0.154)
+      .attr('font-size', contentTextSize)
       .attr('fill', '#707070')
       .text(Math.abs(apiData.Consume));
 
@@ -183,8 +230,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataESS = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('font-size', '20px')
+      .attr('x', width - width * 0.154)
+      .attr('font-size', contentTextSize)
       .attr('fill', '#707070')
       .text(Math.abs(apiData.ESS));
 
@@ -192,8 +239,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataEV = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('font-size', '20px')
+      .attr('x', width - width * 0.154)
+      .attr('font-size', contentTextSize)
       .attr('fill', '#707070')
       .text(Math.abs(apiData.EV));
 
@@ -201,8 +248,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataWT = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('font-size', '20px')
+      .attr('x', width - width * 0.154)
+      .attr('font-size', contentTextSize)
       .attr('fill', '#707070')
       .text(Math.abs(apiData.WT));
 
@@ -210,8 +257,8 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataPV = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('font-size', '20px')
+      .attr('x', width - width * 0.154)
+      .attr('font-size', contentTextSize)
       .attr('fill', '#707070')
       .text(Math.abs(apiData.PV));
 
@@ -219,73 +266,76 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     const dataDemand = svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - 40)
-      .attr('y', 300)
+      .attr('x', width - width * 0.154)
+      .attr('y', height * 0.852)
       .attr('fill', '#707070')
-      .attr('font-size', '20px')
+      .attr('font-size', contentTextSize)
       .text(apiData.Demand);
 
     // append unit
     const unit = svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', width - 37)
-      .attr('y', 300)
+      .attr('x', width - width * 0.143)
+      .attr('y', height * 0.852)
       .attr('fill', '#707070')
-      .attr('font-size', '14px')
+      .attr('font-size', unitTextSize)
       .text('kWh');
 
     // append positive circle
     const posCircle = svg
       .append('circle')
-      .attr('cx', 30)
+      .attr('cx', width * 0.116)
       .attr('r', 4)
       .attr('fill', '#d32f2f');
 
     // append negative circle
     const negCircle = svg
       .append('circle')
-      .attr('cx', 30)
+      .attr('cx', width * 0.116)
       .attr('r', 4)
       .attr('fill', '#2e7d32');
 
     // 產能設備模式
     // scale
-    const scale = d3.scaleLinear().domain([0, 40]).range([0, 80]);
+    const scale = d3
+      .scaleLinear()
+      .domain([0, 40])
+      .range([0, height * 0.227]);
 
     // append rect-PV
     const rectPV = svg
       .append('rect')
-      .attr('x', 50)
-      .attr('y', apiData.PV >= 0 ? 220 : 220 - scale(40))
-      .attr('width', 40)
+      .attr('x', width * 0.193)
+      .attr('y', apiData.PV >= 0 ? height * 0.849 : height * 0.849 - scale(40))
+      .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.PV)))
       .attr('fill', '#f7be16');
 
     // append rect-WT
     const rectWT = svg
       .append('rect')
-      .attr('x', 90)
-      .attr('y', apiData.WT >= 0 ? 220 : 220 - scale(40))
-      .attr('width', 40)
+      .attr('x', width * 0.347)
+      .attr('y', apiData.WT >= 0 ? height * 0.849 : height * 0.849 - scale(40))
+      .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.WT)))
       .attr('fill', '#2d3361');
 
     // append rect-ESS
     const rectESS = svg
       .append('rect')
-      .attr('x', 130)
-      .attr('y', apiData.ESS >= 0 ? 220 : 220 - scale(40))
-      .attr('width', 40)
+      .attr('x', width * 0.502)
+      .attr('y', apiData.ESS >= 0 ? height * 0.849 : height * 0.849 - scale(40))
+      .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.ESS)))
       .attr('fill', '#696464');
 
     // append rect-EV
     const rectEV = svg
       .append('rect')
-      .attr('x', 170)
-      .attr('y', apiData.EV >= 0 ? 220 : 220 - scale(40))
-      .attr('width', 40)
+      .attr('x', width * 0.656)
+      .attr('y', apiData.EV >= 0 ? height * 0.849 : height * 0.849 - scale(40))
+      .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.EV)))
       .attr('fill', '#ab50ce');
 
@@ -314,52 +364,70 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
 
       // title-consume
       titleConsume
-        .attr('y', 130 + sortedData.indexOf('Consume') * 30)
+        .attr(
+          'y',
+          height * 0.369 + sortedData.indexOf('Consume') * height * 0.085,
+        )
         .attr('fill', apiData.Consume >= 0 ? '#d32f2f' : '#2e7d32');
 
       // title-ESS
       titleESS
-        .attr('y', 130 + sortedData.indexOf('ESS') * 30)
+        .attr('y', height * 0.369 + sortedData.indexOf('ESS') * height * 0.085)
         .attr('fill', apiData.ESS >= 0 ? '#d32f2f' : '#2e7d32');
 
       // title-EV
       titleEV
-        .attr('y', 130 + sortedData.indexOf('EV') * 30)
+        .attr('y', height * 0.369 + sortedData.indexOf('EV') * height * 0.085)
         .attr('fill', apiData.EV >= 0 ? '#d32f2f' : '#2e7d32');
 
       // title-WT
       titleWT
-        .attr('y', 130 + sortedData.indexOf('WT') * 30)
+        .attr('y', height * 0.369 + sortedData.indexOf('WT') * height * 0.085)
         .attr('fill', apiData.WT >= 0 ? '#d32f2f' : '#2e7d32');
 
       // title-PV
       titlePV
-        .attr('y', 130 + sortedData.indexOf('PV') * 30)
+        .attr('y', height * 0.369 + sortedData.indexOf('PV') * height * 0.085)
         .attr('fill', apiData.PV >= 0 ? '#d32f2f' : '#2e7d32');
 
       // data-consume
-      dataConsume.attr('y', 130 + sortedData.indexOf('Consume') * 30);
+      dataConsume.attr(
+        'y',
+        height * 0.369 + sortedData.indexOf('Consume') * height * 0.085,
+      );
 
       // data-ESS
-      dataESS.attr('y', 130 + sortedData.indexOf('ESS') * 30);
+      dataESS.attr(
+        'y',
+        height * 0.369 + sortedData.indexOf('ESS') * height * 0.085,
+      );
 
       // data-EV
-      dataEV.attr('y', 130 + sortedData.indexOf('EV') * 30);
+      dataEV.attr(
+        'y',
+        height * 0.369 + sortedData.indexOf('EV') * height * 0.085,
+      );
 
       // data-WT
-      dataWT.attr('y', 130 + sortedData.indexOf('WT') * 30);
+      dataWT.attr(
+        'y',
+        height * 0.369 + sortedData.indexOf('WT') * height * 0.085,
+      );
 
       // data-PV
-      dataPV.attr('y', 130 + sortedData.indexOf('PV') * 30);
+      dataPV.attr(
+        'y',
+        height * 0.369 + sortedData.indexOf('PV') * height * 0.085,
+      );
 
       // positive circle
       posCircle
-        .attr('cy', 123)
+        .attr('cy', height * 0.349)
         .style('display', posData.length === 0 ? 'none' : 'block');
 
       // negative circle
       negCircle
-        .attr('cy', 123 + posData.length * 30)
+        .attr('cy', height * 0.349 + posData.length * height * 0.085)
         .style('display', negData.length === 0 ? 'none' : 'block');
 
       // display none of mode: 產能設備
@@ -376,7 +444,19 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       rectEV.style('display', 'none');
     } else {
       // divide-line
-      divideLine.attr('y1', 220).attr('y2', 220);
+      divideLine.attr('y1', height * 0.625).attr('y2', height * 0.625);
+
+      // rect-PV
+      rectPV.style('display', 'block');
+
+      // rect-WT
+      rectWT.style('display', 'block');
+
+      // rect-ESS
+      rectESS.style('display', 'block');
+
+      // rect-EV
+      rectEV.style('display', 'block');
 
       // display none of mode: 淨負載
       // title-mode
@@ -436,6 +516,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     };
   });
 
+  // React-Hook: useEffect -> fetch api data when parameters are changed
   useEffect(() => {
     (async () => {
       await fetchApiData();
@@ -446,12 +527,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div className={classNames('powerinfo-summary-container')}>
-      <svg
-        ref={container}
-        className={classNames('powerinfo-summary-svg')}
-        viewBox="0 0 259 352"
-        preserveAspectRatio="xMidYMid meet"
-      />
+      <svg ref={container} className={classNames('powerinfo-summary-svg')} />
     </div>
   );
 };

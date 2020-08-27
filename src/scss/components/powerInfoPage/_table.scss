@@ -90,3 +90,45 @@ hr {
   text-align: center;
   width: 17%;
 }
+
+.powerinfo-table-pagecontrol-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 100%;
+  // border: black solid 1px;
+}
+
+.powerinfo-table-pagecontrol-btn {
+  cursor: pointer;
+  background-color: #f1f2f1;
+  color: #707070;
+  border: 0;
+  outline: 0;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-radius: 5px;
+  text-align: start;
+}
+
+.powerinfo-table-pagecontrol-btn:active {
+  background-color: #e8e8e8;
+}
+
+.powerinfo-table-pagecontrol-row {
+  cursor: pointer;
+  background-color: #f1f2f1;
+  color: #707070;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+}
+
+.powerinfo-table-pagecontrol-row:active {
+  background-color: #e8e8e8;
+}
+
+.powerinfo-table-pagecontrol-text {
+  color: #707070;
+}

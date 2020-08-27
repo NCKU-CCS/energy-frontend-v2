@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const ModeButton: React.FC<IProps> = ({ changeMode }) => {
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const onClickLoad = () => {
     changeMode('淨負載');
