@@ -34,7 +34,8 @@
 	display: flex;
 	height: 30%;
 	width: 94%;
-	margin-left: 6%;
+	margin-left: 4%;
+	margin-right: 2%;
 	align-items: center;
 	justify-content: center;
 }
@@ -81,7 +82,7 @@
 // 1320 < size <= 1550
 @media all and (min-width: 1320px) and (max-width: 1550px) {
   .home-time-info-title{
-		font-size: 20px;
+		font-size: 22px;
 	}
 	.home-time-info-timeContent{
 		font-size: 46px;
@@ -104,14 +105,14 @@
 // 1100 < size <= 1320
 @media all and (min-width: 1100px) and (max-width: 1320px) {
   .home-time-info-title{
-		font-size: 20px;
+		font-size: 22px;
 	}
 	.home-time-info-timeContent{
 		font-size: 38px;
 	}
 	.home-time-info-timeIcon{
-		width: 32px;
-		height: 32px;
+		width: 36px;
+		height: 36px;
 	}
 	.home-time-info-buy{
 		font-size: 24px;
@@ -121,6 +122,111 @@
 	}
 	.home-time-info-content{
 		font-size: 22px;
+	}
+}
+
+// 970 < size <= 1100
+@media all and (min-width: 970px) and (max-width: 1100px) {
+	.home-time-info-title{
+		font-size: 22px;
+	}
+	.home-time-info-timeContent{
+		font-size: 38px;
+	}
+	.home-time-info-timeIcon{
+		width: 34px;
+		height: 34px;
+	}
+	.home-time-info-buy{
+		font-size: 20px;
+	}
+	.home-time-info-sell{
+		font-size: 20px;
+	}
+	.home-time-info-content{
+		font-size: 18px;
+	}
+}
+
+// 830 < size <= 970
+@media all and (min-width: 830px) and (max-width: 970px) {
+	.home-time-info-title{
+		font-size: 20px;
+	}
+	.home-time-info-timeContent{
+		font-size: 32px;
+	}
+	.home-time-info-timeIcon{
+		width: 30px;
+		height: 30px;
+	}
+	.home-time-info-buy{
+		display: flex;
+		justify-content: center;
+		font-size: 20px;
+		width: 20%;
+	}
+	.home-time-info-sell{
+		display: flex;
+		justify-content: center;
+		font-size: 20px;
+		margin-left: 0%;
+		width: 20%;
+	}
+	.home-time-info-content{
+		display: flex;
+		justify-content: center;
+		font-size: 16px;
+		width: 30%;
+	}
+	.home-time-info-priceContainer{
+		display: flex;
+		flex-wrap: wrap;
+		height: 20%;
+		margin-bottom: 10%;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+// 721 < size <= 830
+@media all and (min-width: 721px) and (max-width: 830px) {
+	.home-time-info-title{
+		font-size: 20px;
+	}
+	.home-time-info-timeContent{
+		font-size: 26px;
+	}
+	.home-time-info-timeIcon{
+		width: 24px;
+		height: 24px;
+	}
+	.home-time-info-buy{
+		display: flex;
+		justify-content: center;
+		font-size: 20px;
+		width: 20%;
+	}
+	.home-time-info-sell{
+		display: flex;
+		justify-content: center;
+		font-size: 20px;
+		margin-left: 0%;
+		width: 20%;
+	}
+	.home-time-info-content{
+		display: flex;
+		justify-content: center;
+		font-size: 16px;
+		width: 30%;
+	}
+	.home-time-info-priceContainer{
+		display: flex;
+		flex-wrap: wrap;
+		height: 20%;
+		margin-bottom: 10%;
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -147,6 +253,28 @@
 	}
 }
 
+@media all and (min-width: 600px) and (max-width: 720px) and (max-device-height: 700px){
+	.home-time-info-title{
+		font-size: 20px;
+	}
+	.home-time-info-timeContent{
+		font-size: 32px;
+	}
+	.home-time-info-timeIcon{
+		width: 28px;
+		height: 28px;
+	}
+	.home-time-info-buy{
+		font-size: 18px;
+	}
+	.home-time-info-sell{
+		font-size: 18px;
+	}
+	.home-time-info-content{
+		font-size: 18px;
+	}
+}
+
 // 500 < size <= 600
 @media all and (min-width: 500px) and (max-width: 600px) {
 	.home-time-info-title{
@@ -167,6 +295,28 @@
 	}
 	.home-time-info-content{
 		font-size: 21px;
+	}
+}
+
+@media all and (min-width: 500px) and (max-width: 600px) and (max-device-height: 630px){
+	.home-time-info-title{
+		font-size: 18px;
+	}
+	.home-time-info-timeContent{
+		font-size: 28px;
+	}
+	.home-time-info-timeIcon{
+		width: 28px;
+		height: 28px;
+	}
+	.home-time-info-buy{
+		font-size: 19px;
+	}
+	.home-time-info-sell{
+		font-size: 19px;
+	}
+	.home-time-info-content{
+		font-size: 19px;
 	}
 }
 
@@ -216,6 +366,28 @@
 	}
 }
 
+@media all and (min-width: 320px) and (max-width: 500px) and (max-device-height: 600px){
+	.home-time-info-title{
+		font-size: 14px;
+	}
+	.home-time-info-timeContent{
+		font-size: 22px;
+	}
+	.home-time-info-timeIcon{
+		width: 22px;
+		height: 22px;
+	}
+	.home-time-info-buy{
+		font-size: 12px;
+	}
+	.home-time-info-sell{
+		font-size: 12px;
+	}
+	.home-time-info-content{
+		font-size: 12px;
+	}
+}
+
 // size <= 320px
 @media all and (max-width: 320px) {
 	.home-time-info-title{
@@ -236,5 +408,28 @@
 	}
 	.home-time-info-content{
 		font-size: 12px;
+	}
+}
+
+// size <= 320px
+@media all and (max-width: 320px) and (max-device-height: 400px){
+	.home-time-info-title{
+		font-size: 11px;
+	}
+	.home-time-info-timeContent{
+		font-size: 19px;
+	}
+	.home-time-info-timeIcon{
+		width: 19px;
+		height: 19px;
+	}
+	.home-time-info-buy{
+		font-size: 11px;
+	}
+	.home-time-info-sell{
+		font-size: 11px;
+	}
+	.home-time-info-content{
+		font-size: 11px;
 	}
 }

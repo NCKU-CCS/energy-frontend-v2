@@ -132,6 +132,91 @@
   }
 }
 
+// 720 < size <= 1110
+@media all and (min-width: 720px) and (max-width: 1100px) {
+  .home-bid-info-list{
+    font-size:18px;
+  }
+  .home-bid-info-title{
+    font-size:20px;
+  }
+  .home-bid-info-listContainer{
+    height: 17%;
+    flex-wrap: wrap;
+  }
+  .home-bid-info-listContent-button{
+    width: 10%;
+    display: block;
+    border: none;
+    outline:none;
+    background-color: white;
+    color: orange;
+    cursor: pointer;
+  }
+  .home-bid-info-listContent-date{
+    width: 35%;
+  } 
+  .home-bid-info-listContent-time{
+    width: 35%;
+  }
+  .home-bid-info-listContent-success{
+    width: 15%;
+    margin-right: 5%;
+  }
+  .home-bid-info-listContent-number{
+    display: none;
+  }
+  .home-bid-info-listContent-number-nextline{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-top: -3%;
+  }
+  .home-bid-info-listContent-price{
+    display: none;
+  }
+  .home-bid-info-listContent-price-nextline{
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    margin-top: -3%;
+  }
+}
+
+@media all and (min-width: 860px) and (max-width: 950px) {
+  .home-bid-info-list{
+    font-size:16px;
+  }
+  .home-bid-info-title{
+    font-size:20px;
+  }
+  .home-bid-info-listContent-number-nextline{
+    width: 50%;
+    margin-top: -3%;
+  }
+  .home-bid-info-listContent-price-nextline{
+    width: 50%;
+    margin-top: -3%;
+  }
+}
+
+@media all and (min-width: 800px) and (max-width: 860px) {
+  .home-bid-info-list{
+    font-size:14px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 800px) {
+  .home-bid-info-list{
+    font-size:11px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
 
 // 650 < size <= 720px
 @media all and (min-width: 650px) and (max-width: 720px) {
@@ -207,14 +292,14 @@
     cursor: pointer;
   }
   .home-bid-info-listContent-date{
-    width: 30%;
+    width: 35%;
   } 
   .home-bid-info-listContent-time{
-    width: 30%;
+    width: 35%;
   }
   .home-bid-info-listContent-success{
-    width: 20%;
-    margin-right: 10%;
+    width: 15%;
+    margin-right: 5%;
   }
   .home-bid-info-listContent-number{
     display: none;
