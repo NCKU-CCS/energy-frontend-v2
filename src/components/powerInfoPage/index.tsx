@@ -13,17 +13,26 @@ const PowerInfoPageContainer: React.FC = () => {
 
   return (
     <div className={classNames('powerinfo-container')}>
-      <div className={classNames('powerinfo-up-container')}>
+      <div className={classNames('c', 'c1')}>
         <DatePicker changeDate={setDate} />
+      </div>
+      <div className={classNames('c', 'c2')}>
         <ModeButton changeMode={setMode} />
       </div>
-      <div className={classNames('powerinfo-mid-container')}>
+      <div className={classNames('c', 'c3')}>
         <Chart mode={mode} date={date} />
       </div>
-      <div className={classNames('powerinfo-down-container')}>
+      <div className={classNames('c', 'c4')}>
         <Summary mode={mode} date={date} />
+      </div>
+      <div className={classNames('c', 'c5')}>
         <Table date={date} />
       </div>
+      {/* <DatePicker changeDate={setDate} /> */}
+      {/* <ModeButton changeMode={setMode} /> */}
+      {/* <Chart mode={mode} date={date} /> */}
+      {/* <Summary mode={mode} date={date} /> */}
+      {/* <Table date={date} /> */}
     </div>
   );
 };

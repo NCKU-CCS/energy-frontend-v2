@@ -23,6 +23,8 @@ const DatePicker: React.FC<IProps> = ({ changeDate }) => {
     );
   };
 
+  console.log(dateText);
+
   return (
     <div className={classNames('powerinfo-datepicker-container')}>
       <input
