@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
+import InfoBox from './infoBox';
 
 interface IData {
   address: string;
@@ -118,6 +119,15 @@ const Table: React.FC<IProps> = ({ date }) => {
           <div className={classNames('powerinfo-table-list-item-url')}>
             <a href={d.address}>&#60;URL&#62;</a>
           </div>
+          <div className={classNames('powerinfo-table-list-item-infobox')}>
+            <InfoBox
+              date={d.date}
+              type={d.data_type}
+              time={d.time}
+              value={d.power_display}
+              url={d.address}
+            />
+          </div>
         </div>
         <hr className={classNames('powerinfo-table-list-item-line')} />
       </div>
@@ -202,7 +212,9 @@ const Table: React.FC<IProps> = ({ date }) => {
         <div className={classNames('powerinfo-table-title-url')}>連結</div>
       </div>
       <div>{dataList}</div>
-      <div className={classNames('powerinfo-table-pagecontrol-container')}>
+      <div
+        className={classNames('powerinfo-table-pagecontrol-container', 'text')}
+      >
         <select
           className={classNames('powerinfo-table-pagecontrol-row')}
           onChange={(e) => selectChangeHandler(e)}

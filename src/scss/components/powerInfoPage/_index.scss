@@ -3,6 +3,7 @@
 @import './modeButton';
 @import './summary';
 @import './table';
+@import './infoBox';
 
 .powerinfo-container {
   display: flex;
@@ -114,14 +115,14 @@
   }
 
   .c1 {
-    flex-basis: 76%;
+    flex-basis: 62%;
     height: 7%;
     margin-right: 1%;
     margin-left: 3%;
   }
 
   .c2 {
-    flex-basis: 16%;
+    flex-basis: 30%;
     height: 7%;
     margin-right: 3%;
     margin-left: 1%;
@@ -163,15 +164,15 @@
   }
 
   .c1 {
-    flex-basis: 67%;
-    height: 7%;
+    flex-basis: 46%;
+    height: 6%;
     margin-right: 1%;
     margin-left: 3%;
   }
 
   .c2 {
-    flex-basis: 25%;
-    height: 7%;
+    flex-basis: 46%;
+    height: 6%;
     margin-right: 3%;
     margin-left: 1%;
   }
@@ -253,27 +254,3 @@
     align-self: center;
   }
 }
-
-// .powerinfo-up-container {
-//   display: flex;
-//   height: 5%;
-//   justify-content: flex-end;
-//   // border: black solid 1px;
-//   margin-left: 3%;
-//   margin-right: 3%;
-//   margin-top: 1%;
-//   margin-bottom: 1%;
-// }
-
-// .powerinfo-mid-container {
-//   display: flex;
-//   height: 40%;
-//   margin: 3%;
-//   margin-top: 0%;
-//   margin-bottom: 0%;
-// }
-
-// .powerinfo-down-container {
-//   display: flex;
-//   height: 55%;
-// }

@@ -28,11 +28,6 @@ const PowerInfoPageContainer: React.FC = () => {
       <div className={classNames('c', 'c5')}>
         <Table date={date} />
       </div>
-      {/* <DatePicker changeDate={setDate} /> */}
-      {/* <ModeButton changeMode={setMode} /> */}
-      {/* <Chart mode={mode} date={date} /> */}
-      {/* <Summary mode={mode} date={date} /> */}
-      {/* <Table date={date} /> */}
     </div>
   );
 };

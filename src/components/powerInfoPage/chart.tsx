@@ -225,8 +225,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       setTooltipTextSize('10px');
     }
 
-    // determine sizes when window resized
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
       padding = {
@@ -261,7 +260,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         setLegendTextSize('10px');
         setTooltipTextSize('10px');
       }
-    });
+    };
+
+    // determine sizes when window resized
+    window.addEventListener('resize', handleResize);
 
     // tooltip-canvas
     const tooltipCvs = svg
@@ -1499,6 +1501,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     // clear effect
     return () => {
       svg.selectAll('*').remove();
+      window.removeEventListener('resize', handleResize);
     };
   });
 

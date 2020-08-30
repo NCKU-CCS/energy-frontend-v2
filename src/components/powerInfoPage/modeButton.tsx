@@ -21,7 +21,10 @@ const ModeButton: React.FC<IProps> = ({ changeMode }) => {
   return (
     <div className={classNames('powerinfo-mode-container')}>
       <button
-        className={classNames('powerinfo-mode-button-load')}
+        className={classNames(
+          'powerinfo-mode-button',
+          'powerinfo-mode-button-load',
+        )}
         type="button"
         onClick={() => onClickLoad()}
         disabled={disabled}
@@ -29,7 +32,10 @@ const ModeButton: React.FC<IProps> = ({ changeMode }) => {
         淨負載
       </button>
       <button
-        className={classNames('powerinfo-mode-button-equip')}
+        className={classNames(
+          'powerinfo-mode-button',
+          'powerinfo-mode-button-equip',
+        )}
         type="button"
         onClick={() => onClickEquip()}
         disabled={!disabled}

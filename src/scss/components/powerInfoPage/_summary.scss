@@ -1,7 +1,6 @@
 .powerinfo-summary-container {
-  width: 100%; // 20%
+  width: 100%;
   height: 100%;
-  // border: black solid 1px;
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -29,10 +28,7 @@
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-  .powerinfo-summary-container {
-    // width: 0%;
-    // display: none;
-  }
+
 }
 
 @media all and (max-width: 320px) {

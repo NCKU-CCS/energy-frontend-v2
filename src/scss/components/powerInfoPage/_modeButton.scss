@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  // border: red solid 2px;
 }
 
 .powerinfo-mode-button-load {
@@ -51,25 +50,35 @@
 
 // 1920 < size
 @media all and (min-width: 1920px) {
-// ignore
+  .powerinfo-mode-button {
+    font-size: 22px;
+  }
 }
 
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
-
+  .powerinfo-mode-button {
+    font-size: 16px;
+  }
 }
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-
+  .powerinfo-mode-button {
+    font-size: 14px;
+  }
 }
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-
+  .powerinfo-mode-button {
+    font-size: 12px;
+  }
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
-
+  .powerinfo-mode-button {
+    font-size: 14px;
+  }
 }
