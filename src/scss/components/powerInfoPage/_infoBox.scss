@@ -4,10 +4,15 @@
 }
 
 .powerinfo-table-infobox-openbtn {
+  outline: 0;
   border: #f1f2f1 solid 0.5px;
   border-radius: 3px;
   background-color: #ffa000;
   color: white;
+}
+
+.powerinfo-table-infobox-openbtn:active {
+  background-color: #c47b00;
 }
 
 .powerinfo-table-infobox-canvas {

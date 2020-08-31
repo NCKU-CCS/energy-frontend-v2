@@ -198,16 +198,37 @@ const Table: React.FC<IProps> = ({ date }) => {
 
   useEffect(() => {}, [apiData]);
 
+  const [timeText, setTimeText] = useState('紀錄時間');
+  const [typeText, setTypeText] = useState('用產電種類');
+
+  useEffect(() => {
+    const changeText = () => {
+      if (window.innerWidth <= 320) {
+        setTimeText('時間');
+        setTypeText('種類');
+      } else {
+        setTimeText('紀錄時間');
+        setTypeText('用產電種類');
+      }
+    };
+    window.addEventListener('resize', changeText);
+    // return (
+    //   window.removeEventListener('resize', changeText)
+    // );
+  });
+
   return (
     <div className={classNames('powerinfo-table-container')}>
       <div className={classNames('powerinfo-table-title-container', 'text')}>
         <div className={classNames('powerinfo-table-title-date')}>日期</div>
-        <div className={classNames('powerinfo-table-title-time')}>紀錄時間</div>
+        <div className={classNames('powerinfo-table-title-time')}>
+          {timeText}
+        </div>
         <div className={classNames('powerinfo-table-title-value')}>
           電力(kW)
         </div>
         <div className={classNames('powerinfo-table-title-type')}>
-          用產電種類
+          {typeText}
         </div>
         <div className={classNames('powerinfo-table-title-url')}>連結</div>
       </div>

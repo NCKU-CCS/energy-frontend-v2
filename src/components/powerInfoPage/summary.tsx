@@ -106,7 +106,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
     }
 
     // determine sizes when window resized
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
       if (window.innerWidth >= 1920) {
@@ -126,7 +126,9 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
         setContentTextSize('12px');
         setUnitTextSize('6px');
       }
-    });
+    };
+
+    window.addEventListener('resize', handleResize);
 
     // svg
     svg
@@ -513,6 +515,7 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
       svg.selectAll('*').remove();
       posData = [];
       negData = [];
+      window.removeEventListener('resize', handleResize);
     };
   });
 

@@ -1,0 +1,10 @@
+@import './barChart';
+@import './list';
+
+.powerinfo-summary-container {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: pink solid 3px;
+  overflow: auto;
+}

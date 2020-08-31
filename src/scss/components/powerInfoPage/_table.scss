@@ -174,14 +174,22 @@ hr {
     font-size: 8px;
   }
 
+  .powerinfo-table-title-container {
+    margin-left: 4%;
+  }
+
+  .powerinfo-table-list-item-container {
+    margin-left: 4%;
+  }
+
   .powerinfo-table-list-item-infobox {
     display: block;
-    margin-left: 4%;
+    margin-left: 5%;
     width: 16%;
   }
 
   .powerinfo-table-title-date {
-    // text-align: center;
+    text-align: center;
     width: 30%;
   }
 
@@ -202,7 +210,7 @@ hr {
   }
 
   .powerinfo-table-list-item-date {
-    // text-align: center;
+    text-align: center;
     width: 30%;
   }
 
