@@ -148,18 +148,14 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
         <span>(用電-產電)</span>
       </div>
       <div className={classNames('powerinfo-summary-list-data-container')}>
-        {/* <div
-          className={classNames('powerinfo-summary-list-posdata-container')}
-        >
+        <div className={classNames('powerinfo-summary-list-posdata-container')}>
           {posDataList}
         </div>
-        <div
-          className={classNames('powerinfo-summary-list-negdata-container')}
-        >
+        <div className={classNames('powerinfo-summary-list-negdata-container')}>
           {negDataList}
-        </div> */}
-        {posDataList}
-        {negDataList}
+        </div>
+        {/* {posDataList} */}
+        {/* {negDataList} */}
         <hr />
         <div className={classNames('powerinfo-summary-list-demand-container')}>
           <span id="type">總淨負載</span>

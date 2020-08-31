@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import classNames from 'classnames';
 import BarChart from './barChart';
 import List from './list';
-import classNames from 'classnames';
 
 interface IProps {
   mode: string;
