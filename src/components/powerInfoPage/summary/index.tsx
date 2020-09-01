@@ -80,7 +80,10 @@ const Summary: React.FC<IProps> = ({ mode, date }) => {
           apiData={apiData}
         />
       ) : (
-        <BarChart date={dayjs(correctDate).format('YYYY/MM/DD')} />
+        <BarChart
+          date={dayjs(correctDate).format('YYYY/MM/DD')}
+          apiData={apiData}
+        />
       )}
     </div>
   );

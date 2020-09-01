@@ -11,14 +11,14 @@
   flex-wrap: wrap;
   width: 100%;
   height: 80%;
-  border: red solid 3px;
+  // border: red solid 3px;
   overflow: hidden;
 }
 
 // 1920 < size
 @media all and (min-width: 1920px) {
   .c {
-    border: yellow solid 1px;
+    // border: yellow solid 1px;
   }
 
   .c1 {
@@ -65,7 +65,7 @@
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
   .c {
-    border: black solid 1px;
+    // border: black solid 1px;
   }
 
   .c1 {
@@ -112,7 +112,7 @@
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
   .c {
-    border: green solid 1px;
+    // border: green solid 1px;
   }
 
   .c1 {
@@ -161,7 +161,7 @@
   }
 
   .c {
-    border: blue solid 1px;
+    // border: blue solid 1px;
   }
 
   .c1 {
@@ -212,7 +212,7 @@
   }
 
   .c {
-    border: red solid 1px;
+    // border: red solid 1px;
   }
 
   .c1 {
