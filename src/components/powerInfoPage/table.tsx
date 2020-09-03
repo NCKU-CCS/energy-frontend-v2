@@ -29,7 +29,7 @@ const Table: React.FC<IProps> = ({ date }) => {
   const [per_page, setPerPage] = useState('5');
   const [page, setPage] = useState(1);
 
-  // style
+  // text color for positive and negative data
   const redText = { color: '#d32f2f' };
   const greenText = { color: '#2e7d32' };
 
@@ -162,7 +162,6 @@ const Table: React.FC<IProps> = ({ date }) => {
       apiData.totalCount % parseInt(per_page, 10) === 0
         ? apiData.totalCount / parseInt(per_page, 10)
         : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1;
-    // eslint-disable-next-line @typescript-eslint/camelcase
     setPage(lastPage);
   };
 
@@ -196,8 +195,6 @@ const Table: React.FC<IProps> = ({ date }) => {
     // eslint-disable-next-line @typescript-eslint/camelcase
   }, [correctDate, per_page, page]);
 
-  useEffect(() => {}, [apiData]);
-
   const [timeText, setTimeText] = useState('紀錄時間');
   const [typeText, setTypeText] = useState('用產電種類');
 
@@ -212,9 +209,9 @@ const Table: React.FC<IProps> = ({ date }) => {
       }
     };
     window.addEventListener('resize', changeText);
-    // return (
-    //   window.removeEventListener('resize', changeText)
-    // );
+    return () => {
+      window.removeEventListener('resize', changeText);
+    };
   });
 
   return (

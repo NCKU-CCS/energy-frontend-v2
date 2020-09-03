@@ -21,8 +21,8 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
   const svgRef = useRef(null);
 
   // set svg's width and height
-  const [width, setWidth] = useState(100);
-  const [height, setHeight] = useState(100);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   // React-Hook: useEffect -> render chart
   useEffect(() => {
@@ -37,7 +37,6 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
     const handleResize = () => {
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
-      // console.log(width);
     };
     window.addEventListener('resize', handleResize);
 

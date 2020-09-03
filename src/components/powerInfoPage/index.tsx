@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import Chart from './chart';
 import ModeButton from './modeButton';
 import DatePicker from './datePicker';
-// import Summary from './summary';
 import Summary from './summary';
 import Table from './table';
 
@@ -24,7 +23,6 @@ const PowerInfoPageContainer: React.FC = () => {
         <Chart mode={mode} date={date} />
       </div>
       <div className={classNames('c', 'c4')}>
-        {/* <Summary mode={mode} date={date} /> */}
         <Summary mode={mode} date={date} />
       </div>
       <div className={classNames('c', 'c5')}>

@@ -15,7 +15,7 @@
   flex-basis: 100%;
   height: 10%;
   text-align: center;
-  align-self: flex-end;
+  // align-self: flex-end;
   color: #707070;
   font-weight: bold;
   // font-size: 14px;
@@ -26,6 +26,7 @@
   flex-basis: 100%;
   height: 10%;
   text-align: center;
+  // align-self: flex-end;
   color: #707070;
   font-weight: bold;
   // font-size: 14px;
@@ -67,7 +68,7 @@
   // align-self: flex-end;
   display: flex;
   flex-wrap: wrap;
-  // border: red solid 1px;
+  // border: green solid 1px;
 }
 
 .powerinfo-summary-list-posdata-item-container {
@@ -161,6 +162,12 @@
     width: 90%;
     height: 90%;
   }
+
+  .powerinfo-summary-list-posdata-item-container {
+    flex-basis: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 
 // 320 < size <= 720
@@ -185,13 +192,15 @@
   .powerinfo-summary-list-date {
     flex-basis: 45%;
     margin-left: 5%;
-    height: auto;
+    margin-top: 2%;
     text-align: start;
     // border: green solid 1px;
   }
 
   .powerinfo-summary-list-mode {
+    // margin-top: 5%;
     flex-basis: 50%;
+    margin-top: 2%;
     height: auto;
     text-align: start;
     // border: green solid 1px;

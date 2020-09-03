@@ -36,6 +36,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   // time format
   const timeFormat = d3.timeFormat('%Y/%m/%d');
 
+  // axis time format of different width
+  const [axisTimeFormat, setAxisTimeFormat] = useState('%Y/%m/%d');
+
+  // tick padding of axes
+  const [tickPaddingX, setTickPaddingX] = useState(0);
+  const [tickPaddingY, setTickPaddingY] = useState(0);
+
   // bisector
   const bisectDate = d3.bisector((d: IApiData) => d.Date).left;
 
@@ -76,8 +83,8 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     }
   };
 
-  const [width, setWidth] = useState(1227);
-  const [height, setHeight] = useState(241);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   let tooltipWidth = width * 0.11;
   let tooltipHeightOfEquip = height * 0.469;
   let tooltipHeightOfLoad = height * 0.361;
@@ -118,9 +125,9 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .axisBottom(scaleX)
     .ticks(7)
     .tickSize(0)
-    .tickPadding(15)
+    .tickPadding(tickPaddingX)
     .tickFormat(
-      d3.timeFormat('%Y/%m/%d') as (
+      d3.timeFormat(axisTimeFormat) as (
         value: Date | { valueOf(): number },
         i: number,
       ) => string,
@@ -130,14 +137,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const equipGrid = d3
     .axisLeft(equipScaleY)
     .ticks(4)
-    .tickPadding(10)
+    .tickPadding(tickPaddingY)
     .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
   const loadGrid = d3
     .axisLeft(loadScaleY)
     .ticks(4)
-    .tickPadding(10)
+    .tickPadding(tickPaddingY)
     .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
@@ -171,7 +178,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .curve(d3.curveCardinal);
 
   // line -> loadLine
-  // Consume -> 用電
+  // Consume ->
   const lineConsume = d3
     .line<IApiData>()
     .x((d: IApiData) => scaleX(new Date(d.Date)))
@@ -203,26 +210,85 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     tooltipHeightOfEquip = height * 0.469;
     tooltipHeightOfLoad = height * 0.361;
     // text size
-    if (window.innerWidth >= 1920) {
+    if (window.innerWidth > 1920) {
       setAxisTextSize('16px');
       setUnitTextSize('20px');
       setLegendTextSize('21px');
       setTooltipTextSize('20px');
-    } else if (window.innerWidth >= 1280) {
+      // set axis time format
+      setAxisTimeFormat('%Y/%m/%d');
+      // set tick padding
+      setTickPaddingX(15);
+      setTickPaddingY(10);
+    } else if (window.innerWidth > 1280) {
       setAxisTextSize('11px');
       setUnitTextSize('13px');
       setLegendTextSize('14px');
       setTooltipTextSize('14px');
-    } else if (window.innerWidth >= 720) {
+      // set axis time format
+      setAxisTimeFormat('%Y/%m/%d');
+      // set tick padding
+      setTickPaddingX(15);
+      setTickPaddingY(10);
+    } else if (window.innerWidth > 720) {
       setAxisTextSize('10px');
       setUnitTextSize('12px');
       setLegendTextSize('12px');
       setTooltipTextSize('10px');
+      // set axis time format
+      setAxisTimeFormat('%m/%d');
+      // set tick padding
+      setTickPaddingX(15);
+      setTickPaddingY(5);
     } else {
       setAxisTextSize('10px');
       setUnitTextSize('10px');
       setLegendTextSize('10px');
       setTooltipTextSize('10px');
+      // set axis time format
+      setAxisTimeFormat('%d');
+      // set tick padding
+      setTickPaddingX(5);
+      setTickPaddingY(2);
+    }
+
+    // set padding depends on different window width
+    if (window.innerWidth <= 720 && window.innerWidth > 320) {
+      padding = {
+        top: height * 0.207,
+        bottom: height * 0.166,
+        left: width * 0.1,
+        right: width * 0.1,
+        axisX: width * 0.065,
+      };
+    }
+    if (window.innerWidth <= 320) {
+      padding = {
+        top: height * 0.207,
+        bottom: height * 0.166,
+        left: width * 0.08,
+        right: width * 0.1,
+        axisX: width * 0.065,
+      };
+    }
+
+    // determine tooltip's width and height by window's width
+    if (window.innerWidth > 1280) {
+      tooltipWidth = width * 0.11;
+      tooltipHeightOfEquip = height * 0.469;
+      tooltipHeightOfLoad = height * 0.361;
+    } else if (window.innerWidth > 720) {
+      tooltipWidth = width * 0.11;
+      tooltipHeightOfEquip = height * 0.469;
+      tooltipHeightOfLoad = height * 0.361;
+    } else if (window.innerWidth > 320) {
+      tooltipWidth = width * 0.21;
+      tooltipHeightOfEquip = height * 0.469;
+      tooltipHeightOfLoad = height * 0.361;
+    } else {
+      tooltipWidth = width * 0.3;
+      tooltipHeightOfEquip = height * 0.469;
+      tooltipHeightOfLoad = height * 0.361;
     }
 
     const handleResize = () => {
@@ -239,26 +305,46 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       tooltipHeightOfEquip = height * 0.469;
       tooltipHeightOfLoad = height * 0.361;
       // text size
-      if (window.innerWidth >= 1920) {
+      if (window.innerWidth > 1920) {
         setAxisTextSize('16px');
         setUnitTextSize('20px');
         setLegendTextSize('21px');
         setTooltipTextSize('20px');
-      } else if (window.innerWidth >= 1280) {
+        // set axis time format
+        setAxisTimeFormat('%Y/%m/%d');
+        // set tick padding
+        setTickPaddingX(15);
+        setTickPaddingY(10);
+      } else if (window.innerWidth > 1280) {
         setAxisTextSize('11px');
         setUnitTextSize('13px');
         setLegendTextSize('14px');
         setTooltipTextSize('14px');
-      } else if (window.innerWidth >= 720) {
-        setAxisTextSize('14px');
-        setUnitTextSize('14px');
-        setLegendTextSize('14px');
-        setTooltipTextSize('14px');
+        // set axis time format
+        setAxisTimeFormat('%Y/%m/%d');
+        // set tick padding
+        setTickPaddingX(15);
+        setTickPaddingY(10);
+      } else if (window.innerWidth > 720) {
+        setAxisTextSize('10px');
+        setUnitTextSize('12px');
+        setLegendTextSize('12px');
+        setTooltipTextSize('10px');
+        // set axis time format
+        setAxisTimeFormat('%m/%d');
+        // set tick padding
+        setTickPaddingX(15);
+        setTickPaddingY(5);
       } else {
         setAxisTextSize('10px');
         setUnitTextSize('10px');
         setLegendTextSize('10px');
         setTooltipTextSize('10px');
+        // set axis time format
+        setAxisTimeFormat('%d');
+        // set tick padding
+        setTickPaddingX(5);
+        setTickPaddingY(2);
       }
     };
 
@@ -376,33 +462,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .attr('font-size', tooltipTextSize)
       .style('display', 'none');
 
-    /*
-    // interpolate
-    const ipSolar = d3.interpolateBasis(
-      equipData.dataSolar.map((d) => d.value),
-    );
-
-    const ipWind = d3.interpolateBasis(
-      equipData.dataWind.map((d) => d.value),
-    );
-
-    const ipStorage = d3.interpolateBasis(
-      equipData.dataStorage.map((d) => d.value),
-    );
-
-    const ipCharge = d3.interpolateBasis(
-      equipData.dataCharge.map((d) => d.value),
-    );
-
-    const ipUse = d3.interpolateBasis(
-      loadData.dataUse.map((d) => d.value),
-    );
-
-    const ipMake = d3.interpolateBasis(
-      loadData.dataMake.map((d) => d.value),
-    );
-    */
-
     // tooltip-circle
     const tooltipCirclePV = svg
       .append('circle')
@@ -458,7 +517,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
     svg
       .append('text')
-      .attr('text-anchor', 'end')
+      .attr('text-anchor', 'start')
       .attr('x', width - padding.right / 1.3)
       .attr('y', height - padding.bottom / 2.5)
       .attr('fill', '#707070')
@@ -501,63 +560,166 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
+      let yellowCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+      let blueCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+      let grayCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+      let purpleCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+      if (window.innerWidth > 720) {
+        yellowCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.top * 1.4,
+        };
+        blueCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.top * 2.15,
+        };
+        grayCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.top * 2.85,
+        };
+        purpleCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.top * 3.6,
+        };
+      } else {
+        yellowCirclePos = {
+          cx: padding.left * 2,
+          cy: padding.top / 2,
+        };
+        blueCirclePos = {
+          cx: padding.left * 4,
+          cy: padding.top / 2,
+        };
+        grayCirclePos = {
+          cx: padding.left * 5.5,
+          cy: padding.top / 2,
+        };
+        purpleCirclePos = {
+          cx: padding.left * 8,
+          cy: padding.top / 2,
+        };
+      }
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 1.4)
+        .attr('cx', yellowCirclePos.cx)
+        .attr('cy', yellowCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#f7c015');
 
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 2.15)
+        .attr('cx', blueCirclePos.cx)
+        .attr('cy', blueCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#2d3361');
 
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 2.85)
+        .attr('cx', grayCirclePos.cx)
+        .attr('cy', grayCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#696464');
 
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr('cy', padding.top * 3.6)
+        .attr('cx', purpleCirclePos.cx)
+        .attr('cy', purpleCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#a243c9');
+
+      let yellowTextPos = {
+        x: 0,
+        y: 0,
+      };
+      let blueTextPos = {
+        x: 0,
+        y: 0,
+      };
+      let grayTextPos = {
+        x: 0,
+        y: 0,
+      };
+      let purpleTextPos = {
+        x: 0,
+        y: 0,
+      };
+      if (window.innerWidth > 720) {
+        yellowTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.top * 1.5,
+        };
+        blueTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.top * 2.25,
+        };
+        grayTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.top * 2.95,
+        };
+        purpleTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.top * 3.7,
+        };
+      } else {
+        yellowTextPos = {
+          x: padding.left * 2.2,
+          y: padding.top / 1.7,
+        };
+        blueTextPos = {
+          x: padding.left * 4.2,
+          y: padding.top / 1.7,
+        };
+        grayTextPos = {
+          x: padding.left * 5.7,
+          y: padding.top / 1.7,
+        };
+        purpleTextPos = {
+          x: padding.left * 8.2,
+          y: padding.top / 1.7,
+        };
+      }
 
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 1.5) // 1.4 -> 1.5
+        .attr('x', yellowTextPos.x)
+        .attr('y', yellowTextPos.y) // 1.4 -> 1.5
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('太陽能');
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.25) // 2 -> 2.25
+        .attr('x', blueTextPos.x)
+        .attr('y', blueTextPos.y) // 2 -> 2.25
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('風能');
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 2.95) // 2.6 -> 2.95
+        .attr('x', grayTextPos.x)
+        .attr('y', grayTextPos.y) // 2.6 -> 2.95
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('儲能系統');
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr('y', padding.top * 3.7) // 3.2 -> 3.7
+        .attr('x', purpleTextPos.x)
+        .attr('y', purpleTextPos.y) // 3.2 -> 3.7
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('充電樁');
@@ -1133,45 +1295,98 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
       // append legend(圖例)
+      let redCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+
+      let greenCirclePos = {
+        cx: 0,
+        cy: 0,
+      };
+
+      if (window.innerWidth > 720) {
+        redCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.bottom + (height - padding.top - padding.bottom) * 0.46,
+        };
+
+        greenCirclePos = {
+          cx: width - padding.right / 1.3,
+          cy: padding.bottom + (height - padding.top - padding.bottom) * 0.68,
+        };
+      } else {
+        redCirclePos = {
+          cx: width - padding.right * 5,
+          cy: padding.top / 2,
+        };
+
+        greenCirclePos = {
+          cx: width - padding.right * 2.5,
+          cy: padding.top / 2,
+        };
+      }
+
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr(
-          'cy',
-          padding.bottom + (height - padding.top - padding.bottom) * 0.46,
-        )
+        .attr('cx', redCirclePos.cx)
+        .attr('cy', redCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#d32f2f');
 
       svg
         .append('circle')
-        .attr('cx', width - padding.right / 1.3)
-        .attr(
-          'cy',
-          padding.bottom + (height - padding.top - padding.bottom) * 0.68,
-        )
+        .attr('cx', greenCirclePos.cx)
+        .attr('cy', greenCirclePos.cy)
         .attr('r', 5)
         .attr('fill', '#2e7d32');
+
+      let redTextPos = {
+        x: 0,
+        y: 0,
+      };
+
+      let greenTextPos = {
+        x: 0,
+        y: 0,
+      };
+
+      if (window.innerWidth > 720) {
+        redTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.bottom + (height - padding.top - padding.bottom) * 0.49,
+        };
+
+        greenTextPos = {
+          x: width - padding.right / 1.5,
+          y: padding.bottom + (height - padding.top - padding.bottom) * 0.71,
+        };
+      } else {
+        redTextPos = {
+          x: width - padding.right * 4.7,
+          y: padding.top / 1.75,
+        };
+
+        greenTextPos = {
+          x: width - padding.right * 2.2,
+          y: padding.top / 1.75,
+        };
+      }
 
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr(
-          'y',
-          padding.bottom + (height - padding.top - padding.bottom) * 0.49,
-        )
+        .attr('x', redTextPos.x)
+        .attr('y', redTextPos.y)
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('用電');
+
       svg
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('x', width - padding.right / 1.5)
-        .attr(
-          'y',
-          padding.bottom + (height - padding.top - padding.bottom) * 0.71,
-        )
+        .attr('x', greenTextPos.x)
+        .attr('y', greenTextPos.y)
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
         .text('產電');

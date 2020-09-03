@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
-  const [btnShow, setBtnShow] = useState(true);
+  const [infoBoxShow, setInfoBoxShow] = useState(false);
 
   const dataType = (str: string) => {
     switch (str) {
@@ -33,21 +33,20 @@ const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
 
   return (
     <div className={classNames('powerinfo-table-infobox-container')}>
-      {btnShow ? (
-        <button
-          type="button"
-          className={classNames('powerinfo-table-infobox-openbtn')}
-          onClick={() => setBtnShow(false)}
-        >
-          查看
-        </button>
-      ) : (
+      <button
+        type="button"
+        className={classNames('powerinfo-table-infobox-openbtn')}
+        onClick={() => setInfoBoxShow(true)}
+      >
+        查看
+      </button>
+      {infoBoxShow && (
         <div className={classNames('powerinfo-table-infobox-canvas')}>
           <div className={classNames('powerinfo-table-infobox-content')}>
             <button
               type="button"
               className={classNames('powerinfo-table-infobox-close')}
-              onClick={() => setBtnShow(true)}
+              onClick={() => setInfoBoxShow(false)}
             >
               &times;
             </button>
