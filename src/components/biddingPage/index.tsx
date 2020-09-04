@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import BiddingStatus from './biddingStatus';
+import BiddingStatus from './status';
 
 const BiddingPageContainer: React.FC = () => {
   return (

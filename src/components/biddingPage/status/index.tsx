@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import Participants from './participants';
 import Average from './average';
 
@@ -57,11 +58,11 @@ const BiddingStatus: React.FC = () => {
   }, [apiData]);
 
   return (
-    <div>
-      <div>
+    <div className={classNames('bidding-status-container')}>
+      <div className={classNames('bidding-status-participants-container-out')}>
         <Participants participants={apiData.participants} />
       </div>
-      <div>
+      <div className={classNames('bidding-status-average-container-out')}>
         <Average
           averagePrice={apiData.average_price}
           averageVolume={apiData.average_volume}
