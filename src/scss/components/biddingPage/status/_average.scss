@@ -1,0 +1,93 @@
+.bidding-status-average-container-in {
+  flex-basis: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  color: #707070;
+  border: blue solid 1px;
+}
+
+.bidding-status-average-image-container {
+  flex-basis: 33%;
+  height: 100%;
+  display: flex;
+  // flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: red solid 1px;
+}
+
+.bidding-status-average-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: blue solid 1px;
+}
+
+.bidding-status-average-text-container {
+  flex-basis: 67%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: purple solid 3px;
+  // overflow: hidden;
+}
+
+.bidding-status-average-text-price-container {
+  // flex-basis: 50%;
+  width: 50%;
+  height: 100%;
+  // display: flex;
+  // flex-wrap: wrap;
+  border: red solid 1px;
+}
+
+.bidding-status-average-text-volume-container {
+  // flex-basis: 50%;
+  width: 50%;
+  height: 100%;
+  // display: flex;
+  // flex-wrap: wrap;
+  border: red solid 1px;
+}
+
+.bidding-status-average-text-price-value {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 24px;
+  border: red solid 1px;
+}
+
+.bidding-status-average-text-price-title {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 12px;
+  border: red solid 1px;
+}
+
+.bidding-status-average-text-volume-value {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 24px;
+  border: red solid 1px;
+}
+
+.bidding-status-average-text-volume-title {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 12px;
+  border: red solid 1px;
+}

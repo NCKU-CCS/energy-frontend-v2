@@ -16,13 +16,35 @@ const Average: React.FC<IProps> = ({ averagePrice, averageVolume }) => {
           src={`${process.env.PUBLIC_URL}/biddingPage/arrow.png`}
         />
       </div>
-      <div>
-        <div>${averagePrice}/kWh</div>
-        <div>平均交易價</div>
-      </div>
-      <div>
-        <div>{averageVolume}kWh</div>
-        <div>平均交易量</div>
+      <div className={classNames('bidding-status-average-text-container')}>
+        <div
+          className={classNames('bidding-status-average-text-price-container')}
+        >
+          <div
+            className={classNames('bidding-status-average-text-price-value')}
+          >
+            ${averagePrice}/kWh
+          </div>
+          <div
+            className={classNames('bidding-status-average-text-price-title')}
+          >
+            平均交易價
+          </div>
+        </div>
+        <div
+          className={classNames('bidding-status-average-text-volume-container')}
+        >
+          <div
+            className={classNames('bidding-status-average-text-volume-value')}
+          >
+            {averageVolume}kWh
+          </div>
+          <div
+            className={classNames('bidding-status-average-text-volume-title')}
+          >
+            平均交易量
+          </div>
+        </div>
       </div>
     </div>
   );
