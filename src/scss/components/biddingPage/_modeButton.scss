@@ -23,11 +23,18 @@
   background-color: #ededed;
 }
 
-.bidding-modebutton-button:disabled {
+.bidding-modebutton-button-green:disabled {
   color: white;
   background-color: #ffa000;
   cursor: default;
 }
+
+.bidding-modebutton-button-need:disabled {
+  color: white;
+  background-color: #2d3161;
+  cursor: default;
+}
+
 
 .bidding-modebutton-button-green {
   margin-right: 1%;
