@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import testData from './test.json';
+import testBuyData from './buy.json';
 
 interface IData {
   bid_type: string;
@@ -26,7 +26,9 @@ interface IProps {
   apiData: IApiData;
 }
 
+// whatever the mode is actually doesn't matter due to the reason that api data is based on mode
 const List: React.FC<IProps> = ({ mode, apiData }) => {
+  useEffect(() => {}, [mode]);
   // // create list
   // const createList = apiData.data.map((d) => {
   //   if(d.bid_type === mode) {
@@ -69,56 +71,47 @@ const List: React.FC<IProps> = ({ mode, apiData }) => {
   // });
 
   // create list
-  const testApiData = apiData.totalCount === 0 ? testData : apiData;
+  const testApiData = apiData.totalCount === 0 ? testBuyData : apiData;
 
   const createList = testApiData.data.map((d) => {
-    if (d.bid_type === mode) {
-      // interval string
-      const intervalStr = `${d.time}:00 - ${d.time + 1}:00`;
+    // interval string
+    const intervalStr = `${d.time}:00 - ${d.time + 1}:00`;
 
-      return (
-        <div
-          className={classNames('bidding-submit-list-listitem-item-container')}
-        >
-          <div className={classNames('bidding-submit-list-listitem-item-date')}>
-            {/* 日期 */}
-            {d.date}
-          </div>
-          <div
-            className={classNames('bidding-submit-list-listitem-item-interval')}
-          >
-            {/* 時段 */}
-            {intervalStr}
-          </div>
-          <div
-            className={classNames('bidding-submit-list-listitem-item-volume')}
-          >
-            {/* 總度數 */}
-            {d.volume}kWh
-          </div>
-          <div
-            className={classNames('bidding-submit-list-listitem-item-price')}
-          >
-            {/* 單價 */}${d.price}/kWh
-          </div>
-          <div
-            className={classNames(
-              'bidding-submit-list-listitem-item-totalprice',
-            )}
-          >
-            {/* 總金額 */}${d.total_price}
-          </div>
-          <div
-            className={classNames(
-              'bidding-submit-list-listitem-item-button-container',
-            )}
-          >
-            <button type="button">c</button>
-          </div>
+    return (
+      <div
+        className={classNames('bidding-submit-list-listitem-item-container')}
+      >
+        <div className={classNames('bidding-submit-list-listitem-item-date')}>
+          {/* 日期 */}
+          {d.date}
         </div>
-      );
-    }
-    return null;
+        <div
+          className={classNames('bidding-submit-list-listitem-item-interval')}
+        >
+          {/* 時段 */}
+          {intervalStr}
+        </div>
+        <div className={classNames('bidding-submit-list-listitem-item-volume')}>
+          {/* 總度數 */}
+          {d.volume}kWh
+        </div>
+        <div className={classNames('bidding-submit-list-listitem-item-price')}>
+          {/* 單價 */}${d.price}/kWh
+        </div>
+        <div
+          className={classNames('bidding-submit-list-listitem-item-totalprice')}
+        >
+          {/* 總金額 */}${d.total_price}
+        </div>
+        <div
+          className={classNames(
+            'bidding-submit-list-listitem-item-button-container',
+          )}
+        >
+          <button type="button">c</button>
+        </div>
+      </div>
+    );
   });
 
   return (

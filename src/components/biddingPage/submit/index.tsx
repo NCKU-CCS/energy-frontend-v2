@@ -27,6 +27,12 @@ const Submit: React.FC = () => {
   // mode -> buy or sell
   const [mode, setMode] = useState('buy');
 
+  // data per page
+  const [perPage, setPerPage] = useState(5);
+
+  // page
+  const [page, setPage] = useState(1);
+
   // api data
   const [apiData, setApiData] = useState<IApiData>({
     data: [],
@@ -44,7 +50,7 @@ const Submit: React.FC = () => {
     );
     // GET to User Info API
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=5&page=1&bid_type=buy`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=${perPage}&page=${page}&bid_type=${mode}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -71,22 +77,29 @@ const Submit: React.FC = () => {
     (async () => {
       await fetchApiData();
     })();
-  }, []);
+  }, [perPage, page, mode]);
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log(apiData);
   }, [apiData]);
 
   return (
     <div className={classNames('bidding-submit-container-in')}>
       <div className={classNames('bidding-submit-modebutton-container-out')}>
-        <ModeButton changeMode={setMode} />
+        <ModeButton setMode={setMode} />
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
         <List mode={mode} apiData={apiData} />
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
-        <PageControl />
+        <PageControl
+          totalCount={apiData.totalCount}
+          page={apiData.page}
+          perPage={perPage}
+          setPerPage={setPerPage}
+          setPage={setPage}
+        />
       </div>
     </div>
   );

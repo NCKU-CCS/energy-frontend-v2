@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "bid_type": "sell",
+      "bid_type": "buy",
       "date": "2020/09/08",
       "end_time": "2020/09/08 11",
       "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
@@ -25,7 +25,7 @@
       "volume": 3
     },
     {
-      "bid_type": "sell",
+      "bid_type": "buy",
       "date": "2020/09/08",
       "end_time": "2020/09/08 13",
       "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
@@ -49,7 +49,7 @@
       "volume": 6
     },
     {
-      "bid_type": "sell",
+      "bid_type": "buy",
       "date": "2020/09/08",
       "end_time": "2020/09/08 15",
       "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
@@ -73,7 +73,7 @@
       "volume": 12
     },
     {
-      "bid_type": "sell",
+      "bid_type": "buy",
       "date": "2020/09/08",
       "end_time": "2020/09/08 17",
       "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
@@ -97,7 +97,7 @@
       "volume": 4
     },
     {
-      "bid_type": "sell",
+      "bid_type": "buy",
       "date": "2020/09/08",
       "end_time": "2020/09/08 19",
       "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",

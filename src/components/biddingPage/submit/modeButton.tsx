@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 interface IProps {
-  changeMode(mode: string): void;
+  setMode(mode: string): void;
 }
 
-const ModeButton: React.FC<IProps> = ({ changeMode }) => {
+const ModeButton: React.FC<IProps> = ({ setMode }) => {
   // disabled
   const [disabled, setDisabled] = useState(true);
 
   // click buy button
   const handleClickBuy = () => {
-    changeMode('buy');
+    setMode('buy');
     setDisabled(true);
   };
 
   // click sell button
   const handleClickSell = () => {
-    changeMode('sell');
+    setMode('sell');
     setDisabled(false);
   };
 
