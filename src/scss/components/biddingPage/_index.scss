@@ -1,5 +1,6 @@
 @import './status/';
 @import './modeButton';
+@import './submit/';
 
 .bidding-container {
   display: flex;
@@ -52,6 +53,8 @@
 .bidding-a3 {
   flex-basis: 50%;
   height: 90%;
+  display: flex;
+  flex-wrap: wrap;
   border: red solid 1px;
 }
 

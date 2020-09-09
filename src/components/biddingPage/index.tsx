@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
+import Submit from './submit';
 
 const BiddingPageContainer: React.FC = () => {
   return (
@@ -12,20 +13,12 @@ const BiddingPageContainer: React.FC = () => {
       <div className={classNames('bidding-a2')}>
         <div className={classNames('bidding-a2-b1')}>
           <BiddingStatus />
-          {/* <div
-            className={classNames('bidding-a2-b1-c1')}
-          >
-            即時交易人數
-          </div>
-          <div
-            className={classNames('bidding-a2-b1-c2')}
-          >
-            平均交易價 / 平均交易量
-          </div> */}
         </div>
         <div className={classNames('bidding-a2-b2')}>graph</div>
       </div>
-      <div className={classNames('bidding-a3')}>table</div>
+      <div className={classNames('bidding-a3')}>
+        <Submit />
+      </div>
     </div>
   );
 };

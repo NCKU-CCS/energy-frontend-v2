@@ -1,0 +1,29 @@
+@import './list';
+@import './modeButton';
+@import './pageControl';
+
+.bidding-submit-container-in {
+  flex-basis: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: green solid 3px;
+}
+
+.bidding-submit-modebutton-container-out {
+  flex-basis: 100%;
+  height: 10%;
+  border: blue solid 2px;
+}
+
+.bidding-submit-list-container-out {
+  flex-basis: 100%;
+  height: 80%;
+  border: blue solid 2px;
+}
+
+.bidding-submit-pagecontrol-container-out {
+  flex-basis: 100%;
+  height: 10%;
+  border: blue solid 2px;
+}
