@@ -1,6 +1,9 @@
+@import "listContent";
+
 .home-bid-info {
 	background-color: white;
-	border-radius: 10px;
+  border-radius: 10px;
+  height:100%;
 }
 
 .home-bid-info-title{
@@ -9,88 +12,45 @@
 	width: 90%;
   height: 12%;
   margin-top: 2%;
-  margin-bottom: 1%;
 	align-items: center;
 	color: rgb(80,80,80);
 }
 
 .home-bid-info-list{
-  height: 75%;
-	width: 95%;
-	margin-left: 2.5%;
-	margin-right: 2.5%;
+  height: 80%;
+	width: 100%;
   color: rgb(50,50,50);
   overflow-y: scroll;
-}
-
-.home-bid-info-listContainer{
-  display: flex;
-  height: 17%;
-  align-items: center;
-  width: 100%;
-}
-
-.home-bid-info-listContent-button{
-  display: none;
-}
-
-.home-bid-info-listContent-date{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20%;
-  height: 100%;
-}
-
-.home-bid-info-listContent-time{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20%;
-  height: 100%;
-}
-
-.home-bid-info-listContent-success{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 14%;
-  height: 100%;
-}
-
-.home-bid-info-listContent-number{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26%;
-  height: 100%;
-}
-
-.home-bid-info-listContent-number-nextline{
-  display: none;
-}
-
-.home-bid-info-listContent-price{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20%;
-  height: 100%;
-}
-
-.home-bid-info-listContent-price-nextline{
-  display: none;
 }
 
 // 1750 < size
 @media all and (min-width: 1750px) {
   .home-bid-info-list{
-    font-size:20px;
+    font-size:18px;
   }
   .home-bid-info-title{
-    font-size:24px;
+    font-size:22px;
   }
 }
+
+@media all and (min-width: 1750px) and (max-device-height: 1000px){
+  .home-bid-info-list{
+    font-size:14px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
+
+@media all and (min-width: 1750px) and (max-device-height: 920px){
+  .home-bid-info-list{
+    font-size:11px;
+  }
+  .home-bid-info-title{
+    font-size:16px;
+  }
+}
+
 
 // 1620 < size <= 1750
 @media all and (min-width: 1620px) and (max-width: 1750px) {
@@ -99,6 +59,24 @@
   }
   .home-bid-info-title{
     font-size:24px;
+  }
+}
+
+@media all and (min-width: 1620px) and (max-width: 1750px) and (max-device-height: 1000px){
+  .home-bid-info-list{
+    font-size:13px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
+
+@media all and (min-width: 1620px) and (max-width: 1750px) and (max-device-height: 900px){
+  .home-bid-info-list{
+    font-size:10px;
+  }
+  .home-bid-info-title{
+    font-size:16px;
   }
 }
 
@@ -112,6 +90,24 @@
   }
 }
 
+@media all and (min-width: 1450px) and (max-width: 1620px) and (max-device-height: 1000px){
+  .home-bid-info-list{
+    font-size:13px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
+
+@media all and (min-width: 1450px) and (max-width: 1620px) and (max-device-height: 850px){
+  .home-bid-info-list{
+    font-size:11px;
+  }
+  .home-bid-info-title{
+    font-size:18px;
+  }
+}
+
 // 1320 < size <= 1450
 @media all and (min-width: 1320px) and (max-width: 1450px) {
   .home-bid-info-list{
@@ -122,8 +118,7 @@
   }
 }
 
-// 1100 < size <= 1320
-@media all and (min-width: 1100px) and (max-width: 1320px) {
+@media all and (min-width: 1320px) and (max-width: 1450px) and (max-device-height: 1000px){
   .home-bid-info-list{
     font-size:11px;
   }
@@ -132,115 +127,143 @@
   }
 }
 
-// 720 < size <= 1110
-@media all and (min-width: 720px) and (max-width: 1100px) {
+@media all and (min-width: 1320px) and (max-width: 1450px) and (max-device-height: 900px){
   .home-bid-info-list{
-    font-size:18px;
+    font-size:10px;
   }
   .home-bid-info-title{
-    font-size:20px;
+    font-size:16px;
   }
-  .home-bid-info-listContainer{
-    height: 17%;
-    flex-wrap: wrap;
+}
+
+// 1100 < size <= 1320
+@media all and (min-width: 1100px) and (max-width: 1320px) {
+  .home-bid-info-list{
+    font-size:12px;
   }
-  .home-bid-info-listContent-button{
-    width: 10%;
-    display: block;
-    border: none;
-    outline:none;
-    background-color: white;
-    color: orange;
-    cursor: pointer;
+  .home-bid-info-title{
+    font-size:18px;
   }
-  .home-bid-info-listContent-date{
-    width: 35%;
-  } 
-  .home-bid-info-listContent-time{
-    width: 35%;
+}
+
+@media all and (min-width: 1100px) and (max-width: 1320px) and (max-device-height: 1000px){
+  .home-bid-info-list{
+    font-size:10px;
   }
-  .home-bid-info-listContent-success{
-    width: 15%;
-    margin-right: 5%;
+  .home-bid-info-title{
+    font-size:18px;
   }
-  .home-bid-info-listContent-number{
-    display: none;
+}
+
+// 950 < size <= 1110
+@media all and (min-width: 950px) and (max-width: 1100px) {
+  .home-bid-info-list{
+    font-size:12px;
   }
-  .home-bid-info-listContent-number-nextline{
-    display: flex;
-    justify-content: center;
-    width: 50%;
-    margin-top: -3%;
+  .home-bid-info-title{
+    font-size:16px;
   }
-  .home-bid-info-listContent-price{
-    display: none;
+}
+
+@media all and (min-width: 950px) and (max-width: 1100px) and (max-device-height: 1000px){
+  .home-bid-info-list{
+    font-size:10px;
   }
-  .home-bid-info-listContent-price-nextline{
-    display: flex;
-    justify-content: flex-start;
-    width: 50%;
-    margin-top: -3%;
+  .home-bid-info-title{
+    font-size:16px;
   }
 }
 
 @media all and (min-width: 860px) and (max-width: 950px) {
   .home-bid-info-list{
-    font-size:16px;
+    font-size:12px;
   }
   .home-bid-info-title{
-    font-size:20px;
+    font-size:18px;
   }
-  .home-bid-info-listContent-number-nextline{
-    width: 50%;
-    margin-top: -3%;
+}
+
+@media all and (min-width: 860px) and (max-width: 950px) and (max-device-height: 800px){
+  .home-bid-info-list{
+    font-size:10px;
   }
-  .home-bid-info-listContent-price-nextline{
-    width: 50%;
-    margin-top: -3%;
+  .home-bid-info-title{
+    font-size:16px;
   }
 }
 
 @media all and (min-width: 800px) and (max-width: 860px) {
   .home-bid-info-list{
-    font-size:14px;
+    font-size:11px;
   }
   .home-bid-info-title{
-    font-size:18px;
+    font-size:16px;
+  }
+}
+
+@media all and (min-width: 800px) and (max-width: 860px) and (max-device-height: 800px){
+  .home-bid-info-list{
+    font-size:9px;
+  }
+  .home-bid-info-title{
+    font-size:14px;
   }
 }
 
 @media all and (min-width: 720px) and (max-width: 800px) {
   .home-bid-info-list{
-    font-size:11px;
+    font-size:10px;
   }
   .home-bid-info-title{
-    font-size:18px;
+    font-size:16px;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 800px) and (max-device-height: 700px){
+  .home-bid-info-list{
+    font-size:9px;
+  }
+  .home-bid-info-title{
+    font-size:16px;
   }
 }
 
 // 650 < size <= 720px
 @media all and (min-width: 650px) and (max-width: 720px) {
   .home-bid-info-list{
-    font-size:18px;
+    font-size:14px;
   }
   .home-bid-info-title{
-    font-size:22px;
-  }
-  .home-bid-info-listContainer{
-    height: 20%;
+    font-size:17px;
   }
 }
+
+@media all and (min-width: 650px) and (max-width: 720px) and (max-device-height: 850px){
+  .home-bid-info-list{
+    font-size:12px;
+  }
+  .home-bid-info-title{
+    font-size:17px;
+  }
+}
+
 
 // 600 < size <= 650px
 @media all and (min-width: 600px) and (max-width: 650px) {
   .home-bid-info-list{
-    font-size:16px;
+    font-size:14px;
   }
   .home-bid-info-title{
-    font-size:20px;
+    font-size:17px;
   }
-  .home-bid-info-listContainer{
-    height: 20%;
+}
+
+@media all and (min-width: 600px) and (max-width: 650px) and (max-device-height: 850px){
+  .home-bid-info-list{
+    font-size:11px;
+  }
+  .home-bid-info-title{
+    font-size:17px;
   }
 }
 
@@ -250,10 +273,16 @@
     font-size:14px;
   }
   .home-bid-info-title{
-    font-size:18px;
+    font-size:17px;
   }
-  .home-bid-info-listContainer{
-    height: 20%;
+}
+
+@media all and (min-width: 530px) and (max-width: 600px) and (max-device-height: 800px){
+  .home-bid-info-list{
+    font-size:11px;
+  }
+  .home-bid-info-title{
+    font-size:16px;
   }
 }
 
@@ -263,69 +292,44 @@
     font-size:12px;
   }
   .home-bid-info-title{
-    font-size:14px;
-  }
-  .home-bid-info-listContainer{
-    height: 25%;
+    font-size:17px;
   }
 }
 
-// size <= 460px
-@media all and (max-width: 460px) {
+@media all and (min-width: 460px) and (max-width: 530px) and (max-device-height: 750px){
   .home-bid-info-list{
-    font-size:14px;
+    font-size:10px;
   }
   .home-bid-info-title{
-    font-size:16px;
-  }
-  .home-bid-info-listContainer{
-    height: 20%;
-    flex-wrap: wrap;
-  }
-  .home-bid-info-listContent-button{
-    width: 10%;
-    display: block;
-    border: none;
-    outline:none;
-    background-color: white;
-    color: orange;
-    cursor: pointer;
-  }
-  .home-bid-info-listContent-date{
-    width: 35%;
-  } 
-  .home-bid-info-listContent-time{
-    width: 35%;
-  }
-  .home-bid-info-listContent-success{
-    width: 15%;
-    margin-right: 5%;
-  }
-  .home-bid-info-listContent-number{
-    display: none;
-  }
-  .home-bid-info-listContent-number-nextline{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
-    margin-left: 10%;
-  }
-  .home-bid-info-listContent-price{
-    display: none;
-  }
-  .home-bid-info-listContent-price-nextline{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 40%;
-    margin-right: 10%;
+    font-size:14px;
   }
 }
 
-// size <= 380px
-@media all and (max-width: 380px) {
+// 380 < size <= 460px
+@media all and (min-width: 380px) and (max-width: 460px) {
   .home-bid-info-list{
+    font-size:12px;
+  }
+  .home-bid-info-title{
+    font-size:14px;
+  }
+}
+
+@media all and (min-width: 380px) and (max-width: 460px) and (max-device-height: 800px){
+  .home-bid-info-list{
+    font-size:9px;
+  }
+  .home-bid-info-title{
+    font-size:14px;
+  }
+}
+
+// 320 < size <= 380px
+@media all and (min-width: 320px) and (max-width: 380px) {
+  .home-bid-info-list{
+    font-size:12px;
+  }
+  .home-bid-info-title{
     font-size:12px;
   }
 }
@@ -334,5 +338,17 @@
 @media all and (max-width: 320px) {
   .home-bid-info-list{
     font-size:10px;
+  }
+  .home-bid-info-title{
+    font-size:12px;
+  }
+}
+
+@media all and (max-width: 380px) and (max-device-height: 700px){
+  .home-bid-info-list{
+    font-size:9px;
+  }
+  .home-bid-info-title{
+    font-size:12px;
   }
 }

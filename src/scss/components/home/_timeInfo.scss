@@ -366,25 +366,25 @@
 	}
 }
 
-@media all and (min-width: 320px) and (max-width: 500px) and (max-device-height: 600px){
+@media all and (min-width: 320px) and (max-width: 500px) and (max-device-height: 680px){
 	.home-time-info-title{
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.home-time-info-timeContent{
-		font-size: 22px;
+		font-size: 20px;
 	}
 	.home-time-info-timeIcon{
-		width: 22px;
-		height: 22px;
+		width: 20px;
+		height: 20px;
 	}
 	.home-time-info-buy{
-		font-size: 12px;
+		font-size: 10px;
 	}
 	.home-time-info-sell{
-		font-size: 12px;
+		font-size: 10px;
 	}
 	.home-time-info-content{
-		font-size: 12px;
+		font-size: 10px;
 	}
 }
 
@@ -401,35 +401,35 @@
 		height: 24px;
 	}
 	.home-time-info-buy{
-		font-size: 12px;
+		font-size: 10px;
 	}
 	.home-time-info-sell{
-		font-size: 12px;
+		font-size: 10px;
 	}
 	.home-time-info-content{
-		font-size: 12px;
+		font-size: 10px;
 	}
 }
 
 // size <= 320px
-@media all and (max-width: 320px) and (max-device-height: 400px){
+@media all and (max-width: 320px) and (max-device-height: 650px){
 	.home-time-info-title{
-		font-size: 11px;
+		font-size: 10px;
 	}
 	.home-time-info-timeContent{
-		font-size: 19px;
+		font-size: 18px;
 	}
 	.home-time-info-timeIcon{
-		width: 19px;
-		height: 19px;
+		width: 17px;
+		height: 17px;
 	}
 	.home-time-info-buy{
-		font-size: 11px;
+		font-size: 9px;
 	}
 	.home-time-info-sell{
-		font-size: 11px;
+		font-size: 9px;
 	}
 	.home-time-info-content{
-		font-size: 11px;
+		font-size: 9px;
 	}
 }
