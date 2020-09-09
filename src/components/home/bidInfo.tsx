@@ -1,64 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import data from './bidInfoTest.json';
+import ListContent from './listContent';
+
+interface IResult {
+  status: string;
+  time: string;
+  date: string;
+  wins: {
+    price: number;
+    value: number;
+  };
+}
 
 const BidInfo: React.FC = () => {
   const { t } = useTranslation();
 
-  const [boxState, setbox] = useState<boolean>(false);
-  const [icon, seticon] = useState<string>('▶');
-  const listItem = data.map((content) => {
-    const showInfo = () => {
-      if (boxState === false) setbox(true);
-      else setbox(false);
-      if (boxState === false) seticon('▼');
-      else seticon('▶');
-    };
+  const [result, setResult] = useState<IResult[]>([]);
 
-    let sellState = '';
-    if (content.success === '得標成功') sellState = t('indexpage.sellSuccess');
-    else sellState = t('indexpage.sellFail');
+  const fetchMatchResult = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+    // GET to User Info API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+    if (response.status === 200) {
+      // fetch success
+      const data = await response.json();
+      setResult(data);
+    }
+  };
 
+  useEffect(() => {
+    (async () => {
+      await fetchMatchResult();
+    })();
+  }, []);
+
+  let List = result;
+  for (let i = 0; i < result.length; i += 1) {
+    if (!(result[i].status === '得標成功' || result[i].status === '未得標')) {
+      List = result.splice(i, 1);
+      i -= 1;
+    }
+  }
+
+  const listItem = List.map((content) => {
     return (
-      <div className={classnames('home-bid-info-listContainer')}>
-        <button
-          type="button"
-          className={classnames('home-bid-info-listContent-button')}
-          onClick={showInfo}
-        >
-          {icon}
-        </button>
-        <div className={classnames('home-bid-info-listContent-date')}>
-          {content.date}
-        </div>
-        <div className={classnames('home-bid-info-listContent-time')}>
-          {content.time}
-        </div>
-        <div className={classnames('home-bid-info-listContent-success')}>
-          {sellState}
-        </div>
-        <div className={classnames('home-bid-info-listContent-number')}>
-          {t('indexpage.biddingNumber')}:{content.number}kWh
-        </div>
-        <div className={classnames('home-bid-info-listContent-price')}>
-          {t('indexpage.biddingPrice')}:${content.price}/kWh
-        </div>
-        {boxState && (
-          <div
-            className={classnames('home-bid-info-listContent-number-nextline')}
-          >
-            {t('indexpage.biddingNumber')}:{content.number}kWh
-          </div>
-        )}
-        {boxState && (
-          <div
-            className={classnames('home-bid-info-listContent-price-nextline')}
-          >
-            {t('indexpage.biddingPrice')}:${content.price}/kWh
-          </div>
-        )}
-      </div>
+      <ListContent
+        status={content.status}
+        time={content.time}
+        date={content.date}
+        price={content.wins.price}
+        value={content.wins.value}
+      />
     );
   });
 

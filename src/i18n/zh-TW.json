@@ -49,7 +49,7 @@
     "buy": "買",
     "sell": "賣",
     "sellSuccess": "得標",
-    "sellFail": "為得標"
+    "sellFail": "未得標"
   },
   "powerinfopage": {
     "pageTitle": "電力資訊"
