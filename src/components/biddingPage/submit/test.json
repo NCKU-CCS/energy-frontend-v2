@@ -1,0 +1,126 @@
+{
+  "data": [
+    {
+      "bid_type": "sell",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 11",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 6.8,
+      "start_time": "2020/09/08 10",
+      "time": 10,
+      "total_price": 68,
+      "upload_time": "Sat, 21 Mar 2020 14:20:59 GMT",
+      "volume": 10
+    },
+    {
+      "bid_type": "buy",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 12",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 7.3,
+      "start_time": "2020/09/08 11",
+      "time": 11,
+      "total_price": 21.9,
+      "upload_time": "Sat, 21 Mar 2020 14:21:59 GMT",
+      "volume": 3
+    },
+    {
+      "bid_type": "sell",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 13",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 9.1,
+      "start_time": "2020/09/08 12",
+      "time": 12,
+      "total_price": 45.5,
+      "upload_time": "Sat, 21 Mar 2020 14:22:59 GMT",
+      "volume": 5
+    },
+    {
+      "bid_type": "buy",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 14",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 2.2,
+      "start_time": "2020/09/08 13",
+      "time": 13,
+      "total_price": 13.2,
+      "upload_time": "Sat, 21 Mar 2020 14:23:59 GMT",
+      "volume": 6
+    },
+    {
+      "bid_type": "sell",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 15",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 1.1,
+      "start_time": "2020/09/08 14",
+      "time": 14,
+      "total_price": 11,
+      "upload_time": "Sat, 21 Mar 2020 14:24:59 GMT",
+      "volume": 10
+    },
+    {
+      "bid_type": "buy",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 16",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 7.5,
+      "start_time": "2020/09/08 15",
+      "time": 15,
+      "total_price": 90,
+      "upload_time": "Sat, 21 Mar 2020 14:25:59 GMT",
+      "volume": 12
+    },
+    {
+      "bid_type": "sell",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 17",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 0.9,
+      "start_time": "2020/09/08 16",
+      "time": 16,
+      "total_price": 8.1,
+      "upload_time": "Sat, 21 Mar 2020 14:26:59 GMT",
+      "volume": 9
+    },
+    {
+      "bid_type": "buy",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 18",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 5.1,
+      "start_time": "2020/09/08 17",
+      "time": 17,
+      "total_price": 20.4,
+      "upload_time": "Sat, 21 Mar 2020 14:27:59 GMT",
+      "volume": 4
+    },
+    {
+      "bid_type": "sell",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 19",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 4.2,
+      "start_time": "2020/09/08 18",
+      "time": 18,
+      "total_price": 25.2,
+      "upload_time": "Sat, 21 Mar 2020 14:28:59 GMT",
+      "volume": 6
+    },
+    {
+      "bid_type": "buy",
+      "date": "2020/09/08",
+      "end_time": "2020/09/08 20",
+      "id": "049a9c28-c0cc-418e-9f35-23f6bc43df7e",
+      "price": 3.4,
+      "start_time": "2020/09/08 19",
+      "time": 19,
+      "total_price": 20.4,
+      "upload_time": "Sat, 21 Mar 2020 14:29:59 GMT",
+      "volume": 6
+    }
+  ],
+  "page": 1,
+  "totalCount": 10
+}

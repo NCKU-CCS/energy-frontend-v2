@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-const ModeButton: React.FC = () => {
+interface IProps {
+  changeMode(mode: string): void;
+}
+
+const ModeButton: React.FC<IProps> = ({ changeMode }) => {
   // disabled
   const [disabled, setDisabled] = useState(true);
+
+  // click buy button
+  const handleClickBuy = () => {
+    changeMode('buy');
+    setDisabled(true);
+  };
+
+  // click sell button
+  const handleClickSell = () => {
+    changeMode('sell');
+    setDisabled(false);
+  };
 
   return (
     <div className={classNames('bidding-submit-modebutton-container-in')}>
@@ -14,7 +30,7 @@ const ModeButton: React.FC = () => {
           'bidding-submit-modebutton-button-buy',
         )}
         disabled={disabled}
-        onClick={() => setDisabled(true)}
+        onClick={() => handleClickBuy()}
       >
         買
       </button>
@@ -25,7 +41,7 @@ const ModeButton: React.FC = () => {
           'bidding-submit-modebutton-button-sell',
         )}
         disabled={!disabled}
-        onClick={() => setDisabled(false)}
+        onClick={() => handleClickSell()}
       >
         賣
       </button>

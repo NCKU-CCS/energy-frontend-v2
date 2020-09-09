@@ -9,12 +9,12 @@ interface IData {
   date: string;
   end_time: string;
   id: string;
-  price: string;
+  price: number;
   start_time: string;
-  time: string;
-  total_price: string;
+  time: number;
+  total_price: number;
   upload_time: string;
-  volume: string;
+  volume: number;
 }
 
 interface IApiData {
@@ -24,8 +24,15 @@ interface IApiData {
 }
 
 const Submit: React.FC = () => {
+  // mode -> buy or sell
+  const [mode, setMode] = useState('buy');
+
   // api data
-  const [apiData, setApiData] = useState<IApiData>();
+  const [apiData, setApiData] = useState<IApiData>({
+    data: [],
+    page: 0,
+    totalCount: 0,
+  });
 
   // fetch api data
   const fetchApiData = async () => {
@@ -52,7 +59,7 @@ const Submit: React.FC = () => {
       const tmp = await response.json();
       setApiData(tmp);
       // eslint-disable-next-line no-alert
-      alert('success');
+      // alert('success');
     } else {
       // fetch failure
       // eslint-disable-next-line no-alert
@@ -73,10 +80,10 @@ const Submit: React.FC = () => {
   return (
     <div className={classNames('bidding-submit-container-in')}>
       <div className={classNames('bidding-submit-modebutton-container-out')}>
-        <ModeButton />
+        <ModeButton changeMode={setMode} />
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
-        <List />
+        <List mode={mode} apiData={apiData} />
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
         <PageControl />
