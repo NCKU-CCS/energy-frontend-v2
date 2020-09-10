@@ -90,7 +90,7 @@ const Submit: React.FC = () => {
         <ModeButton setMode={setMode} />
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
-        <List mode={mode} apiData={apiData} />
+        <List apiData={apiData} />
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
         <PageControl

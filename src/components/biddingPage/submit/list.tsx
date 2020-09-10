@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import testBuyData from './buy.json';
 
@@ -22,13 +22,11 @@ interface IApiData {
 }
 
 interface IProps {
-  mode: string;
   apiData: IApiData;
 }
 
 // whatever the mode is actually doesn't matter due to the reason that api data is based on mode
-const List: React.FC<IProps> = ({ mode, apiData }) => {
-  useEffect(() => {}, [mode]);
+const List: React.FC<IProps> = ({ apiData }) => {
   // // create list
   // const createList = apiData.data.map((d) => {
   //   if(d.bid_type === mode) {
