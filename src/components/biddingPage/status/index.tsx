@@ -54,7 +54,7 @@ const BiddingStatus: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(apiData);
+    // console.log(apiData);
   }, [apiData]);
 
   return (

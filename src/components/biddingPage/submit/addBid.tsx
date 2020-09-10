@@ -1,11 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 interface IProps {
   mode: string;
 }
 
 const AddBid: React.FC<IProps> = ({ mode }) => {
+  // date
+  const [date, setDate] = useState<string>('null');
+
+  // time
+  const [time, setTime] = useState<number>(-1);
+
+  // volume
+  const [volume, setVolume] = useState<number>(-1);
+
+  // price
+  const [price, setPrice] = useState<number>(-1);
+
+  // total price
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  // set disabled
+  const [disabled, setDisabled] = useState<boolean>(true);
+
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
     '0:00 - 1:00',
@@ -34,10 +53,57 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
     '23:00 - 24:00',
   ];
 
-  // map the array and return options
+  // map the interval array and return options
   const createOptions = intervalArr.map((str, i) => {
     return <option value={i}>{str}</option>;
   });
+
+  // add a bid using api
+  const addBid = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+    // PUT to bidsubmit API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          bid_type: mode,
+          start_time: `${date} ${time}`,
+          end_time: `${date} ${time + 1}`,
+          value: volume,
+          price,
+        }),
+      },
+    );
+    // success or not
+    if (response.status === 200) {
+      // eslint-disable-next-line no-alert
+      alert('success');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('failed');
+    }
+  };
+
+  useEffect(() => {
+    if (volume !== -1 && price !== -1) setTotalPrice(volume * price);
+    else setTotalPrice(0);
+  }, [volume, price]);
+
+  useEffect(() => {
+    if (date !== 'null' && time !== -1 && volume !== -1 && price !== -1)
+      setDisabled(false);
+  }, [date, time, volume, price]);
 
   useEffect(() => {}, [mode]);
 
@@ -47,32 +113,51 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
         <input
           type="date"
           className={classNames('bidding-submit-addbid-form-date')}
+          onChange={(e) => setDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
+          required
         />
         <select
           className={classNames('bidding-submit-addbid-form-select')}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setTime(parseInt(e.target.value, 10))}
         >
+          <option value="-1"> </option>
           {createOptions}
         </select>
         <input
-          className={classNames('bidding-submit-addbid-form-number')}
+          className={classNames('bidding-submit-addbid-form-volume')}
           type="number"
           min="0"
+          onChange={(e) => setVolume(parseInt(e.target.value, 10))}
+          required
         />
         <input
-          className={classNames('bidding-submit-addbid-form-number')}
+          className={classNames('bidding-submit-addbid-form-price')}
           type="number"
           min="0"
+          onChange={(e) => setPrice(parseInt(e.target.value, 10))}
+          required
+        />
+        <input
+          className={classNames('bidding-submit-addbid-form-total')}
+          type="number"
+          min="0"
+          value={totalPrice}
+          disabled
         />
         <input
           className={classNames('bidding-submit-addbid-form-submit')}
           type="submit"
-          value="V"
+          value="&#10003;"
+          title="Submit"
+          onClick={() => addBid()}
+          disabled={disabled}
         />
         <input
           className={classNames('bidding-submit-addbid-form-reset')}
           type="reset"
-          value="X"
+          value="&#10005;"
+          title="Reset"
+          onClick={() => setTotalPrice(0)}
         />
       </form>
     </div>
