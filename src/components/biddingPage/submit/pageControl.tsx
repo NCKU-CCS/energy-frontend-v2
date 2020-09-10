@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 interface IProps {
@@ -16,6 +16,13 @@ const PageControl: React.FC<IProps> = ({
   perPage,
   setPerPage,
 }) => {
+  const lastPage = () => {
+    if (totalCount === 0) return 1;
+    return totalCount % perPage === 0
+      ? totalCount / perPage
+      : Math.floor(totalCount / perPage) + 1;
+  };
+
   const handleClickFirstPage = () => {
     setPage(1);
   };
@@ -26,31 +33,46 @@ const PageControl: React.FC<IProps> = ({
   };
 
   const handleClickNextPage = () => {
-    if (totalCount === 0) setPage(1);
-    else {
-      const lastPage =
-        totalCount % perPage === 0
-          ? totalCount / perPage
-          : Math.floor(totalCount / perPage) + 1;
-      if (page < lastPage) setPage(page + 1);
-      else setPage(lastPage);
-    }
+    // if (totalCount === 0) setPage(1);
+    // else {
+    //   const lastPage =
+    //     totalCount % perPage === 0
+    //       ? totalCount / perPage
+    //       : Math.floor(totalCount / perPage) + 1;
+    if (page < lastPage()) setPage(page + 1);
+    else setPage(lastPage());
+    // }
   };
 
   const handleClickLastPage = () => {
-    if (totalCount === 0) setPage(1);
-    else {
-      const lastPage =
-        totalCount % perPage === 0
-          ? totalCount / perPage
-          : Math.floor(totalCount / perPage) + 1;
-      setPage(lastPage);
-    }
+    // if (totalCount === 0) setPage(1);
+    // else {
+    //   const lastPage =
+    //     totalCount % perPage === 0
+    //       ? totalCount / perPage
+    //       : Math.floor(totalCount / perPage) + 1;
+    setPage(lastPage());
+    // }
   };
 
+  // set btn disabled
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
+
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(page);
+    if (page === 1 && lastPage() === 1) {
+      setPrevDisabled(true);
+      setNextDisabled(true);
+    } else if (page === 1) {
+      setPrevDisabled(true);
+      setNextDisabled(false);
+    } else if (page === lastPage()) {
+      setPrevDisabled(false);
+      setNextDisabled(true);
+    } else {
+      setPrevDisabled(false);
+      setNextDisabled(false);
+    }
   }, [page]);
 
   return (
@@ -64,34 +86,53 @@ const PageControl: React.FC<IProps> = ({
         <option value="15">15 rows</option>
       </select>
       <button
-        className={classNames('bidding-submit-pagecontrol-first')}
+        className={classNames(
+          'bidding-submit-pagecontrol-first',
+          'bidding-submit-pagecontrol-btn',
+        )}
         type="button"
         title="First Page"
         onClick={() => handleClickFirstPage()}
+        disabled={prevDisabled}
       >
         &Iota;&#60;
       </button>
       <button
-        className={classNames('bidding-submit-pagecontrol-prev')}
+        className={classNames(
+          'bidding-submit-pagecontrol-prev',
+          'bidding-submit-pagecontrol-btn',
+        )}
         type="button"
         title="Previous Page"
         onClick={() => handleClickPrevPage()}
+        disabled={prevDisabled}
       >
         &#60;
       </button>
+      <div>
+        {page} / {lastPage()}
+      </div>
       <button
-        className={classNames('bidding-submit-pagecontrol-next')}
+        className={classNames(
+          'bidding-submit-pagecontrol-next',
+          'bidding-submit-pagecontrol-btn',
+        )}
         type="button"
         title="Next Page"
         onClick={() => handleClickNextPage()}
+        disabled={nextDisabled}
       >
         &#62;
       </button>
       <button
-        className={classNames('bidding-submit-pagecontrol-last')}
+        className={classNames(
+          'bidding-submit-pagecontrol-last',
+          'bidding-submit-pagecontrol-btn',
+        )}
         type="button"
         title="Last Page"
         onClick={() => handleClickLastPage()}
+        disabled={nextDisabled}
       >
         &#62;&Iota;
       </button>

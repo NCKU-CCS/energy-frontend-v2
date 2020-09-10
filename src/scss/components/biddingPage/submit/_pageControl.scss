@@ -13,38 +13,33 @@
   margin-left: 2.5%;
 }
 
-.bidding-submit-pagecontrol-first {
+.bidding-submit-pagecontrol-btn {
   margin-right: 2.5%;
   margin-left: 2.5%;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 0;
   outline: 0;
+  background-color: #f1f2f1;
   cursor: pointer;
+}
+
+.bidding-submit-pagecontrol-btn:active {
+  background-color: #e8e8e8;
+}
+
+.bidding-submit-pagecontrol-btn:disabled {
+  color: #d1d1d1;
+  cursor: default;
+}
+
+.bidding-submit-pagecontrol-first {
 }
 
 .bidding-submit-pagecontrol-prev {
-  margin-right: 2.5%;
-  margin-left: 2.5%;
-  border-radius: 15px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
 }
 
 .bidding-submit-pagecontrol-next {
-  margin-right: 2.5%;
-  margin-left: 2.5%;
-  border-radius: 15px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
 }
 
 .bidding-submit-pagecontrol-last {
-  margin-right: 2.5%;
-  margin-left: 2.5%;
-  border-radius: 15px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
 }

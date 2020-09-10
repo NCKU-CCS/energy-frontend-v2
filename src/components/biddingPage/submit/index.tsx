@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import ModeButton from './modeButton';
 import List from './list';
 import PageControl from './pageControl';
+import AddBid from './addBid';
 
 interface IData {
   bid_type: string;
@@ -64,8 +65,6 @@ const Submit: React.FC = () => {
       // fetch success
       const tmp = await response.json();
       setApiData(tmp);
-      // eslint-disable-next-line no-alert
-      // alert('success');
     } else {
       // fetch failure
       // eslint-disable-next-line no-alert
@@ -79,11 +78,6 @@ const Submit: React.FC = () => {
     })();
   }, [perPage, page, mode]);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(apiData);
-  }, [apiData]);
-
   return (
     <div className={classNames('bidding-submit-container-in')}>
       <div className={classNames('bidding-submit-modebutton-container-out')}>
@@ -91,6 +85,9 @@ const Submit: React.FC = () => {
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
         <List apiData={apiData} />
+      </div>
+      <div className={classNames('bidding-submit-addbid-container-out')}>
+        <AddBid mode={mode} />
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
         <PageControl

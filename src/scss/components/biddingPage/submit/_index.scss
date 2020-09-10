@@ -1,6 +1,7 @@
 @import './list';
 @import './modeButton';
 @import './pageControl';
+@import './addBid';
 
 .bidding-submit-container-in {
   flex-basis: 100%;
@@ -18,9 +19,15 @@
 
 .bidding-submit-list-container-out {
   flex-basis: 100%;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-wrap: wrap;
+  border: blue solid 2px;
+}
+
+.bidding-submit-addbid-container-out {
+  flex-basis: 100%;
+  height: 10%;
   border: blue solid 2px;
 }
 
