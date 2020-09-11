@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import ModeButton from './modeButton';
+import TypeButton from './typeButton';
 import List from './list';
 import PageControl from './pageControl';
 import AddBid from './addBid';
@@ -26,7 +26,7 @@ interface IApiData {
 
 const Submit: React.FC = () => {
   // mode -> buy or sell
-  const [mode, setMode] = useState('buy');
+  const [type, setType] = useState('buy');
 
   // data per page
   const [perPage, setPerPage] = useState(5);
@@ -51,7 +51,7 @@ const Submit: React.FC = () => {
     );
     // GET to User Info API
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=${perPage}&page=${page}&bid_type=${mode}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=${perPage}&page=${page}&bid_type=${type}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -76,18 +76,18 @@ const Submit: React.FC = () => {
     (async () => {
       await fetchApiData();
     })();
-  }, [perPage, page, mode]);
+  }, [perPage, page, type]);
 
   return (
     <div className={classNames('bidding-submit-container-in')}>
       <div className={classNames('bidding-submit-modebutton-container-out')}>
-        <ModeButton setMode={setMode} />
+        <TypeButton setType={setType} />
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
         <List apiData={apiData} />
       </div>
       <div className={classNames('bidding-submit-addbid-container-out')}>
-        <AddBid mode={mode} />
+        <AddBid type={type} />
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
         <PageControl

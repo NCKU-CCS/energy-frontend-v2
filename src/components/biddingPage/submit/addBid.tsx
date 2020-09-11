@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 
 interface IProps {
-  mode: string;
+  type: string;
 }
 
-const AddBid: React.FC<IProps> = ({ mode }) => {
+const AddBid: React.FC<IProps> = ({ type }) => {
   // date
   const [date, setDate] = useState<string>('null');
 
@@ -22,8 +22,11 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
   // total price
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  // set disabled
-  const [disabled, setDisabled] = useState<boolean>(true);
+  // set submit button disabled
+  const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
+
+  // set reset button disabled
+  // const [resetDisabled, setResetDisabled] = useState<boolean>(true);
 
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
@@ -77,7 +80,7 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
           'Content-Type': 'application/json',
         }),
         body: JSON.stringify({
-          bid_type: mode,
+          bid_type: type,
           start_time: `${date} ${time}`,
           end_time: `${date} ${time + 1}`,
           value: volume,
@@ -93,6 +96,18 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
       // eslint-disable-next-line no-alert
       alert('failed');
     }
+    setSubmitDisabled(true);
+  };
+
+  // handle click reset btn
+  const handleClickReset = () => {
+    setDate('null');
+    setTime(-1);
+    setVolume(-1);
+    setPrice(-1);
+    setTotalPrice(0);
+    setSubmitDisabled(true);
+    // setResetDisabled(true);
   };
 
   useEffect(() => {
@@ -102,10 +117,10 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
 
   useEffect(() => {
     if (date !== 'null' && time !== -1 && volume !== -1 && price !== -1)
-      setDisabled(false);
+      setSubmitDisabled(false);
+    // if (date !== 'null' || time !== -1 || volume !== -1 || price !== -1)
+    //   setResetDisabled(false);
   }, [date, time, volume, price]);
-
-  useEffect(() => {}, [mode]);
 
   return (
     <div className={classNames('bidding-submit-addbid-container-in')}>
@@ -115,6 +130,8 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
           className={classNames('bidding-submit-addbid-form-date')}
           onChange={(e) => setDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
           required
+          // value="2020-09-21"
+          // disabled
         />
         <select
           className={classNames('bidding-submit-addbid-form-select')}
@@ -150,14 +167,14 @@ const AddBid: React.FC<IProps> = ({ mode }) => {
           value="&#10003;"
           title="Submit"
           onClick={() => addBid()}
-          disabled={disabled}
+          disabled={submitDisabled}
         />
         <input
           className={classNames('bidding-submit-addbid-form-reset')}
           type="reset"
           value="&#10005;"
           title="Reset"
-          onClick={() => setTotalPrice(0)}
+          onClick={() => handleClickReset()}
         />
       </form>
     </div>
