@@ -69,7 +69,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
-    // PUT to bidsubmit API
+    // POST to bidsubmit API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
       {

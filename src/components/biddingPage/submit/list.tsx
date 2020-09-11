@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import testBuyData from './buy.json';
+import ListItem from './listItem';
 
 interface IData {
   bid_type: string;
@@ -27,88 +27,69 @@ interface IProps {
 
 // whatever the mode is actually doesn't matter due to the reason that api data is based on mode
 const List: React.FC<IProps> = ({ apiData }) => {
-  // // create list
-  // const createList = apiData.data.map((d) => {
-  //   if(d.bid_type === mode) {
-  //     // interval string
-  //     const intervalStr = `${d.time}:00 - ${d.time + 1}:00`;
-
-  //     return (
-  //       <div>
-  //         <div>
-  //           {/* 日期 */}
-  //           {d.date}
-  //         </div>
-  //         <div>
-  //           {/* 時段 */}
-  //           {intervalStr}
-  //         </div>
-  //         <div>
-  //           {/* 總度數 */}
-  //           {d.volume}
-  //         </div>
-  //         <div>
-  //           {/* 單價 */}
-  //           {d.price}
-  //         </div>
-  //         <div>
-  //           {/* 總金額 */}
-  //           ${d.total_price}
-  //         </div>
-  //         <div>
-  //           <button
-  //             type='button'
-  //           >
-  //             c
-  //           </button>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  //   return (null);
-  // });
-
   // create list
-  const testApiData = apiData.totalCount === 0 ? testBuyData : apiData;
-
-  const createList = testApiData.data.map((d) => {
+  const createList = apiData.data.map((d) => {
     // interval string
     const intervalStr = `${d.time}:00 - ${d.time + 1}:00`;
 
     return (
-      <div
-        className={classNames('bidding-submit-list-listitem-item-container')}
-      >
-        <div className={classNames('bidding-submit-list-listitem-item-date')}>
-          {/* 日期 */}
-          {d.date}
-        </div>
-        <div
-          className={classNames('bidding-submit-list-listitem-item-interval')}
-        >
-          {/* 時段 */}
-          {intervalStr}
-        </div>
-        <div className={classNames('bidding-submit-list-listitem-item-volume')}>
-          {/* 總度數 */}
-          {d.volume}kWh
-        </div>
-        <div className={classNames('bidding-submit-list-listitem-item-price')}>
-          {/* 單價 */}${d.price}/kWh
-        </div>
-        <div
-          className={classNames('bidding-submit-list-listitem-item-totalprice')}
-        >
-          {/* 總金額 */}${d.total_price}
-        </div>
-        <div
-          className={classNames(
-            'bidding-submit-list-listitem-item-button-container',
-          )}
-        >
-          <button type="button">c</button>
-        </div>
-      </div>
+      // <div
+      //   className={classNames('bidding-submit-list-listitem-item-container')}
+      // >
+
+      //   <div className={classNames('bidding-submit-list-listitem-item-date')}>
+      //     {/* 日期 */}
+      //     {d.date}
+      //   </div>
+      //   <div
+      //     className={classNames('bidding-submit-list-listitem-item-interval')}
+      //   >
+      //     {/* 時段 */}
+      //     {intervalStr}
+      //   </div>
+      //   <div className={classNames('bidding-submit-list-listitem-item-volume')}>
+      //     {/* 總度數 */}
+      //     {d.volume}kWh
+      //   </div>
+      //   <div className={classNames('bidding-submit-list-listitem-item-price')}>
+      //     {/* 單價 */}${d.price}/kWh
+      //   </div>
+      //   <div
+      //     className={classNames('bidding-submit-list-listitem-item-totalprice')}
+      //   >
+      //     {/* 總金額 */}${d.total_price}
+      //   </div>
+      //   <div
+      //     className={classNames(
+      //       'bidding-submit-list-listitem-item-button-container',
+      //     )}
+      //   >
+      //     <button
+      //       type="button"
+      //       className={classNames('bidding-submit-list-listitem-item-button-edit')}
+      //       // onClick={() => setEdit(true)}
+      //     >
+      //       e
+      //     </button>
+      //     <button
+      //       type="button"
+      //       className={classNames('bidding-submit-list-listitem-item-button-remove')}
+      //       // onClick={() => setEdit(true)}
+      //     >
+      //       r
+      //     </button>
+      //   </div>
+      // </div>
+      <ListItem
+        id={d.id}
+        type={d.bid_type}
+        time={d.time}
+        date={d.date}
+        interval={intervalStr}
+        volume={d.volume}
+        price={d.price}
+        totalPrice={d.total_price}
+      />
     );
   });
 

@@ -26,6 +26,10 @@
   border-bottom: #d1d2d1 solid 1px;
 }
 
+.bidding-submit-addbid-form-date:hover {
+  border-bottom: #707070 solid 1px;
+}
+
 // input[type="date"]::-webkit-inner-spin-button,
 // input[type="date"]::-webkit-calendar-picker-indicator {
 //     display: none;
@@ -45,6 +49,10 @@
   outline: 0;
   border: 0;
   border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-submit-addbid-form-select:hover {
+  border-bottom: #707070 solid 1px;
 }
 
 // .bidding-submit-addbid-form-select:hover, :active {
@@ -108,6 +116,11 @@
   display: none;
 }
 
+.bidding-submit-addbid-form-submit:active {
+  color: white;
+  background-color: #2e7e32;
+}
+
 .bidding-submit-addbid-form-reset {
   // margin: 0.5%;
   cursor: pointer;
@@ -124,4 +137,9 @@
 
 .bidding-submit-addbid-form-reset:disabled {
   display: none;
+}
+
+.bidding-submit-addbid-form-reset:active {
+  color: white;
+  background-color: #d32f2f;
 }
