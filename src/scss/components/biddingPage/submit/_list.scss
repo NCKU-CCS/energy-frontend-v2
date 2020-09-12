@@ -86,7 +86,7 @@
 }
 
 .bidding-submit-list-title-totalprice {
-  flex-basis: 17%;
+  flex-basis: 15%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -95,80 +95,7 @@
 }
 
 .bidding-submit-list-title-button {
-  flex-basis: 8%;
+  flex-basis: auto;
   height: 100%;
   // border: black solid 1px;
-}
-
-.bidding-submit-list-listitem-item-date {
-  flex-basis: 20%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: black solid 1px;
-  input[type="date"] {
-    width: 90%;
-    // border: red solid 1px;
-  }
-}
-
-.bidding-submit-list-listitem-item-interval {
-  flex-basis: 20%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: black solid 1px;
-}
-
-.bidding-submit-list-listitem-item-volume {
-  flex-basis: 17%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: black solid 1px;
-}
-
-.bidding-submit-list-listitem-item-price {
-  flex-basis: 18%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: black solid 1px;
-}
-
-.bidding-submit-list-listitem-item-totalprice {
-  flex-basis: 17%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: black solid 1px;
-}
-
-.bidding-submit-list-listitem-item-button-container {
-  flex-basis: 8%;
-  height: 100%;
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: center;
-  // align-items: center;
-  // border: green solid 1px;;
-}
-
-.bidding-submit-list-listitem-item-button-edit {
-  // flex-basis: 50%;
-  width: 50%;
-  height: 60%;
-  margin-top: 20%;
-}
-
-.bidding-submit-list-listitem-item-button-remove {
-  // flex-basis: 50%;
-  width: 50%;
-  height: 60%;
-  margin-top: 20%;
 }

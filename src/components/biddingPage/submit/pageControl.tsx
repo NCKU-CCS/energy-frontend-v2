@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 interface IProps {
+  type: string;
   totalCount: number;
   page: number;
   setPage(i: number): void;
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const PageControl: React.FC<IProps> = ({
+  type,
   totalCount,
   page,
   setPage,
@@ -73,7 +75,11 @@ const PageControl: React.FC<IProps> = ({
       setPrevDisabled(false);
       setNextDisabled(false);
     }
-  }, [page]);
+  }, [page, lastPage]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [type, perPage]);
 
   return (
     <div className={classNames('bidding-submit-pagecontrol-container-in')}>

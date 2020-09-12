@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
@@ -44,6 +45,12 @@ const ListItem: React.FC<IProps> = ({
   // new total price
   const [newTotalPrice, setNewTotalPrice] = useState<number>(totalPrice);
 
+  // pencil image
+  const [pencilImg, setPencilImg] = useState<string>('pencil-gray.png');
+
+  // trash image
+  const [trashImg, setTrashImg] = useState<string>('trash-gray.png');
+
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
     '0:00 - 1:00',
@@ -74,7 +81,11 @@ const ListItem: React.FC<IProps> = ({
 
   // map the interval array and return options
   const createOptions = intervalArr.map((str, i) => {
-    return <option value={i}>{str}</option>;
+    return (
+      <option value={i} selected={i === time}>
+        {str}
+      </option>
+    );
   });
 
   // edit a bid using api
@@ -151,13 +162,13 @@ const ListItem: React.FC<IProps> = ({
   // handle click edit
   const handleClickEdit = () => {
     setEdit(true);
-    console.log(newVolume, newPrice, totalPrice);
   };
 
   // handle click remove
   const handleClickRemove = () => {
     // setRemove(!remove);
-    removeBid();
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Are you sure to remove')) removeBid();
   };
 
   // handle click submit
@@ -175,6 +186,13 @@ const ListItem: React.FC<IProps> = ({
   useEffect(() => {
     setNewTotalPrice(newVolume * newPrice);
   }, [newVolume, newPrice]);
+
+  // while changing bid type, reset edit to false
+  useEffect(() => {
+    setEdit(false);
+    // if don't do this, it'll become orange
+    setPencilImg('pencil-gray.png');
+  }, [type]);
 
   return !edit ? (
     <div className={classNames('bidding-submit-listitem-container--show')}>
@@ -201,16 +219,32 @@ const ListItem: React.FC<IProps> = ({
           title="edit"
           className={classNames('bidding-submit-listitem-edit--show')}
           onClick={() => handleClickEdit()}
+          onMouseOver={() => setPencilImg('pencil-orange.png')}
+          onMouseOut={() => setPencilImg('pencil-gray.png')}
+          onFocus={() => 0}
+          onBlur={() => 0}
         >
-          e
+          <img
+            className={classNames('bidding-submit-listitem-edit-img--show')}
+            alt="pencil"
+            src={`${process.env.PUBLIC_URL}/biddingPage/${pencilImg}`}
+          />
         </button>
         <button
           type="button"
           title="remove"
           className={classNames('bidding-submit-listitem-remove--show')}
           onClick={() => handleClickRemove()}
+          onMouseOver={() => setTrashImg('trash-red.png')}
+          onMouseOut={() => setTrashImg('trash-gray.png')}
+          onFocus={() => 0}
+          onBlur={() => 0}
         >
-          r
+          <img
+            className={classNames('bidding-submit-listitem-remove-img--show')}
+            alt="trash"
+            src={`${process.env.PUBLIC_URL}/biddingPage/${trashImg}`}
+          />
         </button>
       </div>
     </div>
@@ -220,7 +254,7 @@ const ListItem: React.FC<IProps> = ({
         <input
           type="date"
           className={classNames('bidding-submit-listitem-date--edit')}
-          defaultValue={dayjs(date).format('YYYY-MM-DD')}
+          defaultValue={dayjs(new Date(date)).format('YYYY-MM-DD').toString()}
           onChange={(e) =>
             setNewDate(dayjs(e.target.value).format('YYYY/MM/DD'))
           }
@@ -230,7 +264,7 @@ const ListItem: React.FC<IProps> = ({
           defaultValue={interval}
           onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
         >
-          <option value="-1"> </option>
+          <option value={time}>{interval}</option>
           {createOptions}
         </select>
         <input

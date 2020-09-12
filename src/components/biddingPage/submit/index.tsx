@@ -91,6 +91,7 @@ const Submit: React.FC = () => {
       </div>
       <div className={classNames('bidding-submit-pagecontrol-container-out')}>
         <PageControl
+          type={type}
           totalCount={apiData.totalCount}
           page={apiData.page}
           perPage={perPage}
