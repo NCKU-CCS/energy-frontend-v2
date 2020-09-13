@@ -33,53 +33,6 @@ const List: React.FC<IProps> = ({ apiData }) => {
     const intervalStr = `${d.time}:00 - ${d.time + 1}:00`;
 
     return (
-      // <div
-      //   className={classNames('bidding-submit-list-listitem-item-container')}
-      // >
-
-      //   <div className={classNames('bidding-submit-list-listitem-item-date')}>
-      //     {/* 日期 */}
-      //     {d.date}
-      //   </div>
-      //   <div
-      //     className={classNames('bidding-submit-list-listitem-item-interval')}
-      //   >
-      //     {/* 時段 */}
-      //     {intervalStr}
-      //   </div>
-      //   <div className={classNames('bidding-submit-list-listitem-item-volume')}>
-      //     {/* 總度數 */}
-      //     {d.volume}kWh
-      //   </div>
-      //   <div className={classNames('bidding-submit-list-listitem-item-price')}>
-      //     {/* 單價 */}${d.price}/kWh
-      //   </div>
-      //   <div
-      //     className={classNames('bidding-submit-list-listitem-item-totalprice')}
-      //   >
-      //     {/* 總金額 */}${d.total_price}
-      //   </div>
-      //   <div
-      //     className={classNames(
-      //       'bidding-submit-list-listitem-item-button-container',
-      //     )}
-      //   >
-      //     <button
-      //       type="button"
-      //       className={classNames('bidding-submit-list-listitem-item-button-edit')}
-      //       // onClick={() => setEdit(true)}
-      //     >
-      //       e
-      //     </button>
-      //     <button
-      //       type="button"
-      //       className={classNames('bidding-submit-list-listitem-item-button-remove')}
-      //       // onClick={() => setEdit(true)}
-      //     >
-      //       r
-      //     </button>
-      //   </div>
-      // </div>
       <ListItem
         id={d.id}
         type={d.bid_type}

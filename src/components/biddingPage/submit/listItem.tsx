@@ -27,9 +27,6 @@ const ListItem: React.FC<IProps> = ({
   // edit or not
   const [edit, setEdit] = useState<boolean>(false);
 
-  // remove or not
-  // const [remove, setRemove] = useState<boolean>(false);
-
   // new Date
   const [newDate, setNewDate] = useState<string>(date);
 
@@ -166,7 +163,6 @@ const ListItem: React.FC<IProps> = ({
 
   // handle click remove
   const handleClickRemove = () => {
-    // setRemove(!remove);
     // eslint-disable-next-line no-restricted-globals
     if (confirm('Are you sure to remove')) removeBid();
   };
@@ -180,6 +176,8 @@ const ListItem: React.FC<IProps> = ({
   // handle click remove
   const handleClickCancel = () => {
     setEdit(false);
+    // if don't do this, it'll become orange
+    setPencilImg('pencil-gray.png');
   };
 
   // change total price
@@ -270,22 +268,23 @@ const ListItem: React.FC<IProps> = ({
         <input
           type="number"
           min="0"
+          step="0.1"
           className={classNames('bidding-submit-listitem-volume--edit')}
           defaultValue={volume}
-          onChange={(e) => setNewVolume(parseInt(e.target.value, 10))}
+          onChange={(e) => setNewVolume(parseFloat(e.target.value))}
         />
         <input
           type="number"
           min="0"
+          step="0.1"
           className={classNames('bidding-submit-listitem-price--edit')}
           defaultValue={price}
-          onChange={(e) => setNewPrice(parseInt(e.target.value, 10))}
+          onChange={(e) => setNewPrice(parseFloat(e.target.value))}
         />
         <input
           type="number"
           min="0"
           className={classNames('bidding-submit-listitem-total--edit')}
-          // defaultValue={totalPrice}
           value={newTotalPrice}
           disabled
         />

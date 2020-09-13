@@ -25,9 +25,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
-  // set reset button disabled
-  // const [resetDisabled, setResetDisabled] = useState<boolean>(true);
-
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
     '0:00 - 1:00',
@@ -144,14 +141,16 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           className={classNames('bidding-submit-addbid-form-volume')}
           type="number"
           min="0"
-          onChange={(e) => setVolume(parseInt(e.target.value, 10))}
+          step="0.1"
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
           required
         />
         <input
           className={classNames('bidding-submit-addbid-form-price')}
           type="number"
           min="0"
-          onChange={(e) => setPrice(parseInt(e.target.value, 10))}
+          step="0.1"
+          onChange={(e) => setPrice(parseFloat(e.target.value))}
           required
         />
         <input
