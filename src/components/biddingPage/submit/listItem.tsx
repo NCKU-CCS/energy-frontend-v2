@@ -182,7 +182,7 @@ const ListItem: React.FC<IProps> = ({
 
   // change total price
   useEffect(() => {
-    setNewTotalPrice(newVolume * newPrice);
+    setNewTotalPrice(parseFloat((newVolume * newPrice).toFixed(2)));
   }, [newVolume, newPrice]);
 
   // while changing bid type, reset edit to false

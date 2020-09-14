@@ -108,7 +108,8 @@ const AddBid: React.FC<IProps> = ({ type }) => {
   };
 
   useEffect(() => {
-    if (volume !== -1 && price !== -1) setTotalPrice(volume * price);
+    if (volume !== -1 && price !== -1)
+      setTotalPrice(parseFloat((volume * price).toFixed(2)));
     else setTotalPrice(0);
   }, [volume, price]);
 
