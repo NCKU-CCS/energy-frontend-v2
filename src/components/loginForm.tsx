@@ -42,6 +42,7 @@ const LoginForm: React.FC = () => {
       } else {
         sessionStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
       }
+      sessionStorage.setItem('Language', i18n.language);
       window.location.replace('/');
     } else {
       // Login Fail
