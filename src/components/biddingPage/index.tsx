@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
 import Submit from './submit';
+import Graph from './graph';
 
 const BiddingPageContainer: React.FC = () => {
   // mode
@@ -17,7 +18,9 @@ const BiddingPageContainer: React.FC = () => {
         <div className={classNames('bidding-a2-b1')}>
           <BiddingStatus mode={mode} />
         </div>
-        <div className={classNames('bidding-a2-b2')}>graph</div>
+        <div className={classNames('bidding-a2-b2')}>
+          <Graph mode={mode} />
+        </div>
       </div>
       <div className={classNames('bidding-a3')}>
         <Submit />
