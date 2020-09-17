@@ -9,7 +9,11 @@ interface IApiData {
   participants: number;
 }
 
-const BiddingStatus: React.FC = () => {
+interface IProps {
+  mode: string;
+}
+
+const BiddingStatus: React.FC<IProps> = ({ mode }) => {
   // api data
   const [apiData, setApiData] = useState<IApiData>({
     average_price: 0,
@@ -60,10 +64,11 @@ const BiddingStatus: React.FC = () => {
   return (
     <div className={classNames('bidding-status-container')}>
       <div className={classNames('bidding-status-participants-container-out')}>
-        <Participants participants={apiData.participants} />
+        <Participants mode={mode} participants={apiData.participants} />
       </div>
       <div className={classNames('bidding-status-average-container-out')}>
         <Average
+          mode={mode}
           averagePrice={apiData.average_price}
           averageVolume={apiData.average_volume}
         />

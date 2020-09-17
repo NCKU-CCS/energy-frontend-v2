@@ -2,10 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface IProps {
+  mode: string;
   participants: number;
 }
 
-const Participants: React.FC<IProps> = ({ participants }) => {
+const Participants: React.FC<IProps> = ({ mode, participants }) => {
   return (
     <div className={classNames('bidding-status-participants-container-in')}>
       <div
@@ -14,7 +15,9 @@ const Participants: React.FC<IProps> = ({ participants }) => {
         <img
           className={classNames('bidding-status-participants-image-img')}
           alt=""
-          src={`${process.env.PUBLIC_URL}/biddingPage/people.png`}
+          src={`${process.env.PUBLIC_URL}/biddingPage/people${
+            mode === '需量反應' ? '-b' : ''
+          }.png`}
         />
       </div>
       <div className={classNames('bidding-status-participants-text-container')}>
