@@ -4,6 +4,7 @@ import BiddingStatus from './status';
 import ModeButton from './modeButton';
 import Submit from './submit';
 import Graph from './graph';
+import Dr from './dr';
 
 const BiddingPageContainer: React.FC = () => {
   // mode
@@ -23,7 +24,7 @@ const BiddingPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('bidding-a3')}>
-        <Submit />
+        {mode === '綠能交易' ? <Submit /> : <Dr />}
       </div>
     </div>
   );
