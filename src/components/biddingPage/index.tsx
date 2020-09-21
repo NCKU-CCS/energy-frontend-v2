@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
 import Submit from './submit';
-import Graph from './graph';
 import Dr from './dr';
+import Graph from './graph';
 
 const BiddingPageContainer: React.FC = () => {
   // mode

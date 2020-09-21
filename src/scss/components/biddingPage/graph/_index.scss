@@ -1,4 +1,7 @@
-.bidding-graph-container-in {
+@import './barChart';
+@import './lineChart';
+
+.bidding-graph-container {
   width: 92%;
   margin-left: 5%;
   height: 98%;
