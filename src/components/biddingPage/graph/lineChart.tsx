@@ -67,7 +67,11 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   });
 
   useEffect(() => {
-    console.log(dataBuy, dataSell);
+    // test 解構賦值
+    dataBuy.map((d) => {
+      console.log(d.price, d.volume);
+      return null;
+    });
   }, [dataBuy, dataSell]);
 
   return (

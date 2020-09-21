@@ -111,11 +111,11 @@ const Graph: React.FC<IProps> = ({ mode }) => {
   }, []);
 
   useEffect(() => {
-    console.log('buy', apiDataBuy);
+    // console.log('buy', apiDataBuy);
   }, [apiDataBuy]);
 
   useEffect(() => {
-    console.log('sell', apiDataSell);
+    // console.log('sell', apiDataSell);
   }, [apiDataSell]);
 
   return (
