@@ -1,0 +1,68 @@
+.status-percentage{
+  border:1px yellowgreen solid;
+  height:100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-percentage-img{
+}
+
+.status-percentage-title{
+  width:100%;
+  height:13%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #686868;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.status-percentage-percentage{
+  width:100%;
+  height:30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #686868;
+  font-size: 56px;
+}
+
+// 1800 < size
+@media all and (min-width: 1800px){
+  .status-percentage-img{
+    width: 35%;
+  }
+}
+
+// 1600 < size < 1800
+@media all and (min-width: 1600px) and (max-width: 1800px){
+  .status-percentage-img{
+    width: 40%;
+  }
+}
+
+// 1200 < size < 1600
+@media all and (min-width: 1200px) and (max-width: 1600px){
+  .status-percentage-img{
+    width: 50%;
+  }
+}
+
+// 900 < size < 1200
+@media all and (min-width: 900px) and (max-width: 1200px){
+  .status-percentage-img{
+    width: 60%;
+  }
+}
+
+// 720 < size < 900
+@media all and (min-width: 720px) and (max-width: 900px){
+  .status-percentage-img{
+    width: 70%;
+  }
+}

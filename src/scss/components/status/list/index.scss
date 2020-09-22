@@ -1,0 +1,27 @@
+.status-list{
+  border:1px blue solid;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px){
+  .status-list{
+    height:65%;
+    width: 80%;
+  }
+}
+
+// 720 < size < 1280
+@media all and (min-width: 720px) and (max-width: 1280px){
+  .status-list{
+    height:65%;
+    width: 95%;
+  }
+}
+
+// size < 720
+@media all and (max-width: 720px){
+  .status-list{
+    height:70%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,93 @@
+@import './trainBox.scss/';
+
+.status-train{
+  height:100%;
+  width: 75%;
+}
+
+.status-train-train{
+  height:45%;
+  width: 100%;
+  border: yellowgreen 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.status-train-chain{
+  height:10%;
+  width: 5%;
+  background-color: #39625e;
+}
+
+.status-train-info{
+  height:55%;
+  width: 100%;
+  border: yellowgreen 1px solid;
+}
+
+.status-train-infoBox{
+  height:33%;
+  width: 100%;
+  border: red 1px solid;
+  display: flex;
+  font-size: 26px;
+  color: #4b4b4b;
+}
+
+.status-train-code{
+  height:100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-time{
+  height:100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-object{
+  height:100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-address{
+  height:100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-number{
+  height:100%;
+  width: 27.5%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-getNumber{
+  height:100%;
+  width: 27.5%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-price{
+  height:100%;
+  width: 22.5%;
+  display: flex;
+  align-items: center;
+}
+
+.status-train-getPrice{
+  height:100%;
+  width: 22.5%;
+  display: flex;
+  align-items: center;
+}

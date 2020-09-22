@@ -1,18 +1,29 @@
 @import './train/';
 @import './percentage/';
 @import './list/';
-@import './info/';
 
 .status{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-top: 2%;
 	width: 100%;
 	border:1px red solid;
+}
+
+.status-upContainer{
+	display: flex;	
+	border:1px green solid;
 }
 
 // 1280 < size
 @media all and (min-width: 1280px) {
 	.status{
 		height:80%;
+	}
+	.status-upContainer{
+		width: 80%;
+		height: 35%;
 	}
 }
 
@@ -27,6 +38,10 @@
 	.status{
 		height:85%;
 	}
+	.status-upContainer{
+		width: 95%;
+		height: 35%;
+	}
 }
 
 @media all and (min-width: 720px) and (max-width: 1280px) and (max-device-height: 800px){
@@ -35,10 +50,14 @@
 	}
 }
 
-// 320 < size
+// size < 720
 @media all and (max-width: 720px) {
 	.status{
 		height:90%;
+	}
+	.status-upContainer{
+		width: 100%;
+		height: 30%;
 	}
 }
 
