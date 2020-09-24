@@ -63,16 +63,15 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   const axisX = d3
     .axisBottom(scaleX)
     .ticks(5)
-    .tickSize(0)
-    .tickPadding(0)
+    .tickPadding(5)
     .tickFormat(null)
-    .tickSize(5);
+    .tickSize(0);
 
   // axis y
   const axisY = d3
     .axisLeft(scaleY)
     .ticks(4)
-    .tickPadding(0)
+    .tickPadding(5)
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right));
 
@@ -111,6 +110,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     svg
       .append('g')
       .call(axisX)
+      // .call((g: any) => g.select('.domain').remove())
       .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
       .attr('stroke-width', '0.5px')
       .attr('fill', 'none')
@@ -124,14 +124,9 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     svg
       .append('g')
       .call(axisY)
-      // .call((g: any) => g.select('.domain').remove())
+      .call((g: any) => g.select('.domain').remove())
       .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
-      // .call((g: any) =>
-      //   g
-      //     .select(':nth-child(3)')
-      //     .select('line')
-      //     .attr('stroke-dasharray', '3'),
-      // )
+      .call((g: any) => g.select(':nth-child(1)').select('text').remove())
       .attr('stroke-width', '0.5px')
       // .call((g: any) =>
       //   g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
@@ -162,6 +157,66 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', 'none')
       .attr('transform', `translate(${padding.left}, ${padding.top})`);
 
+    // append unit text 單價
+    svg
+      .append('text')
+      .attr('text-anchor', 'start')
+      .attr('x', padding.left / 3)
+      .attr('y', padding.top / 1.5)
+      .attr('fill', '#707070')
+      .attr('font-size', '15px')
+      .attr('font-weight', 'bold')
+      .text('單價');
+
+    // append unit text 量
+    svg
+      .append('text')
+      .attr('text-anchor', 'end')
+      .attr('x', width - padding.left / 3)
+      .attr('y', height - padding.bottom / 2)
+      .attr('fill', '#707070')
+      .attr('font-size', '15px')
+      .attr('font-weight', 'bold')
+      .text('量');
+
+    // append legend text 買
+    svg
+      .append('text')
+      .attr('text-anchor', 'middle')
+      .attr('x', width - padding.left * 3)
+      .attr('y', padding.top / 1.5)
+      .attr('fill', '#707070')
+      .attr('font-size', '15px')
+      .attr('font-weight', 'bold')
+      .text('買');
+
+    // append legend text 賣
+    svg
+      .append('text')
+      .attr('text-anchor', 'middle')
+      .attr('x', width - padding.left * 1.1)
+      .attr('y', padding.top / 1.5)
+      .attr('fill', '#707070')
+      .attr('font-size', '15px')
+      .attr('font-weight', 'bold')
+      .text('賣');
+
+    // append legend circle red
+    svg
+      .append('circle')
+      .attr('fill', '#d32f2f')
+      .attr('r', 5)
+      .attr('cx', width - padding.left * 3.5)
+      .attr('cy', padding.top / 1.9);
+
+    // append legend circle red
+    svg
+      .append('circle')
+      .attr('fill', '#2e7e32')
+      .attr('r', 5)
+      .attr('cx', width - padding.left * 1.6)
+      .attr('cy', padding.top / 1.9);
+
     // clear effect
     return () => {
       svg.selectAll('*').remove();
@@ -190,7 +245,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   useEffect(() => {
     setPadding({
       top: height * 0.1,
-      bottom: height * 0.15,
+      bottom: height * 0.1,
       left: width * 0.07,
       right: width * 0.07,
     });
