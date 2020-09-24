@@ -76,6 +76,13 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right));
 
+  // line
+  const line = d3
+    .line<IData>()
+    .x((d) => scaleX(d.volume))
+    .y((d) => scaleY(d.price))
+    .curve(d3.curveCardinal);
+
   // React Hook: useEffect -> render chart
   useEffect(() => {
     // svg
@@ -99,15 +106,6 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('width', width)
       .attr('height', height)
       .style('background-color', 'white');
-
-    // test
-    // svg
-    //   .append('rect')
-    //   .attr('x', 20)
-    //   .attr('y', 20)
-    //   .attr('width', width - 40)
-    //   .attr('height', height - 40)
-    //   .attr('fill', '#d1d2d1');
 
     // append axis x
     svg
@@ -142,6 +140,28 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('font-size', 10)
       .attr('transform', `translate(${width - padding.right}, ${padding.top})`);
 
+    // append line of buy
+    svg
+      .append('path')
+      .datum(dataBuy)
+      .attr('d', line)
+      .attr('y', 0)
+      .attr('stroke', '#d32f2f')
+      .attr('stroke-width', '2px')
+      .attr('fill', 'none')
+      .attr('transform', `translate(${padding.left}, ${padding.top})`);
+
+    // append line of sell
+    svg
+      .append('path')
+      .datum(dataSell)
+      .attr('d', line)
+      .attr('y', 0)
+      .attr('stroke', '#2e7e32')
+      .attr('stroke-width', '2px')
+      .attr('fill', 'none')
+      .attr('transform', `translate(${padding.left}, ${padding.top})`);
+
     // clear effect
     return () => {
       svg.selectAll('*').remove();
@@ -154,6 +174,11 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     let tmpMaxPrice = 0;
     let tmpMaxVolume = 0;
     dataBuy.map((d) => {
+      if (d.price > tmpMaxPrice) tmpMaxPrice = d.price;
+      if (d.volume > tmpMaxVolume) tmpMaxVolume = d.volume;
+      return null;
+    });
+    dataSell.map((d) => {
       if (d.price > tmpMaxPrice) tmpMaxPrice = d.price;
       if (d.volume > tmpMaxVolume) tmpMaxVolume = d.volume;
       return null;

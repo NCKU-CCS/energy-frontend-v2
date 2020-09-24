@@ -49,7 +49,7 @@ const Graph: React.FC<IProps> = ({ mode }) => {
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
-    // GET to User Info API
+    // GET to bidsubmit buy  API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=1000&page=1&bid_type=buy`,
       {
@@ -80,7 +80,7 @@ const Graph: React.FC<IProps> = ({ mode }) => {
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
-    // GET to User Info API
+    // GET to bidsubmit sell API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=1000&page=1&bid_type=sell`,
       {
@@ -121,7 +121,18 @@ const Graph: React.FC<IProps> = ({ mode }) => {
   return (
     <div className={classNames('bidding-graph-container')}>
       {mode === '綠能交易' ? (
-        <LineChart dataBuy={apiDataBuy.data} dataSell={apiDataSell.data} />
+        <LineChart
+          dataBuy={apiDataBuy.data.sort((a, b) => {
+            if (a.volume > b.volume) return 1;
+            if (a.volume < b.volume) return -1;
+            return 0;
+          })}
+          dataSell={apiDataSell.data.sort((a, b) => {
+            if (a.volume > b.volume) return 1;
+            if (a.volume < b.volume) return -1;
+            return 0;
+          })}
+        />
       ) : (
         <BarChart />
       )}
