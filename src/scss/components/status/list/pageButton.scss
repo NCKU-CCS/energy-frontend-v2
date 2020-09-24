@@ -1,0 +1,18 @@
+.status-list-pageButton-button{
+  border:1px #757575 solid;
+  width: 25%;
+  height: 100%;
+  border-radius: 2%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #474747;
+  cursor: pointer;
+}
+
+.status-list-pageButton-button--click{
+  background-color: #ffa200;
+  color: white;
+}

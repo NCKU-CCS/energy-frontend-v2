@@ -1,5 +1,13 @@
+@import './pageButton.scss/';
+
 .status-list{
   border:1px blue solid;
+}
+
+.status-list-buttonContainer{
+  width: 100%;
+  height: 10%;
+  display: flex;
 }
 
 // 1280 < size
