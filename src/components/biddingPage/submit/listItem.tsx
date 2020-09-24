@@ -117,6 +117,8 @@ const ListItem: React.FC<IProps> = ({
     if (response.status === 200) {
       // eslint-disable-next-line no-alert
       alert('success');
+      // reload the window
+      window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
       alert('failed');
@@ -150,6 +152,8 @@ const ListItem: React.FC<IProps> = ({
     if (response.status === 200) {
       // eslint-disable-next-line no-alert
       alert('success');
+      // reload the window
+      window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
       alert('failed');
@@ -289,7 +293,7 @@ const ListItem: React.FC<IProps> = ({
           disabled
         />
         <input
-          type="submit"
+          type="button"
           title="submit"
           value="&#10003;"
           className={classNames('bidding-submit-listitem-submit--edit')}

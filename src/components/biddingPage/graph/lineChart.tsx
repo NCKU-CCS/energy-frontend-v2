@@ -28,6 +28,40 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
+  // padding
+  // const padding = {
+  //   top: 0,
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0
+  // };
+
+  // max of data
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [maxVolume, setMaxVolume] = useState(0);
+
+  // d3 scale x (volume)
+  // const scaleX = d3
+  //   .scaleLinear()
+  //   .domain([0, maxVolume])
+  //   .range([0, width - 40]);
+
+  // d3 scale y (price)
+  const scaleY = d3
+    .scaleLinear()
+    .domain([0, maxPrice])
+    .range([height - 50, 0]);
+
+  // axis x
+
+  // axis y
+  const axisY = d3
+    .axisLeft(scaleY)
+    .ticks(4)
+    .tickPadding(0)
+    .tickFormat(null)
+    .tickSize(width - 40);
+
   // React Hook: useEffect -> render chart
   useEffect(() => {
     // svg
@@ -51,13 +85,34 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('height', height)
       .style('background-color', 'white');
 
+    // test
+    // svg
+    //   .append('rect')
+    //   .attr('x', 20)
+    //   .attr('y', 20)
+    //   .attr('width', width - 40)
+    //   .attr('height', height - 40)
+    //   .attr('fill', '#d1d2d1');
+
+    // append axis y
     svg
-      .append('rect')
-      .attr('x', 20)
-      .attr('y', 20)
-      .attr('width', width - 40)
-      .attr('height', height - 40)
-      .attr('fill', '#d1d2d1');
+      .append('g')
+      .call(axisY)
+      .call((g: any) => g.select('.domain').remove())
+      .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
+      // .call((g: any) =>
+      //   g
+      //     .select(':nth-child(3)')
+      //     .select('line')
+      //     .attr('stroke-dasharray', '3'),
+      // )
+      .attr('stroke-width', '0.5px')
+      // .call((g: any) =>
+      //   g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
+      // )
+      .attr('fill', 'none')
+      .attr('font-size', 10)
+      .attr('transform', `translate(${width - 20}, ${20})`);
 
     // clear effect
     return () => {
@@ -67,12 +122,19 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   });
 
   useEffect(() => {
-    // test 解構賦值
+    // set max of data, in order to use d3 scale
+    let tmpMaxPrice = 0;
+    let tmpMaxVolume = 0;
     dataBuy.map((d) => {
-      console.log(d.price, d.volume);
+      if (d.price > tmpMaxPrice) tmpMaxPrice = d.price;
+      if (d.volume > tmpMaxVolume) tmpMaxVolume = d.volume;
       return null;
     });
+    setMaxPrice(tmpMaxPrice);
+    setMaxVolume(tmpMaxVolume);
   }, [dataBuy, dataSell]);
+
+  useEffect(() => {}, [maxPrice, maxVolume]);
 
   return (
     <div className={classNames('bidding-graph-linechart-container')}>

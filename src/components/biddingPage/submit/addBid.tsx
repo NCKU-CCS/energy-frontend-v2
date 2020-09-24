@@ -66,34 +66,55 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
+    // alert(`${type}, ${date}, ${time}, ${volume}, ${price}, ${user.bearer}`);
     // POST to bidsubmit API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          bid_type: type,
-          start_time: `${date} ${time}`,
-          end_time: `${date} ${time + 1}`,
-          value: volume,
-          price,
-        }),
-      },
-    );
-    // success or not
-    if (response.status === 200) {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
+        {
+          method: 'POST',
+          // mode: 'cors',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            bid_type: type,
+            start_time: `${date} ${time}`,
+            end_time: `${date} ${time + 1}`,
+            value: volume,
+            price,
+          }),
+          // redirect: 'follow',
+        },
+      );
+      // success or not
+      if (response.status === 200) {
+        // eslint-disable-next-line no-alert
+        alert('success');
+        // reload the page
+        window.location.reload();
+      } else {
+        // eslint-disable-next-line no-alert
+        alert('failed');
+      }
+      setSubmitDisabled(true);
+    } catch (error) {
+      // console.error(`catch" ${error.toString()}`);
+      // console.log(JSON.stringify({
+      //   bid_type: type,
+      //   start_time: `${date} ${time}`,
+      //   end_time: `${date} ${time + 1}`,
+      //   value: volume,
+      //   price,
+      // }));
+      // console.log(new Headers({
+      //   // Authorization: `Bearer ${user.bearer}`,
+      //   'Content-Type': 'application/json',
+      // }));
       // eslint-disable-next-line no-alert
-      alert('success');
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('failed');
+      alert('err');
     }
-    setSubmitDisabled(true);
   };
 
   // handle click reset btn
@@ -163,7 +184,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         />
         <input
           className={classNames('bidding-submit-addbid-form-submit')}
-          type="submit"
+          type="button"
           value="&#10003;"
           title="Submit"
           onClick={() => addBid()}
