@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
-interface content {
+interface IContent {
   text: number;
   page: number;
   firstColor: boolean;
   changePage: (display: number) => void;
 }
 
-const PageButton: React.FC<content> = ({
+const PageButton: React.FC<IContent> = ({
   text,
   changePage,
   page,

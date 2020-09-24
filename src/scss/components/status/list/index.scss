@@ -1,13 +1,90 @@
 @import './pageButton.scss/';
+@import './content.scss/';
 
 .status-list{
   border:1px blue solid;
+  background-color: white;
 }
 
 .status-list-buttonContainer{
   width: 100%;
   height: 10%;
   display: flex;
+  
+}
+
+.status-list-titleContainer{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  border:1px blue solid;
+  font-size: 22px;
+  font-weight: bold;
+  color: #585858;
+}
+
+.status-list-contentContainer{
+  width: 100%;
+  height: 80%;
+  border:1px red solid;
+  overflow-y: scroll;
+}
+
+.status-list-titleType{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  margin-left: 5%;
+}
+
+.status-list-titleStatus{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-titleSchedule{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-titleDate{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-titleTime{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-titlePrice{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-titleURL{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
 }
 
 // 1280 < size

@@ -12,7 +12,13 @@
   cursor: pointer;
 }
 
+.status-list-pageButton-button:hover{
+  background-color: #ffa200;
+  color: white;
+}
+
 .status-list-pageButton-button--click{
   background-color: #ffa200;
   color: white;
+  border:none;
 }
