@@ -92,7 +92,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       // set svg's width and height
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
-      console.log('resize');
+      // console.log('resize');
     };
 
     // add resize event
