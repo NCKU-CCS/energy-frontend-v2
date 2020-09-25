@@ -163,6 +163,11 @@ const ListItem: React.FC<IProps> = ({
   // handle click edit
   const handleClickEdit = () => {
     setEdit(true);
+    setNewPrice(price);
+    setNewVolume(volume);
+    // alert(newPrice);
+    // alert(newVolume);
+    // alert(newTotalPrice);
   };
 
   // handle click remove
@@ -187,6 +192,7 @@ const ListItem: React.FC<IProps> = ({
   // change total price
   useEffect(() => {
     setNewTotalPrice(parseFloat((newVolume * newPrice).toFixed(2)));
+    // alert('setting');
   }, [newVolume, newPrice]);
 
   // while changing bid type, reset edit to false
@@ -289,6 +295,7 @@ const ListItem: React.FC<IProps> = ({
           type="number"
           min="0"
           className={classNames('bidding-submit-listitem-total--edit')}
+          // defaultValue={333333}
           value={newTotalPrice}
           disabled
         />
