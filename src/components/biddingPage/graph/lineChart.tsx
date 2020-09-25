@@ -89,9 +89,10 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
 
     // handle resize
     const handleResize = () => {
-      // svg's width and height
+      // set svg's width and height
       setWidth(svg.node().getBoundingClientRect().width);
       setHeight(svg.node().getBoundingClientRect().height);
+      console.log('resize');
     };
 
     // add resize event
@@ -172,7 +173,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', width - padding.left / 3)
+      .attr('x', width - padding.right / 3)
       .attr('y', height - padding.bottom / 2)
       .attr('fill', '#707070')
       .attr('font-size', '15px')
@@ -183,7 +184,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     svg
       .append('text')
       .attr('text-anchor', 'middle')
-      .attr('x', width - padding.left * 3)
+      .attr('x', width - padding.right * 3)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
       .attr('font-size', '15px')
@@ -194,7 +195,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     svg
       .append('text')
       .attr('text-anchor', 'middle')
-      .attr('x', width - padding.left * 1.1)
+      .attr('x', width - padding.right * 1.1)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
       .attr('font-size', '15px')
@@ -206,7 +207,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .append('circle')
       .attr('fill', '#d32f2f')
       .attr('r', 5)
-      .attr('cx', width - padding.left * 3.5)
+      .attr('cx', width - padding.right * 3.5)
       .attr('cy', padding.top / 1.9);
 
     // append legend circle red
@@ -214,7 +215,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .append('circle')
       .attr('fill', '#2e7e32')
       .attr('r', 5)
-      .attr('cx', width - padding.left * 1.6)
+      .attr('cx', width - padding.right * 1.6)
       .attr('cy', padding.top / 1.9);
 
     // clear effect
@@ -242,6 +243,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     setMaxVolume(tmpMaxVolume);
   }, [dataBuy, dataSell]);
 
+  // set padding
   useEffect(() => {
     setPadding({
       top: height * 0.1,
