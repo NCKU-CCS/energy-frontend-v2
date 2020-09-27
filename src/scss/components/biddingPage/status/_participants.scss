@@ -22,6 +22,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  // border: blue solid 1px;
 }
 
 .bidding-status-participants-text-container {
@@ -40,7 +41,7 @@
   justify-content: center;
   align-items: flex-end;
   text-align: center;
-  font-size: 36px;
+  // font-size: 36px;
   // border: red solid 1px;
 }
 
@@ -50,32 +51,77 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 12px;
+  // font-size: 12px;
   text-align: center;
   // border: red solid 1px;
 }
 
 // 1920 < size
 @media all and (min-width: 1920px) {
-
+  .bidding-status-participants-text-value {
+    font-size: 40px;
+  }
+  .bidding-status-participants-text-title {
+    font-size: 16px;
+  }
 }
 
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
-
+  .bidding-status-participants-text-value {
+    font-size: 36px;
+  }
+  .bidding-status-participants-text-title {
+    font-size: 12px;
+  }
 }
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-
+  .bidding-status-participants-text-value {
+    font-size: 30px;
+  }
+  .bidding-status-participants-text-title {
+    font-size: 12px;
+  }
 }
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-
+  .bidding-status-participants-image-container {
+    flex-basis: 40%;
+  }
+  .bidding-status-participants-text-container {
+    flex-basis: 60%;
+  }
+  .bidding-status-participants-text-value {
+    height: 60%;
+    font-size: 30px;
+  }
+  .bidding-status-participants-text-title {
+    height: 40%;
+    font-size: 12px;
+  }
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
-
+  .bidding-status-participants-image-container {
+    flex-basis: 0%;
+  }
+  .bidding-status-participants-text-container {
+    flex-basis: 100%;
+  }
+  .bidding-status-participants-text-value {
+    font-size: 24px;
+    // border: black solid 1px;
+  }
+  .bidding-status-participants-text-title {
+    font-size: 12px;
+    // border: black solid 1px;
+  }
+  .bidding-status-participants-container-in {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
