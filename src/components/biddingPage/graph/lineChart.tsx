@@ -56,7 +56,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   // d3 scale y (price)
   const scaleY = d3
     .scaleLinear()
-    .domain([0, maxPrice])
+    .domain([0, maxPrice + 2])
     .range([height - (padding.top + padding.bottom), 0]);
 
   // axis x

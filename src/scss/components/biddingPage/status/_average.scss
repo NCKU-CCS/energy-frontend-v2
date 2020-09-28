@@ -144,13 +144,13 @@
     height: 30%;
   }
   .bidding-status-average-text-price-value {
-    font-size: 20px;
+    font-size: 24px;
   }
   .bidding-status-average-text-price-title {
     font-size: 12px;
   }
   .bidding-status-average-text-volume-value {
-    font-size: 20px;
+    font-size: 24px;
   }
   .bidding-status-average-text-volume-title {
     font-size: 12px;
@@ -159,6 +159,14 @@
 
 // 600 < size <= 720
 @media all and (min-width: 600px) and (max-width: 720px) {
+  .bidding-status-average-text-price-container {
+    width: 50%;
+    height: 100%;
+  }
+  .bidding-status-average-text-volume-container {
+    width: 50%;
+    height: 100%;
+  }
   .bidding-status-average-text-price-value {
     font-size: 20px;
   }
