@@ -8,13 +8,13 @@
   display: flex;
   flex-wrap: wrap;
   height: 80%;
-  border: black solid 2px;
+  // border: black solid 2px;
 }
 
 .bidding-a1 {
   flex-basis: 100%;
   height: 10%;
-  border: red solid 1px;
+  // border: red solid 1px;
 }
 
 .bidding-a2 {
@@ -22,7 +22,7 @@
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-  border: red solid 1px;
+  // border: red solid 1px;
 }
 
 .bidding-a2-b1 {
@@ -30,27 +30,27 @@
   height: 30%;
   display: flex;
   flex-wrap: wrap;
-  border: green solid 2px;
+  // border: green solid 2px;
   overflow: hidden;
 }
 
 .bidding-a2-b1-c1 {
   flex-basis: 40%;
   height: 100%;
-  border: blue solid 2px;
+  // border: blue solid 2px;
 }
 
 .bidding-a2-b1-c2 {
   flex-basis: 60%;
   height: 100%;
-  border: blue solid 2px;
+  // border: blue solid 2px;
 }
 
 .bidding-a2-b2 {
   flex-basis: 100%;
   height: 70%;
   overflow: hidden;
-  border: green solid 2px;
+  // border: green solid 2px;
 }
 
 .bidding-a3 {
@@ -58,7 +58,7 @@
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-  border: red solid 1px;
+  // border: red solid 1px;
 }
 
 // 1920 < size
@@ -90,7 +90,7 @@
 
   .bidding-a3 {
     flex-basis: 100%;
-    height: 50%;
+    height: 65%;
   }
 
   .bidding-a2-b1 {

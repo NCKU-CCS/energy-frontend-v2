@@ -87,7 +87,7 @@
 }
 
 // 320 < size <= 720
-@media all and (min-width: 320px) and (max-width: 720px) {
+@media all and (min-width: 321px) and (max-width: 720px) {
   .bidding-status-participants-image-container {
     flex-basis: 40%;
   }
