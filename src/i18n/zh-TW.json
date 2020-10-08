@@ -41,15 +41,7 @@
     "pageTitle": "投標"
   },
   "indexpage": {
-    "pageTitle": "首頁",
-    "biddingInfoTitle": "得標資訊",
-    "biddingNumber": "得標度數",
-    "biddingPrice": "單價",
-    "tradingTime": "目前電力交易時間",
-    "buy": "買",
-    "sell": "賣",
-    "sellSuccess": "得標",
-    "sellFail": "未得標"
+    "pageTitle": "首頁"
   },
   "powerinfopage": {
     "pageTitle": "電力資訊"
