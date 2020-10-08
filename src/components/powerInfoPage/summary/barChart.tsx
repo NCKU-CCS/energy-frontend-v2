@@ -70,7 +70,9 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
         'y',
         apiData.PV >= 0
           ? height * 0.849
-          : height * 0.849 - scale(40) - scale(Math.abs(apiData.PV)),
+          : height * 0.849 -
+              Number(scale(40)) -
+              Number(scale(Math.abs(apiData.PV))),
       )
       .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.PV)))
@@ -84,7 +86,9 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
         'y',
         apiData.WT >= 0
           ? height * 0.849
-          : height * 0.849 - scale(40) - scale(Math.abs(apiData.WT)),
+          : height * 0.849 -
+              Number(scale(40)) -
+              Number(scale(Math.abs(apiData.WT))),
       )
       .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.WT)))
@@ -98,7 +102,9 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
         'y',
         apiData.ESS >= 0
           ? height * 0.849
-          : height * 0.849 - scale(40) - scale(Math.abs(apiData.ESS)),
+          : height * 0.849 -
+              Number(scale(40)) -
+              Number(scale(Math.abs(apiData.ESS))),
       )
       .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.ESS)))
@@ -112,7 +118,9 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
         'y',
         apiData.EV >= 0
           ? height * 0.849
-          : height * 0.849 - scale(40) - scale(Math.abs(apiData.EV)),
+          : height * 0.849 -
+              Number(scale(40)) -
+              Number(scale(Math.abs(apiData.EV))),
       )
       .attr('width', width * 0.154)
       .attr('height', scale(Math.abs(apiData.EV)))

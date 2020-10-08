@@ -152,44 +152,44 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   // PV -> 太陽能
   const linePV = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => equipScaleY(d.PV))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(equipScaleY(d.PV)))
     .curve(d3.curveCardinal);
 
   // WT -> 風能
   const lineWT = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => equipScaleY(d.WT))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(equipScaleY(d.WT)))
     .curve(d3.curveCardinal);
 
   // ESS -> 儲能系統
   const lineESS = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => equipScaleY(d.ESS))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(equipScaleY(d.ESS)))
     .curve(d3.curveCardinal);
 
   // EV -> 充電樁
   const lineEV = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => equipScaleY(d.EV))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(equipScaleY(d.EV)))
     .curve(d3.curveCardinal);
 
   // line -> loadLine
   // Consume ->
   const lineConsume = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => loadScaleY(d.Consume))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(loadScaleY(d.Consume)))
     .curve(d3.curveCardinal);
 
   // Generate -> 產電
   const lineGenerate = d3
     .line<IApiData>()
-    .x((d: IApiData) => scaleX(new Date(d.Date)))
-    .y((d: IApiData) => loadScaleY(d.Generate))
+    .x((d: IApiData) => Number(scaleX(new Date(d.Date))))
+    .y((d: IApiData) => Number(loadScaleY(d.Generate)))
     .curve(d3.curveCardinal);
 
   // React-Hook: useEffect -> render chart
@@ -822,12 +822,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine
             .attr(
               'x1',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -839,68 +841,78 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'y1',
               padding.top +
                 Math.min(
-                  equipScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    equipScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].PV,
+                        )
+                      ].PV,
+                    ),
                   ),
-                  equipScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    equipScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].WT,
+                        )
+                      ].WT,
+                    ),
                   ),
-                  equipScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    equipScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].ESS,
+                        )
+                      ].ESS,
+                    ),
                   ),
-                  equipScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    equipScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].EV,
+                        )
+                      ].EV,
+                    ),
                   ),
                 ),
             )
             .attr(
               'x2',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1086,12 +1098,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCirclePV
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1101,30 +1115,34 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              equipScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                equipScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].PV,
+                    )
+                  ].PV,
+                ),
               ) + padding.top,
             );
 
           tooltipCircleWT
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1134,30 +1152,34 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              equipScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                equipScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].WT,
+                    )
+                  ].WT,
+                ),
               ) + padding.top,
             );
 
           tooltipCircleESS
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1167,30 +1189,34 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              equipScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                equipScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].ESS,
+                    )
+                  ].ESS,
+                ),
               ) + padding.top,
             );
 
           tooltipCircleEV
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1200,18 +1226,20 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              equipScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                equipScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].EV,
+                    )
+                  ].EV,
+                ),
               ) + padding.top,
             );
         })
@@ -1427,12 +1455,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipLine
             .attr(
               'x1',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1444,42 +1474,48 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'y1',
               padding.top +
                 Math.min(
-                  loadScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    loadScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].Consume,
+                        )
+                      ].Consume,
+                    ),
                   ),
-                  loadScaleY(
-                    apiDataArr[
-                      bisectDate(
-                        apiDataArr,
-                        timeFormat(
-                          scaleX.invert(
-                            d3.mouse(d3.event.currentTarget)[0] -
-                              (padding.axisX + padding.left),
+                  Number(
+                    loadScaleY(
+                      apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
                           ),
-                        ),
-                      )
-                    ].Generate,
+                        )
+                      ].Generate,
+                    ),
                   ),
                 ),
             )
             .attr(
               'x2',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1627,12 +1663,14 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipCircleConsume
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1642,30 +1680,34 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              loadScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                loadScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].Consume,
+                    )
+                  ].Consume,
+                ),
               ) + padding.top,
             );
 
           tooltipCircleGenerate
             .attr(
               'cx',
-              scaleX(
-                new Date(
-                  timeFormat(
-                    scaleX.invert(
-                      d3.mouse(d3.event.currentTarget)[0] -
-                        (padding.axisX + padding.left),
+              Number(
+                scaleX(
+                  new Date(
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
+                      ),
                     ),
                   ),
                 ),
@@ -1675,18 +1717,20 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             )
             .attr(
               'cy',
-              loadScaleY(
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
+              Number(
+                loadScaleY(
+                  apiDataArr[
+                    bisectDate(
+                      apiDataArr,
+                      timeFormat(
+                        scaleX.invert(
+                          d3.mouse(d3.event.currentTarget)[0] -
+                            (padding.axisX + padding.left),
+                        ),
                       ),
-                    ),
-                  )
-                ].Generate,
+                    )
+                  ].Generate,
+                ),
               ) + padding.top,
             );
         })
