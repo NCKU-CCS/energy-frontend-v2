@@ -1,0 +1,15 @@
+.home-time-info {
+	border: solid 1px black;
+}
+
+// 1280 < size
+// @media all and (min-width: 1280px) {}
+
+// 720 < size <= 1280
+// @media all and (min-width: 720px) and (max-width: 1280px) {}
+
+// 320 < size <= 720px - horizen layout
+// @media all and (min-width: 320px) and (max-width: 720px) {}
+
+// size <= 320px
+// @media all and (max-width: 320px) {}

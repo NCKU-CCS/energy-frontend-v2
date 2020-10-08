@@ -1,0 +1,48 @@
+@import "bidInfo";
+@import "graphContainer";
+@import "timeInfo";
+
+.home {
+	height: 100%;
+	width: 100%;
+	display: grid;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px) {
+	.home {
+		grid-template-rows: 7fr 10fr;
+		grid-template-columns: 1fr 1fr;
+		gap: 26px;
+		padding: 15px 60px 50px 60px;
+	}
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+	.home {
+		grid-template-rows: 7fr 10fr;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+		padding: 15px 40px 50px 40px;
+	}
+}
+
+// 320 < size <= 720px - horizen layout
+@media all and (min-width: 320px) and (max-width: 720px) {
+	.home {
+		grid-template-rows: 9fr 10fr 12fr;
+		grid-template-columns: none;
+		gap: 17px;
+		padding: 15px 20px 30px 20px;
+	}
+}
+
+// size <= 320px
+@media all and (max-width: 320px) {
+	.home {
+		grid-template-rows: 1fr 1fr 0.7fr;
+		gap: 16px;
+		padding: 15px 15px;
+	}
+}
