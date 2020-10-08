@@ -5,14 +5,12 @@ import TimeInfo from './timeInfo';
 import BidInfo from './bidInfo';
 import GraphContainer from './graphContainer';
 
-const IndexPage: React.FC = () => {
-  return (
-    <div className={classnames('home')}>
-      <TimeInfo />
-      <BidInfo />
-      <GraphContainer />
-    </div>
-  );
-};
+const IndexPage: React.FC = () => (
+  <div className={classnames('home')}>
+    <TimeInfo />
+    <BidInfo />
+    <GraphContainer />
+  </div>
+);
 
 export default IndexPage;
