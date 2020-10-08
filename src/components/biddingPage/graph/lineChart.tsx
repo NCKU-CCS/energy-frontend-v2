@@ -78,8 +78,8 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   // line
   const line = d3
     .line<IData>()
-    .x((d) => scaleX(d.volume))
-    .y((d) => scaleY(d.price))
+    .x((d) => Number(scaleX(d.volume)))
+    .y((d) => Number(scaleY(d.price)))
     .curve(d3.curveCardinal);
 
   // React Hook: useEffect -> render chart

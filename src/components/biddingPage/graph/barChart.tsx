@@ -134,8 +134,11 @@ const BarChart: React.FC = () => {
       .data(data)
       .enter()
       .append('rect')
-      .attr('x', (d: IData) => padding.left + scaleX(d.time) - barWidth / 2)
-      .attr('y', (d: IData) => height - padding.bottom - scaleY(d.dr))
+      .attr(
+        'x',
+        (d: IData) => padding.left + Number(scaleX(d.time)) - barWidth / 2,
+      )
+      .attr('y', (d: IData) => height - padding.bottom - Number(scaleY(d.dr)))
       .attr('width', barWidth)
       .attr('height', (d: IData) => scaleY(d.dr))
       .attr('fill', (d: IData) => {
