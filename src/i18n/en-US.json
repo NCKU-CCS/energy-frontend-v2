@@ -41,7 +41,15 @@
     "pageTitle": "Bidding"
   },
   "indexpage": {
-    "pageTitle": "Home"
+    "pageTitle": "Home",
+    "biddingInfoTitle": "Bidding information",
+    "biddingNumber": "Number",
+    "biddingPrice": "Price",
+    "tradingTime": "Trading time",
+    "buy": "Buy",
+    "sell": "Sell",
+    "sellSuccess": "Get",
+    "sellFail": "Fail"
   },
   "powerinfopage": {
     "pageTitle": "Power Information"
