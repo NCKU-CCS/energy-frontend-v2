@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import InfoBox from './infoBox';
 
 interface IProps {
   id: string;
@@ -254,6 +255,13 @@ const ListItem: React.FC<IProps> = ({
             src={`${process.env.PUBLIC_URL}/biddingPage/${trashImg}`}
           />
         </button>
+      </div>
+      <div
+        className={classNames(
+          'bidding-submit-listitem-view-container-out--320',
+        )}
+      >
+        <InfoBox />
       </div>
     </div>
   ) : (
