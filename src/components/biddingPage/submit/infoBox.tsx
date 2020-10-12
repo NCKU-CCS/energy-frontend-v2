@@ -58,7 +58,70 @@ const InfoBox: React.FC = () => {
             <div
               className={classNames('bidding-submit-infobox-content-center')}
             >
-              {!edit ? <div>show</div> : <div>edit</div>}
+              <div
+                className={classNames(
+                  'bidding-submit-infobox-content-center-inside',
+                )}
+              >
+                {!edit ? (
+                  <div
+                    className={classNames(
+                      'bidding-submit-infobox-content-center-inside--show',
+                    )}
+                  >
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-date--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      日期 :&nbsp;
+                    </div>
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-interval--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      時段 :&nbsp;
+                    </div>
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-volume--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      總度數 :&nbsp;
+                    </div>
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-price--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      單價 :&nbsp;
+                    </div>
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-total--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      總金額 :&nbsp;
+                    </div>
+                    <div
+                      className={classNames(
+                        'bidding-submit-infobox-content-center-inside-url--show',
+                        'bidding-submit-infobox-content-center-inside-item--show',
+                      )}
+                    >
+                      連結 :&nbsp;
+                    </div>
+                  </div>
+                ) : (
+                  <div>edit</div>
+                )}
+              </div>
             </div>
             <div
               className={classNames('bidding-submit-infobox-content-footer')}

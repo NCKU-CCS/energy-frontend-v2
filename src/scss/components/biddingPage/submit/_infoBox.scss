@@ -64,6 +64,9 @@
 .bidding-submit-infobox-content-center {
   width: 100%;
   height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   // border: black solid 1px;
 }
 
@@ -112,4 +115,49 @@
   background-color: transparent;
   color: white;
   border-left: white solid 0.5px;
+}
+
+.bidding-submit-infobox-content-center-inside {
+  width: 90%;
+  height: 90%;
+  // border: red solid 1px;
+}
+
+.bidding-submit-infobox-content-center-inside--show {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bidding-submit-infobox-content-center-inside-item--show {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  border: red solid 1px;
+}
+
+.bidding-submit-infobox-content-center-inside-date--show {
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.bidding-submit-infobox-content-center-inside-interval--show {
+  flex-basis: 100%;
+}
+
+.bidding-submit-infobox-content-center-inside-volume--show {
+  flex-basis: 50%;
+}
+
+.bidding-submit-infobox-content-center-inside-price--show {
+  flex-basis: 50%;
+}
+
+.bidding-submit-infobox-content-center-inside-total--show {
+  flex-basis: 50%;
+}
+
+.bidding-submit-infobox-content-center-inside-url--show {
+  flex-basis: 50%;
 }
