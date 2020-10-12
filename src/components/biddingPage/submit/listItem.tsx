@@ -261,7 +261,16 @@ const ListItem: React.FC<IProps> = ({
           'bidding-submit-listitem-view-container-out--320',
         )}
       >
-        <InfoBox />
+        <InfoBox
+          id={id}
+          type={type}
+          time={time}
+          date={date}
+          interval={interval}
+          volume={volume}
+          price={price}
+          totalPrice={totalPrice}
+        />
       </div>
     </div>
   ) : (
