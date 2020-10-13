@@ -190,6 +190,14 @@ const ListItem: React.FC<IProps> = ({
     setPencilImg('pencil-gray.png');
   };
 
+  // insert spaces to date string for RWD
+  const insertSpaces = (str: string) => {
+    return `${str.substring(0, 4)} /${str.substring(5, 7)}/${str.substring(
+      8,
+      10,
+    )}`;
+  };
+
   // change total price
   useEffect(() => {
     setNewTotalPrice(parseFloat((newVolume * newPrice).toFixed(2)));
@@ -206,19 +214,20 @@ const ListItem: React.FC<IProps> = ({
   return !edit ? (
     <div className={classNames('bidding-submit-listitem-container--show')}>
       <div className={classNames('bidding-submit-listitem-date--show')}>
-        {date}
+        {insertSpaces(date)}
+        {/* 2020&thinsp;/&thinsp;12&thinsp;/&thinsp;12 */}
       </div>
       <div className={classNames('bidding-submit-listitem-interval--show')}>
         {interval}
       </div>
       <div className={classNames('bidding-submit-listitem-volume--show')}>
-        {volume}kWh
+        {volume}&thinsp;kWh
       </div>
       <div className={classNames('bidding-submit-listitem-price--show')}>
-        ${price}/kWh
+        $&thinsp;{price}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('bidding-submit-listitem-total--show')}>
-        ${totalPrice}
+        $&thinsp;{totalPrice}
       </div>
       <div
         className={classNames('bidding-submit-listitem-button-container--show')}

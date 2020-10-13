@@ -26,7 +26,7 @@ const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
           <div
             className={classNames('bidding-status-average-text-price-value')}
           >
-            ${averagePrice}/kWh
+            ${averagePrice.toFixed(0)}/kWh
           </div>
           <div
             className={classNames('bidding-status-average-text-price-title')}
@@ -40,7 +40,7 @@ const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
           <div
             className={classNames('bidding-status-average-text-volume-value')}
           >
-            {averageVolume}kWh
+            {averageVolume.toFixed(0)}kWh
           </div>
           <div
             className={classNames('bidding-status-average-text-volume-title')}
