@@ -1,11 +1,18 @@
 .status-train-trainBox-outline{
-  background-color: #ffa000;
   height: 80%;
   width:12%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100%;
+}
+
+.status-train-trainBox-outline-orange{
+  background-color: #ffa000;
+}
+
+.status-train-trainBox-outline-white{
+  background-color: #ebebeb;
 }
 
 .status-train-trainBox-content{

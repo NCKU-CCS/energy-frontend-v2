@@ -14,8 +14,33 @@ interface IListInfo {
   };
 }
 
+interface ITrainInfo {
+  bids: {
+    price: number;
+    value: number;
+  };
+  counterpart: {
+    address: string;
+    name: string;
+  };
+  id: string;
+  status: string;
+  upload: string;
+  wins: {
+    price: number;
+    value: number;
+  };
+}
+
+interface IStatus {
+  status: string;
+}
+
 const Status: React.FC = () => {
   const [listInfo, setListInfo] = useState<IListInfo[]>([]);
+  const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
+  const [nowIndex, setNowIndex] = useState<number>(-1);
+  const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
 
   const fetchMatchResult = async () => {
     // get bearer token
@@ -40,6 +65,8 @@ const Status: React.FC = () => {
       // fetch success
       const data = await response.json();
       setListInfo(data);
+      setTrainInfo(data);
+      setStatusInfo(data);
     }
   };
 
@@ -52,10 +79,10 @@ const Status: React.FC = () => {
   return (
     <div className={classnames('status')}>
       <div className={classnames('status-upContainer')}>
-        <Percentage />
-        <Train />
+        <Percentage input={statusInfo} nowIndex={nowIndex} />
+        <Train input={trainInfo} index={nowIndex} />
       </div>
-      <List listInfo={listInfo} />
+      <List listInfo={listInfo} changeIndex={setNowIndex} />
     </div>
   );
 };

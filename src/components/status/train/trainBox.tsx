@@ -3,13 +3,27 @@ import classnames from 'classnames';
 
 interface content {
   text: string;
+  index: number;
+  nowindex: number;
 }
 
-const TrainBox: React.FC<content> = ({ text }) => {
+const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
+  let outline = '';
+  if (index <= nowindex)
+    outline = classnames(
+      'status-train-trainBox-outline',
+      'status-train-trainBox-outline-orange',
+    );
+  else
+    outline = classnames(
+      'status-train-trainBox-outline',
+      'status-train-trainBox-outline-white',
+    );
+
   const Text = () => {
     if (text !== '得標或未得標') {
       return (
-        <div className={classnames('status-train-trainBox-outline')}>
+        <div className={outline}>
           <div className={classnames('status-train-trainBox-content')}>
             {text}
           </div>
@@ -18,7 +32,7 @@ const TrainBox: React.FC<content> = ({ text }) => {
     }
 
     return (
-      <div className={classnames('status-train-trainBox-outline')}>
+      <div className={outline}>
         <div className={classnames('status-train-trainBox-content')}>
           得標
           <br />
@@ -28,7 +42,6 @@ const TrainBox: React.FC<content> = ({ text }) => {
       </div>
     );
   };
-
   return <Text />;
 };
 

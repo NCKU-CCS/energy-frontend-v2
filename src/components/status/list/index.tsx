@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import PageButton from './pageButton';
 import Content from './content';
@@ -15,23 +15,52 @@ interface IListInfo {
 
 interface IAListInfo {
   listInfo: IListInfo[];
+  changeIndex: (display: number) => void;
 }
 
-const List: React.FC<IAListInfo> = ({ listInfo }) => {
+const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
   const [page, setPage] = useState<number>(1);
-  const [nowIndex, setNowIndex] = useState<number>(0);
-  const listItem = listInfo.map((content, index) => (
-    <Content
-      index={index}
-      nowIndex={nowIndex}
-      changeIndex={setNowIndex}
-      bidType={content.bid_type}
-      status={content.status}
-      date={content.date}
-      time={content.time}
-      price={content.bids.price}
-    />
-  ));
+  const [nowIndex, setNowIndex] = useState<number>(-1);
+
+  useEffect(() => {
+    changeIndex(nowIndex);
+  }, [nowIndex]);
+
+  const listItem = listInfo.map((content, index) => {
+    const info = (
+      <Content
+        index={index}
+        nowIndex={nowIndex}
+        changeIndex={setNowIndex}
+        bidType={content.bid_type}
+        status={content.status}
+        date={content.date}
+        time={content.time}
+        price={content.bids.price}
+      />
+    );
+    if (page === 1) return info;
+    if (page === 2) {
+      if (content.status === '投標中' || content.status === '已投標')
+        return info;
+      return null;
+    }
+    if (page === 3) {
+      if (
+        content.status === '未得標' ||
+        content.status === '已得標' ||
+        content.status === '執行中'
+      )
+        return info;
+      return null;
+    }
+    if (page === 4) {
+      if (content.status === '結算中' || content.status === '已結算')
+        return info;
+      return null;
+    }
+    return null;
+  });
 
   return (
     <div className={classnames('status-list')}>
