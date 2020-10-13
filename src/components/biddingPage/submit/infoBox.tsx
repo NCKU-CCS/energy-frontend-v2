@@ -159,6 +159,12 @@ const InfoBox: React.FC<IProps> = ({
     }
   };
 
+  // handle click close
+  const handleClickClose = () => {
+    setOpenInfoBox(false);
+    setEdit(false);
+  };
+
   // handle click left button
   const handleClickLeft = () => {
     if (edit) {
@@ -210,7 +216,7 @@ const InfoBox: React.FC<IProps> = ({
                 className={classNames(
                   'bidding-submit-infobox-content-header-close',
                 )}
-                onClick={() => setOpenInfoBox(false)}
+                onClick={() => handleClickClose()}
               >
                 X
               </button>
