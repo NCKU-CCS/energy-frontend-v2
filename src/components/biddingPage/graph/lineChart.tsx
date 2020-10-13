@@ -47,6 +47,10 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   const [maxPrice, setMaxPrice] = useState(0);
   const [maxVolume, setMaxVolume] = useState(0);
 
+  // display data
+  const [displayBuy, setDisplayBuy] = useState<IData[]>([]);
+  const [displaySell, setDisplaySell] = useState<IData[]>([]);
+
   // d3 scale x (volume)
   const scaleX = d3
     .scaleLinear()
@@ -80,7 +84,36 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     .line<IData>()
     .x((d) => Number(scaleX(d.volume)))
     .y((d) => Number(scaleY(d.price)))
-    .curve(d3.curveCardinal);
+    .curve(d3.curveCatmullRom);
+
+  // get data to display on chart
+  useEffect(() => {
+    const tmpBuyArr: IData[] = [];
+    const tmpSellArr: IData[] = [];
+    const now = new Date();
+    const validTime = now.getHours() + 1 === 24 ? 0 : now.getHours() + 1;
+    const dateStr: string = `${now.getFullYear().toString()}/${(
+      now.getMonth() + 1
+    ).toString()}/${now.getDate().toString()}`;
+    dataBuy.map((d) => {
+      if (d.date === dateStr && d.time === validTime && validTime !== 0) {
+        tmpBuyArr.push(d);
+        // console.log('push', tmpBuyArr);
+      }
+      return null;
+    });
+    setDisplayBuy(tmpBuyArr);
+    dataSell.map((d) => {
+      if (d.date === dateStr && d.time === validTime && validTime !== 0) {
+        tmpSellArr.push(d);
+        // console.log('push', tmpSellArr);
+      }
+      return null;
+    });
+    setDisplaySell(tmpSellArr);
+  }, [dataBuy, dataSell]);
+
+  useEffect(() => {}, [displayBuy, displaySell]);
 
   // React Hook: useEffect -> render chart
   useEffect(() => {
@@ -139,7 +172,13 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     // append line of buy
     svg
       .append('path')
-      .datum(dataBuy)
+      .datum(
+        displayBuy.sort((a, b) => {
+          if (a.volume > b.volume) return 1;
+          if (a.volume < b.volume) return -1;
+          return 0;
+        }),
+      )
       .attr('d', line)
       .attr('y', 0)
       .attr('stroke', '#d32f2f')
@@ -150,7 +189,13 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     // append line of sell
     svg
       .append('path')
-      .datum(dataSell)
+      .datum(
+        displaySell.sort((a, b) => {
+          if (a.volume > b.volume) return 1;
+          if (a.volume < b.volume) return -1;
+          return 0;
+        }),
+      )
       .attr('d', line)
       .attr('y', 0)
       .attr('stroke', '#2e7e32')
@@ -229,19 +274,19 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     // set max of data, in order to use d3 scale
     let tmpMaxPrice = 0;
     let tmpMaxVolume = 0;
-    dataBuy.map((d) => {
+    displayBuy.map((d) => {
       if (d.price > tmpMaxPrice) tmpMaxPrice = d.price;
       if (d.volume > tmpMaxVolume) tmpMaxVolume = d.volume;
       return null;
     });
-    dataSell.map((d) => {
+    displaySell.map((d) => {
       if (d.price > tmpMaxPrice) tmpMaxPrice = d.price;
       if (d.volume > tmpMaxVolume) tmpMaxVolume = d.volume;
       return null;
     });
     setMaxPrice(tmpMaxPrice);
     setMaxVolume(tmpMaxVolume);
-  }, [dataBuy, dataSell]);
+  }, [displayBuy, displaySell]);
 
   // set padding
   useEffect(() => {

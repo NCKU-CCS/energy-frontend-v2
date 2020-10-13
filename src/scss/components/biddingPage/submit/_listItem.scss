@@ -53,17 +53,18 @@
 }
 
 .bidding-submit-listitem-button-container--show {
-  flex-basis: auto;
+  flex-basis: 10%;
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  // border: green solid 1px;
+  // border: blue solid 1px;
 }
 
 .bidding-submit-listitem-edit--show {
   cursor: pointer;
-  width: 50%;
+  flex-basis: 100%;
   // margin-top: 25%;
   height: 50%;
   display: inline-flex;
@@ -77,14 +78,14 @@
 
 .bidding-submit-listitem-edit-img--show {
   // border: red solid 1px;
-  width: 100%;
-  height: 100%;
+  width: 65%;
+  height: 65%;
   object-fit: contain;
 }
 
 .bidding-submit-listitem-remove--show {
   cursor: pointer;
-  width: 50%;
+  flex-basis: 100%;
   // margin-top: 5%;
   height: 50%;
   display: inline-flex;
@@ -93,14 +94,14 @@
   outline: 0;
   border: 0;
   background-color: transparent;
-  border-left: #d1d2d1 solid 1px;
+  border-top: #d1d2d1 solid 1px;
   // border: green solid 1px;
 }
 
 .bidding-submit-listitem-remove-img--show {
   // border: red solid 1px;
-  width: 100%;
-  height: 100%;
+  width: 65%;
+  height: 65%;
   object-fit: contain;
 }
 
