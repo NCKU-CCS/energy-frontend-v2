@@ -50,6 +50,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   // display data
   const [displayBuy, setDisplayBuy] = useState<IData[]>([]);
   const [displaySell, setDisplaySell] = useState<IData[]>([]);
+  const [displayAll, setDisplayAll] = useState<IData[]>([]);
 
   // d3 scale x (volume)
   const scaleX = d3
@@ -90,6 +91,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   useEffect(() => {
     const tmpBuyArr: IData[] = [];
     const tmpSellArr: IData[] = [];
+    const tmpAllArr: IData[] = [];
     const now = new Date();
     const validTime = now.getHours() + 1 === 24 ? 0 : now.getHours() + 1;
     const dateStr: string = `${now.getFullYear().toString()}/${(
@@ -98,6 +100,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     dataBuy.map((d) => {
       if (d.date === dateStr && d.time === validTime && validTime !== 0) {
         tmpBuyArr.push(d);
+        tmpAllArr.push(d);
         // console.log('push', tmpBuyArr);
       }
       return null;
@@ -106,11 +109,13 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     dataSell.map((d) => {
       if (d.date === dateStr && d.time === validTime && validTime !== 0) {
         tmpSellArr.push(d);
+        tmpAllArr.push(d);
         // console.log('push', tmpSellArr);
       }
       return null;
     });
     setDisplaySell(tmpSellArr);
+    setDisplayAll(tmpAllArr);
   }, [dataBuy, dataSell]);
 
   useEffect(() => {}, [displayBuy, displaySell]);
@@ -133,6 +138,29 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
 
     // first time handle resize
     handleResize();
+
+    // // tooltip canvas
+    // const tooltipCvs = svg
+    //   .append('rect')
+    //   .attr('width', width - padding.left - padding.right)
+    //   .attr('height', height - padding.top - padding.bottom)
+    //   .attr('x', padding.left)
+    //   .attr('y', padding.top)
+    //   .attr('opacity', 0.2);
+
+    // // tooltip circle of buy
+    // const tooltipCircleBuy = svg
+    //   .append('circle')
+    //   .attr('fill', '#717171')
+    //   .attr('r', 4)
+    //   .style('display', 'none');
+
+    // // tooltip circle of sell
+    // const tooltipCircleSell = svg
+    //   .append('circle')
+    //   .attr('fill', '#717171')
+    //   .attr('r', 4)
+    //   .style('display', 'none');
 
     // svg styles
     svg
@@ -202,6 +230,31 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('stroke-width', '2px')
       .attr('fill', 'none')
       .attr('transform', `translate(${padding.left}, ${padding.top})`);
+
+    // append circle of buy
+    const circles = svg
+      .selectAll('circle')
+      .data(displayAll)
+      .enter()
+      .append('circle')
+      .attr('cx', (d: IData) => padding.left + Number(scaleX(d.volume)))
+      .attr('cy', (d: IData) => padding.top + Number(scaleY(d.price)))
+      .attr('r', 4)
+      .attr('fill', (d: IData) =>
+        d.bid_type === 'buy' ? '#d32f2f' : '#2e7e32',
+      );
+
+    // test
+    circles
+      .on('mouseover', (d: IData) => {
+        // eslint-disable-next-line no-console
+        console.log('in', d.bid_type);
+        circles.style('cursor', 'pointer');
+      })
+      .on('mouseout', (d: IData) => {
+        // eslint-disable-next-line no-console
+        console.log('out', d.bid_type);
+      });
 
     // append unit text 單價
     svg
