@@ -115,7 +115,7 @@ const PageControl: React.FC<IProps> = ({
       >
         &#60;
       </button>
-      <div>
+      <div className={classNames('bidding-submit-pagecontrol-text')}>
         {page} / {lastPage()}
       </div>
       <button

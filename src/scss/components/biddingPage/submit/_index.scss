@@ -26,20 +26,20 @@
   height: 70%;
   display: flex;
   flex-wrap: wrap;
-  // border: blue solid 2px;
+  // border: blue solid 1px;
 }
 
 .bidding-submit-addbid-container-out {
   flex-basis: 100%;
   height: 8%;
   margin-top: 2%;
-  // border: blue solid 2px;
+  // border: blue solid 1px;
 }
 
 .bidding-submit-pagecontrol-container-out {
   flex-basis: 100%;
   height: 10%;
-  // border: pink solid 2px;
+  // border: blue solid 1px;
 }
 
 // 1920 < size
@@ -69,5 +69,24 @@
   .bidding-submit-container-in {
     flex-basis: 90%;
     margin-left: 5%;
+  }
+
+  .bidding-submit-modebutton-container-out {
+    height: 15%;
+  }
+
+  .bidding-submit-list-container-out {
+    height: 55%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .bidding-submit-addbid-container-out {
+    height: 15%;
+    margin-top: 0%;
+  }
+
+  .bidding-submit-pagecontrol-container-out {
+    height: 15%;
   }
 }

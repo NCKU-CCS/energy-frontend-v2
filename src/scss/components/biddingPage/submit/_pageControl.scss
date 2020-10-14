@@ -6,6 +6,7 @@
   align-items: center;
   color: #707070;
   background-color: white;
+  font-size: 1vw;
 }
 
 .bidding-submit-pagecontrol-select {
@@ -17,9 +18,11 @@
   color: #707070;
   background-color: #f1f2f1;
   border-radius: 5px;
+  // border: red solid 1px
 }
 
 .bidding-submit-pagecontrol-btn {
+  cursor: pointer;
   margin-right: 2.5%;
   margin-left: 2.5%;
   border-radius: 5px;
@@ -27,7 +30,7 @@
   outline: 0;
   color: #707070;
   background-color: #f1f2f1;
-  cursor: pointer;
+  // border: red solid 1px
 }
 
 .bidding-submit-pagecontrol-btn:active {
