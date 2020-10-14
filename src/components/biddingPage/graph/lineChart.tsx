@@ -270,7 +270,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('x', padding.left / 3)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('單價');
 
@@ -281,7 +281,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('x', width - padding.right / 3)
       .attr('y', height - padding.bottom / 2)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('量');
 
@@ -292,7 +292,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('x', width - padding.right * 3)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('買');
 
@@ -303,7 +303,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('x', width - padding.right * 1.1)
       .attr('y', padding.top / 1.5)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('賣');
 
@@ -312,16 +312,16 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .append('circle')
       .attr('fill', '#d32f2f')
       .attr('r', 5)
-      .attr('cx', width - padding.right * 3.5)
-      .attr('cy', padding.top / 1.9);
+      .attr('cx', width - padding.right * 3.7)
+      .attr('cy', padding.top / 1.8);
 
-    // append legend circle red
+    // append legend circle green
     svg
       .append('circle')
       .attr('fill', '#2e7e32')
       .attr('r', 5)
-      .attr('cx', width - padding.right * 1.6)
-      .attr('cy', padding.top / 1.9);
+      .attr('cx', width - padding.right * 1.8)
+      .attr('cy', padding.top / 1.8);
 
     // clear effect
     return () => {
@@ -351,9 +351,9 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   // set padding
   useEffect(() => {
     setPadding({
-      top: height * 0.1,
+      top: height * 0.13,
       bottom: height * 0.1,
-      left: width * 0.07,
+      left: width * 0.09,
       right: width * 0.07,
     });
   }, [width, height]);
