@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import ListItem from './listItem';
+import AddBidBtn from './addBidBtn';
 
 interface IData {
   bid_type: string;
@@ -62,8 +63,10 @@ const List: React.FC<IProps> = ({ apiData }) => {
         <div className={classNames('bidding-submit-list-title-totalprice')}>
           總金額
         </div>
-        <div className={classNames('bidding-submit-list-title-button')} />
-        {/* for button */}
+        <div className={classNames('bidding-submit-list-title-button')}>
+          <AddBidBtn />
+          {/* for button */}
+        </div>
       </div>
       <div className={classNames('bidding-submit-list-listitem-container')}>
         {createList}
