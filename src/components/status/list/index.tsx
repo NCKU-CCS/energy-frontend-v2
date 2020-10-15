@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import PageButton from './pageButton';
 import Content from './content';
 
@@ -11,6 +12,7 @@ interface IListInfo {
   bids: {
     price: number;
   };
+  transaction_hash: string;
 }
 
 interface IAListInfo {
@@ -19,6 +21,8 @@ interface IAListInfo {
 }
 
 const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
+  const { t } = useTranslation();
+
   const [page, setPage] = useState<number>(1);
   const [nowIndex, setNowIndex] = useState<number>(-1);
 
@@ -37,6 +41,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         date={content.date}
         time={content.time}
         price={content.bids.price}
+        hash={content.transaction_hash}
       />
     );
     if (page === 1) return info;
@@ -86,13 +91,27 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         />
       </div>
       <div className={classnames('status-list-titleContainer')}>
-        <div className={classnames('status-list-titleType')}>交易類型</div>
-        <div className={classnames('status-list-titleStatus')}>狀態</div>
-        <div className={classnames('status-list-titleSchedule')}>進度</div>
-        <div className={classnames('status-list-titleDate')}>日期</div>
-        <div className={classnames('status-list-titleTime')}>投標時段</div>
-        <div className={classnames('status-list-titlePrice')}>平均單價</div>
-        <div className={classnames('status-list-titleURL')}>連結</div>
+        <div className={classnames('status-list-titleType')}>
+          {t('statuspage.type')}
+        </div>
+        <div className={classnames('status-list-titleStatus')}>
+          {t('statuspage.state')}
+        </div>
+        <div className={classnames('status-list-titleSchedule')}>
+          {t('statuspage.progress')}
+        </div>
+        <div className={classnames('status-list-titleDate')}>
+          {t('statuspage.date')}
+        </div>
+        <div className={classnames('status-list-titleTime')}>
+          {t('statuspage.time')}
+        </div>
+        <div className={classnames('status-list-titlePrice')}>
+          {t('statuspage.averagePrice')}
+        </div>
+        <div className={classnames('status-list-titleURL')}>
+          {t('statuspage.url')}
+        </div>
       </div>
       <div className={classnames('status-list-contentContainer')}>
         {listItem}

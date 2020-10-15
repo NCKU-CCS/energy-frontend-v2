@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IStatus {
   status: string;
@@ -11,6 +12,8 @@ interface IInput {
 }
 
 const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
+  const { t } = useTranslation();
+
   const [imgSrc, setImgSrc] = useState<string>(
     `${process.env.PUBLIC_URL}/status/box_grey.png`,
   );
@@ -42,7 +45,9 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
         src={imgSrc}
         className={classnames('status-percentage-img')}
       />
-      <div className={classnames('status-percentage-title')}>達成率</div>
+      <div className={classnames('status-percentage-title')}>
+        {t('statuspage.achievementRate')}
+      </div>
       <div className={classnames('status-percentage-percentage')}>
         {percent}%
       </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IContent {
   text: number;
@@ -14,6 +15,8 @@ const PageButton: React.FC<IContent> = ({
   page,
   firstColor,
 }) => {
+  const { t } = useTranslation();
+
   const button = classnames('status-list-pageButton-button');
   const buttonClick = classnames(
     'status-list-pageButton-button',
@@ -26,10 +29,10 @@ const PageButton: React.FC<IContent> = ({
   else buttonColor = buttonClick;
 
   let buttonText = '';
-  if (text === 1) buttonText = '全部';
-  else if (text === 2) buttonText = '競標';
-  else if (text === 3) buttonText = '執標中';
-  else if (text === 4) buttonText = '結算';
+  if (text === 1) buttonText = t('statuspage.all');
+  else if (text === 2) buttonText = t('statuspage.bid');
+  else if (text === 3) buttonText = t('statuspage.handle');
+  else if (text === 4) buttonText = t('statuspage.settle');
 
   useEffect(() => {
     if (page !== text) setColor(false);

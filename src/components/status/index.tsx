@@ -12,6 +12,7 @@ interface IListInfo {
   bids: {
     price: number;
   };
+  transaction_hash: string;
 }
 
 interface ITrainInfo {

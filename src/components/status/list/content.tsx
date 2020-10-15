@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IContent {
   index: number;
@@ -10,6 +11,7 @@ interface IContent {
   date: string;
   time: string;
   price: number;
+  hash: string;
 }
 
 const Content: React.FC<IContent> = ({
@@ -21,7 +23,10 @@ const Content: React.FC<IContent> = ({
   date,
   time,
   price,
+  hash,
 }) => {
+  const { t } = useTranslation();
+
   // state
   const [color, setColor] = useState<boolean>(false);
 
@@ -61,13 +66,13 @@ const Content: React.FC<IContent> = ({
   let bidTypeText = '';
   if (bidType === 'buy') {
     bidTypeClass = bidTypeBuy;
-    bidTypeText = '買';
+    bidTypeText = t('statuspage.buy');
   } else if (bidType === 'sell') {
     bidTypeClass = bidTypeSell;
-    bidTypeText = '賣';
+    bidTypeText = t('statuspage.sell');
   } else if (bidType === 'dr') {
     bidTypeClass = bidTypeNeed;
-    bidTypeText = '需量反應';
+    bidTypeText = t('statuspage.need');
   }
 
   // status box
@@ -108,6 +113,17 @@ const Content: React.FC<IContent> = ({
     );
   };
 
+  let i18nStatus = '';
+  if (status === '投標中') i18nStatus = t('statuspage.bidding');
+  else if (status === '已投標') i18nStatus = t('statuspage.finish');
+  else if (status === '已得標') i18nStatus = t('statuspage.win');
+  else if (status === '未得標') i18nStatus = t('statuspage.fail');
+  else if (status === '執行中') i18nStatus = t('statuspage.executing');
+  else if (status === '結算中') i18nStatus = t('statuspage.settling');
+  else if (status === '已結算') i18nStatus = t('statuspage.end');
+
+  const href = 'https://ropsten.etherscan.io/tx/'.concat(hash);
+
   return (
     <div className={classnames('status-list-content-contentContainer')}>
       <button
@@ -117,14 +133,23 @@ const Content: React.FC<IContent> = ({
         aria-labelledby="onClick info"
       />
       <div className={bidTypeClass}>{bidTypeText}</div>
-      <div className={classnames('status-list-content-status')}>{status}</div>
+      <div className={classnames('status-list-content-status')}>
+        {i18nStatus}
+      </div>
       <StatusBox />
       <div className={classnames('status-list-content-date')}>{date}</div>
       <div className={classnames('status-list-content-time')}>{time}</div>
       <div className={classnames('status-list-content-price')}>
         ${price}/kWh
       </div>
-      <div className={classnames('status-list-content-URL')}>&lt; URL &gt;</div>
+      <a
+        className={classnames('status-list-content-URL')}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        &lt; URL &gt;
+      </a>
     </div>
   );
 };

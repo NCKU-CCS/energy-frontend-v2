@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import TrainBox from './trainBox';
 
 interface ITrainInfo {
@@ -37,6 +38,8 @@ interface IInput {
 }
 
 const Train: React.FC<IInput> = ({ input, index }) => {
+  const { t } = useTranslation();
+
   const Chain = () => <div className={classnames('status-train-chain')} />;
 
   const [nowIndex, setNowIndex] = useState<number>(-1);
@@ -113,32 +116,32 @@ const Train: React.FC<IInput> = ({ input, index }) => {
       <div className={classnames('status-train-info')}>
         <div className={classnames('status-train-infoBox')}>
           <div className={classnames('status-train-code')}>
-            交易編號：{allInfo.id}
+            {t('statuspage.id')}：{allInfo.id}
           </div>
           <div className={classnames('status-train-time')}>
-            上鏈時間：{allInfo.upload}
+            {t('statuspage.uploadTime')}：{allInfo.upload}
           </div>
         </div>
         <div className={classnames('status-train-infoBox')}>
           <div className={classnames('status-train-object')}>
-            對象：{allInfo.counterpartName}
+            {t('statuspage.target')}：{allInfo.counterpartName}
           </div>
           <div className={classnames('status-train-address')}>
-            地址：{allInfo.counterpartAddress}
+            {t('statuspage.address')}：{allInfo.counterpartAddress}
           </div>
         </div>
         <div className={classnames('status-train-infoBox')}>
           <div className={classnames('status-train-number')}>
-            投標度數：{allInfo.bidsValue}
+            {t('statuspage.bidsValue')}：{allInfo.bidsValue}kWh
           </div>
           <div className={classnames('status-train-getNumber')}>
-            得標度數：{allInfo.winsValue}
+            {t('statuspage.winsValue')}：{allInfo.winsValue}kWh
           </div>
           <div className={classnames('status-train-price')}>
-            總金額：＄{allInfo.bidsPrice}
+            {t('statuspage.bidsPrice')}：＄{allInfo.bidsPrice}
           </div>
           <div className={classnames('status-train-getPrice')}>
-            結算金額：${allInfo.winsPrice}
+            {t('statuspage.winsPrice')}：${allInfo.winsPrice}
           </div>
         </div>
       </div>

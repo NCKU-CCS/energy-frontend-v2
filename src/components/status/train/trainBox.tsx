@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface content {
   text: string;
@@ -8,6 +9,8 @@ interface content {
 }
 
 const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
+  const { t } = useTranslation();
+
   let outline = '';
   if (index <= nowindex)
     outline = classnames(
@@ -19,13 +22,19 @@ const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
       'status-train-trainBox-outline',
       'status-train-trainBox-outline-white',
     );
+  let i18nText = '';
+  if (text === '投標中') i18nText = t('statuspage.bidding');
+  else if (text === '已投標') i18nText = t('statuspage.finish');
+  else if (text === '執行中') i18nText = t('statuspage.executing');
+  else if (text === '結算中') i18nText = t('statuspage.settling');
+  else if (text === '已結算') i18nText = t('statuspage.end');
 
   const Text = () => {
     if (text !== '得標或未得標') {
       return (
         <div className={outline}>
           <div className={classnames('status-train-trainBox-content')}>
-            {text}
+            {i18nText}
           </div>
         </div>
       );
@@ -34,10 +43,11 @@ const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
     return (
       <div className={outline}>
         <div className={classnames('status-train-trainBox-content')}>
-          得標
+          {t('statuspage.win')}
           <br />
-          或<br />
-          未得標
+          {t('statuspage.or')}
+          <br />
+          {t('statuspage.fail')}
         </div>
       </div>
     );

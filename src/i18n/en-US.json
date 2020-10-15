@@ -47,6 +47,37 @@
     "pageTitle": "Power Information"
   },
   "statuspage": {
-    "pageTitle": "Bidding Status"
+    "pageTitle": "Bidding Status",
+    "achievementRate": "Achievement Rate",
+    "id": "ID",
+    "uploadTime": "Upload Time",
+    "target": "Target",
+    "address": "Address",
+    "bidsPrice": "Price",
+    "bidsValue": "Value",
+    "winsPrice": "Win Price",
+    "winsValue": "Win Value",
+    "all": "All",
+    "bid": "Bid",
+    "handle": "Handle",
+    "settle": "Settle",
+    "type": "Type",
+    "state": "State",
+    "progress": "Progress",
+    "date": "Date",
+    "time": "Time",
+    "averagePrice": "Average Price",
+    "url": "URL",
+    "buy": "Buy",
+    "sell": "Sell",
+    "need": "Need",
+    "bidding": "Bidding",
+    "finish": "Finish",
+    "win": "Win",
+    "or": "or",
+    "fail": "Fail",
+    "executing": "Executing",
+    "settling": "Settling",
+    "end": "End"
   }
 }
