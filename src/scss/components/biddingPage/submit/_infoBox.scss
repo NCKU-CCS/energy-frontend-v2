@@ -164,6 +164,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    // border: red solid 1px;
+    font-size: 4vw;
+  }
   // border: red solid 1px;
 }
 
