@@ -24,10 +24,11 @@ interface IApiData {
 
 interface IProps {
   apiData: IApiData;
+  type: string;
 }
 
 // whatever the mode is actually doesn't matter due to the reason that api data is based on mode
-const List: React.FC<IProps> = ({ apiData }) => {
+const List: React.FC<IProps> = ({ apiData, type }) => {
   // create list
   const createList = apiData.data.map((d) => {
     // interval string
@@ -64,7 +65,7 @@ const List: React.FC<IProps> = ({ apiData }) => {
           總金額
         </div>
         <div className={classNames('bidding-submit-list-title-button')}>
-          <AddBidBtn />
+          <AddBidBtn type={type} />
           {/* for button */}
         </div>
       </div>

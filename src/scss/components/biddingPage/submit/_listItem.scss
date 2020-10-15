@@ -115,9 +115,14 @@
 
 .bidding-submit-listitem-container--edit {
   height: 20%;
+  font-size: 1vw;
   display: flex;
   align-items: center;
   border-bottom: #d1d2d1 solid 1px;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    // border: red solid 1px;
+    font-size: 1.8vh;
+  }
 }
 
 .bidding-submit-listitem-date--edit {

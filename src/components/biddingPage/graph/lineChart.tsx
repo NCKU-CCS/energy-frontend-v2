@@ -239,7 +239,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .append('circle')
       .attr('cx', (d: IData) => padding.left + Number(scaleX(d.volume)))
       .attr('cy', (d: IData) => padding.top + Number(scaleY(d.price)))
-      .attr('r', 4)
+      .attr('r', 3.3)
       .attr('fill', (d: IData) =>
         d.bid_type === 'buy' ? '#d32f2f' : '#2e7e32',
       )
@@ -248,7 +248,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
         (d: IData) =>
           `【${d.bid_type === 'buy' ? '買' : '賣'}】\n度數 : ${
             d.volume
-          } kWh\n單價 : $${d.price}/ kWh`,
+          } kWh\n單價 : $ ${d.price} / kWh`,
       );
 
     // test

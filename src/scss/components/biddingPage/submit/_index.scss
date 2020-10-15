@@ -75,11 +75,12 @@
   }
 
   .bidding-submit-modebutton-container-out {
-    height: 15%;
+    height: 10%;
+    // border: red solid 1px;
   }
 
   .bidding-submit-list-container-out {
-    height: 55%;
+    height: 75%;
     display: flex;
     flex-wrap: wrap;
   }
@@ -87,6 +88,7 @@
   .bidding-submit-addbid-container-out {
     height: 15%;
     margin-top: 0%;
+    display: none;
   }
 
   .bidding-submit-pagecontrol-container-out {

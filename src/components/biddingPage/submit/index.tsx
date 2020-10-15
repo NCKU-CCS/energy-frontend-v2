@@ -84,7 +84,7 @@ const Submit: React.FC = () => {
         <TypeButton setType={setType} />
       </div>
       <div className={classNames('bidding-submit-list-container-out')}>
-        <List apiData={apiData} />
+        <List apiData={apiData} type={type} />
       </div>
       <div className={classNames('bidding-submit-addbid-container-out')}>
         <AddBid type={type} />

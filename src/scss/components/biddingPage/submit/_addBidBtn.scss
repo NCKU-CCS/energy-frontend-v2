@@ -4,7 +4,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
   // border: red solid 1px;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    // border: red solid 1px;
+    font-size: 4vw;
+  }
 }
 
 .bidding-submit-addbidbtn-btn {
@@ -115,7 +120,7 @@
 }
 
 .bidding-submit-addbidbtn-infobox-center-item-input {
-  // width: 50%;
+  width: 60%;
   border: 0;
   outline: 0;
   text-align: right;
@@ -137,6 +142,12 @@
   // border: red solid 1px;
 }
 
+.bidding-submit-addbidbtn-infobox-footer-leftbtn:disabled {
+  cursor: default;
+  color: #ffd387;
+  // border: red solid 1px;
+}
+
 .bidding-submit-addbidbtn-infobox-footer-rightbtn {
   cursor: pointer;
   display: inline-flex;
@@ -149,4 +160,31 @@
   color: white;
   border-left: white solid 0.5px;
   // border: red solid 1px;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-submit-addbidbtn-container-in {
+    display: flex;
+  }
 }
