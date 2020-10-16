@@ -14,16 +14,23 @@ const AddBid: React.FC<IProps> = ({ type }) => {
   const [time, setTime] = useState<number>(-1);
 
   // volume
-  const [volume, setVolume] = useState<number>(-1);
+  const [volume, setVolume] = useState<number>(0);
 
   // price
-  const [price, setPrice] = useState<number>(-1);
+  const [price, setPrice] = useState<number>(0);
 
   // total price
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
+
+  // click reset btn or not
+  const [reset, setReset] = useState<boolean>(true);
+
+  // images
+  const [checkImg, setCheckImg] = useState<string>('check-gray');
+  const [resetImg, setResetImg] = useState<string>('cancel-gray');
 
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
@@ -119,24 +126,30 @@ const AddBid: React.FC<IProps> = ({ type }) => {
 
   // handle click reset btn
   const handleClickReset = () => {
+    // clear data
     setDate('null');
     setTime(-1);
-    setVolume(-1);
-    setPrice(-1);
+    setVolume(0);
+    setPrice(0);
     setTotalPrice(0);
     setSubmitDisabled(true);
+
+    // clear input field
+    setReset(true);
     // setResetDisabled(true);
   };
 
   useEffect(() => {
-    if (volume !== -1 && price !== -1)
+    if (volume !== 0 && price !== 0)
       setTotalPrice(parseFloat((volume * price).toFixed(2)));
     else setTotalPrice(0);
   }, [volume, price]);
 
   useEffect(() => {
-    if (date !== 'null' && time !== -1 && volume !== -1 && price !== -1)
+    if (date !== 'null' && time !== -1 && volume !== 0 && price !== 0)
       setSubmitDisabled(false);
+    if (date !== 'null' || time !== -1 || volume !== 0 || price !== 0)
+      setReset(false);
     // if (date !== 'null' || time !== -1 || volume !== -1 || price !== -1)
     //   setResetDisabled(false);
   }, [date, time, volume, price]);
@@ -148,6 +161,9 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           type="date"
           className={classNames('bidding-submit-addbid-form-date')}
           onChange={(e) => setDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
+          value={
+            reset ? '' : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
+          }
           required
           // value="2020-09-21"
           // disabled
@@ -156,7 +172,9 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           className={classNames('bidding-submit-addbid-form-select')}
           onChange={(e) => setTime(parseInt(e.target.value, 10))}
         >
-          <option value="-1"> </option>
+          <option value="-1" selected={reset}>
+            {' '}
+          </option>
           {createOptions}
         </select>
         <input
@@ -165,6 +183,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           min="0"
           step="0.1"
           onChange={(e) => setVolume(parseFloat(e.target.value))}
+          value={reset ? '' : volume}
           required
         />
         <input
@@ -173,30 +192,64 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           min="0"
           step="0.1"
           onChange={(e) => setPrice(parseFloat(e.target.value))}
+          value={reset ? '' : price}
           required
         />
         <input
           className={classNames('bidding-submit-addbid-form-total')}
           type="number"
           min="0"
-          value={totalPrice}
+          value={reset ? '' : totalPrice}
           disabled
         />
-        <input
+        {/* <input
           className={classNames('bidding-submit-addbid-form-submit')}
           type="button"
           value="&#10003;"
           title="Submit"
           onClick={() => addBid()}
           disabled={submitDisabled}
-        />
-        <input
+        /> */}
+        <button
+          type="button"
+          className={classNames('bidding-submit-addbid-form-submit')}
+          title="Submit"
+          onClick={() => addBid()}
+          onMouseOver={() => setCheckImg('check-green')}
+          onMouseOut={() => setCheckImg('check-gray')}
+          onFocus={() => 0}
+          onBlur={() => 0}
+          disabled={submitDisabled}
+        >
+          <img
+            alt="submit"
+            className={classNames('bidding-submit-addbid-form-submit-img')}
+            src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}.png`}
+          />
+        </button>
+        {/* <input
           className={classNames('bidding-submit-addbid-form-reset')}
           type="reset"
           value="&#10005;"
           title="Reset"
           onClick={() => handleClickReset()}
-        />
+        /> */}
+        <button
+          type="button"
+          title="reset"
+          className={classNames('bidding-submit-addbid-form-reset')}
+          onClick={() => handleClickReset()}
+          onMouseOver={() => setResetImg('cancel-red')}
+          onMouseOut={() => setResetImg('cancel-gray')}
+          onFocus={() => 0}
+          onBlur={() => 0}
+        >
+          <img
+            alt="submit"
+            className={classNames('bidding-submit-addbid-form-reset-img')}
+            src={`${process.env.PUBLIC_URL}/biddingPage/${resetImg}.png`}
+          />
+        </button>
       </form>
     </div>
   );

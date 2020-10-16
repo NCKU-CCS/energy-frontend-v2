@@ -123,50 +123,63 @@
   cursor: pointer;
   width: 5%;
   height: 60%;
-  font-size: 5px;
-  font-weight: bold;
-  border-radius: 100%;
+  // font-size: 5px;
+  // font-weight: bold;
+  // border-radius: 100%;
   border: 0;
   outline: 0;
-  color: #707070;
-  background-color: #f1f2f1;
+  // color: #707070;
+  background-color: transparent;
   // border: green solid 1px;
+}
+
+.bidding-submit-addbid-form-submit-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  // border: red solid 1px;
 }
 
 .bidding-submit-addbid-form-submit:disabled {
   display: none;
 }
 
-.bidding-submit-addbid-form-submit:active {
-  color: white;
-  background-color: #2e7e32;
-}
+// .bidding-submit-addbid-form-submit:active {
+//   color: white;
+//   background-color: #2e7e32;
+// }
 
 .bidding-submit-addbid-form-reset {
   // margin: 0.5%;
   cursor: pointer;
   width: 5%;
   height: 60%;
-  font-size: 5px;
-  font-weight: bold;
-  border-radius: 100%;
+  // font-size: 5px;
+  // font-weight: bold;
+  // border-radius: 100%;
   border: 0;
   outline: 0;
-  color: #707070;
-  background-color: #f1f2f1;
-  text-align: center;
+  // color: #707070;
+  background-color: transparent;
+  // text-align: center;
   // font-size: 0.1vw;
   // border: red solid 1px;
+}
+
+.bidding-submit-addbid-form-reset-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .bidding-submit-addbid-form-reset:disabled {
   display: none;
 }
 
-.bidding-submit-addbid-form-reset:active {
-  color: white;
-  background-color: #d32f2f;
-}
+// .bidding-submit-addbid-form-reset:active {
+//   color: white;
+//   background-color: #d32f2f;
+// }
 
 // 1920 < size
 @media all and (min-width: 1920px) {
