@@ -65,8 +65,8 @@
 
 .bidding-submit-listitem-edit--show {
   cursor: pointer;
-  // flex-basis: 50%;
-  height: 50%;
+  flex-basis: 100%;
+  height: 30%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -80,14 +80,14 @@
 .bidding-submit-listitem-edit-img--show {
   // border: red solid 1px;
   width: 100%;
-  height: 100%;
+  height: 95%;
   object-fit: contain;
 }
 
 .bidding-submit-listitem-remove--show {
   cursor: pointer;
-  // flex-basis: 50%;
-  height: 50%;
+  flex-basis: 100%;
+  height: 30%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +103,8 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  // // border-left: #d1d2d1 solid 1px;
+  // border-left: #d1d2d1 solid 1px;
+  // border: red solid 1px;
 }
 
 
@@ -123,18 +124,19 @@
     // border: red solid 1px;
     font-size: 1.8vh;
   }
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-date--edit {
   cursor: pointer;
   margin: 1%;
   width: 18%;
-  height: 100%;
+  height: 50%;
   outline: 0;
   border: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
-  // font-size: 5px;
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-date--edit:hover {
@@ -145,11 +147,12 @@
   cursor: pointer;
   margin: 1%;
   width: 18%;
-  height: 100%;
+  height: 50%;
   outline: 0;
   border: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-interval--edit:hover {
@@ -159,12 +162,13 @@
 .bidding-submit-listitem-volume--edit {
   margin: 1%;
   width: 15%;
-  height: 100%;
+  height: 50%;
   text-align: right;
   outline: 0;
   border: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-volume--edit:hover {
@@ -174,12 +178,13 @@
 .bidding-submit-listitem-price--edit {
   margin: 1%;
   width: 16%;
-  height: 100%;
+  height: 50%;
   text-align: right;
   outline: 0;
   border: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-price--edit:hover {
@@ -189,65 +194,77 @@
 .bidding-submit-listitem-total--edit {
   margin: 1%;
   width: 13%;
-  height: 100%;
+  height: 50%;
   text-align: right;
   outline: 0;
   border: 0;
   color: #707070;
   background-color: white;
   border-bottom: #d1d2d1 solid 1px;
+  // border: red solid 1px;
+}
+
+.bidding-submit-listitem-button-container--edit {
+  width: 10%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  // border: green solid 1px;
+  // overflow-y: auto;
 }
 
 .bidding-submit-listitem-submit--edit {
   cursor: pointer;
-  width: 5%;
-  height: 100%;
+  // width: 50%;
+  height: 35%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   // font-size: 5px;
   // font-weight: bold;
-  border-radius: 50%;
+  // border-radius: 50%;
   border: 0;
   outline: 0;
-  color: #707070;
-  background-color: #f1f2f1;
+  // color: #707070;
+  background-color: transparent;
   // border: red solid 1px;
 }
 
-.bidding-submit-listitem-submit--edit:active {
-  color: white;
-  background-color: #2e7e32;
-}
-
-.bidding-submit-listitem-submit--edit:hover {
-  color: white;
-  background-color: #2e7e32;
+.bidding-submit-listitem-submit-img--edit {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  // border: red solid 1px;
 }
 
 .bidding-submit-listitem-cancel--edit {
   cursor: pointer;
-  width: 5%;
-  height: 100%;
+  // width: 50%;
+  height: 35%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   // font-size: 5px;
   // font-weight: bold;
   // text-align: center;
   // display: flex;
   // justify-content: center;
   // align-items: center;
-  border-radius: 50%;
+  // border-radius: 50%;
   border: 0;
   outline: 0;
-  color: #707070;
-  background-color: #f1f2f1;
+  // color: #707070;
+  background-color: transparent;
   // border: red solid 1px;
 }
 
-.bidding-submit-listitem-cancel--edit:active {
-  // color: white;
-  // background-color: #d32f2f;
-}
-
-.bidding-submit-listitem-cancel--edit:hover {
-  // color: white;
-  // background-color: #d32f2f;
+.bidding-submit-listitem-cancel-img--edit {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  // border: red solid 1px;
 }
 
 // 1920 < size

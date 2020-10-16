@@ -245,7 +245,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           onBlur={() => 0}
         >
           <img
-            alt="submit"
+            alt="reset"
             className={classNames('bidding-submit-addbid-form-reset-img')}
             src={`${process.env.PUBLIC_URL}/biddingPage/${resetImg}.png`}
           />

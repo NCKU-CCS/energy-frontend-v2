@@ -49,6 +49,12 @@ const ListItem: React.FC<IProps> = ({
   // trash image
   const [trashImg, setTrashImg] = useState<string>('trash-gray.png');
 
+  // check image
+  const [checkImg, setCheckImg] = useState<string>('check-gray.png');
+
+  // cancel image
+  const [cancelImg, setCancelImg] = useState<string>('cancel-gray.png');
+
   // create an array from '0:00 - 1:00' to '23:00 - 24:00'
   const intervalArr: string[] = [
     '0:00 - 1:00',
@@ -284,63 +290,80 @@ const ListItem: React.FC<IProps> = ({
     </div>
   ) : (
     <div className={classNames('bidding-submit-listitem-container--edit')}>
-      <form>
-        <input
-          type="date"
-          className={classNames('bidding-submit-listitem-date--edit')}
-          defaultValue={dayjs(new Date(date)).format('YYYY-MM-DD').toString()}
-          onChange={(e) =>
-            setNewDate(dayjs(e.target.value).format('YYYY/MM/DD'))
-          }
-        />
-        <select
-          className={classNames('bidding-submit-listitem-interval--edit')}
-          defaultValue={interval}
-          onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
-        >
-          <option value={time}>{interval}</option>
-          {createOptions}
-        </select>
-        <input
-          type="number"
-          min="0"
-          step="0.1"
-          className={classNames('bidding-submit-listitem-volume--edit')}
-          defaultValue={volume}
-          onChange={(e) => setNewVolume(parseFloat(e.target.value))}
-        />
-        <input
-          type="number"
-          min="0"
-          step="0.1"
-          className={classNames('bidding-submit-listitem-price--edit')}
-          defaultValue={price}
-          onChange={(e) => setNewPrice(parseFloat(e.target.value))}
-        />
-        <input
-          type="number"
-          min="0"
-          className={classNames('bidding-submit-listitem-total--edit')}
-          // defaultValue={333333}
-          value={newTotalPrice}
-          disabled
-        />
-        <input
+      <input
+        type="date"
+        className={classNames('bidding-submit-listitem-date--edit')}
+        defaultValue={dayjs(new Date(date)).format('YYYY-MM-DD').toString()}
+        onChange={(e) => setNewDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
+      />
+      <select
+        className={classNames('bidding-submit-listitem-interval--edit')}
+        defaultValue={interval}
+        onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
+      >
+        <option value={time}>{interval}</option>
+        {createOptions}
+      </select>
+      <input
+        type="number"
+        min="0"
+        step="0.1"
+        className={classNames('bidding-submit-listitem-volume--edit')}
+        defaultValue={volume}
+        onChange={(e) => setNewVolume(parseFloat(e.target.value))}
+      />
+      <input
+        type="number"
+        min="0"
+        step="0.1"
+        className={classNames('bidding-submit-listitem-price--edit')}
+        defaultValue={price}
+        onChange={(e) => setNewPrice(parseFloat(e.target.value))}
+      />
+      <input
+        type="number"
+        min="0"
+        className={classNames('bidding-submit-listitem-total--edit')}
+        // defaultValue={333333}
+        value={newTotalPrice}
+        disabled
+      />
+      <div
+        className={classNames('bidding-submit-listitem-button-container--edit')}
+      >
+        <button
           type="button"
           title="submit"
-          value="&#10003;"
           className={classNames('bidding-submit-listitem-submit--edit')}
           onClick={() => handleClickSubmit()}
-        />
+          onMouseOver={() => setCheckImg('check-green.png')}
+          onMouseOut={() => setCheckImg('check-gray.png')}
+          onFocus={() => 0}
+          onBlur={() => 0}
+        >
+          <img
+            alt="submit"
+            className={classNames('bidding-submit-listitem-submit-img--edit')}
+            src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}`}
+          />
+        </button>
         <button
           type="button"
           title="cancel"
           className={classNames('bidding-submit-listitem-cancel--edit')}
           onClick={() => handleClickCancel()}
+          onMouseOver={() => setCancelImg('cancel-red.png')}
+          onMouseOut={() => setCancelImg('cancel-gray.png')}
+          onFocus={() => 0}
+          onBlur={() => 0}
         >
-          &#10005;
+          <img
+            alt="cancel"
+            className={classNames('bidding-submit-listitem-cancel-img--edit')}
+            src={`${process.env.PUBLIC_URL}/biddingPage/${cancelImg}`}
+          />
         </button>
-      </form>
+      </div>
     </div>
   );
 };
