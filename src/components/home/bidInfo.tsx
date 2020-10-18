@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import ListContent from './listContent';
+import dayjs from 'dayjs';
+import ListItem from './listItem';
 
 interface IResult {
   status: string;
@@ -17,6 +18,8 @@ const BidInfo: React.FC = () => {
   const { t } = useTranslation();
 
   const [result, setResult] = useState<IResult[]>([]);
+  const [list, setList] = useState<IResult[]>([]);
+  const [currTime, setCurrTime] = useState<string>('');
 
   const fetchMatchResult = async () => {
     // get bearer token
@@ -45,37 +48,41 @@ const BidInfo: React.FC = () => {
   };
 
   useEffect(() => {
+    setCurrTime(dayjs().format('HH'));
     (async () => {
       await fetchMatchResult();
     })();
   }, []);
 
-  let List = result;
-  for (let i = 0; i < result.length; i += 1) {
-    if (!(result[i].status === '得標成功' || result[i].status === '未得標')) {
-      List = result.splice(i, 1);
-      i -= 1;
+  useEffect(() => {
+    const allList = result;
+    for (let i = 0; i < allList.length; i += 1) {
+      if (
+        !(allList[i].status === '得標成功' || allList[i].status === '未得標')
+      ) {
+        allList.splice(i, 1);
+        i -= 1;
+      }
     }
-  }
+    setList(allList);
+  }, [result]);
 
-  const listItem = List.map((content) => {
-    return (
-      <ListContent
-        status={content.status}
-        time={content.time}
-        date={content.date}
-        price={content.wins.price}
-        value={content.wins.value}
-      />
-    );
-  });
+  useEffect(() => {
+    (async () => {
+      await fetchMatchResult();
+    })();
+  }, [currTime]);
+
+  useEffect(() => {
+    setInterval(() => setCurrTime(dayjs().format('HH')), 3000);
+  }, []);
 
   return (
     <div className={classnames('home-bid-info')}>
       <div className={classnames('home-bid-info-title')}>
         {t('indexpage.biddingInfoTitle')}
       </div>
-      <div className={classnames('home-bid-info-list')}>{listItem}</div>
+      <ListItem input={list} />
     </div>
   );
 };

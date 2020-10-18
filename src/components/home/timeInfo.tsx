@@ -18,6 +18,12 @@ const TimeInfo: React.FC = () => {
   const { t } = useTranslation();
 
   const [result, setResult] = useState<IResult[]>([]);
+  const [currTime, setCurrTime] = useState<string>('');
+  const [time, setTime] = useState<string>('');
+  const [buyValue, setBuyValue] = useState<string>('');
+  const [buyPrice, setBuyPrice] = useState<string>('');
+  const [sellValue, setSellValue] = useState<string>('');
+  const [sellPrice, setSellPrice] = useState<string>('');
 
   const fetchMatchResult = async () => {
     // get bearer token
@@ -45,38 +51,40 @@ const TimeInfo: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      await fetchMatchResult();
-    })();
-  }, []);
-
-  const [currTime, setCurrTime] = useState<string>('');
-
   const getCurrTime = () => {
     setCurrTime(dayjs().format('HH'));
   };
 
-  const time = `${currTime}:00 - ${String(Number(currTime) + 1)}:00`;
-  let buyValue = '-';
-  let buyPrice = '-';
-  let sellValue = '-';
-  let sellPrice = '-';
+  const update = () => {
+    (async () => {
+      await fetchMatchResult();
+    })();
+    setTime(`${currTime}:00 - ${String(Number(currTime) + 1)}:00`);
 
-  for (let i = 0; i < result.length; i += 1) {
-    if (result[i].status === '執行中') {
-      if (result[i].bid_type === 'buy') {
-        buyPrice = String(result[i].wins.price);
-        buyValue = String(result[i].wins.value);
-      } else if (result[i].bid_type === 'sell') {
-        sellPrice = String(result[i].wins.price);
-        sellValue = String(result[i].wins.value);
+    for (let i = 0; i < result.length; i += 1) {
+      if (result[i].status === '執行中') {
+        if (result[i].bid_type === 'buy') {
+          setBuyPrice(String(result[i].wins.price));
+          setBuyValue(String(result[i].wins.value));
+        } else if (result[i].bid_type === 'sell') {
+          setSellPrice(String(result[i].wins.price));
+          setSellValue(String(result[i].wins.value));
+        }
       }
     }
-  }
+  };
 
   useEffect(() => {
-    setInterval(getCurrTime, 3000);
+    setCurrTime(dayjs().format('HH'));
+    update();
+  }, []);
+
+  useEffect(() => {
+    update();
+  }, [currTime]);
+
+  useEffect(() => {
+    setInterval(getCurrTime, 60000);
   }, []);
 
   return (

@@ -21,6 +21,7 @@ const ListContent: React.FC<IResult> = ({
 
   const [boxState, setBox] = useState<boolean>(false);
   const [icon, setIcon] = useState<string>('▶');
+  const [sellState, setSellState] = useState<string>('');
 
   const showInfo = () => {
     if (boxState === false) setBox(true);
@@ -29,9 +30,10 @@ const ListContent: React.FC<IResult> = ({
     else setIcon('▶');
   };
 
-  let sellState = '';
-  if (status === '得標成功') sellState = t('indexpage.sellSuccess');
-  else if (status === '未得標') sellState = t('indexpage.sellFail');
+  useEffect(() => {
+    if (status === '得標成功') setSellState(t('indexpage.sellSuccess'));
+    else if (status === '未得標') setSellState(t('indexpage.sellFail'));
+  }, [status]);
 
   const handleOpen = () => {
     if (
