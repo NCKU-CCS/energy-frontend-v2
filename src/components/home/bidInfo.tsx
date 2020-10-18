@@ -74,7 +74,7 @@ const BidInfo: React.FC = () => {
   }, [currTime]);
 
   useEffect(() => {
-    setInterval(() => setCurrTime(dayjs().format('HH')), 3000);
+    setInterval(() => setCurrTime(dayjs().format('HH')), 300000);
   }, []);
 
   return (
