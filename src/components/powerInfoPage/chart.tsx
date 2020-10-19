@@ -19,14 +19,6 @@ interface IProps {
   date: Date;
 }
 
-interface IPadding {
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-  axisX: number;
-}
-
 const Chart: React.FC<IProps> = ({ mode, date }) => {
   const chartContainer = useRef(null);
 
