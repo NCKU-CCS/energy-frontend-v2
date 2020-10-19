@@ -29,6 +29,14 @@ const Table: React.FC<IProps> = ({ date }) => {
   const [per_page, setPerPage] = useState('5');
   const [page, setPage] = useState(1);
 
+  // set buttons disabled
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
+
+  // set text for RWD
+  const [timeText, setTimeText] = useState('紀錄時間');
+  const [typeText, setTypeText] = useState('用產電種類');
+
   // text color for positive and negative data
   const redText = { color: '#d32f2f' };
   const greenText = { color: '#2e7d32' };
@@ -165,9 +173,6 @@ const Table: React.FC<IProps> = ({ date }) => {
     setPage(lastPage);
   };
 
-  const [prevDisabled, setPrevDisabled] = useState(true);
-  const [nextDisabled, setNextDisabled] = useState(false);
-
   useEffect(() => {
     const lastPage =
       apiData.totalCount % parseInt(per_page, 10) === 0
@@ -194,9 +199,6 @@ const Table: React.FC<IProps> = ({ date }) => {
     })();
     // eslint-disable-next-line @typescript-eslint/camelcase
   }, [correctDate, per_page, page]);
-
-  const [timeText, setTimeText] = useState('紀錄時間');
-  const [typeText, setTypeText] = useState('用產電種類');
 
   useEffect(() => {
     const changeText = () => {
