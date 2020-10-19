@@ -1,0 +1,45 @@
+.powerinfo-datepicker-container {
+  width: 100%;
+  height: 100%;
+  color: #707070;
+  // align the datePicker to the right(don't know why it works)
+  display: flex;
+  justify-content: flex-end;
+}
+
+.powerinfo-datepicker-input {
+  color: #707070;
+  cursor: pointer;
+  border: #d8d8d8 solid 0.5px;
+  border-radius: 5px;
+  height: 100%;
+  text-align: center;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .powerinfo-datepicker-input {
+    width: auto;
+    font-size: 12px;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+
+}
