@@ -4,11 +4,7 @@ import Layout from '../layouts/generalLayout';
 
 const BiddingPage: React.FC = () => {
   const { t } = useTranslation();
-  return (
-    <Layout title={t('biddingpage.pageTitle')}>
-      <div />
-    </Layout>
-  );
+  return <Layout title={t('biddingpage.pageTitle')}>BIDDING</Layout>;
 };
 
 export default BiddingPage;
