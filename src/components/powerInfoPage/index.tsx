@@ -14,7 +14,7 @@ const PowerInfoPageContainer: React.FC = () => {
   return (
     <div className={classNames('powerinfo-container')}>
       <div className={classNames('c', 'c1')}>
-        <DatePicker changeDate={setDate} />
+        <DatePicker changeDate={setDate} currDate={date} />
       </div>
       <div className={classNames('c', 'c2')}>
         <ModeButton changeMode={setMode} />

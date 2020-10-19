@@ -1,11 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 interface IProps {
   changeDate(date: Date): void;
+  currDate: Date;
 }
 
-const DatePicker: React.FC<IProps> = ({ changeDate }) => {
+const DatePicker: React.FC<IProps> = ({ changeDate, currDate }) => {
   const onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     // to prevent user from choosing invalid date cause a api can't fetch problem
     const lastDate =
@@ -20,6 +22,7 @@ const DatePicker: React.FC<IProps> = ({ changeDate }) => {
       <input
         className={classNames('powerinfo-datepicker-input')}
         type="date"
+        value={dayjs(currDate).format('YYYY-MM-DD')}
         onChange={(event) => onChangeDate(event)}
       />
     </div>
