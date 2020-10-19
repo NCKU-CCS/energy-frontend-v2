@@ -38,9 +38,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   // bisector
   const bisectDate = d3.bisector((d: IApiData) => d.Date).left;
 
-  // calculate first of the chart
-  const firstDate = new Date(lastDate.getTime() - 6 * 24 * 60 * 60 * 1000);
-
   // Api Data Array
   const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
 
@@ -98,7 +95,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .scaleTime()
     .range([0, width - padding.left - padding.right - 2 * padding.axisX])
     .domain([
-      new Date(dayjs(firstDate).format('YYYY/MM/DD')),
+      new Date(dayjs(lastDate).subtract(6, 'day').format('YYYY/MM/DD')),
       new Date(dayjs(lastDate).format('YYYY/MM/DD')),
     ]);
 
