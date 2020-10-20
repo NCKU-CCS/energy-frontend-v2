@@ -13,7 +13,7 @@ import ErrorPage from './pages/_error';
 import i18n from './i18n';
 
 const App: React.FC = () => {
-  i18n.changeLanguage(sessionStorage.getItem('Language') || '{}');
+  i18n.changeLanguage(sessionStorage.getItem('Language') || 'zh-TW');
   return (
     <Switch>
       <Route exact path="/" component={withAuthorization(IndexPage)} />
