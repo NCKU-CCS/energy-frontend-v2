@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   height: 15%;
-  border: 1px solid yellowgreen;
+  border-bottom: 1px solid rgb(153, 153, 153);
   align-items: center;
 }
 .status-list-content-button{
@@ -15,7 +15,8 @@
 }
 .status-list-content-button--click{
   background-color: #ffa200;
-  border: 1px solid #ffffff;
+  border: 1px solid #7c7c7c;
+  outline: none;
 }
 
 .status-list-content-bidType{

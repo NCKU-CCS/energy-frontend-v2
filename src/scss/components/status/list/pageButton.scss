@@ -1,5 +1,5 @@
 .status-list-pageButton-button{
-  border:1px #757575 solid;
+  border:1px #c0c0c0 solid;
   width: 25%;
   height: 100%;
   border-radius: 2%;
@@ -20,5 +20,6 @@
 .status-list-pageButton-button--click{
   background-color: #ffa200;
   color: white;
-  border:none;
+  border: 1px solid #9e9e9e;
+  outline: none;
 }
