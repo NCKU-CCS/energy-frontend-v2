@@ -18,6 +18,7 @@ const Navbar: React.FC = () => {
   const [info, setInfo] = useState<IUserInfo>({
     is_aggregator: false,
   });
+  const [navbarType, setNavbarType] = useState<string>('');
 
   const fetchUser = async () => {
     // get bearer token
@@ -51,10 +52,11 @@ const Navbar: React.FC = () => {
     })();
   }, []);
 
-  let navbarType = '';
-  if (info.is_aggregator === true)
-    navbarType = classnames('navbar', 'navbar--Aggregator');
-  else navbarType = classnames('navbar');
+  useEffect(() => {
+    if (info.is_aggregator === true)
+      setNavbarType(classnames('navbar', 'navbar--Aggregator'));
+    else setNavbarType(classnames('navbar'));
+  }, [info]);
 
   return (
     <nav className={navbarType}>
