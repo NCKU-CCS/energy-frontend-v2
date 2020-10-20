@@ -8,7 +8,7 @@
   margin-top: 2%;
   background-color: white;
   border-radius: 5px;
-  // border: red solid 2px;
+  // border: red solid 1px;
 }
 
 // 1920 < size
@@ -39,9 +39,10 @@
 // size <= 320
 @media all and (max-width: 320px) {
   .bidding-graph-container {
-    width: 91%;
-    margin-left: 4.5%;
+    width: 90%;
+    margin-left: 5%;
     height: 95%;
     margin-top: 2%;
+    // border: 0;
   }
 }
