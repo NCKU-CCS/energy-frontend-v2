@@ -1,0 +1,231 @@
+.powerinfo-summary-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10%;
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  font-size: 16px;
+  // border: green solid 2px;
+  overflow-y: hidden;
+}
+
+.powerinfo-summary-list-date {
+  flex-basis: 100%;
+  height: 10%;
+  text-align: center;
+  // align-self: flex-end;
+  color: #707070;
+  font-weight: bold;
+  // font-size: 14px;
+  // border: red solid 1px;
+}
+
+.powerinfo-summary-list-mode {
+  flex-basis: 100%;
+  height: 10%;
+  text-align: center;
+  // align-self: flex-end;
+  color: #707070;
+  font-weight: bold;
+  // font-size: 14px;
+  >span {
+    font-weight: lighter;
+    // font-size: 12px;
+  }
+  // border: red solid 1px;
+}
+
+.powerinfo-summary-list-data-container {
+  flex-basis: 100%;
+  height: 70%;
+  align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  // font-size: 14px;
+  >hr {
+    flex-basis: 100%;
+    border: 0;
+    height: 0.5px;
+    background-color: #a0a0a0;
+  }
+  // border: red solid 1px;
+}
+
+.powerinfo-summary-list-posdata-container {
+  flex-basis: 100%;
+  height: auto;
+  // align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  // border: red solid 1px;
+}
+
+.powerinfo-summary-list-negdata-container {
+  flex-basis: 100%;
+  height: auto;
+  // align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  // border: green solid 1px;
+}
+
+.powerinfo-summary-list-posdata-item-container {
+  flex-basis: 70%;
+  height: auto;
+  margin-left: 15%;
+  margin-right: 15%;
+  align-self: center;
+  display: flex;
+  >#type {
+    flex-basis: 70%;
+    color: #d32f2f;
+    text-align: start;
+  }
+  >#value {
+    flex-basis: 30%;
+    color: #707070;
+    text-align: start;
+    // border-left: green solid 1px;
+  }
+  // border: red solid 1px;
+}
+
+.powerinfo-summary-list-negdata-item-container {
+  flex-basis: 70%;
+  height: auto;
+  margin-left: 15%;
+  margin-right: 15%;
+  align-self: center;
+  display: flex;
+  >#type {
+    flex-basis: 70%;
+    color: #2e7d32;
+    text-align: start;
+  }
+  >#value {
+    flex-basis: 30%;
+    color: #707070;
+    text-align: start;
+    // border-left: green solid 1px;
+  }
+  // border: green solid 1px;
+}
+
+.powerinfo-summary-list-demand-container {
+  flex-basis: 85%;
+  height: 15%;
+  margin-left: 15%;
+  margin-right: 0%;
+  align-self: center;
+  display: flex;
+  >#type {
+    flex-basis: 60%;
+    color: #707070;
+    font-weight: bold;
+    text-align: start;
+    // border: red solid 1px;
+  }
+  >#value {
+    flex-basis: 40%;
+    color: #707070;
+    text-align: start;
+    // border: red solid 1px;
+  }
+  // border: red solid 1px;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+  .powerinfo-summary-list-container {
+    font-size: 18px;
+  }
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+  .powerinfo-summary-list-container {
+    font-size: 16px;
+    margin: 5%;
+    margin-bottom: 0;
+    width: 90%;
+    height: 95%;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .powerinfo-summary-list-container {
+    font-size: 12px;
+    margin: 5%;
+    width: 90%;
+    height: 90%;
+  }
+
+  .powerinfo-summary-list-posdata-item-container {
+    flex-basis: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .powerinfo-summary-list-container {
+    font-size: 10px;
+    margin: 1%;
+    width: 98%;
+    height: 98%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .powerinfo-summary-list-container {
+    font-size: 10px;
+    margin: 1%;
+    width: 98%;
+    height: 98%;
+  }
+
+  .powerinfo-summary-list-date {
+    flex-basis: 45%;
+    margin-left: 5%;
+    margin-top: 2%;
+    text-align: start;
+    // border: green solid 1px;
+  }
+
+  .powerinfo-summary-list-mode {
+    // margin-top: 5%;
+    flex-basis: 50%;
+    margin-top: 2%;
+    height: auto;
+    text-align: start;
+    // border: green solid 1px;
+  }
+
+  .powerinfo-summary-list-data-container {
+    align-self: center;
+    height: 75%;
+  }
+
+  .powerinfo-summary-list-posdata-item-container {
+    flex-basis: 45%;
+    margin-left: 5%;
+    margin-right: 0%;
+    // border: green solid 1px;
+  }
+
+  .powerinfo-summary-list-negdata-item-container {
+    flex-basis: 45%;
+    margin-left: 5%;
+    margin-right: 0%;
+  }
+
+  .powerinfo-summary-list-demand-container {
+    height: auto;
+    // border: green solid 1px;
+  }
+}
