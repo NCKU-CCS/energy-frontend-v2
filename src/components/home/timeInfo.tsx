@@ -51,16 +51,14 @@ const TimeInfo: React.FC = () => {
     }
   };
 
-  const getCurrTime = () => {
-    setCurrTime(dayjs().format('HH'));
-  };
-
   const update = () => {
     (async () => {
       await fetchMatchResult();
     })();
     setTime(`${currTime}:00 - ${String(Number(currTime) + 1)}:00`);
+  };
 
+  useEffect(() => {
     for (let i = 0; i < result.length; i += 1) {
       if (result[i].status === '執行中') {
         if (result[i].bid_type === 'buy') {
@@ -72,20 +70,17 @@ const TimeInfo: React.FC = () => {
         }
       }
     }
-  };
+  }, [result]);
 
   useEffect(() => {
     setCurrTime(dayjs().format('HH'));
+    setInterval(() => setCurrTime(dayjs().format('HH')), 60000);
     update();
   }, []);
 
   useEffect(() => {
     update();
   }, [currTime]);
-
-  useEffect(() => {
-    setInterval(getCurrTime, 60000);
-  }, []);
 
   return (
     <div className={classnames('home-time-info')}>
