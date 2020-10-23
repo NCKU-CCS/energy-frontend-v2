@@ -278,7 +278,7 @@ const InfoBox: React.FC<IProps> = ({
                       )}
                     >
                       <span>總金額 :&nbsp;</span>
-                      <span>${totalPrice}</span>
+                      <span>${totalPrice.toFixed(2)}</span>
                     </div>
                   </div>
                 ) : (

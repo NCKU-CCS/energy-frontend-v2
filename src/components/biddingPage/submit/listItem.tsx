@@ -233,7 +233,7 @@ const ListItem: React.FC<IProps> = ({
         $&thinsp;{price}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('bidding-submit-listitem-total--show')}>
-        $&thinsp;{totalPrice}
+        $&thinsp;{totalPrice.toFixed(2)}
       </div>
       <div
         className={classNames('bidding-submit-listitem-button-container--show')}
