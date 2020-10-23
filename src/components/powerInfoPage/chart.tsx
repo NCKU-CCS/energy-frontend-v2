@@ -73,10 +73,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(apiDataArr);
-  }, [apiDataArr]);
-
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   let tooltipWidth = width * 0.11;
