@@ -2,6 +2,7 @@
   height: 20%;
   display: flex;
   flex-wrap: wrap;
+  // align-items: center;
   overflow-y: auto;
   font-size: 1vw;
   text-align: center;
@@ -55,7 +56,7 @@
 
 .bidding-submit-listitem-button-container--show {
   flex-basis: 10%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -66,12 +67,13 @@
 .bidding-submit-listitem-edit--show {
   cursor: pointer;
   flex-basis: 100%;
-  height: 30%;
+  height: 50%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   outline: 0;
   border: 0;
+  padding: 11%;
   background-color: transparent;
   // border: #d1d2d1 solid 0.5px;
   // border: green solid 1px;
@@ -87,12 +89,13 @@
 .bidding-submit-listitem-remove--show {
   cursor: pointer;
   flex-basis: 100%;
-  height: 30%;
+  height: 50%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   outline: 0;
   border: 0;
+  padding: 11%;
   background-color: transparent;
   // border: #d1d2d1 solid 0.5px;
   // border: green solid 1px;

@@ -41,17 +41,6 @@
   border-bottom: #707070 solid 1px;
 }
 
-// input[type="date"]::-webkit-inner-spin-button,
-// input[type="date"]::-webkit-calendar-picker-indicator {
-//     display: none;
-//     -webkit-appearance: none;
-// }
-
-// .bidding-submit-addbid-form-date:hover, :active {
-//   cursor: pointer;
-//   border-bottom: #707070 solid 1px;
-// }
-
 .bidding-submit-addbid-form-select {
   cursor: pointer;
   margin: 1%;
@@ -67,11 +56,6 @@
 .bidding-submit-addbid-form-select:hover {
   border-bottom: #707070 solid 1px;
 }
-
-// .bidding-submit-addbid-form-select:hover, :active {
-//   cursor: pointer;
-//   border-bottom: #707070 solid 1px;
-// }
 
 .bidding-submit-addbid-form-volume {
   margin: 1%;
@@ -123,11 +107,12 @@
   cursor: pointer;
   width: 5%;
   height: 60%;
-  // font-size: 5px;
+  font-size: 0;
   // font-weight: bold;
   // border-radius: 100%;
   border: 0;
   outline: 0;
+  padding: 0.5%;
   // color: #707070;
   background-color: transparent;
   // border: green solid 1px;
@@ -136,6 +121,7 @@
 .bidding-submit-addbid-form-submit-img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: contain;
   // border: red solid 1px;
 }
@@ -144,21 +130,17 @@
   display: none;
 }
 
-// .bidding-submit-addbid-form-submit:active {
-//   color: white;
-//   background-color: #2e7e32;
-// }
-
 .bidding-submit-addbid-form-reset {
   // margin: 0.5%;
   cursor: pointer;
   width: 5%;
   height: 60%;
-  // font-size: 5px;
+  font-size: 0;
   // font-weight: bold;
   // border-radius: 100%;
   border: 0;
   outline: 0;
+  padding: 0.5%;
   // color: #707070;
   background-color: transparent;
   // text-align: center;
@@ -169,6 +151,7 @@
 .bidding-submit-addbid-form-reset-img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: contain;
   // border: red solid 1px;
 }
@@ -176,11 +159,6 @@
 .bidding-submit-addbid-form-reset:disabled {
   display: none;
 }
-
-// .bidding-submit-addbid-form-reset:active {
-//   color: white;
-//   background-color: #d32f2f;
-// }
 
 // 1920 < size
 @media all and (min-width: 1920px) {
@@ -204,9 +182,5 @@
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .bidding-submit-addbid-form {
-    // margin-left: 0%;
-    // margin-right: 0%;
-    // width: 100%;
-  }
+
 }
