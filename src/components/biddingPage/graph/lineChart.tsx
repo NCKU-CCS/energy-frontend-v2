@@ -139,29 +139,6 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
     // first time handle resize
     handleResize();
 
-    // // tooltip canvas
-    // const tooltipCvs = svg
-    //   .append('rect')
-    //   .attr('width', width - padding.left - padding.right)
-    //   .attr('height', height - padding.top - padding.bottom)
-    //   .attr('x', padding.left)
-    //   .attr('y', padding.top)
-    //   .attr('opacity', 0.2);
-
-    // // tooltip circle of buy
-    // const tooltipCircleBuy = svg
-    //   .append('circle')
-    //   .attr('fill', '#717171')
-    //   .attr('r', 4)
-    //   .style('display', 'none');
-
-    // // tooltip circle of sell
-    // const tooltipCircleSell = svg
-    //   .append('circle')
-    //   .attr('fill', '#717171')
-    //   .attr('r', 4)
-    //   .style('display', 'none');
-
     // svg styles
     svg
       .attr('width', width)

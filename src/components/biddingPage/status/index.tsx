@@ -57,10 +57,6 @@ const BiddingStatus: React.FC<IProps> = ({ mode }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    // console.log(apiData);
-  }, [apiData]);
-
   return (
     <div className={classNames('bidding-status-container')}>
       <div className={classNames('bidding-status-participants-container-out')}>

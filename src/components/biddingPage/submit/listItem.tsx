@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import InfoBox from './infoBox';
+import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
   id: string;
@@ -54,34 +55,6 @@ const ListItem: React.FC<IProps> = ({
 
   // cancel image
   const [cancelImg, setCancelImg] = useState<string>('cancel-gray.png');
-
-  // create an array from '0:00 - 1:00' to '23:00 - 24:00'
-  const intervalArr: string[] = [
-    '0:00 - 1:00',
-    '1:00 - 2:00',
-    '2:00 - 3:00',
-    '3:00 - 4:00',
-    '4:00 - 5:00',
-    '5:00 - 6:00',
-    '6:00 - 7:00',
-    '7:00 - 8:00',
-    '8:00 - 9:00',
-    '9:00 - 10:00',
-    '10:00 - 11:00',
-    '11:00 - 12:00',
-    '12:00 - 13:00',
-    '13:00 - 14:00',
-    '14:00 - 15:00',
-    '15:00 - 16:00',
-    '16:00 - 17:00',
-    '17:00 - 18:00',
-    '18:00 - 19:00',
-    '19:00 - 20:00',
-    '20:00 - 21:00',
-    '21:00 - 22:00',
-    '22:00 - 23:00',
-    '23:00 - 24:00',
-  ];
 
   // map the interval array and return options
   const createOptions = intervalArr.map((str, i) => {
@@ -172,9 +145,6 @@ const ListItem: React.FC<IProps> = ({
     setEdit(true);
     setNewPrice(price);
     setNewVolume(volume);
-    // alert(newPrice);
-    // alert(newVolume);
-    // alert(newTotalPrice);
   };
 
   // handle click remove
@@ -221,7 +191,6 @@ const ListItem: React.FC<IProps> = ({
     <div className={classNames('bidding-submit-listitem-container--show')}>
       <div className={classNames('bidding-submit-listitem-date--show')}>
         {insertSpaces(date)}
-        {/* 2020&thinsp;/&thinsp;12&thinsp;/&thinsp;12 */}
       </div>
       <div className={classNames('bidding-submit-listitem-interval--show')}>
         {interval}
@@ -324,7 +293,6 @@ const ListItem: React.FC<IProps> = ({
         type="number"
         min="0"
         className={classNames('bidding-submit-listitem-total--edit')}
-        // defaultValue={333333}
         value={newTotalPrice}
         disabled
       />

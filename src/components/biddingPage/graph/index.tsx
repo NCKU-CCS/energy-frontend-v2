@@ -110,14 +110,6 @@ const Graph: React.FC<IProps> = ({ mode }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    // console.log('buy', apiDataBuy);
-  }, [apiDataBuy]);
-
-  useEffect(() => {
-    // console.log('sell', apiDataSell);
-  }, [apiDataSell]);
-
   return (
     <div className={classNames('bidding-graph-container')}>
       {mode === '綠能交易' ? (
