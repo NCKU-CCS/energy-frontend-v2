@@ -73,8 +73,7 @@ const Content: React.FC<IUserInfo> = ({ address, ethAddress, account }) => {
         <button
           type="button"
           onClick={() => {
-            if (i18n.language === 'en-US') i18n.changeLanguage('zh-TW');
-            else i18n.changeLanguage('en-US');
+            i18n.changeLanguage(i18n.language === 'en-US' ? 'zh-TW' : 'en-US');
             sessionStorage.setItem('Language', i18n.language);
           }}
           className={buttonStyle}
