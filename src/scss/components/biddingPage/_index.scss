@@ -1,0 +1,157 @@
+@import './status/';
+@import './modeButton';
+@import './submit/';
+@import './graph/';
+@import './dr/';
+
+.bidding-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 80%;
+  // border: black solid 2px;
+}
+
+.bidding-a1 {
+  flex-basis: 100%;
+  height: 10%;
+  // border: red solid 1px;
+}
+
+.bidding-a2 {
+  flex-basis: 50%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  // border: red solid 1px;
+}
+
+.bidding-a2-b1 {
+  flex-basis: 100%;
+  height: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  // border: green solid 2px;
+  overflow: hidden;
+}
+
+.bidding-a2-b1-c1 {
+  flex-basis: 40%;
+  height: 100%;
+  // border: blue solid 2px;
+}
+
+.bidding-a2-b1-c2 {
+  flex-basis: 60%;
+  height: 100%;
+  // border: blue solid 2px;
+}
+
+.bidding-a2-b2 {
+  flex-basis: 100%;
+  height: 70%;
+  overflow: hidden;
+  // border: green solid 2px;
+}
+
+.bidding-a3 {
+  flex-basis: 50%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  // border: red solid 1px;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-a1 {
+    flex-basis: 100%;
+    height: 10%;
+  }
+
+  .bidding-a2 {
+    flex-basis: 100%;
+    height: 40%;
+  }
+
+  .bidding-a3 {
+    flex-basis: 100%;
+    height: 65%;
+  }
+
+  .bidding-a2-b1 {
+    flex-basis: 40%;
+    height: 100%;
+  }
+
+  .bidding-a2-b2 {
+    flex-basis: 60%;
+    height: 100%;
+  }
+
+  .bidding-a2-b1-c1 {
+    flex-basis: 100%;
+    height: 50%;;
+  }
+
+  .bidding-a2-b1-c2 {
+    flex-basis: 100%;
+    height: 50%;;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-container {
+    height: 90%;
+  }
+
+  .bidding-a1 {
+    flex-basis: 100%;
+    height: 7%;
+  }
+
+  .bidding-a2 {
+    flex-basis: 100%;
+    height: 53%;
+  }
+
+  .bidding-a3 {
+    flex-basis: 100%;
+    height: 40%;
+  }
+
+  .bidding-a2-b1 {
+    flex-basis: 100%;
+    height: 33%;
+  }
+
+  .bidding-a2-b2 {
+    flex-basis: 100%;
+    height: 67%;
+  }
+
+  .bidding-a2-b1-c1 {
+    flex-basis: 30%;
+    height: 100%;
+  }
+
+  .bidding-a2-b1-c2 {
+    flex-basis: 70%;
+    height: 100%;
+  }
+}

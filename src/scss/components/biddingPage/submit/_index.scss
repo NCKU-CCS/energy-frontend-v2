@@ -1,0 +1,99 @@
+@import './list';
+@import './typeButton';
+@import './pageControl';
+@import './addBid';
+@import './listItem';
+@import './infoBox';
+@import './addBidBtn';
+
+.bidding-submit-container-in {
+  flex-basis: 95%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-radius: 5px;
+  // border: green solid 3px;
+}
+
+.bidding-submit-modebutton-container-out {
+  flex-basis: 100%;
+  height: 10%;
+  // border: blue solid 2px;
+}
+
+.bidding-submit-list-container-out {
+  flex-basis: 100%;
+  height: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  // border: blue solid 1px;
+}
+
+.bidding-submit-addbid-container-out {
+  flex-basis: 100%;
+  height: 8%;
+  margin-top: 2%;
+  // border: blue solid 1px;
+}
+
+.bidding-submit-pagecontrol-container-out {
+  flex-basis: 100%;
+  height: 10%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  // border: blue solid 1px;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-submit-container-in {
+    margin-left: 2.5%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-submit-container-in {
+    flex-basis: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
+    // border: red solid 1px;
+  }
+
+  .bidding-submit-modebutton-container-out {
+    height: 10%;
+    // border: red solid 1px;
+  }
+
+  .bidding-submit-list-container-out {
+    height: 75%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .bidding-submit-addbid-container-out {
+    height: 15%;
+    margin-top: 0%;
+    display: none;
+  }
+
+  .bidding-submit-pagecontrol-container-out {
+    height: 15%;
+  }
+}
