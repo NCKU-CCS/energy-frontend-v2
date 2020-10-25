@@ -10,18 +10,22 @@ import ElectronPage from './pages/electron';
 import BiddingPage from './pages/bidding';
 import PowerInfoPage from './pages/powerInfo';
 import ErrorPage from './pages/_error';
+import i18n from './i18n';
 
-const App: React.FC = () => (
-  <Switch>
-    <Route exact path="/" component={withAuthorization(IndexPage)} />
-    <Route path="/setting" component={withAuthorization(SettingPage)} />
-    <Route path="/status" component={withAuthorization(StatusPage)} />
-    <Route path="/electron" component={withAuthorization(ElectronPage)} />
-    <Route path="/bidding" component={withAuthorization(BiddingPage)} />
-    <Route path="/power_info" component={withAuthorization(PowerInfoPage)} />
-    <Route path="/login" component={LoginPage} />
-    <Route component={ErrorPage} />
-  </Switch>
-);
+const App: React.FC = () => {
+  i18n.changeLanguage(sessionStorage.getItem('Language') || 'zh-TW');
+  return (
+    <Switch>
+      <Route exact path="/" component={withAuthorization(IndexPage)} />
+      <Route path="/setting" component={withAuthorization(SettingPage)} />
+      <Route path="/status" component={withAuthorization(StatusPage)} />
+      <Route path="/electron" component={withAuthorization(ElectronPage)} />
+      <Route path="/bidding" component={withAuthorization(BiddingPage)} />
+      <Route path="/power_info" component={withAuthorization(PowerInfoPage)} />
+      <Route path="/login" component={LoginPage} />
+      <Route component={ErrorPage} />
+    </Switch>
+  );
+};
 
 export default App;
