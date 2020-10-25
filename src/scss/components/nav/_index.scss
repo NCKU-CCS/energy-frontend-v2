@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.navbar--Aggregator{
+  background-color: #464147;
+}
+
 // 1280 < size
 @media all and (min-width: 1280px) {
   .navbar {
