@@ -27,18 +27,17 @@ const Content: React.FC<IContent> = ({
 }) => {
   const { t } = useTranslation();
 
-  // state
-  const [color, setColor] = useState<boolean>(false);
-
   // change button color and pass state
   const button = classnames('status-list-content-button');
   const buttonClick = classnames(
     'status-list-content-button',
     'status-list-content-button--click',
   );
-  let buttonColor = button;
-  if (color === false) buttonColor = button;
-  else buttonColor = buttonClick;
+  const [buttonColor, setButtonColor] = useState<string>(button);
+  const [color, setColor] = useState<boolean>(false);
+  useEffect(() => {
+    setButtonColor(color === false ? button : buttonClick);
+  }, [color]);
 
   useEffect(() => {
     if (nowIndex !== index) setColor(false);

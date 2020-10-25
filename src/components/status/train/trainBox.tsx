@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
@@ -10,24 +10,33 @@ interface content {
 
 const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
   const { t } = useTranslation();
+  const [outline, setOutline] = useState<string>('');
+  const [i18nText, setI18nText] = useState<string>('');
 
-  let outline = '';
-  if (index <= nowindex)
-    outline = classnames(
-      'status-train-trainBox-outline',
-      'status-train-trainBox-outline-orange',
-    );
-  else
-    outline = classnames(
-      'status-train-trainBox-outline',
-      'status-train-trainBox-outline-white',
-    );
-  let i18nText = '';
-  if (text === '投標中') i18nText = t('statuspage.bidding');
-  else if (text === '已投標') i18nText = t('statuspage.finish');
-  else if (text === '執行中') i18nText = t('statuspage.executing');
-  else if (text === '結算中') i18nText = t('statuspage.settling');
-  else if (text === '已結算') i18nText = t('statuspage.end');
+  useEffect(() => {
+    if (index <= nowindex)
+      setOutline(
+        classnames(
+          'status-train-trainBox-outline',
+          'status-train-trainBox-outline-orange',
+        ),
+      );
+    else
+      setOutline(
+        classnames(
+          'status-train-trainBox-outline',
+          'status-train-trainBox-outline-white',
+        ),
+      );
+  }, [index, nowindex]);
+
+  useEffect(() => {
+    if (text === '投標中') setI18nText(t('statuspage.bidding'));
+    else if (text === '已投標') setI18nText(t('statuspage.finish'));
+    else if (text === '執行中') setI18nText(t('statuspage.executing'));
+    else if (text === '結算中') setI18nText(t('statuspage.settling'));
+    else if (text === '已結算') setI18nText(t('statuspage.end'));
+  }, [text]);
 
   const Text = () => {
     if (text !== '得標或未得標') {

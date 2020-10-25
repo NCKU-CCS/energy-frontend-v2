@@ -24,19 +24,23 @@ const PageButton: React.FC<IContent> = ({
   );
 
   const [color, setColor] = useState<boolean>(firstColor);
-  let buttonColor = button;
-  if (color === false) buttonColor = button;
-  else buttonColor = buttonClick;
-
-  let buttonText = '';
-  if (text === 1) buttonText = t('statuspage.all');
-  else if (text === 2) buttonText = t('statuspage.bid');
-  else if (text === 3) buttonText = t('statuspage.handle');
-  else if (text === 4) buttonText = t('statuspage.settle');
+  const [buttonColor, setButtonColor] = useState<string>(button);
+  const [buttonText, setButtonText] = useState<string>('');
 
   useEffect(() => {
     if (page !== text) setColor(false);
   }, [page]);
+
+  useEffect(() => {
+    setButtonColor(color === false ? button : buttonClick);
+  }, [color]);
+
+  useEffect(() => {
+    if (text === 1) setButtonText(t('statuspage.all'));
+    else if (text === 2) setButtonText(t('statuspage.bid'));
+    else if (text === 3) setButtonText(t('statuspage.handle'));
+    else if (text === 4) setButtonText(t('statuspage.settle'));
+  }, [text]);
 
   const pageOnClick = () => {
     setColor(true);
