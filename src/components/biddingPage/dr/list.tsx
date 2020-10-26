@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
+import React from 'react';
 import classNames from 'classnames';
 import ListItem from './listItem';
-import { intervalArr } from '../../../constants/constant';
+import testData from './test.json';
 
-interface IFakeData {
+interface IData {
   date: string;
   interval: string;
   value: number;
@@ -13,62 +12,8 @@ interface IFakeData {
 }
 
 const List: React.FC = () => {
-  // const [editable, setEditable] = useState<boolean>(true);
-  const [fakeData, setFakeData] = useState<IFakeData[]>([]);
-
-  // get random int
-  const getRandomInt = (max: number) => {
-    return Math.floor(Math.random() * Math.floor(max));
-  };
-
-  const createFakeData = () => {
-    // temp arr of fake data
-    const tmpFakeData: IFakeData[] = [];
-
-    // array that stores today, today + 1, today + 2
-    const dateArr: string[] = [
-      dayjs().add(1, 'day').format('YYYY/MM/DD'),
-      dayjs().add(2, 'day').format('YYYY/MM/DD'),
-    ];
-
-    // creating
-    for (const date of dateArr) {
-      for (const interval of intervalArr) {
-        const value = getRandomInt(10) + 1;
-        const price = getRandomInt(10) + 1;
-        tmpFakeData.push({
-          date,
-          interval,
-          value,
-          price,
-          total: value * price,
-        });
-      }
-    }
-
-    // setState
-    setFakeData(tmpFakeData);
-  };
-
-  useEffect(() => {
-    createFakeData();
-  }, []);
-
-  // useEffect(() => {
-  //   setInterval(createFakeData, 60 * 60 * 1000);
-  // }, []);
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setEditable(
-  //       !(new Date().getHours() >= 10 &&
-  //       new Date().getMinutes() >= 30)
-  //     );
-  //   }, 1000);
-  // }, []);
-
   // map data
-  const createList = fakeData.map((d) => {
+  const createList = testData.map((d) => {
     return (
       <ListItem
         date={d.date}
@@ -76,7 +21,6 @@ const List: React.FC = () => {
         value={d.value}
         price={d.price}
         total={d.total}
-        // editable={editable}
       />
     );
   });

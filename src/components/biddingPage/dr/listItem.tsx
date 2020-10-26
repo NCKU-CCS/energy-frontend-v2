@@ -17,6 +17,21 @@ const ListItem: React.FC<IProps> = ({
   price,
   total,
 }) => {
+  // display data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [displayDate, setDisplayDate] = useState<string>(date);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [displayInterval, setDisplayInterval] = useState<string>(interval);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [displayValue, setDisplayValue] = useState<number>(value);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [displayPrice, setDisplayPrice] = useState<number>(price);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [displayTotal, setDisplayTotal] = useState<number>(total);
+
+  // edit mode
+  const [editMode, setEditMode] = useState<boolean>(false);
+
   // bid btn disabled or not
   const [bidBtnDisabled, setBidBtnDisabled] = useState<boolean>(false);
 
@@ -25,7 +40,7 @@ const ListItem: React.FC<IProps> = ({
 
   // bid btn class name
   const [bidBtnClassName, setBidBtnClassName] = useState<string>(
-    'bidding-dr-list-listitem-bid-btn',
+    'bidding-dr-list-listitem-bid-btn--show',
   );
 
   // this bid is editable or not
@@ -40,7 +55,7 @@ const ListItem: React.FC<IProps> = ({
       setEditable(false);
       setBidBtnDisabled(true);
       setBidBtnText('已過期');
-      setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired');
+      setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
     } else {
       setEditable(true);
       setBidBtnDisabled(false);
@@ -48,13 +63,16 @@ const ListItem: React.FC<IProps> = ({
     }
   };
 
+  // determine editable or not every minute
   useEffect(() => {
     determineEditable();
+    setInterval(determineEditable, 1000 * 60);
   }, []);
 
-  useEffect(() => {
-    setInterval(determineEditable, 1000 * 60);
-  });
+  // handle click edit btn
+  const handleClickEditBtn = () => {
+    setEditMode(true);
+  };
 
   // handle click bid btn
   const handleClickBidBtn = () => {
@@ -62,14 +80,25 @@ const ListItem: React.FC<IProps> = ({
     setBidBtnDisabled(true);
   };
 
-  return (
-    <div className={classNames('bidding-dr-list-listitem-container-in')}>
+  return editMode ? (
+    <div className={classNames('bidding-dr-list-listitem-container-in--edit')}>
+      {/* <input type="date" />
+        <select>
+          <option>1</option>
+        </select>
+        <input type="number" />
+        <input type="number" />
+        <input type="number" /> */}
+    </div>
+  ) : (
+    <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
       <button
         type="button"
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-edit',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-edit--show',
         )}
+        onClick={() => handleClickEditBtn()}
         disabled={!editable}
       >
         <img
@@ -77,53 +106,53 @@ const ListItem: React.FC<IProps> = ({
           src={`${process.env.PUBLIC_URL}/biddingPage/pencil-${
             editable ? 'orange' : 'disabled'
           }.png`}
-          className={classNames('bidding-dr-list-listitem-edit-img')}
+          className={classNames('bidding-dr-list-listitem-edit-img--show')}
         />
       </button>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-date',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-date--show',
         )}
       >
-        {date}
+        {displayDate}
       </div>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-interval',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-interval--show',
         )}
       >
-        {interval}
+        {displayInterval}
       </div>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-value',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-value--show',
         )}
       >
-        {value}kWh
+        {displayValue}kWh
       </div>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-price',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-price--show',
         )}
       >
-        ${price}/kWh
+        ${displayPrice}/kWh
       </div>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-total',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-total--show',
         )}
       >
-        ${total}
+        ${displayTotal}
       </div>
       <div
         className={classNames(
-          'bidding-dr-list-listitem-item',
-          'bidding-dr-list-listitem-button-container',
+          'bidding-dr-list-listitem-item--show',
+          'bidding-dr-list-listitem-button-container--show',
         )}
       >
         <button
