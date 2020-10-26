@@ -82,13 +82,58 @@ const ListItem: React.FC<IProps> = ({
 
   return editMode ? (
     <div className={classNames('bidding-dr-list-listitem-container-in--edit')}>
-      {/* <input type="date" />
-        <select>
-          <option>1</option>
-        </select>
-        <input type="number" />
-        <input type="number" />
-        <input type="number" /> */}
+      <div
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-space--edit',
+        )}
+      >
+        s
+      </div>
+      <input
+        type="date"
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-date--edit',
+        )}
+      />
+      <select
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-interval--edit',
+        )}
+      >
+        <option>1</option>
+      </select>
+      <input
+        type="number"
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-value--edit',
+        )}
+      />
+      <input
+        type="number"
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-price--edit',
+        )}
+      />
+      <input
+        type="number"
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-total--edit',
+        )}
+      />
+      <div
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-button-container--edit',
+        )}
+      >
+        b
+      </div>
     </div>
   ) : (
     <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
