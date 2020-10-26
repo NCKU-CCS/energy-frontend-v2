@@ -11,7 +11,7 @@
 }
 
 .status-upContainer{
-	display: flex;	
+	display: flex;
 }
 
 // 1280 < size
@@ -59,8 +59,8 @@
 	}
 }
 
-@media all and (max-width: 720px) and (max-device-height: 600px){
+@media all and (max-width: 720px) and (max-device-height: 520px){
 	.status{
-		height:85%;
+		height:87%;
 	}
 }

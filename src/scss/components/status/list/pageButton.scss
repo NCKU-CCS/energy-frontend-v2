@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
   color: #474747;
   cursor: pointer;
 }
@@ -23,3 +22,32 @@
   border: 1px solid #9e9e9e;
   outline: none;
 }
+
+// 1280 < size
+@media all and (min-width: 1280px){
+  .status-list-pageButton-button{
+    font-size: 1.8vw;
+  }
+}
+
+// 720 < size < 1280
+@media all and (min-width: 720px) and (max-width: 1280px){
+  .status-list-pageButton-button{
+    font-size: 2.3vw;
+  }
+}
+
+// 500 < size < 720
+@media all and (min-width: 500px) and (max-width: 720px){
+  .status-list-pageButton-button{
+    font-size: 3vw;
+  }
+}
+
+// 320 < size < 500
+@media all and (min-width: 320px) and (max-width: 500px){
+  .status-list-pageButton-button{
+    font-size: 3vw;
+  }
+}
+

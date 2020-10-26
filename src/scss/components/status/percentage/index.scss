@@ -8,17 +8,18 @@
 }
 
 .status-percentage-img{
+  height: auto;
 }
 
 .status-percentage-title{
   width:100%;
   height:13%;
+  margin-top: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #686868;
   font-weight: bold;
-  font-size: 24px;
 }
 
 .status-percentage-percentage{
@@ -28,40 +29,69 @@
   justify-content: center;
   align-items: center;
   color: #686868;
-  font-size: 56px;
 }
 
-// 1800 < size
-@media all and (min-width: 1800px){
-  .status-percentage-img{
-    width: 35%;
-  }
-}
-
-// 1600 < size < 1800
-@media all and (min-width: 1600px) and (max-width: 1800px){
+// 1600 < size
+@media all and (min-width: 1600px){
   .status-percentage-img{
     width: 40%;
   }
-}
-
-// 1200 < size < 1600
-@media all and (min-width: 1200px) and (max-width: 1600px){
-  .status-percentage-img{
-    width: 50%;
+  .status-percentage-title{
+    font-size: 1.6vw;
+  }
+  .status-percentage-percentage{
+    font-size: 3vw;
   }
 }
 
-// 900 < size < 1200
-@media all and (min-width: 900px) and (max-width: 1200px){
+// 1280 < size < 1600
+@media all and (min-width: 1280px) and (max-width: 1600px){
   .status-percentage-img{
-    width: 60%;
+    width: 55%;
+  }
+  .status-percentage-title{
+    font-size: 1.7vw;
+  }
+  .status-percentage-percentage{
+    font-size: 3vw;
+  }
+}
+
+// 900 < size < 1280
+@media all and (min-width: 900px) and (max-width: 1280px){
+  .status-percentage-img{
+    width: 55%;
+  }
+  .status-percentage-title{
+    font-size: 2vw;
+  }
+  .status-percentage-percentage{
+    font-size: 3.8vw;
   }
 }
 
 // 720 < size < 900
 @media all and (min-width: 720px) and (max-width: 900px){
   .status-percentage-img{
-    width: 70%;
+    width: 60%;
+  }
+  .status-percentage-title{
+    font-size: 2.5vw;
+  }
+  .status-percentage-percentage{
+    font-size: 4vw;
+  }
+}
+
+// 320 < size < 720
+@media all and (min-width: 320px) and (max-width: 720px){
+  .status-percentage-img{
+    width: 55%;
+  }
+  .status-percentage-title{
+    font-size: 2.5vw;
+  }
+  .status-percentage-percentage{
+    font-size: 5vw;
   }
 }

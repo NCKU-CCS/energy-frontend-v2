@@ -29,20 +29,20 @@
   height:33%;
   width: 100%;
   display: flex;
-  font-size: 22px;
+  font-size: 1.2vw;
   color: #4b4b4b;
 }
 
 .status-train-code{
   height:100%;
-  width: 65%;
+  width: 70%;
   display: flex;
   align-items: center;
 }
 
 .status-train-time{
   height:100%;
-  width: 35%;
+  width: 30%;
   display: flex;
   align-items: center;
 }
@@ -87,4 +87,54 @@
   width: 22.5%;
   display: flex;
   align-items: center;
+}
+
+// size < 1700
+@media all and (min-width: 1700px) {
+	.status-train-chain{
+    width: 5%;
+  }
+  .status-train-infoBox{
+    font-size: 1.2vw;
+  }
+}
+
+// 1500 < size < 1700
+@media all and (min-width: 1280px) and (max-width: 1700px) {
+	.status-train-chain{
+    width: 4%;
+  }
+  .status-train-infoBox{
+    font-size: 1.2vw;
+  }
+}
+
+// 1500 < size < 1700
+@media all and (min-width: 900px) and (max-width: 1280px) {
+	.status-train-chain{
+    width: 4%;
+  }
+  .status-train-infoBox{
+    font-size: 1.4vw;
+  }
+}
+
+// 720 < size < 900
+@media all and (min-width: 720px) and (max-width: 900px) {
+	.status-train-chain{
+    width: 4%;
+  }
+  .status-train-infoBox{
+    font-size: 1.25vw;
+  }
+}
+
+// 320 < size < 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+	.status-train-chain{
+    width: 4%;
+  }
+  .status-train-infoBox{
+    font-size: 1.6vw;
+  }
 }

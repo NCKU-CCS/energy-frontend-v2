@@ -1,6 +1,5 @@
 .status-train-trainBox-outline{
   height: 80%;
-  width:12%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,12 +16,51 @@
 
 .status-train-trainBox-content{
   background-color: white;
-  height: 80%;
   width:80%;
+  height: 80%;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
   color: #494949;
+}
+
+// size < 1700
+@media all and (min-width: 1700px) {
+  .status-train-trainBox-outline{ 
+    width:12%;
+  }
+  .status-train-trainBox-content{
+    font-size: 1.2vw;
+  }
+}
+
+// 1300 < size < 1700
+@media all and (min-width: 1300px) and (max-width: 1700px) {
+  .status-train-trainBox-outline{
+    width:14%;
+  }
+  .status-train-trainBox-content{
+    font-size: 1.3vw;
+  }
+}
+
+// 720 < size < 1300
+@media all and (min-width: 720px) and (max-width: 1300px) {
+  .status-train-trainBox-outline{
+    width:15%;
+  }
+  .status-train-trainBox-content{
+    font-size: 1.4vw;
+  }
+}
+
+// 320 < size < 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .status-train-trainBox-outline{
+    width:15%;
+  }
+  .status-train-trainBox-content{
+    font-size: 2vw;
+  }
 }
