@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import dayjs from 'dayjs';
@@ -832,62 +833,102 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 Math.min(
                   Number(
                     equipScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].PV,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].PV
+                        : 0,
                     ),
                   ),
                   Number(
                     equipScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].WT,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].WT
+                        : 0,
                     ),
                   ),
                   Number(
                     equipScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].ESS,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].ESS
+                        : 0,
                     ),
                   ),
                   Number(
                     equipScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].EV,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].EV
+                        : 0,
                     ),
                   ),
                 ),
@@ -929,17 +970,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataPV
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].PV
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].PV
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -972,17 +1023,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataWT
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].WT
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].WT
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1015,17 +1076,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataESS
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].ESS
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].ESS
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1058,17 +1129,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataEV
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].EV
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].EV
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1106,17 +1187,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 equipScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].PV,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].PV
+                    : 0,
                 ),
               ) + padding.top,
             );
@@ -1143,17 +1234,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 equipScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].WT,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].WT
+                    : 0,
                 ),
               ) + padding.top,
             );
@@ -1180,17 +1281,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 equipScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].ESS,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].ESS
+                    : 0,
                 ),
               ) + padding.top,
             );
@@ -1217,17 +1328,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 equipScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].EV,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].EV
+                    : 0,
                 ),
               ) + padding.top,
             );
@@ -1465,32 +1586,52 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                 Math.min(
                   Number(
                     loadScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].Consume,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].Consume
+                        : 0,
                     ),
                   ),
                   Number(
                     loadScaleY(
-                      apiDataArr[
-                        bisectDate(
-                          apiDataArr,
-                          timeFormat(
-                            scaleX.invert(
-                              d3.mouse(d3.event.currentTarget)[0] -
-                                (padding.axisX + padding.left),
-                            ),
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
                           ),
-                        )
-                      ].Generate,
+                        ),
+                      ) < apiDataArr.length
+                        ? apiDataArr[
+                            bisectDate(
+                              apiDataArr,
+                              timeFormat(
+                                scaleX.invert(
+                                  d3.mouse(d3.event.currentTarget)[0] -
+                                    (padding.axisX + padding.left),
+                                ),
+                              ),
+                            )
+                          ].Generate
+                        : 0,
                     ),
                   ),
                 ),
@@ -1530,17 +1671,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataConsume
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].Consume
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].Consume
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1571,17 +1722,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataGenerate
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].Generate
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].Generate
+                  : 0
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1612,28 +1773,48 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           tooltipDataDemand
             .text(
               `${
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                (bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].Consume -
-                apiDataArr[
-                  bisectDate(
-                    apiDataArr,
-                    timeFormat(
-                      scaleX.invert(
-                        d3.mouse(d3.event.currentTarget)[0] -
-                          (padding.axisX + padding.left),
-                      ),
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].Consume
+                  : 0) -
+                (bisectDate(
+                  apiDataArr,
+                  timeFormat(
+                    scaleX.invert(
+                      d3.mouse(d3.event.currentTarget)[0] -
+                        (padding.axisX + padding.left),
                     ),
-                  )
-                ].Generate
+                  ),
+                ) < apiDataArr.length
+                  ? apiDataArr[
+                      bisectDate(
+                        apiDataArr,
+                        timeFormat(
+                          scaleX.invert(
+                            d3.mouse(d3.event.currentTarget)[0] -
+                              (padding.axisX + padding.left),
+                          ),
+                        ),
+                      )
+                    ].Generate
+                  : 0)
               }`,
             )
             .attr('text-anchor', 'end')
@@ -1671,17 +1852,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 loadScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].Consume,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].Consume
+                    : 0,
                 ),
               ) + padding.top,
             );
@@ -1708,17 +1899,27 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
               'cy',
               Number(
                 loadScaleY(
-                  apiDataArr[
-                    bisectDate(
-                      apiDataArr,
-                      timeFormat(
-                        scaleX.invert(
-                          d3.mouse(d3.event.currentTarget)[0] -
-                            (padding.axisX + padding.left),
-                        ),
+                  bisectDate(
+                    apiDataArr,
+                    timeFormat(
+                      scaleX.invert(
+                        d3.mouse(d3.event.currentTarget)[0] -
+                          (padding.axisX + padding.left),
                       ),
-                    )
-                  ].Generate,
+                    ),
+                  ) < apiDataArr.length
+                    ? apiDataArr[
+                        bisectDate(
+                          apiDataArr,
+                          timeFormat(
+                            scaleX.invert(
+                              d3.mouse(d3.event.currentTarget)[0] -
+                                (padding.axisX + padding.left),
+                            ),
+                          ),
+                        )
+                      ].Generate
+                    : 0,
                 ),
               ) + padding.top,
             );
