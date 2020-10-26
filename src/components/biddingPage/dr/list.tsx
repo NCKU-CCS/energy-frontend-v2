@@ -6,6 +6,7 @@ import testData from './test.json';
 interface IData {
   date: string;
   interval: string;
+  time: number;
   value: number;
   price: number;
   total: number;
@@ -18,6 +19,7 @@ const List: React.FC = () => {
       <ListItem
         date={d.date}
         interval={d.interval}
+        time={d.time}
         value={d.value}
         price={d.price}
         total={d.total}

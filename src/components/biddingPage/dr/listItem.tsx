@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
   date: string;
   interval: string;
+  time: number;
   value: number;
   price: number;
   total: number;
@@ -13,6 +15,7 @@ interface IProps {
 const ListItem: React.FC<IProps> = ({
   date,
   interval,
+  time,
   value,
   price,
   total,
@@ -80,6 +83,35 @@ const ListItem: React.FC<IProps> = ({
     setBidBtnDisabled(true);
   };
 
+  // handle click submit btn
+  const handleClickSubmitBtn = () => {
+    setEditMode(false);
+  };
+
+  // handle click cancel btn
+  const handleClickCancelBtn = () => {
+    setDisplayDate(date);
+    setDisplayInterval(interval);
+    setDisplayValue(value);
+    setDisplayPrice(price);
+    setDisplayTotal(total);
+    setEditMode(false);
+  };
+
+  // map the interval array and return options
+  const createOptions = intervalArr.map((str, i) => {
+    return (
+      <option value={str} selected={i === time}>
+        {str}
+      </option>
+    );
+  });
+
+  // calculate total
+  useEffect(() => {
+    setDisplayTotal(parseFloat((displayValue * displayPrice).toFixed(2)));
+  }, [displayPrice, displayValue]);
+
   return editMode ? (
     <div className={classNames('bidding-dr-list-listitem-container-in--edit')}>
       <div
@@ -96,35 +128,54 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-item--edit',
           'bidding-dr-list-listitem-date--edit',
         )}
+        defaultValue={dayjs(new Date(date)).format('YYYY-MM-DD').toString()}
+        onChange={(e) =>
+          setDisplayDate(dayjs(e.target.value).format('YYYY/MM/DD'))
+        }
       />
       <select
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
           'bidding-dr-list-listitem-interval--edit',
         )}
+        defaultValue={interval}
+        onChange={(e) => setDisplayInterval(e.target.value)}
       >
-        <option>1</option>
+        <option value={interval}>{interval}</option>
+        {createOptions}
       </select>
       <input
         type="number"
+        min="0"
+        step="0.1"
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
           'bidding-dr-list-listitem-value--edit',
         )}
+        defaultValue={value}
+        onChange={(e) => setDisplayValue(parseFloat(e.target.value))}
       />
       <input
         type="number"
+        min="0"
+        step="0.1"
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
           'bidding-dr-list-listitem-price--edit',
         )}
+        defaultValue={price}
+        onChange={(e) => setDisplayPrice(parseFloat(e.target.value))}
       />
       <input
         type="number"
+        min="0"
+        step="0.1"
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
           'bidding-dr-list-listitem-total--edit',
         )}
+        value={displayTotal}
+        disabled
       />
       <div
         className={classNames(
@@ -132,7 +183,12 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-button-container--edit',
         )}
       >
-        b
+        <button type="button" onClick={() => handleClickSubmitBtn()}>
+          y
+        </button>
+        <button type="button" onClick={() => handleClickCancelBtn()}>
+          n
+        </button>
       </div>
     </div>
   ) : (
