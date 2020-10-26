@@ -6,7 +6,9 @@ import PageControl from './pageControl';
 const Dr: React.FC = () => {
   return (
     <div className={classNames('bidding-dr-container-in')}>
-      <div className={classNames('bidding-dr-title-container')}>DR需求接受</div>
+      <div className={classNames('bidding-dr-title-container')}>
+        需量反應競標
+      </div>
       <div className={classNames('bidding-dr-list-container-out')}>
         <List />
       </div>

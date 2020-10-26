@@ -1,72 +1,98 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import classNames from 'classnames';
-import data from './test.json';
+import ListItem from './listItem';
+import { intervalArr } from '../../../constants/constant';
+
+interface IFakeData {
+  date: string;
+  interval: string;
+  value: number;
+  price: number;
+  total: number;
+}
 
 const List: React.FC = () => {
+  // const [editable, setEditable] = useState<boolean>(true);
+  const [fakeData, setFakeData] = useState<IFakeData[]>([]);
+
+  // get random int
+  const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+
+  const createFakeData = () => {
+    // temp arr of fake data
+    const tmpFakeDataArr: IFakeData[] = [];
+
+    // array that stores today, today + 1, today + 2
+    const dateArr: string[] = [
+      dayjs().format('YYYY/MM/DD'),
+      dayjs().add(1, 'day').format('YYYY/MM/DD'),
+      dayjs().add(2, 'day').format('YYYY/MM/DD'),
+    ];
+
+    // creating
+    for (const date of dateArr) {
+      for (const interval of intervalArr) {
+        const value = getRandomInt(10) + 1;
+        const price = getRandomInt(10) + 1;
+        tmpFakeDataArr.push({
+          date,
+          interval,
+          value,
+          price,
+          total: value * price,
+        });
+      }
+    }
+
+    // setState
+    setFakeData(tmpFakeDataArr);
+  };
+
+  useEffect(() => {
+    createFakeData();
+  }, []);
+
+  // useEffect(() => {
+  //   setInterval(createFakeData, 60 * 60 * 1000);
+  // }, []);
+
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setEditable(
+  //       !(new Date().getHours() >= 10 &&
+  //       new Date().getMinutes() >= 30)
+  //     );
+  //   }, 1000);
+  // }, []);
+
   // map data
-  const createList = data.map((d) => {
+  const createList = fakeData.map((d) => {
     return (
-      <div className={classNames('bidding-dr-list-listitem-container-in')}>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-date',
-          )}
-        >
-          {d.date}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-interval',
-          )}
-        >
-          {d.interval}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-value',
-          )}
-        >
-          {d.value}kWh
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-price',
-          )}
-        >
-          ${d.price}/kWh
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-total',
-          )}
-        >
-          ${d.total}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-button-container',
-          )}
-        >
-          <button
-            className={classNames('bidding-dr-list-listitem-button-btn')}
-            type="button"
-          >
-            接受
-          </button>
-        </div>
-      </div>
+      <ListItem
+        date={d.date}
+        interval={d.interval}
+        value={d.value}
+        price={d.price}
+        total={d.total}
+        // editable={editable}
+      />
     );
   });
 
   return (
     <div className={classNames('bidding-dr-list-container-in')}>
       <div className={classNames('bidding-dr-list-title-container')}>
+        <div
+          className={classNames(
+            'bidding-dr-list-title-item',
+            'bidding-dr-list-title-space1',
+          )}
+        >
+          s
+        </div>
         <div
           className={classNames(
             'bidding-dr-list-title-item',
@@ -110,7 +136,7 @@ const List: React.FC = () => {
         <div
           className={classNames(
             'bidding-dr-list-title-item',
-            'bidding-dr-list-title-space',
+            'bidding-dr-list-title-space2',
           )}
         >
           s

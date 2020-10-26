@@ -14,6 +14,9 @@ const BiddingPageContainer: React.FC = () => {
     <div className={classNames('bidding-container')}>
       <div className={classNames('bidding-a1')}>
         <ModeButton setMode={setMode} />
+        {mode === '需量反應' && (
+          <input className={classNames('bidding-dr-date')} type="date" />
+        )}
       </div>
       <div className={classNames('bidding-a2')}>
         <div className={classNames('bidding-a2-b1')}>
