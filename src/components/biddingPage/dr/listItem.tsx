@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 interface IProps {
   date: string;
@@ -7,7 +8,6 @@ interface IProps {
   value: number;
   price: number;
   total: number;
-  // editable: boolean;
 }
 
 const ListItem: React.FC<IProps> = ({
@@ -16,9 +16,51 @@ const ListItem: React.FC<IProps> = ({
   value,
   price,
   total,
-  // editable
 }) => {
-  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(false);
+  // bid btn disabled or not
+  const [bidBtnDisabled, setBidBtnDisabled] = useState<boolean>(false);
+
+  // bid btn's text
+  const [bidBtnText, setBidBtnText] = useState<string>('投標');
+
+  // bid btn class name
+  const [bidBtnClassName, setBidBtnClassName] = useState<string>(
+    'bidding-dr-list-listitem-bid-btn',
+  );
+
+  // this bid is editable or not
+  const [editable, setEditable] = useState<boolean>(true);
+
+  // determine editable or not
+  const determineEditable = () => {
+    if (
+      date === dayjs().add(1, 'day').format('YYYY/MM/DD') &&
+      new Date().getHours() * 60 + new Date().getMinutes() >= 630
+    ) {
+      setEditable(false);
+      setBidBtnDisabled(true);
+      setBidBtnText('已過期');
+      setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired');
+    } else {
+      setEditable(true);
+      setBidBtnDisabled(false);
+      setBidBtnText('投標');
+    }
+  };
+
+  useEffect(() => {
+    determineEditable();
+  }, []);
+
+  useEffect(() => {
+    setInterval(determineEditable, 1000 * 60 * 60);
+  });
+
+  // handle click bid btn
+  const handleClickBidBtn = () => {
+    setBidBtnText('已投標');
+    setBidBtnDisabled(true);
+  };
 
   return (
     <div className={classNames('bidding-dr-list-listitem-container-in')}>
@@ -28,10 +70,13 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-item',
           'bidding-dr-list-listitem-edit',
         )}
+        disabled={!editable}
       >
         <img
           alt="edit"
-          src={`${process.env.PUBLIC_URL}/biddingPage/pencil-orange.png`}
+          src={`${process.env.PUBLIC_URL}/biddingPage/pencil-${
+            editable ? 'orange' : 'disabled'
+          }.png`}
           className={classNames('bidding-dr-list-listitem-edit-img')}
         />
       </button>
@@ -82,12 +127,12 @@ const ListItem: React.FC<IProps> = ({
         )}
       >
         <button
-          className={classNames('bidding-dr-list-listitem-button-btn')}
+          className={classNames(`${bidBtnClassName}`)}
           type="button"
-          onClick={() => setAcceptBtnDisabled(true)}
-          disabled={acceptBtnDisabled}
+          onClick={() => handleClickBidBtn()}
+          disabled={bidBtnDisabled}
         >
-          {acceptBtnDisabled ? '已投標' : '投標'}
+          {bidBtnText}
         </button>
       </div>
     </div>

@@ -23,11 +23,10 @@ const List: React.FC = () => {
 
   const createFakeData = () => {
     // temp arr of fake data
-    const tmpFakeDataArr: IFakeData[] = [];
+    const tmpFakeData: IFakeData[] = [];
 
     // array that stores today, today + 1, today + 2
     const dateArr: string[] = [
-      dayjs().format('YYYY/MM/DD'),
       dayjs().add(1, 'day').format('YYYY/MM/DD'),
       dayjs().add(2, 'day').format('YYYY/MM/DD'),
     ];
@@ -37,7 +36,7 @@ const List: React.FC = () => {
       for (const interval of intervalArr) {
         const value = getRandomInt(10) + 1;
         const price = getRandomInt(10) + 1;
-        tmpFakeDataArr.push({
+        tmpFakeData.push({
           date,
           interval,
           value,
@@ -48,7 +47,7 @@ const List: React.FC = () => {
     }
 
     // setState
-    setFakeData(tmpFakeDataArr);
+    setFakeData(tmpFakeData);
   };
 
   useEffect(() => {
