@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
     <nav className={navbarType}>
       <Title />
       <User />
-      <Content />
+      <Content isAggregator={info.is_aggregator} />
       <Time />
     </nav>
   );

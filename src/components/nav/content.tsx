@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import classnames from 'classnames';
 import { FaAlignJustify } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import NavLink from './link';
 
-const Content: React.FC = () => {
+interface IContent {
+  isAggregator: boolean;
+}
+
+const Content: React.FC<IContent> = ({ isAggregator }) => {
   const dropdownRef = React.createRef<HTMLDivElement>();
+  const [navbarClass, setNavbarClass] = useState<string>('');
   const { t } = useTranslation();
 
   const handleDropdown = (event: React.SyntheticEvent) => {
@@ -29,6 +35,16 @@ const Content: React.FC = () => {
     window.location.replace('/login');
   };
 
+  useEffect(() => {
+    setNavbarClass(
+      `${
+        isAggregator
+          ? classnames('navbar-dropdown', 'navbar-dropdown--Aggregator')
+          : classnames('navbar-dropdown')
+      }`,
+    );
+  }, [isAggregator]);
+
   return (
     <div className="navbar-content">
       {/**
@@ -46,7 +62,7 @@ const Content: React.FC = () => {
       {/**
        * Dropdown Menu
        */}
-      <div ref={dropdownRef} className="navbar-dropdown">
+      <div ref={dropdownRef} className={navbarClass}>
         <NavLink pathname="/" imgName="home_icon" name={t('navbar.home')} />
         <NavLink
           pathname="/bidding"
