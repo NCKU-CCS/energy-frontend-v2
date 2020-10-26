@@ -53,7 +53,7 @@ const ListItem: React.FC<IProps> = ({
   }, []);
 
   useEffect(() => {
-    setInterval(determineEditable, 1000 * 60 * 60);
+    setInterval(determineEditable, 1000 * 60);
   });
 
   // handle click bid btn

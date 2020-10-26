@@ -142,7 +142,7 @@ const BarChart: React.FC = () => {
       .attr('width', barWidth)
       .attr('height', (d: IData) => scaleY(d.dr))
       .attr('fill', (d: IData) => {
-        if (d.time >= 12) return '#2d3161';
+        if (d.time > new Date().getHours()) return '#2d3161';
         return '#d8d8d8';
       });
 
