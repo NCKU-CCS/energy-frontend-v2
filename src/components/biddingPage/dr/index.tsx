@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import List from './list';
+import AddBid from './addBid';
 import PageControl from './pageControl';
 
 const Dr: React.FC = () => {
   // is aggregator or not
   const [isAggr, setIsAggr] = useState<boolean>(false);
+
+  // class name
+  const [className, setClassName] = useState<string>('--user');
+
+  // add a bid
+  const [addBid, setAddBid] = useState<boolean>(false);
 
   // user api
   const fetchUser = async () => {
@@ -41,15 +48,28 @@ const Dr: React.FC = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    setClassName(isAggr ? '--aggr' : '--user');
+  }, [isAggr]);
+
   return (
     <div className={classNames('bidding-dr-container-in')}>
-      <div className={classNames('bidding-dr-title-container')}>
+      <div className={classNames(`bidding-dr-title-container${className}`)}>
         {isAggr ? '需量反應決標' : '需量反應競標'}
       </div>
-      <div className={classNames('bidding-dr-list-container-out')}>
-        <List isAggr={isAggr} />
+      <div className={classNames(`bidding-dr-list-container-out${className}`)}>
+        <List isAggr={isAggr} addBid={addBid} />
       </div>
-      <div className={classNames('bidding-dr-pagecontrol-container-out')}>
+      {!isAggr && (
+        <div className={`bidding-dr-addbid-container-out${className}`}>
+          <AddBid setAddBid={setAddBid} />
+        </div>
+      )}
+      <div
+        className={classNames(
+          `bidding-dr-pagecontrol-container-out${className}`,
+        )}
+      >
         <PageControl />
       </div>
     </div>

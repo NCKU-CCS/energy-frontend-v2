@@ -1,0 +1,85 @@
+.bidding-dr-addbid-container-in {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  // border: red solid 1px;
+}
+
+.bidding-dr-addbid-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  height: 60%;
+  font-size: 1vw;
+  // border: blue solid 1px;
+}
+
+.bidding-dr-addbid-space {
+  width: 3%;
+  color: white;
+}
+
+.bidding-dr-addbid-date {
+  width: 20.5%;
+  border: 0;
+  outline: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-dr-addbid-interval {
+  width: 20.5%;
+  border: 0;
+  outline: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-dr-addbid-value {
+  width: 11%;
+  border: 0;
+  outline: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-dr-addbid-price {
+  width: 11%;
+  border: 0;
+  outline: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-dr-addbid-total {
+  width: 11%;
+  border: 0;
+  outline: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.bidding-dr-addbid-button-container {
+  width: 12%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  // border: red solid 1px;
+}
+
+.bidding-dr-addbid-button-submit {
+  cursor: pointer;
+  width: 100%;
+  height: 60%;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.7vw;
+  background-color: #2e7d32;
+}

@@ -97,5 +97,14 @@
     "price": 5,
     "total": 15,
     "status": "none"
+  },
+  {
+    "date": "2020/10/31",
+    "interval": "10:00 - 11:00",
+    "time": 10,
+    "value": 1,
+    "price": 6,
+    "total": 6,
+    "status": "new"
   }
 ]
