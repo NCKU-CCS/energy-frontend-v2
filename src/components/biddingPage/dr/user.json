@@ -1,0 +1,101 @@
+[
+  {
+    "date": "2020/10/28",
+    "interval": "07:00 - 08:00",
+    "time": 7,
+    "value": 3,
+    "price": 2,
+    "total": 6,
+    "status": "bid"
+  },
+  {
+    "date": "2020/10/28",
+    "interval": "11:00 - 12:00",
+    "time": 11,
+    "value": 7,
+    "price": 7,
+    "total": 49,
+    "status": "expired"
+  },
+  {
+    "date": "2020/10/28",
+    "interval": "20:00 - 21:00",
+    "time": 20,
+    "value": 4,
+    "price": 1,
+    "total": 4,
+    "status": "bid"
+  },
+  {
+    "date": "2020/10/28",
+    "interval": "07:00 - 08:00",
+    "time": 7,
+    "value": 3,
+    "price": 2,
+    "total": 6,
+    "status": "bid"
+  },
+  {
+    "date": "2020/10/28",
+    "interval": "11:00 - 12:00",
+    "time": 11,
+    "value": 7,
+    "price": 7,
+    "total": 49,
+    "status": "expired"
+  },
+  {
+    "date": "2020/10/29",
+    "interval": "02:00 - 03:00",
+    "time": 2,
+    "value": 2,
+    "price": 9,
+    "total": 18,
+    "status": "none"
+  },
+  {
+    "date": "2020/10/29",
+    "interval": "15:00 - 16:00",
+    "time": 15,
+    "value": 3,
+    "price": 3,
+    "total": 9,
+    "status": "none"
+  },
+  {
+    "date": "2020/10/29",
+    "interval": "21:00 - 22:00",
+    "time": 21,
+    "value": 6,
+    "price": 4,
+    "total": 24,
+    "status": "none"
+  },
+  {
+    "date": "2020/10/30",
+    "interval": "09:00 - 10:00",
+    "time": 9,
+    "value": 5,
+    "price": 9,
+    "total": 45,
+    "status": "none"
+  },
+  {
+    "date": "2020/10/30",
+    "interval": "12:00 - 13:00",
+    "time": 12,
+    "value": 4,
+    "price": 4,
+    "total": 16,
+    "status": "none"
+  },
+  {
+    "date": "2020/10/30",
+    "interval": "19:00 - 20:00",
+    "time": 19,
+    "value": 3,
+    "price": 5,
+    "total": 15,
+    "status": "none"
+  }
+]

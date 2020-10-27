@@ -1,16 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 import ListItem from './listItem';
-import testData from './test.json';
+import testData from './user.json';
 
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-}
+// interface IData {
+//   date: string;
+//   interval: string;
+//   time: number;
+//   value: number;
+//   price: number;
+//   total: number;
+//   status: string;
+// }
 
 const List: React.FC = () => {
   // map data
@@ -23,6 +24,7 @@ const List: React.FC = () => {
         value={d.value}
         price={d.price}
         total={d.total}
+        status={d.status}
       />
     );
   });

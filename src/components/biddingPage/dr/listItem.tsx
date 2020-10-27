@@ -10,6 +10,7 @@ interface IProps {
   value: number;
   price: number;
   total: number;
+  status: string;
 }
 
 const ListItem: React.FC<IProps> = ({
@@ -19,17 +20,13 @@ const ListItem: React.FC<IProps> = ({
   value,
   price,
   total,
+  status,
 }) => {
   // display data
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [displayDate, setDisplayDate] = useState<string>(date);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [displayInterval, setDisplayInterval] = useState<string>(interval);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [displayValue, setDisplayValue] = useState<number>(value);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [displayPrice, setDisplayPrice] = useState<number>(price);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [displayTotal, setDisplayTotal] = useState<number>(total);
 
   // edit mode
@@ -50,26 +47,40 @@ const ListItem: React.FC<IProps> = ({
   const [editable, setEditable] = useState<boolean>(true);
 
   // determine editable or not
-  const determineEditable = () => {
-    if (
-      date === dayjs().add(1, 'day').format('YYYY/MM/DD') &&
-      new Date().getHours() * 60 + new Date().getMinutes() >= 630
-    ) {
+  // const determineEditable = () => {
+  //   if (
+  //     date === dayjs().add(1, 'day').format('YYYY/MM/DD') &&
+  //     new Date().getHours() * 60 + new Date().getMinutes() >= 630
+  //   ) {
+  //     setEditable(false);
+  //     setBidBtnDisabled(true);
+  //     setBidBtnText('已過期');
+  //     setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
+  //   } else {
+  //     setEditable(true);
+  //     setBidBtnDisabled(false);
+  //     setBidBtnText('投標');
+  //   }
+  // };
+
+  // status
+  useEffect(() => {
+    if (status === 'bid') {
+      setEditable(false);
+      setBidBtnDisabled(true);
+      setBidBtnText('已投標');
+    } else if (status === 'expired') {
       setEditable(false);
       setBidBtnDisabled(true);
       setBidBtnText('已過期');
       setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-    } else {
-      setEditable(true);
-      setBidBtnDisabled(false);
-      setBidBtnText('投標');
     }
-  };
+  }, [status]);
 
   // determine editable or not every minute
   useEffect(() => {
-    determineEditable();
-    setInterval(determineEditable, 1000 * 60);
+    // determineEditable();
+    // setInterval(determineEditable, 1000 * 60);
   }, []);
 
   // handle click edit btn
@@ -183,11 +194,27 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-button-container--edit',
         )}
       >
-        <button type="button" onClick={() => handleClickSubmitBtn()}>
-          y
+        <button
+          type="button"
+          onClick={() => handleClickSubmitBtn()}
+          className={classNames('bidding-dr-list-listitem-submit-btn--edit')}
+        >
+          <img
+            alt="submit"
+            src={`${process.env.PUBLIC_URL}/biddingPage/check-gray.png`}
+            className={classNames('bidding-dr-list-listitem-submit-img--edit')}
+          />
         </button>
-        <button type="button" onClick={() => handleClickCancelBtn()}>
-          n
+        <button
+          type="button"
+          onClick={() => handleClickCancelBtn()}
+          className={classNames('bidding-dr-list-listitem-cancel-btn--edit')}
+        >
+          <img
+            alt="cancel"
+            src={`${process.env.PUBLIC_URL}/biddingPage/cancel-gray.png`}
+            className={classNames('bidding-dr-list-listitem-cancel-img--edit')}
+          />
         </button>
       </div>
     </div>
