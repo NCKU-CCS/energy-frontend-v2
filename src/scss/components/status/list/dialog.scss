@@ -1,0 +1,174 @@
+.status-list-dialog-background{
+  display: none;
+}
+
+@media all and (max-width: 320px){
+  .status-list-dialog-background{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 0px;
+    right: 0px;
+    height: 190%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .status-list-dialog{
+    position: absolute;
+    top: 3%;
+    height: 47%;
+    width: 85%;
+    background-color: white;
+    border-radius: 2%;
+  }
+  .status-list-dialog-fork{
+    height: 5%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    margin-left: 87%;
+    margin-right: 3%;
+    width: 10%;
+    outline:none;
+    background-color: white;
+    border: none;
+    color: black;
+    cursor:pointer;
+  }
+  .status-percentage-dialog-img{
+    margin-top: 9;
+    height: 12.5%;
+    width: 25%;
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+  }
+  .status-percentage-dialog-txt{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5vw;
+    color: rgb(80, 80, 80);
+  }
+  .status-percentage-dialog-percentage{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10vw;
+    color: rgb(80, 80, 80);
+  }
+  .status-percentage-dialog-idTitle{
+    height: 5%;
+    width: 35%;
+    margin-right: 60%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-id{
+    margin-bottom: 3%;
+    height: 5%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 3.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-upload{
+    margin-bottom: 3%;
+    height: 5%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-name{
+    margin-bottom: 3%;
+    height: 5%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-address{
+    margin-bottom: 3%;
+    height: 10%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-value{
+    margin-bottom: 3%;
+    height: 7%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-bidsValue{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .status-percentage-dialog-winsValue{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .status-percentage-dialog-price{
+    margin-bottom: 3%;
+    height: 7%;
+    width: 92.5%;
+    margin-right: 2.5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4.5vw;
+    color: rgb(44, 44, 44);
+  }
+  .status-percentage-dialog-bidsPrice{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .status-percentage-dialog-winsPrice{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+

@@ -138,3 +138,10 @@
     font-size: 1.6vw;
   }
 }
+
+// size < 320
+@media all and (max-width: 320px) {
+  .status-train{
+    display: none;
+  }
+}

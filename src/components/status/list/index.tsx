@@ -11,8 +11,19 @@ interface IListInfo {
   time: string;
   bids: {
     price: number;
+    value: number;
+  };
+  counterpart: {
+    address: string;
+    name: string;
+  };
+  wins: {
+    price: number;
+    value: number;
   };
   transaction_hash: string;
+  id: string;
+  upload: string;
 }
 
 interface IAListInfo {
@@ -42,6 +53,14 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         time={content.time}
         price={content.bids.price}
         hash={content.transaction_hash}
+        id={content.id}
+        upload={content.upload}
+        name={content.counterpart.name}
+        address={content.counterpart.address}
+        bidsValue={content.bids.value}
+        bidsPrice={content.bids.price}
+        winsValue={content.wins.value}
+        winsPrice={content.wins.price}
       />
     );
     if (page === 1) return info;
@@ -91,6 +110,9 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         />
       </div>
       <div className={classnames('status-list-titleContainer')}>
+        <div className={classnames('status-list-titleType320')}>
+          {t('statuspage.type320')}
+        </div>
         <div className={classnames('status-list-titleType')}>
           {t('statuspage.type')}
         </div>

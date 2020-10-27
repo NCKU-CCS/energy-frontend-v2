@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import Dialog from './dialog';
 
 interface IContent {
   index: number;
@@ -12,6 +13,14 @@ interface IContent {
   time: string;
   price: number;
   hash: string;
+  id: string;
+  upload: string;
+  name: string;
+  address: string;
+  bidsValue: number;
+  bidsPrice: number;
+  winsValue: number;
+  winsPrice: number;
 }
 
 const Content: React.FC<IContent> = ({
@@ -24,6 +33,14 @@ const Content: React.FC<IContent> = ({
   time,
   price,
   hash,
+  id,
+  upload,
+  name,
+  address,
+  bidsValue,
+  bidsPrice,
+  winsValue,
+  winsPrice,
 }) => {
   const { t } = useTranslation();
 
@@ -35,6 +52,7 @@ const Content: React.FC<IContent> = ({
   );
   const [buttonColor, setButtonColor] = useState<string>(button);
   const [color, setColor] = useState<boolean>(false);
+  const [view, setView] = useState<boolean>(false);
   useEffect(() => {
     setButtonColor(color === false ? button : buttonClick);
   }, [color]);
@@ -149,6 +167,27 @@ const Content: React.FC<IContent> = ({
       >
         &lt; URL &gt;
       </a>
+      <button
+        type="button"
+        className={classnames('status-list-content-view')}
+        onClick={() => setView(true)}
+      >
+        查看
+      </button>
+      {view && (
+        <Dialog
+          status={status}
+          id={id}
+          upload={upload}
+          name={name}
+          address={address}
+          bidsValue={bidsValue}
+          bidsPrice={bidsPrice}
+          winsValue={winsValue}
+          winsPrice={winsPrice}
+          setView={setView}
+        />
+      )}
     </div>
   );
 };

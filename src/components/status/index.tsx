@@ -11,8 +11,19 @@ interface IListInfo {
   time: string;
   bids: {
     price: number;
+    value: number;
+  };
+  counterpart: {
+    address: string;
+    name: string;
+  };
+  wins: {
+    price: number;
+    value: number;
   };
   transaction_hash: string;
+  id: string;
+  upload: string;
 }
 
 interface ITrainInfo {

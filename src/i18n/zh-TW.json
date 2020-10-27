@@ -70,6 +70,7 @@
     "handle": "執標中",
     "settle": "結算",
     "type": "交易類型",
+    "type320": "類型",
     "state": "狀態",
     "progress": "進度",
     "date": "日期",

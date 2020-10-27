@@ -70,6 +70,7 @@
     "handle": "Handle",
     "settle": "Settle",
     "type": "Type",
+    "type320": "Type",
     "state": "State",
     "progress": "Progress",
     "date": "Date",
