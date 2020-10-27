@@ -3,30 +3,40 @@ import classNames from 'classnames';
 import ListItem from './listItem';
 import testData from './user.json';
 
-// interface IData {
-//   date: string;
-//   interval: string;
-//   time: number;
-//   value: number;
-//   price: number;
-//   total: number;
-//   status: string;
-// }
+interface IProps {
+  isAggr: boolean;
+}
 
-const List: React.FC = () => {
+const List: React.FC<IProps> = ({ isAggr }) => {
   // map data
   const createList = testData.map((d) => {
-    return (
-      <ListItem
-        date={d.date}
-        interval={d.interval}
-        time={d.time}
-        value={d.value}
-        price={d.price}
-        total={d.total}
-        status={d.status}
-      />
-    );
+    if (isAggr && (d.status === 'bid' || d.status === 'clicked'))
+      return (
+        <ListItem
+          date={d.date}
+          interval={d.interval}
+          time={d.time}
+          value={d.value}
+          price={d.price}
+          total={d.total}
+          status={d.status}
+          isAggr={isAggr}
+        />
+      );
+    if (!isAggr)
+      return (
+        <ListItem
+          date={d.date}
+          interval={d.interval}
+          time={d.time}
+          value={d.value}
+          price={d.price}
+          total={d.total}
+          status={d.status}
+          isAggr={isAggr}
+        />
+      );
+    return null;
   });
 
   return (

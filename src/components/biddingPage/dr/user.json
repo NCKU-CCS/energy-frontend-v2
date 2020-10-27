@@ -60,7 +60,7 @@
     "value": 3,
     "price": 3,
     "total": 9,
-    "status": "none"
+    "status": "clicked"
   },
   {
     "date": "2020/10/29",
@@ -69,7 +69,7 @@
     "value": 6,
     "price": 4,
     "total": 24,
-    "status": "none"
+    "status": "clicked"
   },
   {
     "date": "2020/10/30",
@@ -78,7 +78,7 @@
     "value": 5,
     "price": 9,
     "total": 45,
-    "status": "none"
+    "status": "clicked"
   },
   {
     "date": "2020/10/30",
