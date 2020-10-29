@@ -21,6 +21,7 @@ interface IContent {
   bidsPrice: number;
   winsValue: number;
   winsPrice: number;
+  achievement: number;
 }
 
 const Content: React.FC<IContent> = ({
@@ -41,6 +42,7 @@ const Content: React.FC<IContent> = ({
   bidsPrice,
   winsValue,
   winsPrice,
+  achievement,
 }) => {
   const { t } = useTranslation();
 
@@ -200,6 +202,7 @@ const Content: React.FC<IContent> = ({
           bidsPrice={bidsPrice}
           winsValue={winsValue}
           winsPrice={winsPrice}
+          achievement={achievement}
           setView={setView}
         />
       )}

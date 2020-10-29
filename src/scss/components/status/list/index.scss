@@ -3,6 +3,15 @@
 
 .status-list{
   background-color: white;
+  border: red 1px solid;
+}
+
+.status-list-select{
+  display: none;
+}
+
+.status-list-option{
+  display: none;
 }
 
 .status-list-buttonContainer{
@@ -198,6 +207,21 @@
     height:100%;
     width: 92.5%;
     border-radius: 2%;
+  }
+  .status-list-select{
+    display: block;
+    position: fixed;
+    width: 80px;
+    height: 25px;
+    top: 30px;
+    right: 30px;
+    font-size: 5vw;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(190, 190, 190);
+    outline: none;
+  }
+  .status-list-select:focus{
+    border: 1px solid rgb(190, 190, 190);
   }
   .status-list-buttonContainer{
     display: none;

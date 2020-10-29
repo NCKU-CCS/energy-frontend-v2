@@ -12,6 +12,7 @@ interface IDialog {
   bidsPrice: number;
   winsValue: number;
   winsPrice: number;
+  achievement: number;
   setView: (state: boolean) => void;
 }
 
@@ -24,11 +25,16 @@ const Dialog: React.FC<IDialog> = ({
   bidsPrice,
   winsValue,
   winsPrice,
+  achievement,
   setView,
 }) => {
   const { t } = useTranslation();
 
   const [time, setTime] = useState<string>('');
+  const [percent, setPercent] = useState<string>('—');
+  useEffect(() => {
+    setPercent(achievement === null ? '—' : achievement.toString());
+  }, [achievement]);
   useEffect(() => {
     const timeSplit = upload.split(' ');
     setTime(timeSplit[4]);
@@ -53,7 +59,7 @@ const Dialog: React.FC<IDialog> = ({
           {t('statuspage.achievementRate')}
         </div>
         <div className={classnames('status-percentage-dialog-percentage')}>
-          20%
+          {percent}%
         </div>
         <div className={classnames('status-percentage-dialog-idTitle')}>
           {t('statuspage.id')}：

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 interface IStatus {
   status: string;
+  achievement: number;
 }
 
 interface IInput {
@@ -23,19 +24,11 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
       if (nowIndex > -1)
         setImgSrc(`${process.env.PUBLIC_URL}/status/box_orange.png`);
       else setImgSrc(`${process.env.PUBLIC_URL}/status/box_grey.png`);
-      let dataPercent = '—';
-      if (input[nowIndex].status === '投標中') dataPercent = '20';
-      else if (input[nowIndex].status === '已投標') dataPercent = '40';
-      else if (
-        input[nowIndex].status === '已得標' ||
-        input[nowIndex].status === '未得標'
-      )
-        dataPercent = '60';
-      else if (input[nowIndex].status === '執行中') dataPercent = '80';
-      else if (input[nowIndex].status === '結算中') dataPercent = '100';
-      else if (input[nowIndex].status === '已結算') dataPercent = '100';
-      else dataPercent = '—';
-      setPercent(dataPercent);
+      setPercent(
+        input[nowIndex].achievement === null
+          ? '—'
+          : input[nowIndex].achievement.toString(),
+      );
     }
   }, [nowIndex]);
   return (

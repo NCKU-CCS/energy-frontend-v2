@@ -24,6 +24,7 @@ interface IListInfo {
   transaction_hash: string;
   id: string;
   upload: string;
+  achievement: number;
 }
 
 interface IAListInfo {
@@ -61,6 +62,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         bidsPrice={content.bids.price}
         winsValue={content.wins.value}
         winsPrice={content.wins.price}
+        achievement={content.achievement}
       />
     );
     if (page === 1) return info;
@@ -86,8 +88,23 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
     return null;
   });
 
+  const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setPage(parseInt(e.target.value, 10));
+
   return (
     <div className={classnames('status-list')}>
+      <select
+        id="page"
+        onChange={(e) => handlePageChange(e)}
+        className={classnames('status-list-select')}
+      >
+        <option selected value="1">
+          {t('statuspage.all')}
+        </option>
+        <option value="2">{t('statuspage.bid')}</option>
+        <option value="3">{t('statuspage.handle')}</option>
+        <option value="4">{t('statuspage.settle')}</option>
+      </select>
       <div className={classnames('status-list-buttonContainer')}>
         <PageButton text={1} changePage={setPage} page={page} firstColor />
         <PageButton

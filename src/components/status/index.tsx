@@ -24,6 +24,7 @@ interface IListInfo {
   transaction_hash: string;
   id: string;
   upload: string;
+  achievement: number;
 }
 
 interface ITrainInfo {
@@ -46,6 +47,7 @@ interface ITrainInfo {
 
 interface IStatus {
   status: string;
+  achievement: number;
 }
 
 const Status: React.FC = () => {
