@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 
 interface IDialog {
@@ -25,6 +26,8 @@ const Dialog: React.FC<IDialog> = ({
   winsPrice,
   setView,
 }) => {
+  const { t } = useTranslation();
+
   const [time, setTime] = useState<string>('');
   useEffect(() => {
     const timeSplit = upload.split(' ');
@@ -46,37 +49,39 @@ const Dialog: React.FC<IDialog> = ({
           src={`${process.env.PUBLIC_URL}/status/box_orange.png`}
           className={classnames('status-percentage-dialog-img')}
         />
-        <div className={classnames('status-percentage-dialog-txt')}>達成率</div>
+        <div className={classnames('status-percentage-dialog-txt')}>
+          {t('statuspage.achievementRate')}
+        </div>
         <div className={classnames('status-percentage-dialog-percentage')}>
           20%
         </div>
         <div className={classnames('status-percentage-dialog-idTitle')}>
-          交易編號：
+          {t('statuspage.id')}：
         </div>
         <div className={classnames('status-percentage-dialog-id')}>{id}</div>
         <div className={classnames('status-percentage-dialog-upload')}>
-          上鏈時間：{time}
+          {t('statuspage.uploadTime')}：{time}
         </div>
         <div className={classnames('status-percentage-dialog-name')}>
-          對象：{name}
+          {t('statuspage.target')}：{name}
         </div>
         <div className={classnames('status-percentage-dialog-address')}>
-          地址：{address}
+          {t('statuspage.address')}：{address}
         </div>
         <div className={classnames('status-percentage-dialog-value')}>
           <div className={classnames('status-percentage-dialog-bidsValue')}>
-            投標度數：{bidsValue}
+            {t('statuspage.bidsValue')}：{bidsValue}
           </div>
           <div className={classnames('status-percentage-dialog-winsValue')}>
-            得標度數：{winsValue}
+            {t('statuspage.winsValue')}：{winsValue}
           </div>
         </div>
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
-            總金額：{bidsPrice}
+            {t('statuspage.bidsPrice')}：{bidsPrice}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
-            結算金額：{winsPrice}
+            {t('statuspage.winsPrice')}：{winsPrice}
           </div>
         </div>
       </div>

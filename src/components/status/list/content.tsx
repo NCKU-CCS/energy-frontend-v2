@@ -53,6 +53,21 @@ const Content: React.FC<IContent> = ({
   const [buttonColor, setButtonColor] = useState<string>(button);
   const [color, setColor] = useState<boolean>(false);
   const [view, setView] = useState<boolean>(false);
+
+  const handleOpen = () => {
+    if (window.innerWidth > 320) {
+      setView(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleOpen);
+    handleOpen();
+    return () => {
+      window.removeEventListener('resize', handleOpen);
+    };
+  }, []);
+
   useEffect(() => {
     setButtonColor(color === false ? button : buttonClick);
   }, [color]);
@@ -172,7 +187,7 @@ const Content: React.FC<IContent> = ({
         className={classnames('status-list-content-view')}
         onClick={() => setView(true)}
       >
-        查看
+        {t('statuspage.view')}
       </button>
       {view && (
         <Dialog

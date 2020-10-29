@@ -87,6 +87,7 @@
     "fail": "Fail",
     "executing": "Executing",
     "settling": "Settling",
-    "end": "End"
+    "end": "End",
+    "view": "view"
   }
 }

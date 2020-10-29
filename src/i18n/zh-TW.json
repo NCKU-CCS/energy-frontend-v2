@@ -87,6 +87,7 @@
     "fail": "未得標",
     "executing": "執行中",
     "settling": "結算中",
-    "end": "已結算"
+    "end": "已結算",
+    "view": "查看"
   }
 }
