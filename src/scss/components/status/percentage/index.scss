@@ -44,10 +44,22 @@
   }
 }
 
+@media all and (min-width: 1600px) and (max-height: 900px){
+  .status-percentage-img{
+    width: 35%;
+  }
+  .status-percentage-title{
+    font-size: 1.4vw;
+  }
+  .status-percentage-percentage{
+    font-size: 2.5vw;
+  }
+}
+
 // 1280 < size < 1600
 @media all and (min-width: 1280px) and (max-width: 1600px){
   .status-percentage-img{
-    width: 55%;
+    width: 50%;
   }
   .status-percentage-title{
     font-size: 1.7vw;
@@ -57,10 +69,34 @@
   }
 }
 
+@media all and (min-width: 1280px) and (max-width: 1600px)and (min-height: 700px) and (max-height: 900px){
+  .status-percentage-img{
+    width: 42%;
+  }
+  .status-percentage-title{
+    font-size: 1.4vw;
+  }
+  .status-percentage-percentage{
+    font-size: 2.5vw;
+  }
+}
+
+@media all and (min-width: 1280px) and (max-width: 1600px) and (max-height: 700px){
+  .status-percentage-img{
+    width: 38%;
+  }
+  .status-percentage-title{
+    font-size: 1.4vw;
+  }
+  .status-percentage-percentage{
+    font-size: 2.5vw;
+  }
+}
+
 // 900 < size < 1280
 @media all and (min-width: 900px) and (max-width: 1280px){
   .status-percentage-img{
-    width: 55%;
+    width: 45%;
   }
   .status-percentage-title{
     font-size: 2vw;
@@ -70,10 +106,34 @@
   }
 }
 
+@media all and (min-width: 900px) and (max-width: 1280px) and (min-height: 750px) and (max-height: 900px){
+  .status-percentage-img{
+    width: 35%;
+  }
+  .status-percentage-title{
+    font-size: 1.7vw;
+  }
+  .status-percentage-percentage{
+    font-size: 3vw;
+  }
+}
+
+@media all and (min-width: 900px) and (max-width: 1280px) and (max-height: 750px){
+  .status-percentage-img{
+    width: 30%;
+  }
+  .status-percentage-title{
+    font-size: 1.7vw;
+  }
+  .status-percentage-percentage{
+    font-size: 3vw;
+  }
+}
+
 // 720 < size < 900
 @media all and (min-width: 720px) and (max-width: 900px){
   .status-percentage-img{
-    width: 60%;
+    width: 55%;
   }
   .status-percentage-title{
     font-size: 2.5vw;
@@ -83,16 +143,49 @@
   }
 }
 
+@media all and (min-width: 720px) and (max-width: 900px) and (max-height: 700px){
+  .status-percentage-img{
+    width: 45%;
+  }
+}
+
 // 320 < size < 720
 @media all and (min-width: 320px) and (max-width: 720px){
   .status-percentage-img{
-    width: 55%;
+    width: 50%;
   }
   .status-percentage-title{
-    font-size: 2.5vw;
+    font-size: 2.3vw;
   }
   .status-percentage-percentage{
-    font-size: 5vw;
+    font-size: 4.2vw;
+    height: 17.5%;
+  }
+}
+
+@media all and (min-width: 320px) and (max-width: 720px) and (min-height: 600px)and (max-height: 700px){
+  .status-percentage-img{
+    width: 40%;
+  }
+  .status-percentage-title{
+    font-size: 2vw;
+  }
+  .status-percentage-percentage{
+    font-size: 4vw;
+    height:25%;
+  }
+}
+
+@media all and (min-width: 320px) and (max-width: 720px) and (max-height: 600px){
+  .status-percentage-img{
+    width: 37%;
+  }
+  .status-percentage-title{
+    font-size: 2vw;
+  }
+  .status-percentage-percentage{
+    font-size: 4vw;
+    height:30%;
   }
 }
 
