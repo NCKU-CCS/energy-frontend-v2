@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import classNames from 'classnames';
-import data from './test.json';
+// import data from './test.json';
+import weekData from './newTest.json';
 
+interface IProps {
+  date: string;
+}
 interface IPadding {
   top: number;
   bottom: number;
@@ -15,7 +19,13 @@ interface IData {
   dr: number;
 }
 
-const BarChart: React.FC = () => {
+const BarChart: React.FC<IProps> = ({ date }) => {
+  // day
+  const [day, setDay] = useState<number>(new Date(date).getDay());
+
+  // new data
+  const [data, setData] = useState<IData[]>([]);
+
   // ref
   const svgRef = useRef(null);
 
@@ -70,6 +80,19 @@ const BarChart: React.FC = () => {
     .tickPadding(10)
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right) + barWidth);
+
+  // set day
+  useEffect(() => {
+    setDay(new Date(date).getDay());
+  }, [date]);
+
+  // set the data to display depends on day
+  useEffect(() => {
+    weekData.map((d) => {
+      if (d.day === day) setData(d.data);
+      return null;
+    });
+  }, [day]);
 
   // React Hook: useEffect -> render chart
   useEffect(() => {
@@ -134,10 +157,9 @@ const BarChart: React.FC = () => {
       .data(data)
       .enter()
       .append('rect')
-      .attr(
-        'x',
-        (d: IData) => padding.left + Number(scaleX(d.time)) - barWidth / 2,
-      )
+      .attr('x', (d: IData) => {
+        return padding.left + Number(scaleX(d.time)) - barWidth / 2;
+      })
       .attr('y', (d: IData) => height - padding.bottom - Number(scaleY(d.dr)))
       .attr('width', barWidth)
       .attr('height', (d: IData) => scaleY(d.dr))

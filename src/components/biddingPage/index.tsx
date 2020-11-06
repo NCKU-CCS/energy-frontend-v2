@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
 import Submit from './submit';
@@ -7,6 +8,11 @@ import Dr from './dr';
 import Graph from './graph';
 
 const BiddingPageContainer: React.FC = () => {
+  // date for dr
+  const [date, setDate] = useState<string>(
+    dayjs(new Date()).format('YYYY-MM-DD'),
+  );
+
   // mode
   const [mode, setMode] = useState('綠能交易');
 
@@ -18,7 +24,10 @@ const BiddingPageContainer: React.FC = () => {
           <input
             className={classNames('bidding-dr-date')}
             type="date"
-            value="2020-10-28"
+            // value={dayjs().format('YYYY-MM-DD')}
+            onChange={(e) =>
+              setDate(dayjs(e.target.value).format('YYYY-MM-DD'))
+            }
           />
         )}
       </div>
@@ -27,7 +36,7 @@ const BiddingPageContainer: React.FC = () => {
           <BiddingStatus mode={mode} />
         </div>
         <div className={classNames('bidding-a2-b2')}>
-          <Graph mode={mode} />
+          <Graph mode={mode} date={date} />
         </div>
       </div>
       <div className={classNames('bidding-a3')}>

@@ -5,6 +5,7 @@ import BarChart from './barChart';
 
 interface IProps {
   mode: string;
+  date: string;
 }
 
 interface IData {
@@ -26,7 +27,7 @@ interface IApiData {
   totalCount: number;
 }
 
-const Graph: React.FC<IProps> = ({ mode }) => {
+const Graph: React.FC<IProps> = ({ mode, date }) => {
   // api data of buy
   const [apiDataBuy, setApiDataBuy] = useState<IApiData>({
     data: [],
@@ -126,7 +127,7 @@ const Graph: React.FC<IProps> = ({ mode }) => {
           })}
         />
       ) : (
-        <BarChart />
+        <BarChart date={date} />
       )}
     </div>
   );
