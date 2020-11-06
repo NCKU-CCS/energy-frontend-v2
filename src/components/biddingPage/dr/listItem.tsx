@@ -43,112 +43,71 @@ const ListItem: React.FC<IProps> = ({
   // this bid is editable or not
   const [editable, setEditable] = useState<boolean>(true);
 
-  // determine editable or not
-  // const determineEditable = () => {
-  //   if (
-  //     date === dayjs().add(1, 'day').format('YYYY/MM/DD') &&
-  //     new Date().getHours() * 60 + new Date().getMinutes() >= 630
-  //   ) {
-  //     setEditable(false);
-  //     setBidBtnDisabled(true);
-  //     setBidBtnText('已過期');
-  //     setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-  //   } else {
-  //     setEditable(true);
-  //     setBidBtnDisabled(false);
-  //     setBidBtnText('投標');
-  //   }
-  // };
-
-  // status
-  // useEffect(() => {
-  //   if (status === 'bid') {
-  //     setEditable(false);
-  //     setBidBtnDisabled(true);
-  //     // setBidBtnText('已投標');
-  //   } else if (status === 'expired') {
-  //     setEditable(false);
-  //     setBidBtnDisabled(true);
-  //     // setBidBtnText('已過期');
-  //     setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-  //   }
-  // }, [status]);
+  // current time
+  const [currDate, setCurrDate] = useState<Date>(new Date());
 
   useEffect(() => {
     if (isAggr) {
       setDeleteBtnText('接受');
       setDeleteBtnDisabled(false);
-      // if (status === 'bid') {
-      //   setBidBtnText('接受');
-      //   setBidBtnDisabled(false);
-      // } else {
-      //   setBidBtnText('未開放');
-      //   setBidBtnDisabled(true);
-      //   setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-      // }
-    } else {
+    } else if (
+      new Date().getTime() >=
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate(),
+          10,
+          30,
+        ).getTime() &&
+      date === dayjs().add(1, 'day').format('YYYY/MM/DD')
+    ) {
       // expired
-      // eslint-disable-next-line no-lonely-if
-      if (
-        new Date().getTime() >=
-          new Date(
-            new Date().getFullYear(),
-            new Date().getMonth(),
-            new Date().getDate(),
-            10,
-            30,
-          ).getTime() &&
-        date === dayjs().add(1, 'day').format('YYYY/MM/DD')
-      ) {
-        setEditable(false);
-        setDeleteBtnDisabled(true);
-        setDeleteBtnText('已投標');
-      } else {
-        // available
-        setEditable(true);
-        setDeleteBtnDisabled(false);
-        setDeleteBtnText('已投標');
-      }
+      setEditable(false);
+      setDeleteBtnDisabled(true);
+    } else {
+      // available
+      setEditable(true);
+      setDeleteBtnDisabled(false);
     }
-    // else if (status === 'bid') {
-    //   setBidBtnText('已投標');
-    //   setEditable(false);
-    //   setBidBtnDisabled(true);
-    // } else if (status === 'expired') {
-    //   setBidBtnText('未投標');
-    //   setEditable(false);
-    //   setBidBtnDisabled(true);
-    //   setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-    // } else {
-    //   setBidBtnText('投標');
-    // }
   }, [isAggr, date, time]);
 
   // determine editable or not every minute
-  // useEffect(() => {
-  //   determineEditable();
-  //   setInterval(determineEditable, 1000 * 60);
-  // }, []);
+  useEffect(() => {
+    setInterval(() => setCurrDate(new Date()), 1000);
+  }, []);
 
   useEffect(() => {
-    // console.log(new Date('2020-11-07 12:00'));
-    // console.log(dayjs('2020/11/07 12:00').format('YYYY-MM-DD HH:mm'));
-    // eslint-disable-next-line no-console
-    console.log(status);
-  });
+    if (
+      !isAggr &&
+      new Date().getTime() >=
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate(),
+          10,
+          30,
+        ).getTime() &&
+      date === dayjs().add(1, 'day').format('YYYY/MM/DD')
+    ) {
+      // expired
+      setEditable(false);
+      setDeleteBtnDisabled(true);
+    }
+  }, [currDate]);
+
+  useEffect(() => {}, [status]);
 
   // handle click edit btn
   const handleClickEditBtn = () => {
     setEditMode(true);
   };
 
-  // handle click bid btn
+  // handle click delete btn
   const handleClickDeleteBtn = () => {
     if (isAggr) setDeleteBtnText('已接受');
-    else {
-      setDeleteBtnText('已刪除');
-    }
+    else setDeleteBtnText('已刪除');
     setDeleteBtnDisabled(true);
+    setEditable(false);
   };
 
   // handle mouse over bid button

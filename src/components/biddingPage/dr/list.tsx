@@ -10,62 +10,21 @@ interface IProps {
 
 const List: React.FC<IProps> = ({ isAggr, addBid }) => {
   // map data
-  // const createList = testData.map((d) => {
-  //   if (isAggr && (d.status === 'bid' || d.status === 'clicked'))
-  //     return (
-  //       <ListItem
-  //         date={d.date}
-  //         interval={d.interval}
-  //         time={d.time}
-  //         value={d.value}
-  //         price={d.price}
-  //         total={d.total}
-  //         status={d.status}
-  //         isAggr={isAggr}
-  //       />
-  //     );
-  //   if (!isAggr && d.status !== 'new')
-  //     return (
-  //       <ListItem
-  //         date={d.date}
-  //         interval={d.interval}
-  //         time={d.time}
-  //         value={d.value}
-  //         price={d.price}
-  //         total={d.total}
-  //         status={d.status}
-  //         isAggr={isAggr}
-  //       />
-  //     );
-  //   if (!isAggr && d.status === 'new' && addBid)
-  //     return (
-  //       <ListItem
-  //         date={d.date}
-  //         interval={d.interval}
-  //         time={d.time}
-  //         value={d.value}
-  //         price={d.price}
-  //         total={d.total}
-  //         status={d.status}
-  //         isAggr={isAggr}
-  //       />
-  //     );
-  //   return null;
-  // });
-
   const createList = testData.map((d) => {
-    return (
-      <ListItem
-        date={d.date}
-        interval={d.interval}
-        time={d.time}
-        value={d.value}
-        price={d.price}
-        total={d.total}
-        status={d.status}
-        isAggr={isAggr}
-      />
-    );
+    if (new Date(d.date).getTime() > new Date().getTime())
+      return (
+        <ListItem
+          date={d.date}
+          interval={d.interval}
+          time={d.time}
+          value={d.value}
+          price={d.price}
+          total={d.total}
+          status={d.status}
+          isAggr={isAggr}
+        />
+      );
+    return null;
   });
 
   useEffect(() => {}, [addBid]);
