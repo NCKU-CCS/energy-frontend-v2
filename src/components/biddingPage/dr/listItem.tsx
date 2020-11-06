@@ -35,15 +35,10 @@ const ListItem: React.FC<IProps> = ({
   const [editMode, setEditMode] = useState<boolean>(false);
 
   // bid btn disabled or not
-  const [bidBtnDisabled, setBidBtnDisabled] = useState<boolean>(false);
+  const [DeleteBtnDisabled, setDeleteBtnDisabled] = useState<boolean>(false);
 
   // bid btn's text
-  const [bidBtnText, setBidBtnText] = useState<string>('投標');
-
-  // bid btn class name
-  const [bidBtnClassName, setBidBtnClassName] = useState<string>(
-    'bidding-dr-list-listitem-bid-btn--show',
-  );
+  const [DeleteBtnText, setDeleteBtnText] = useState<string>('已投標');
 
   // this bid is editable or not
   const [editable, setEditable] = useState<boolean>(true);
@@ -81,27 +76,53 @@ const ListItem: React.FC<IProps> = ({
 
   useEffect(() => {
     if (isAggr) {
-      if (status === 'bid') {
-        setBidBtnText('接受');
-        setBidBtnDisabled(false);
-      } else {
-        setBidBtnText('未開放');
-        setBidBtnDisabled(true);
-        setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
-      }
-    } else if (status === 'bid') {
-      setBidBtnText('已投標');
-      setEditable(false);
-      setBidBtnDisabled(true);
-    } else if (status === 'expired') {
-      setBidBtnText('未投標');
-      setEditable(false);
-      setBidBtnDisabled(true);
-      setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
+      setDeleteBtnText('接受');
+      setDeleteBtnDisabled(false);
+      // if (status === 'bid') {
+      //   setBidBtnText('接受');
+      //   setBidBtnDisabled(false);
+      // } else {
+      //   setBidBtnText('未開放');
+      //   setBidBtnDisabled(true);
+      //   setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
+      // }
     } else {
-      setBidBtnText('投標');
+      // expired
+      // eslint-disable-next-line no-lonely-if
+      if (
+        new Date().getTime() >=
+          new Date(
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate(),
+            10,
+            30,
+          ).getTime() &&
+        date === dayjs().add(1, 'day').format('YYYY/MM/DD')
+      ) {
+        setEditable(false);
+        setDeleteBtnDisabled(true);
+        setDeleteBtnText('已投標');
+      } else {
+        // available
+        setEditable(true);
+        setDeleteBtnDisabled(false);
+        setDeleteBtnText('已投標');
+      }
     }
-  }, [isAggr, status]);
+    // else if (status === 'bid') {
+    //   setBidBtnText('已投標');
+    //   setEditable(false);
+    //   setBidBtnDisabled(true);
+    // } else if (status === 'expired') {
+    //   setBidBtnText('未投標');
+    //   setEditable(false);
+    //   setBidBtnDisabled(true);
+    //   setBidBtnClassName('bidding-dr-list-listitem-bid-btn--expired--show');
+    // } else {
+    //   setBidBtnText('投標');
+    // }
+  }, [isAggr, date, time]);
 
   // determine editable or not every minute
   // useEffect(() => {
@@ -109,16 +130,35 @@ const ListItem: React.FC<IProps> = ({
   //   setInterval(determineEditable, 1000 * 60);
   // }, []);
 
+  useEffect(() => {
+    // console.log(new Date('2020-11-07 12:00'));
+    // console.log(dayjs('2020/11/07 12:00').format('YYYY-MM-DD HH:mm'));
+    // eslint-disable-next-line no-console
+    console.log(status);
+  });
+
   // handle click edit btn
   const handleClickEditBtn = () => {
     setEditMode(true);
   };
 
   // handle click bid btn
-  const handleClickBidBtn = () => {
-    if (isAggr) setBidBtnText('已接受');
-    else setBidBtnText('已投標');
-    setBidBtnDisabled(true);
+  const handleClickDeleteBtn = () => {
+    if (isAggr) setDeleteBtnText('已接受');
+    else {
+      setDeleteBtnText('已刪除');
+    }
+    setDeleteBtnDisabled(true);
+  };
+
+  // handle mouse over bid button
+  const handleMouseOverDeleteBtn = () => {
+    setDeleteBtnText('刪除');
+  };
+
+  // handle mouse out bid button
+  const handleMouseOutDeleteBtn = () => {
+    setDeleteBtnText('已投標');
   };
 
   // handle click submit btn
@@ -259,6 +299,7 @@ const ListItem: React.FC<IProps> = ({
       ) : (
         <button
           type="button"
+          title="edit"
           className={classNames(
             'bidding-dr-list-listitem-item--show',
             'bidding-dr-list-listitem-edit--show',
@@ -322,12 +363,16 @@ const ListItem: React.FC<IProps> = ({
         )}
       >
         <button
-          className={classNames(`${bidBtnClassName}`)}
+          className={classNames('bidding-dr-list-listitem-delete-btn--show')}
           type="button"
-          onClick={() => handleClickBidBtn()}
-          disabled={bidBtnDisabled}
+          onClick={() => handleClickDeleteBtn()}
+          onMouseOver={() => handleMouseOverDeleteBtn()}
+          onMouseOut={() => handleMouseOutDeleteBtn()}
+          onFocus={() => 0}
+          onBlur={() => 0}
+          disabled={DeleteBtnDisabled}
         >
-          {bidBtnText}
+          {DeleteBtnText}
         </button>
       </div>
     </div>
