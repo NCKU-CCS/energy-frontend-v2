@@ -3,17 +3,17 @@ import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IContent {
-  text: number;
-  page: number;
-  firstColor: boolean;
-  changePage: (display: number) => void;
+  text: string;
+  setPage: (display: number) => void;
+  pageIndex: number;
+  isSelected: boolean;
 }
 
 const PageButton: React.FC<IContent> = ({
   text,
-  changePage,
-  page,
-  firstColor,
+  setPage,
+  pageIndex,
+  isSelected,
 }) => {
   const { t } = useTranslation();
 
@@ -23,32 +23,19 @@ const PageButton: React.FC<IContent> = ({
     'status-list-pageButton-button--click',
   );
 
-  const [color, setColor] = useState<boolean>(firstColor);
-  const [buttonColor, setButtonColor] = useState<string>(button);
-  const [buttonText, setButtonText] = useState<string>('');
+  const [buttonClass, setButtonClass] = useState<string>(button);
 
   useEffect(() => {
-    if (page !== text) setColor(false);
-  }, [page]);
-
-  useEffect(() => {
-    setButtonColor(color === false ? button : buttonClick);
-  }, [color]);
-
-  useEffect(() => {
-    if (text === 1) setButtonText(t('statuspage.all'));
-    else if (text === 2) setButtonText(t('statuspage.bid'));
-    else if (text === 3) setButtonText(t('statuspage.handle'));
-    else if (text === 4) setButtonText(t('statuspage.settle'));
-  }, [text]);
+    setButtonClass(isSelected ? buttonClick : button);
+  }, [isSelected]);
 
   const pageOnClick = () => {
-    setColor(true);
-    changePage(text);
+    setPage(pageIndex);
   };
+
   return (
-    <button className={buttonColor} type="button" onClick={pageOnClick}>
-      {buttonText}
+    <button className={buttonClass} type="button" onClick={pageOnClick}>
+      {t(text)}
     </button>
   );
 };

@@ -52,8 +52,8 @@ const Content: React.FC<IContent> = ({
     'status-list-content-button',
     'status-list-content-button--click',
   );
-  const [buttonColor, setButtonColor] = useState<string>(button);
-  const [color, setColor] = useState<boolean>(false);
+  const [buttonClass, setbuttonClass] = useState<string>(button);
+  const [isSelected, setIsSelected] = useState<boolean>(false);
   const [view, setView] = useState<boolean>(false);
 
   const handleOpen = () => {
@@ -71,15 +71,15 @@ const Content: React.FC<IContent> = ({
   }, []);
 
   useEffect(() => {
-    setButtonColor(color === false ? button : buttonClick);
-  }, [color]);
+    setbuttonClass(isSelected ? buttonClick : button);
+  }, [isSelected]);
 
   useEffect(() => {
-    if (nowIndex !== index) setColor(false);
+    if (nowIndex !== index) setIsSelected(false);
   }, [nowIndex]);
 
   const infoOnClick = () => {
-    setColor(true);
+    setIsSelected(true);
     changeIndex(index);
   };
 
@@ -124,16 +124,25 @@ const Content: React.FC<IContent> = ({
   );
   const StatusBox = () => {
     let list = [];
-    let count = 0;
-    if (status === '投標中') count = 1;
-    else if (status === '已投標') count = 2;
-    else if (status === '已得標') count = 3;
-    else if (status === '執行中') count = 4;
-    else if (status === '結算中') count = 5;
-    else if (status === '已結算') count = 6;
-    for (let i = count; i > 0; i -= 1)
+    enum block {
+      default,
+      投標中,
+      已投標,
+      已得標,
+      執行中,
+      結算中,
+      已結算,
+    }
+    let blockNumber = block.default;
+    if (status === '投標中') blockNumber = block.執行中;
+    else if (status === '已投標') blockNumber = block.已投標;
+    else if (status === '已得標') blockNumber = block.已得標;
+    else if (status === '執行中') blockNumber = block.執行中;
+    else if (status === '結算中') blockNumber = block.結算中;
+    else if (status === '已結算') blockNumber = block.已結算;
+    for (let i = blockNumber; i > 0; i -= 1)
       list.push(<div className={statusBoxGreen} />);
-    for (let i = 6 - count; i > 0; i -= 1)
+    for (let i = 6 - blockNumber; i > 0; i -= 1)
       list.push(<div className={statusBoxGrey} />);
     if (status === '未得標') {
       list = [];
@@ -162,7 +171,7 @@ const Content: React.FC<IContent> = ({
     <div className={classnames('status-list-content-contentContainer')}>
       <button
         type="button"
-        className={buttonColor}
+        className={buttonClass}
         onClick={infoOnClick}
         aria-labelledby="onClick info"
       />

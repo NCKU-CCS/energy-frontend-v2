@@ -30,6 +30,7 @@ interface IInfo {
   upload: string;
   winsPrice: string;
   winsValue: string;
+  status: string;
 }
 
 interface IInput {
@@ -52,6 +53,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
     upload: '-----',
     winsPrice: '-----',
     winsValue: '-----',
+    status: '-',
   });
 
   useEffect(() => {
@@ -60,10 +62,11 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         const dataStatus = input[index].status;
         if (dataStatus === '投標中') setNowIndex(0);
         if (dataStatus === '已投標') setNowIndex(1);
-        if (dataStatus === '已得標' || dataStatus === '未得標') setNowIndex(2);
+        if (dataStatus === '已得標') setNowIndex(2);
         if (dataStatus === '執行中') setNowIndex(3);
         if (dataStatus === '結算中') setNowIndex(4);
         if (dataStatus === '已結算') setNowIndex(5);
+        if (dataStatus === '未得標') setNowIndex(6);
       }
 
       let dataCounterpartAddress = '-----';
@@ -94,6 +97,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         upload: upload[4],
         winsPrice: dataWinsPrice,
         winsValue: dataWinsValue,
+        status: input[index].status,
       });
     }
   }, [index]);

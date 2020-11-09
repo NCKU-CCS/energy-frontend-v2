@@ -33,7 +33,7 @@ const Dialog: React.FC<IDialog> = ({
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
   useEffect(() => {
-    setPercent(achievement === null ? '—' : achievement.toString());
+    setPercent(achievement === null ? '—' : (achievement * 100).toString());
   }, [achievement]);
   useEffect(() => {
     const timeSplit = upload.split(' ');

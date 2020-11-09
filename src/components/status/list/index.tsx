@@ -106,24 +106,29 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         <option value="4">{t('statuspage.settle')}</option>
       </select>
       <div className={classnames('status-list-buttonContainer')}>
-        <PageButton text={1} changePage={setPage} page={page} firstColor />
         <PageButton
-          text={2}
-          changePage={setPage}
-          page={page}
-          firstColor={false}
+          text="statuspage.all"
+          pageIndex={1}
+          setPage={setPage}
+          isSelected={page === 1}
         />
         <PageButton
-          text={3}
-          changePage={setPage}
-          page={page}
-          firstColor={false}
+          text="statuspage.bid"
+          pageIndex={2}
+          setPage={setPage}
+          isSelected={page === 2}
         />
         <PageButton
-          text={4}
-          changePage={setPage}
-          page={page}
-          firstColor={false}
+          text="statuspage.handle"
+          pageIndex={3}
+          setPage={setPage}
+          isSelected={page === 3}
+        />
+        <PageButton
+          text="statuspage.settle"
+          pageIndex={4}
+          setPage={setPage}
+          isSelected={page === 4}
         />
       </div>
       <div className={classnames('status-list-titleContainer')}>

@@ -27,7 +27,7 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
       setPercent(
         input[nowIndex].achievement === null
           ? '—'
-          : input[nowIndex].achievement.toString(),
+          : (input[nowIndex].achievement * 100).toString(),
       );
     }
   }, [nowIndex]);

@@ -14,12 +14,19 @@ const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
   const [i18nText, setI18nText] = useState<string>('');
 
   useEffect(() => {
-    if (index <= nowindex)
+    let indexColor = nowindex;
+    if (indexColor === 6) indexColor = 2;
+    if (index <= indexColor)
       setOutline(
-        classnames(
-          'status-train-trainBox-outline',
-          'status-train-trainBox-outline-orange',
-        ),
+        nowindex !== 6
+          ? classnames(
+              'status-train-trainBox-outline',
+              'status-train-trainBox-outline-orange',
+            )
+          : classnames(
+              'status-train-trainBox-outline',
+              'status-train-trainBox-outline-red',
+            ),
       );
     else
       setOutline(
