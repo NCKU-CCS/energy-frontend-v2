@@ -24,7 +24,7 @@ const BiddingPageContainer: React.FC = () => {
           <input
             className={classNames('bidding-dr-date')}
             type="date"
-            // value={dayjs().format('YYYY-MM-DD')}
+            value={date}
             onChange={(e) =>
               setDate(dayjs(e.target.value).format('YYYY-MM-DD'))
             }
