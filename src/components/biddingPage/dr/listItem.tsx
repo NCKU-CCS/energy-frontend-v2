@@ -34,6 +34,9 @@ const ListItem: React.FC<IProps> = ({
   // edit mode
   const [editMode, setEditMode] = useState<boolean>(false);
 
+  // deleted
+  const [deleted, setDeleted] = useState<boolean>(false);
+
   // bid btn disabled or not
   const [DeleteBtnDisabled, setDeleteBtnDisabled] = useState<boolean>(false);
 
@@ -105,19 +108,22 @@ const ListItem: React.FC<IProps> = ({
   // handle click delete btn
   const handleClickDeleteBtn = () => {
     if (isAggr) setDeleteBtnText('已接受');
-    else setDeleteBtnText('已刪除');
+    else {
+      setDeleteBtnText('已刪除');
+      setDeleted(true);
+    }
     setDeleteBtnDisabled(true);
     setEditable(false);
   };
 
   // handle mouse over bid button
   const handleMouseOverDeleteBtn = () => {
-    setDeleteBtnText('刪除');
+    if (!isAggr) setDeleteBtnText('刪除');
   };
 
   // handle mouse out bid button
   const handleMouseOutDeleteBtn = () => {
-    setDeleteBtnText('已投標');
+    if (!isAggr) setDeleteBtnText('已投標');
   };
 
   // handle click submit btn
@@ -149,6 +155,7 @@ const ListItem: React.FC<IProps> = ({
     setDisplayTotal(parseFloat((displayValue * displayPrice).toFixed(2)));
   }, [displayPrice, displayValue]);
 
+  // eslint-disable-next-line no-nested-ternary
   return editMode ? (
     <div className={classNames('bidding-dr-list-listitem-container-in--edit')}>
       <div
@@ -244,7 +251,7 @@ const ListItem: React.FC<IProps> = ({
         </button>
       </div>
     </div>
-  ) : (
+  ) : deleted ? null : (
     <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
       {isAggr ? (
         <div
