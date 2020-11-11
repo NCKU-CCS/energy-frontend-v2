@@ -20,13 +20,13 @@ const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
       setOutline(
         nowindex !== 6
           ? classnames(
-              'status-train-trainBox-outline',
-              'status-train-trainBox-outline-orange',
-            )
+            'status-train-trainBox-outline',
+            'status-train-trainBox-outline-orange',
+          )
           : classnames(
-              'status-train-trainBox-outline',
-              'status-train-trainBox-outline-red',
-            ),
+            'status-train-trainBox-outline',
+            'status-train-trainBox-outline-red',
+          ),
       );
     else
       setOutline(
