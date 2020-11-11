@@ -11,7 +11,24 @@ interface IProps {
 const List: React.FC<IProps> = ({ isAggr, addBid }) => {
   // map data
   const createList = testData.map((d) => {
-    if (new Date(d.date).getTime() > new Date().getTime())
+    if (new Date(d.date).getTime() > new Date().getTime() && d.status !== 'new')
+      return (
+        <ListItem
+          date={d.date}
+          interval={d.interval}
+          time={d.time}
+          value={d.value}
+          price={d.price}
+          total={d.total}
+          status={d.status}
+          isAggr={isAggr}
+        />
+      );
+    if (
+      addBid &&
+      new Date(d.date).getTime() > new Date().getTime() &&
+      d.status === 'new'
+    )
       return (
         <ListItem
           date={d.date}

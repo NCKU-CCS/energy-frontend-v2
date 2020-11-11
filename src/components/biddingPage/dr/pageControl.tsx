@@ -6,9 +6,9 @@ const PageControl: React.FC = () => {
     <div className={classNames('bidding-dr-pagecontrol-container-in')}>
       <select className={classNames('bidding-dr-pagecontrol-select')}>
         <option value="0">Display all</option>
-        <option value="5">5 rows</option>
+        {/* <option value="5">5 rows</option>
         <option value="10">10 rows</option>
-        <option value="15">15 rows</option>
+        <option value="15">15 rows</option> */}
       </select>
       <button
         type="button"
