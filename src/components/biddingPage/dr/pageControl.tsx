@@ -32,7 +32,7 @@ const PageControl: React.FC = () => {
       >
         &#60;
       </button>
-      <div>1 / 1</div>
+      <div>1/1</div>
       <button
         type="button"
         title="Next Page"

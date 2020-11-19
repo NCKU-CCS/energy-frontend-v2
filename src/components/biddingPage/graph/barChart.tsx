@@ -176,7 +176,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('x', padding.left / 3.5)
       .attr('y', padding.top / 2)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('DR量');
 
@@ -185,9 +185,9 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .append('text')
       .attr('text-anchor', 'end')
       .attr('x', width - padding.right / 3)
-      .attr('y', height - padding.bottom / 2)
+      .attr('y', height - padding.bottom / 4)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('時間');
 
@@ -198,7 +198,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('x', width - padding.right / 1.5)
       .attr('y', padding.top / 2)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('每小時DR量預覽');
 
@@ -223,8 +223,8 @@ const BarChart: React.FC<IProps> = ({ date }) => {
     // set padding
     setPadding({
       top: height * 0.15,
-      bottom: height * 0.1,
-      left: width * 0.09,
+      bottom: height * 0.15,
+      left: width * 0.1,
       right: width * 0.07,
     });
 
