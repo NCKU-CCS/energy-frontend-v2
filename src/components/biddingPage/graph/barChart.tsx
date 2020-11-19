@@ -89,9 +89,10 @@ const BarChart: React.FC<IProps> = ({ date }) => {
   // set the data to display depends on day
   useEffect(() => {
     weekData.map((d) => {
-      if (d.day === day) setData(d.data);
+      if (d.day === day + 1) setData(d.data);
       return null;
     });
+    // alert(day);
   }, [day]);
 
   // React Hook: useEffect -> render chart
