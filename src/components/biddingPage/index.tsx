@@ -28,6 +28,7 @@ const BiddingPageContainer: React.FC = () => {
             onChange={(e) =>
               setDate(dayjs(e.target.value).format('YYYY-MM-DD'))
             }
+            title={dayjs(date).format('YYYY/MM/DD')}
           />
         )}
       </div>
