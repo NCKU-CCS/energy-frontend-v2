@@ -154,7 +154,7 @@ const InfoBox: React.FC<IProps> = ({
                       )}
                     >
                       <span>總金額 :&nbsp;</span>
-                      <span>${displayTotal.toFixed(2)}</span>
+                      <span>${displayTotal.toFixed(1)}</span>
                     </div>
                   </div>
                 ) : (
@@ -262,7 +262,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-total--edit',
                         'bidding-dr-infobox-content-center-inside-input--edit',
                       )}
-                      value={displayTotal}
+                      value={displayTotal.toFixed(1)}
                       disabled
                     />
                   </div>

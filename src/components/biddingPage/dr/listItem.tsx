@@ -151,6 +151,14 @@ const ListItem: React.FC<IProps> = ({
     );
   });
 
+  // insert spaces to date string for RWD
+  const insertSpaces = (str: string) => {
+    return `${str.substring(0, 4)} /${str.substring(5, 7)}/${str.substring(
+      8,
+      10,
+    )}`;
+  };
+
   // calculate total
   useEffect(() => {
     setDisplayTotal(parseFloat((displayValue * displayPrice).toFixed(2)));
@@ -254,16 +262,7 @@ const ListItem: React.FC<IProps> = ({
     </div>
   ) : deleted ? null : (
     <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
-      {isAggr ? (
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item--show',
-            'bidding-dr-list-listitem-space1--show--aggr',
-          )}
-        >
-          {}
-        </div>
-      ) : (
+      {!isAggr && (
         <button
           type="button"
           title="edit"
@@ -289,7 +288,7 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-date--show',
         )}
       >
-        {displayDate}
+        {insertSpaces(displayDate)}
       </div>
       <div
         className={classNames(
@@ -305,7 +304,7 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-value--show',
         )}
       >
-        {displayValue}kWh
+        {displayValue}&thinsp;kWh
       </div>
       <div
         className={classNames(
@@ -313,7 +312,7 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-price--show',
         )}
       >
-        ${displayPrice}/kWh
+        $&thinsp;{displayPrice}&thinsp;/&thinsp;kWh
       </div>
       <div
         className={classNames(
@@ -321,7 +320,7 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-total--show',
         )}
       >
-        ${displayTotal}
+        $&thinsp;{displayTotal.toFixed(1)}
       </div>
       <div
         className={classNames(
