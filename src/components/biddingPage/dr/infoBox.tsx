@@ -42,8 +42,8 @@ const InfoBox: React.FC<IProps> = ({
   const [btnText, setBtnText] = useState<string>('接受');
 
   // map the interval array and return options
-  const createOptions = intervalArr.map((str, i) => {
-    return <option value={i}>{str}</option>;
+  const createOptions = intervalArr.map((str) => {
+    return <option value={str}>{str}</option>;
   });
 
   // handle click close

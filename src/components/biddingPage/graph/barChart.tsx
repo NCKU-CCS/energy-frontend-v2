@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import classNames from 'classnames';
 // import data from './test.json';
+import dayjs from 'dayjs';
 import weekData from './newTest.json';
 
 interface IProps {
@@ -165,7 +166,13 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('width', barWidth)
       .attr('height', (d: IData) => scaleY(d.dr))
       .attr('fill', (d: IData) => {
-        if (d.time > new Date().getHours()) return '#2d3161';
+        if (
+          (d.time > new Date().getHours() &&
+            dayjs(new Date()).format('YYYY-MM-DD') ===
+              dayjs(date).format('YYYY-MM-DD')) ||
+          new Date(date).getTime() > new Date().getTime()
+        )
+          return '#2d3161';
         return '#d8d8d8';
       });
 
