@@ -174,7 +174,9 @@ const BarChart: React.FC<IProps> = ({ date }) => {
         )
           return '#2d3161';
         return '#d8d8d8';
-      });
+      })
+      .append('title')
+      .text((d: IData) => d.dr);
 
     // append unit text DR量
     svg
