@@ -1,0 +1,255 @@
+@import './dialog.scss/';
+
+.status-list-content-contentContainer{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid rgb(153, 153, 153);
+  align-items: center;
+}
+
+.status-list-content-button{
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  height:30%;
+  cursor: pointer;
+}
+
+.status-list-content-button--click{
+  background-color: #ffa200;
+  border: 2px solid #cc8100;
+  outline: none;
+}
+
+.status-list-content-bidType{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-list-content-bidTypeSell{
+  color: #2e7d32;
+}
+
+.status-list-content-bidTypeNeed{
+  color: #2d3161;
+}
+
+.status-list-content-bidTypeBuy{
+  color: #d32f2f;
+}
+
+.status-list-content-status{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.status-list-content-statusBox-Container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17%;
+  height:100%
+}
+
+.status-list-content-statusBox{
+  width: 10%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.status-list-content-statusBox-green{
+  background-color: #39625e;
+}
+
+.status-list-content-statusBox-grey{
+  background-color: #ebebeb;
+}
+
+.status-list-content-statusBox-white{
+  background-color: #757575;
+}
+
+.status-list-content-date{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+
+.status-list-content-time{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+
+.status-list-content-price{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+
+.status-list-content-URL{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11%;
+  color: #ffa000;
+}
+
+.status-list-content-view{
+  display: none;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px){
+  .status-list-content-contentContainer{
+    font-size: 1.4vw;
+  }
+  .status-list-content-button{
+    width: 1.5%;
+  }
+  .status-list-content-statusBox{
+    height: 33%;
+  }
+}
+
+@media all and (min-width: 1280px) and (max-width: 1650px) and (min-height:900px){
+  .status-list-content-contentContainer{
+    font-size: 1.4vw;
+  }
+  .status-list-content-button{
+    width: 2%;
+  }
+}
+
+// 900 < size < 1280
+@media all and (min-width: 900px) and (max-width: 1280px){
+  .status-list-content-contentContainer{
+    font-size: 1.7vw;
+  }
+  .status-list-content-button{
+    width: 1.5%;
+  }
+  .status-list-content-statusBox{
+    height: 30%;
+  }
+}
+
+@media all and (min-width: 900px) and (max-width: 1280px) and (min-height:900px){
+  .status-list-content-contentContainer{
+    font-size: 1.7vw;
+  }
+  .status-list-content-button{
+    width: 2.1%;
+  }
+}
+
+// 720 < size < 900
+@media all and (min-width: 720px) and (max-width: 900px){
+  .status-list-content-contentContainer{
+    font-size: 1.5vw;
+  }
+  .status-list-content-button{
+    width: 1.5%;
+  }
+  .status-list-content-statusBox{
+    height: 26%;
+  }
+}
+
+// 500 < size < 720
+@media all and (min-width: 500px) and (max-width: 720px){
+  .status-list-content-contentContainer{
+    font-size: 2.2vw;
+  }
+  .status-list-content-button{
+    width: 1%;
+    padding: 1%;
+  }
+  .status-list-content-statusBox{
+    height: 28%;
+  }
+}
+
+// 320 < size < 500
+@media all and (min-width: 320px) and (max-width: 500px){
+  .status-list-content-contentContainer{
+    font-size: 1.9vw;
+  }
+  .status-list-content-button{
+    width: 1%;
+    padding: 1.2%;
+  }
+  .status-list-content-statusBox{
+    height: 24%;
+  }
+}
+
+// size < 320
+@media all and (max-width: 320px){
+  .status-list-content-contentContainer{
+    height: 10%;
+  }
+  .status-list-content-button{
+    display: none;
+  }
+  .status-list-content-bidType{
+    width: 20%;
+    font-size: 5vw;
+  }
+  .status-list-content-status{
+    width: 20%;
+    font-size: 5vw;
+    color: #5c5c5c;
+  }
+  .status-list-content-statusBox-Container{
+    display: none;
+  }
+  .status-list-content-date{
+    width: 40%;
+    font-size: 5vw;
+    color: #5e5e5e;
+  }
+  .status-list-content-time{
+    display: none;
+  }
+  .status-list-content-price{
+    display: none;
+  }
+  .status-list-content-URL{
+    display: none;
+  }
+  .status-list-content-view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5vw;
+    color: white;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    width: 15%;
+    height: 60%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    border-radius: 2%;
+    background-color: #ffa200;
+    border: 1px solid #cc8100;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+
+
