@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import ListItem from './listItem';
+import AddBidBtn from './addBidBtn';
 import testData from './user.json';
 
 interface IProps {
   isAggr: boolean;
   addBid: boolean;
+  setAddBid(b: boolean): void;
 }
 
-const List: React.FC<IProps> = ({ isAggr, addBid }) => {
+const List: React.FC<IProps> = ({ isAggr, addBid, setAddBid }) => {
   // map data
   const createList = testData.map((d) => {
     if (new Date(d.date).getTime() > new Date().getTime() && d.status !== 'new')
@@ -103,7 +105,7 @@ const List: React.FC<IProps> = ({ isAggr, addBid }) => {
             'bidding-dr-list-title-space2',
           )}
         >
-          s
+          {!isAggr && <AddBidBtn setAddBid={setAddBid} />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>

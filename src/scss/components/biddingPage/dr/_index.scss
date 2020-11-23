@@ -2,13 +2,14 @@
 @import './pageControl';
 @import './listItem';
 @import './addBid';
+@import './addBidBtn';
 
 .bidding-dr-container-in {
   flex-basis: 95%;
   height: 100%;
   background-color: white;
   border-radius: 5px;
-  // border: green solid 3px;
+  // border: green solid 1px;
 }
 
 .bidding-dr-title-container--aggr {
@@ -98,5 +99,25 @@
   .bidding-dr-container-in {
     flex-basis: 90%;
     margin-left: 5%;
+  }
+
+  .bidding-dr-list-container-out--user {
+    height: 75%;
+  }
+
+  .bidding-dr-addbid-container-out--user {
+    display: none;
+  }
+
+  .bidding-dr-pagecontrol-container-out--user {
+    height: 15%;
+  }
+
+  .bidding-dr-list-container-out--aggr {
+    height: 75%;
+  }
+
+  .bidding-dr-pagecontrol-container-out--aggr {
+    height: 15%;
   }
 }
