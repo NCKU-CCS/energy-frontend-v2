@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
@@ -340,6 +341,20 @@ const ListItem: React.FC<IProps> = ({
         >
           {DeleteBtnText}
         </button>
+        <InfoBox
+          isAggr={isAggr}
+          displayDate={displayDate}
+          displayInterval={displayInterval}
+          displayValue={displayValue}
+          displayPrice={displayPrice}
+          displayTotal={displayTotal}
+          setDisplayDate={setDisplayDate}
+          setDisplayInterval={setDisplayInterval}
+          setDisplayValue={setDisplayValue}
+          setDisplayPrice={setDisplayPrice}
+          setDisplayTotal={setDisplayTotal}
+          setDeleted={setDeleted}
+        />
       </div>
     </div>
   );
