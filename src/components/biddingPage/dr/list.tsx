@@ -1,18 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
-import testData from './user.json';
 
-interface IProps {
-  isAggr: boolean;
-  addBid: boolean;
-  setAddBid(b: boolean): void;
+interface IData {
+  date: string;
+  interval: string;
+  time: number;
+  value: number;
+  price: number;
+  total: number;
+  status: string;
 }
 
-const List: React.FC<IProps> = ({ isAggr, addBid, setAddBid }) => {
+interface IProps {
+  data: IData[];
+  isAggr: boolean;
+}
+
+const List: React.FC<IProps> = ({ data, isAggr }) => {
   // map data
-  const createList = testData.map((d) => {
+  const createList = data.map((d) => {
     if (new Date(d.date).getTime() > new Date().getTime() && d.status !== 'new')
       return (
         <ListItem
@@ -26,27 +34,25 @@ const List: React.FC<IProps> = ({ isAggr, addBid, setAddBid }) => {
           isAggr={isAggr}
         />
       );
-    if (
-      addBid &&
-      new Date(d.date).getTime() > new Date().getTime() &&
-      d.status === 'new'
-    )
-      return (
-        <ListItem
-          date={d.date}
-          interval={d.interval}
-          time={d.time}
-          value={d.value}
-          price={d.price}
-          total={d.total}
-          status={d.status}
-          isAggr={isAggr}
-        />
-      );
+    // if (
+    //   addBid &&
+    //   new Date(d.date).getTime() > new Date().getTime() &&
+    //   d.status === 'new'
+    // )
+    //   return (
+    //     <ListItem
+    //       date={d.date}
+    //       interval={d.interval}
+    //       time={d.time}
+    //       value={d.value}
+    //       price={d.price}
+    //       total={d.total}
+    //       status={d.status}
+    //       isAggr={isAggr}
+    //     />
+    //   );
     return null;
   });
-
-  useEffect(() => {}, [addBid]);
 
   return (
     <div className={classNames('bidding-dr-list-container-in')}>
@@ -105,7 +111,7 @@ const List: React.FC<IProps> = ({ isAggr, addBid, setAddBid }) => {
             'bidding-dr-list-title-space2',
           )}
         >
-          {!isAggr && <AddBidBtn setAddBid={setAddBid} />}
+          {!isAggr && <AddBidBtn />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>

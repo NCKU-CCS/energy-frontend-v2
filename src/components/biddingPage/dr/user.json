@@ -1,6 +1,6 @@
 [
   {
-    "date": "2020/11/24",
+    "date": "2020/11/25",
     "interval": "07:00 - 08:00",
     "time": 7,
     "value": 3,
@@ -9,7 +9,7 @@
     "status": "bid"
   },
   {
-    "date": "2020/11/24",
+    "date": "2020/11/25",
     "interval": "11:00 - 12:00",
     "time": 11,
     "value": 7,
@@ -18,7 +18,7 @@
     "status": "expired"
   },
   {
-    "date": "2020/11/24",
+    "date": "2020/11/25",
     "interval": "20:00 - 21:00",
     "time": 20,
     "value": 4,
@@ -27,7 +27,7 @@
     "status": "bid"
   },
   {
-    "date": "2020/11/24",
+    "date": "2020/11/25",
     "interval": "07:00 - 08:00",
     "time": 7,
     "value": 3,
@@ -36,7 +36,7 @@
     "status": "bid"
   },
   {
-    "date": "2020/11/24",
+    "date": "2020/11/25",
     "interval": "11:00 - 12:00",
     "time": 11,
     "value": 7,
@@ -45,7 +45,7 @@
     "status": "expired"
   },
   {
-    "date": "2020/11/25",
+    "date": "2020/11/26",
     "interval": "02:00 - 03:00",
     "time": 2,
     "value": 2,
@@ -54,7 +54,7 @@
     "status": "none"
   },
   {
-    "date": "2020/11/25",
+    "date": "2020/11/26",
     "interval": "15:00 - 16:00",
     "time": 15,
     "value": 3,
@@ -63,7 +63,7 @@
     "status": "clicked"
   },
   {
-    "date": "2020/11/25",
+    "date": "2020/11/26",
     "interval": "21:00 - 22:00",
     "time": 21,
     "value": 6,
@@ -72,7 +72,7 @@
     "status": "clicked"
   },
   {
-    "date": "2020/11/26",
+    "date": "2020/11/27",
     "interval": "09:00 - 10:00",
     "time": 9,
     "value": 5,
@@ -81,7 +81,7 @@
     "status": "clicked"
   },
   {
-    "date": "2020/11/26",
+    "date": "2020/11/27",
     "interval": "12:00 - 13:00",
     "time": 12,
     "value": 4,
@@ -90,21 +90,12 @@
     "status": "none"
   },
   {
-    "date": "2020/11/26",
+    "date": "2020/11/27",
     "interval": "19:00 - 20:00",
     "time": 19,
     "value": 3,
     "price": 5,
     "total": 15,
     "status": "none"
-  },
-  {
-    "date": "2020/11/27",
-    "interval": "10:00 - 11:00",
-    "time": 10,
-    "value": 1,
-    "price": 6,
-    "total": 6,
-    "status": "new"
   }
 ]

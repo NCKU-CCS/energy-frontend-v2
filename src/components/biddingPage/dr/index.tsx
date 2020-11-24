@@ -3,16 +3,27 @@ import classNames from 'classnames';
 import List from './list';
 import AddBid from './addBid';
 import PageControl from './pageControl';
+import testData from './user.json';
+
+interface IData {
+  date: string;
+  interval: string;
+  time: number;
+  value: number;
+  price: number;
+  total: number;
+  status: string;
+}
 
 const Dr: React.FC = () => {
+  // data
+  const [data, setData] = useState<IData[]>(testData);
+
   // is aggregator or not
   const [isAggr, setIsAggr] = useState<boolean>(false);
 
   // class name
   const [className, setClassName] = useState<string>('--user');
-
-  // add a bid
-  const [addBid, setAddBid] = useState<boolean>(false);
 
   // user api
   const fetchUser = async () => {
@@ -36,8 +47,8 @@ const Dr: React.FC = () => {
     );
     if (response.status === 200) {
       // fetch success
-      const data = await response.json();
-      setIsAggr(data.is_aggregator);
+      const apiData = await response.json();
+      setIsAggr(apiData.is_aggregator);
       // eslint-disable-next-line no-alert
     } else alert('failed fetching user info');
   };
@@ -52,17 +63,22 @@ const Dr: React.FC = () => {
     setClassName(isAggr ? '--aggr' : '--user');
   }, [isAggr]);
 
+  useEffect(() => {
+    console.log('data');
+    console.log(data);
+  }, [data]);
+
   return (
     <div className={classNames('bidding-dr-container-in')}>
       <div className={classNames(`bidding-dr-title-container${className}`)}>
         {isAggr ? '需量反應決標' : '需量反應競標'}
       </div>
       <div className={classNames(`bidding-dr-list-container-out${className}`)}>
-        <List isAggr={isAggr} addBid={addBid} setAddBid={setAddBid} />
+        <List data={data} isAggr={isAggr} />
       </div>
       {!isAggr && (
         <div className={`bidding-dr-addbid-container-out${className}`}>
-          <AddBid setAddBid={setAddBid} />
+          <AddBid data={data} setData={setData} />
         </div>
       )}
       <div

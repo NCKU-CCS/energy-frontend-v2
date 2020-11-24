@@ -3,11 +3,7 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
-interface IProps {
-  setAddBid(b: boolean): void;
-}
-
-const AddBidBtn: React.FC<IProps> = ({ setAddBid }) => {
+const AddBidBtn: React.FC = () => {
   // click add btn or not
   const [add, setAdd] = useState<boolean>(false);
 
@@ -29,7 +25,6 @@ const AddBidBtn: React.FC<IProps> = ({ setAddBid }) => {
   // handle click submit
   const handleClickSubmit = () => {
     setReset(true);
-    setAddBid(true);
   };
 
   useEffect(() => {
