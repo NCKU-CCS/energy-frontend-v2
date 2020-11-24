@@ -342,6 +342,7 @@ const ListItem: React.FC<IProps> = ({
         </button>
         <InfoBox
           isAggr={isAggr}
+          editable={editable}
           displayDate={displayDate}
           displayInterval={displayInterval}
           displayValue={displayValue}

@@ -5,6 +5,7 @@ import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
   isAggr: boolean;
+  editable: boolean;
   displayDate: string;
   displayInterval: string;
   displayValue: number;
@@ -20,6 +21,7 @@ interface IProps {
 
 const InfoBox: React.FC<IProps> = ({
   isAggr,
+  editable,
   displayDate,
   displayInterval,
   displayValue,
@@ -288,7 +290,7 @@ const InfoBox: React.FC<IProps> = ({
                   {btnText}
                 </button>
               )}
-              {!isAggr && (
+              {!isAggr && editable && (
                 <button
                   type="button"
                   className={classNames(
@@ -308,7 +310,7 @@ const InfoBox: React.FC<IProps> = ({
                   {!edit ? '編輯' : '確認'}
                 </button>
               )}
-              {!isAggr && (
+              {!isAggr && editable && (
                 <button
                   type="button"
                   className={classNames(

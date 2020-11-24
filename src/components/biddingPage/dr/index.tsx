@@ -63,11 +63,6 @@ const Dr: React.FC = () => {
     setClassName(isAggr ? '--aggr' : '--user');
   }, [isAggr]);
 
-  useEffect(() => {
-    console.log('data');
-    console.log(data);
-  }, [data]);
-
   return (
     <div className={classNames('bidding-dr-container-in')}>
       <div className={classNames(`bidding-dr-title-container${className}`)}>
