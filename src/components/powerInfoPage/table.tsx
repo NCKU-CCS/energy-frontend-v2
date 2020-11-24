@@ -174,11 +174,18 @@ const Table: React.FC<IProps> = ({ date }) => {
   };
 
   useEffect(() => {
+    setPage(1);
+  }, [correctDate]);
+
+  useEffect(() => {
     const lastPage =
       apiData.totalCount % parseInt(per_page, 10) === 0
         ? apiData.totalCount / parseInt(per_page, 10)
         : Math.floor(apiData.totalCount / parseInt(per_page, 10)) + 1;
-    if (page === 1 && lastPage === 1) {
+    if (lastPage === 0) {
+      setPrevDisabled(true);
+      setNextDisabled(true);
+    } else if (page === 1 && lastPage === 1) {
       setPrevDisabled(true);
       setNextDisabled(true);
     } else if (page === 1) {
@@ -191,7 +198,7 @@ const Table: React.FC<IProps> = ({ date }) => {
       setPrevDisabled(false);
       setNextDisabled(false);
     }
-  }, [page]);
+  }, [page, apiData]);
 
   useEffect(() => {
     (async () => {
