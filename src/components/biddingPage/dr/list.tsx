@@ -15,10 +15,11 @@ interface IData {
 
 interface IProps {
   data: IData[];
+  setData(d: IData[]): void;
   isAggr: boolean;
 }
 
-const List: React.FC<IProps> = ({ data, isAggr }) => {
+const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
   // map data
   const createList = data.map((d) => {
     if (new Date(d.date).getTime() > new Date().getTime() && d.status !== 'new')
@@ -111,7 +112,7 @@ const List: React.FC<IProps> = ({ data, isAggr }) => {
             'bidding-dr-list-title-space2',
           )}
         >
-          {!isAggr && <AddBidBtn />}
+          {!isAggr && <AddBidBtn data={data} setData={setData} />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>

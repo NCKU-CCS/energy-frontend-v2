@@ -69,7 +69,7 @@ const Dr: React.FC = () => {
         {isAggr ? '需量反應決標' : '需量反應競標'}
       </div>
       <div className={classNames(`bidding-dr-list-container-out${className}`)}>
-        <List data={data} isAggr={isAggr} />
+        <List data={data} setData={setData} isAggr={isAggr} />
       </div>
       {!isAggr && (
         <div className={`bidding-dr-addbid-container-out${className}`}>

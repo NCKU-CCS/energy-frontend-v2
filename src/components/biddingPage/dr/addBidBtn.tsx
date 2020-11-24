@@ -3,12 +3,30 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
-const AddBidBtn: React.FC = () => {
+interface IData {
+  date: string;
+  interval: string;
+  time: number;
+  value: number;
+  price: number;
+  total: number;
+  status: string;
+}
+
+interface IProps {
+  data: IData[];
+  setData(d: IData[]): void;
+}
+
+const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
   // click add btn or not
   const [add, setAdd] = useState<boolean>(false);
 
   // date
   const [date, setDate] = useState<string>('null');
+
+  // time
+  const [time, setTime] = useState<number>(-1);
 
   // volume
   const [value, setValue] = useState<number>(0);
@@ -22,13 +40,9 @@ const AddBidBtn: React.FC = () => {
   // reset
   const [reset, setReset] = useState<boolean>(true);
 
-  // handle click submit
-  const handleClickSubmit = () => {
-    setReset(true);
-  };
-
   useEffect(() => {
-    if (date !== 'null' || value !== 0 || price !== 0) setReset(false);
+    if (date !== 'null' || time !== -1 || value !== 0 || price !== 0)
+      setReset(false);
   }, [date, value, price]);
 
   useEffect(() => {
@@ -37,10 +51,44 @@ const AddBidBtn: React.FC = () => {
     else setTotal(0);
   }, [value, price]);
 
+  useEffect(() => {
+    if (reset) {
+      setDate('null');
+      setTime(-1);
+      setValue(0);
+      setPrice(0);
+      setTotal(0);
+    }
+  }, [reset]);
+
   // map the interval array and return options
   const createOptions = intervalArr.map((str, i) => {
     return <option value={i}>{str}</option>;
   });
+
+  // handle click submit
+  const handleClickSubmit = () => {
+    setReset(true);
+    if (
+      date !== 'null' &&
+      time !== -1 &&
+      value !== 0 &&
+      price !== 0 &&
+      total !== 0
+    ) {
+      const tmpDataArr: IData[] = [...data];
+      tmpDataArr.push({
+        date,
+        interval: intervalArr[time],
+        time,
+        value,
+        price,
+        total,
+        status: 'none',
+      });
+      setData(tmpDataArr);
+    }
+  };
 
   return (
     <div className={classNames('bidding-dr-addbidbtn-container-in')}>
@@ -118,8 +166,9 @@ const AddBidBtn: React.FC = () => {
                     className={classNames(
                       'bidding-dr-addbidbtn-infobox-center-item-input',
                     )}
+                    onChange={(e) => setTime(parseInt(e.target.value, 10))}
                   >
-                    <option value="" selected={reset}>
+                    <option value="-1" selected={reset}>
                       {' '}
                     </option>
                     {createOptions}
