@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import classNames from 'classnames';
-// import data from './test.json';
 import dayjs from 'dayjs';
 import weekData from './newTest.json';
 
@@ -93,7 +92,6 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       if (d.day === day + 1) setData(d.data);
       return null;
     });
-    // alert(day);
   }, [day]);
 
   // React Hook: useEffect -> render chart
