@@ -43,7 +43,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
   useEffect(() => {
     if (date !== 'null' || time !== -1 || value !== 0 || price !== 0)
       setReset(false);
-  }, [date, value, price]);
+  }, [date, time, value, price]);
 
   useEffect(() => {
     if (value !== 0 && price !== 0)
@@ -84,7 +84,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
         value,
         price,
         total,
-        status: 'none',
+        status: 'new',
       });
       setData(tmpDataArr);
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
 
@@ -22,37 +23,23 @@ interface IProps {
 const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
   // map data
   const createList = data.map((d) => {
-    if (new Date(d.date).getTime() > new Date().getTime() && d.status !== 'new')
-      return (
-        <ListItem
-          date={d.date}
-          interval={d.interval}
-          time={d.time}
-          value={d.value}
-          price={d.price}
-          total={d.total}
-          status={d.status}
-          isAggr={isAggr}
-        />
-      );
-    // if (
-    //   addBid &&
-    //   new Date(d.date).getTime() > new Date().getTime() &&
-    //   d.status === 'new'
-    // )
-    //   return (
-    //     <ListItem
-    //       date={d.date}
-    //       interval={d.interval}
-    //       time={d.time}
-    //       value={d.value}
-    //       price={d.price}
-    //       total={d.total}
-    //       status={d.status}
-    //       isAggr={isAggr}
-    //     />
-    //   );
-    return null;
+    let correctDate = dayjs(new Date()).add(1, 'day').format('YYYY/MM/DD');
+    if (d.status === '2')
+      correctDate = dayjs(new Date()).add(2, 'day').format('YYYY/MM/DD');
+    else if (d.status === '3')
+      correctDate = dayjs(new Date()).add(3, 'day').format('YYYY/MM/DD');
+    return (
+      <ListItem
+        date={d.status !== 'new' ? correctDate : d.date}
+        interval={d.interval}
+        time={d.time}
+        value={d.value}
+        price={d.price}
+        total={d.total}
+        status={d.status}
+        isAggr={isAggr}
+      />
+    );
   });
 
   return (

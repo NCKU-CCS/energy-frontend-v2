@@ -76,7 +76,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
         value,
         price,
         total,
-        status: 'none',
+        status: 'new',
       });
       // tmpDataArr.sort((a, b) => {
       //   return new Date(a.date).getTime() - new Date(b.date).getTime();
