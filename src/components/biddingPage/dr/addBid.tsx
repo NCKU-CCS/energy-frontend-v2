@@ -11,6 +11,7 @@ interface IData {
   price: number;
   total: number;
   status: string;
+  accepted: boolean;
 }
 
 interface IProps {
@@ -77,6 +78,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
         price,
         total,
         status: 'new',
+        accepted: false,
       });
       // tmpDataArr.sort((a, b) => {
       //   return new Date(a.date).getTime() - new Date(b.date).getTime();

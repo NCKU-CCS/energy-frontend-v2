@@ -11,6 +11,7 @@ interface IData {
   price: number;
   total: number;
   status: string;
+  accepted: boolean;
 }
 
 interface IProps {
@@ -85,6 +86,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
         price,
         total,
         status: 'new',
+        accepted: false,
       });
       setData(tmpDataArr);
     }

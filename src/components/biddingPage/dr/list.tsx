@@ -12,6 +12,7 @@ interface IData {
   price: number;
   total: number;
   status: string;
+  accepted: boolean;
 }
 
 interface IProps {
@@ -37,7 +38,10 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
         price={d.price}
         total={d.total}
         status={d.status}
+        accepted={d.accepted}
         isAggr={isAggr}
+        data={data}
+        setData={setData}
       />
     );
   });

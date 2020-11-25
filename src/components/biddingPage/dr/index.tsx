@@ -13,6 +13,7 @@ interface IData {
   price: number;
   total: number;
   status: string;
+  accepted: boolean;
 }
 
 const Dr: React.FC = () => {

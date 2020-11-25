@@ -6,7 +6,8 @@
     "value": 3,
     "price": 2,
     "total": 6,
-    "status": "1"
+    "status": "1",
+    "accepted": false
   },
   {
     "date": "2020/11/25",
@@ -15,7 +16,8 @@
     "value": 7,
     "price": 7,
     "total": 49,
-    "status": "1"
+    "status": "1",
+    "accepted": false
   },
   {
     "date": "2020/11/25",
@@ -24,7 +26,8 @@
     "value": 4,
     "price": 1,
     "total": 4,
-    "status": "1"
+    "status": "1",
+    "accepted": false
   },
   {
     "date": "2020/11/25",
@@ -33,7 +36,8 @@
     "value": 3,
     "price": 2,
     "total": 6,
-    "status": "1"
+    "status": "1",
+    "accepted": false
   },
   {
     "date": "2020/11/25",
@@ -42,7 +46,8 @@
     "value": 7,
     "price": 7,
     "total": 49,
-    "status": "1"
+    "status": "1",
+    "accepted": false
   },
   {
     "date": "2020/11/26",
@@ -51,7 +56,8 @@
     "value": 2,
     "price": 9,
     "total": 18,
-    "status": "2"
+    "status": "2",
+    "accepted": false
   },
   {
     "date": "2020/11/26",
@@ -60,7 +66,8 @@
     "value": 3,
     "price": 3,
     "total": 9,
-    "status": "2"
+    "status": "2",
+    "accepted": false
   },
   {
     "date": "2020/11/26",
@@ -69,7 +76,8 @@
     "value": 6,
     "price": 4,
     "total": 24,
-    "status": "2"
+    "status": "2",
+    "accepted": false
   },
   {
     "date": "2020/11/27",
@@ -78,7 +86,8 @@
     "value": 5,
     "price": 9,
     "total": 45,
-    "status": "3"
+    "status": "3",
+    "accepted": false
   },
   {
     "date": "2020/11/27",
@@ -87,7 +96,8 @@
     "value": 4,
     "price": 4,
     "total": 16,
-    "status": "3"
+    "status": "3",
+    "accepted": false
   },
   {
     "date": "2020/11/27",
@@ -96,6 +106,7 @@
     "value": 3,
     "price": 5,
     "total": 15,
-    "status": "3"
+    "status": "3",
+    "accepted": false
   }
 ]

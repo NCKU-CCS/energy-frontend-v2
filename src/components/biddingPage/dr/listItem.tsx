@@ -4,6 +4,17 @@ import dayjs from 'dayjs';
 import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
+interface IData {
+  date: string;
+  interval: string;
+  time: number;
+  value: number;
+  price: number;
+  total: number;
+  status: string;
+  accepted: boolean;
+}
+
 interface IProps {
   date: string;
   interval: string;
@@ -12,7 +23,10 @@ interface IProps {
   price: number;
   total: number;
   status: string;
+  accepted: boolean;
   isAggr: boolean;
+  data: IData[];
+  setData(d: IData[]): void;
 }
 
 const ListItem: React.FC<IProps> = ({
