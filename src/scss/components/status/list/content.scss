@@ -3,15 +3,16 @@
 .status-list-content-contentContainer{
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 20%;
   border-bottom: 1px solid rgb(153, 153, 153);
   align-items: center;
+  color: #636363;
 }
 
 .status-list-content-button{
   margin-left: 1.5%;
   margin-right: 1.5%;
-  height:30%;
+  height:18%;
   cursor: pointer;
 }
 
@@ -115,44 +116,55 @@
 // 1280 < size
 @media all and (min-width: 1280px){
   .status-list-content-contentContainer{
-    font-size: 1.4vw;
+    font-size: 1.1vw;
   }
   .status-list-content-button{
     width: 1.5%;
   }
   .status-list-content-statusBox{
-    height: 33%;
+    height: 22.5%;
+  }
+}
+
+@media all and (min-width: 1280px) and (max-width: 1550px){
+  .status-list-content-statusBox{
+    height: 25%;
+  }
+  .status-list-content-button{
+    width: 1.3%;
+    padding: 0%;
   }
 }
 
 @media all and (min-width: 1280px) and (max-width: 1650px) and (min-height:900px){
   .status-list-content-contentContainer{
-    font-size: 1.4vw;
+    font-size: 1.1vw;
   }
   .status-list-content-button{
-    width: 2%;
+    width: 1.7%;
   }
 }
 
 // 900 < size < 1280
 @media all and (min-width: 900px) and (max-width: 1280px){
   .status-list-content-contentContainer{
-    font-size: 1.7vw;
+    font-size: 1.3vw;
   }
   .status-list-content-button{
-    width: 1.5%;
+    width: 1.4%;
+    padding: 0%;
   }
   .status-list-content-statusBox{
-    height: 30%;
+    height: 18%;
   }
 }
 
 @media all and (min-width: 900px) and (max-width: 1280px) and (min-height:900px){
   .status-list-content-contentContainer{
-    font-size: 1.7vw;
+    font-size: 1.3vw;
   }
   .status-list-content-button{
-    width: 2.1%;
+    width: 1.7%;
   }
 }
 
@@ -165,7 +177,7 @@
     width: 1.5%;
   }
   .status-list-content-statusBox{
-    height: 26%;
+    height: 14%;
   }
 }
 
@@ -179,7 +191,7 @@
     padding: 1%;
   }
   .status-list-content-statusBox{
-    height: 28%;
+    height: 15%;
   }
 }
 
@@ -193,7 +205,7 @@
     padding: 1.2%;
   }
   .status-list-content-statusBox{
-    height: 24%;
+    height: 12%;
   }
 }
 
