@@ -10,7 +10,7 @@
 }
 
 .status-train-trainBox-outline-red{
-  background-color: red;
+  background-color: #D32F2F;
 }
 
 .status-train-trainBox-outline-white{
@@ -69,8 +69,8 @@
 
 @media all and (min-width: 1280px) and (max-width: 1500px) and (max-height:850px){
   .status-train-trainBox-outline{
-    width:12.5vh;
-    height: 90%;
+    width:14vh;
+    height: 100%;
   }
 }
 
@@ -126,7 +126,7 @@
   }
 }
 
-// 550 < size < 720
+// 600 < size < 720
 @media all and (min-width: 600px) and (max-width: 720px) {
   .status-train-trainBox-outline{
     width:7.8vh;
@@ -147,7 +147,7 @@
   }
 }
 
-// 320 < size < 550
+// 320 < size < 600
 @media all and (min-width: 320px) and (max-width: 600px) {
   .status-train-trainBox-outline{
     width:7.2vh;
@@ -161,7 +161,7 @@
 @media all and (min-width: 320px) and (max-width: 600px) and (min-height:650px) and (max-height:850px){
   .status-train-trainBox-outline{
     width:9vh;
-    height: 70%;
+    height: 55%;
   }
   .status-train-trainBox-content{
     font-size: 1.5vw;
@@ -171,6 +171,6 @@
 @media all and (min-width: 320px) and (max-width: 600px) and (max-height:650px){
   .status-train-trainBox-outline{
     width:10vh;
-    height: 90%;
+    height: 70%;
   }
 }

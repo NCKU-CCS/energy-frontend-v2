@@ -18,7 +18,7 @@ const TrainBox: React.FC<content> = ({ text, index, nowindex }) => {
     if (indexColor === 6) indexColor = 2;
     if (index <= indexColor)
       setOutline(
-        nowindex !== 6
+        nowindex !== 6 || (nowindex === 6 && index < 2)
           ? classnames(
             'status-train-trainBox-outline',
             'status-train-trainBox-outline-orange',

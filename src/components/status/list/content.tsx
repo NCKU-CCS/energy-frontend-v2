@@ -134,7 +134,7 @@ const Content: React.FC<IContent> = ({
       已結算,
     }
     let blockNumber = block.default;
-    if (status === '投標中') blockNumber = block.執行中;
+    if (status === '投標中') blockNumber = block.投標中;
     else if (status === '已投標') blockNumber = block.已投標;
     else if (status === '已得標') blockNumber = block.已得標;
     else if (status === '執行中') blockNumber = block.執行中;
