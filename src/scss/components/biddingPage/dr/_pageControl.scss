@@ -5,12 +5,15 @@
   justify-content: center;
   align-items: center;
   color: #707070;
-  // border: green solid 3px;
+  background-color: white;
+  font-size: 1vw;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  // border: green solid 1px;
 }
 
 .bidding-dr-pagecontrol-select {
   cursor: pointer;
-  display: inline-flex;
   margin-left: 2.5%;
   margin-right: 2.5%;
   color: #707070;
@@ -22,7 +25,6 @@
 
 .bidding-dr-pagecontrol-btn {
   cursor: pointer;
-  display: inline-flex;
   margin-left: 2.5%;
   margin-right: 2.5%;
   color: #707070;

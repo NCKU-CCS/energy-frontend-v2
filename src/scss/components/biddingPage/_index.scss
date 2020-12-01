@@ -14,7 +14,22 @@
 .bidding-a1 {
   flex-basis: 100%;
   height: 10%;
+  display: flex;
+  align-items: center;
   // border: red solid 1px;
+}
+
+.bidding-dr-date {
+  margin-left: 1.8%;
+  // width: 15%;
+  width: 160px;
+  height: 65%;
+  text-align: center;
+  outline: 0;
+  border-radius: 5px;
+  color: #707070;
+  border: #d1d2d1 solid 1px;
+  // box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 
 .bidding-a2 {
@@ -81,6 +96,14 @@
   .bidding-a1 {
     flex-basis: 100%;
     height: 10%;
+    justify-content: space-between;
+    // border: red solid 1px;
+  }
+
+  .bidding-dr-date {
+    // width: 30%;
+    // margin-left: 50%;
+    margin-right: 2%;
   }
 
   .bidding-a2 {
@@ -123,6 +146,16 @@
   .bidding-a1 {
     flex-basis: 100%;
     height: 7%;
+    // border: red solid 1px;;
+  }
+
+  .bidding-dr-date {
+    // width: 30%;
+    // margin-left: 50%;
+    margin-right: 4.4%;
+    width: 15%;
+    font-size: 1.5vh;
+    color: white;
   }
 
   .bidding-a2 {

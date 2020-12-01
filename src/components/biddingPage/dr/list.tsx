@@ -1,72 +1,62 @@
 import React from 'react';
 import classNames from 'classnames';
-import data from './test.json';
+import dayjs from 'dayjs';
+import ListItem from './listItem';
+import AddBidBtn from './addBidBtn';
 
-const List: React.FC = () => {
+interface IData {
+  date: string;
+  interval: string;
+  time: number;
+  value: number;
+  price: number;
+  total: number;
+  status: string;
+  accepted: boolean;
+}
+
+interface IProps {
+  data: IData[];
+  setData(d: IData[]): void;
+  isAggr: boolean;
+}
+
+const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
   // map data
   const createList = data.map((d) => {
+    let correctDate = dayjs(new Date()).add(1, 'day').format('YYYY/MM/DD');
+    if (d.status === '2')
+      correctDate = dayjs(new Date()).add(2, 'day').format('YYYY/MM/DD');
+    else if (d.status === '3')
+      correctDate = dayjs(new Date()).add(3, 'day').format('YYYY/MM/DD');
     return (
-      <div className={classNames('bidding-dr-list-listitem-container-in')}>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-date',
-          )}
-        >
-          {d.date}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-interval',
-          )}
-        >
-          {d.interval}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-value',
-          )}
-        >
-          {d.value}kWh
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-price',
-          )}
-        >
-          ${d.price}/kWh
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-total',
-          )}
-        >
-          ${d.total}
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-listitem-item',
-            'bidding-dr-list-listitem-button-container',
-          )}
-        >
-          <button
-            className={classNames('bidding-dr-list-listitem-button-btn')}
-            type="button"
-          >
-            接受
-          </button>
-        </div>
-      </div>
+      <ListItem
+        date={d.status !== 'new' ? correctDate : d.date}
+        interval={d.interval}
+        time={d.time}
+        value={d.value}
+        price={d.price}
+        total={d.total}
+        status={d.status}
+        accepted={d.accepted}
+        isAggr={isAggr}
+        data={data}
+        setData={setData}
+      />
     );
   });
 
   return (
     <div className={classNames('bidding-dr-list-container-in')}>
       <div className={classNames('bidding-dr-list-title-container')}>
+        <div
+          className={classNames(
+            'bidding-dr-list-title-item',
+            'bidding-dr-list-title-space1',
+          )}
+        >
+          s
+        </div>
         <div
           className={classNames(
             'bidding-dr-list-title-item',
@@ -110,10 +100,10 @@ const List: React.FC = () => {
         <div
           className={classNames(
             'bidding-dr-list-title-item',
-            'bidding-dr-list-title-space',
+            'bidding-dr-list-title-space2',
           )}
         >
-          s
+          {!isAggr && <AddBidBtn data={data} setData={setData} />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>

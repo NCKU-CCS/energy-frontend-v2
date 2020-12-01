@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import classNames from 'classnames';
-import data from './test.json';
+import dayjs from 'dayjs';
+import weekData from './newTest.json';
 
+interface IProps {
+  date: string;
+}
 interface IPadding {
   top: number;
   bottom: number;
@@ -15,7 +19,13 @@ interface IData {
   dr: number;
 }
 
-const BarChart: React.FC = () => {
+const BarChart: React.FC<IProps> = ({ date }) => {
+  // day
+  const [day, setDay] = useState<number>(new Date(date).getDay());
+
+  // new data
+  const [data, setData] = useState<IData[]>([]);
+
   // ref
   const svgRef = useRef(null);
 
@@ -70,6 +80,19 @@ const BarChart: React.FC = () => {
     .tickPadding(10)
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right) + barWidth);
+
+  // set day
+  useEffect(() => {
+    setDay(new Date(date).getDay());
+  }, [date]);
+
+  // set the data to display depends on day
+  useEffect(() => {
+    weekData.map((d) => {
+      if (d.day === day + 1) setData(d.data);
+      return null;
+    });
+  }, [day]);
 
   // React Hook: useEffect -> render chart
   useEffect(() => {
@@ -134,17 +157,24 @@ const BarChart: React.FC = () => {
       .data(data)
       .enter()
       .append('rect')
-      .attr(
-        'x',
-        (d: IData) => padding.left + Number(scaleX(d.time)) - barWidth / 2,
-      )
+      .attr('x', (d: IData) => {
+        return padding.left + Number(scaleX(d.time)) - barWidth / 2;
+      })
       .attr('y', (d: IData) => height - padding.bottom - Number(scaleY(d.dr)))
       .attr('width', barWidth)
       .attr('height', (d: IData) => scaleY(d.dr))
       .attr('fill', (d: IData) => {
-        if (d.time >= 12) return '#2d3161';
+        if (
+          (d.time > new Date().getHours() &&
+            dayjs(new Date()).format('YYYY-MM-DD') ===
+              dayjs(date).format('YYYY-MM-DD')) ||
+          new Date(date).getTime() > new Date().getTime()
+        )
+          return '#2d3161';
         return '#d8d8d8';
-      });
+      })
+      .append('title')
+      .text((d: IData) => d.dr);
 
     // append unit text DR量
     svg
@@ -153,7 +183,7 @@ const BarChart: React.FC = () => {
       .attr('x', padding.left / 3.5)
       .attr('y', padding.top / 2)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('DR量');
 
@@ -162,9 +192,9 @@ const BarChart: React.FC = () => {
       .append('text')
       .attr('text-anchor', 'end')
       .attr('x', width - padding.right / 3)
-      .attr('y', height - padding.bottom / 2)
+      .attr('y', height - padding.bottom / 4)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('時間');
 
@@ -175,7 +205,7 @@ const BarChart: React.FC = () => {
       .attr('x', width - padding.right / 1.5)
       .attr('y', padding.top / 2)
       .attr('fill', '#707070')
-      .attr('font-size', '15px')
+      .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
       .text('每小時DR量預覽');
 
@@ -200,8 +230,8 @@ const BarChart: React.FC = () => {
     // set padding
     setPadding({
       top: height * 0.15,
-      bottom: height * 0.1,
-      left: width * 0.09,
+      bottom: height * 0.15,
+      left: width * 0.1,
       right: width * 0.07,
     });
 
