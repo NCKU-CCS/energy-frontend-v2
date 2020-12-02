@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "energy-2",
+      "name": "energy-frontend",
       "script": "npx",
       "args": "serve -s build -l 6380"
     }
