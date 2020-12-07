@@ -98,27 +98,31 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       now.getMonth() + 1
     ).toString()}/${now.getDate().toString()}`;
     dataBuy.map((d) => {
-      if (d.date === dateStr && d.time === validTime && validTime !== 0) {
+      if (
+        new Date(d.date).getTime() === new Date(dateStr).getTime() &&
+        d.time === validTime &&
+        validTime !== 0
+      ) {
         tmpBuyArr.push(d);
         tmpAllArr.push(d);
-        // console.log('push', tmpBuyArr);
       }
       return null;
     });
     setDisplayBuy(tmpBuyArr);
     dataSell.map((d) => {
-      if (d.date === dateStr && d.time === validTime && validTime !== 0) {
+      if (
+        new Date(d.date).getTime() === new Date(dateStr).getTime() &&
+        d.time === validTime &&
+        validTime !== 0
+      ) {
         tmpSellArr.push(d);
         tmpAllArr.push(d);
-        // console.log('push', tmpSellArr);
       }
       return null;
     });
     setDisplaySell(tmpSellArr);
     setDisplayAll(tmpAllArr);
   }, [dataBuy, dataSell]);
-
-  useEffect(() => {}, [displayBuy, displaySell]);
 
   // React Hook: useEffect -> render chart
   useEffect(() => {
@@ -220,6 +224,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', (d: IData) =>
         d.bid_type === 'buy' ? '#d32f2f' : '#2e7e32',
       )
+      .style('cursor', 'pointer')
       .append('title')
       .text(
         (d: IData) =>
