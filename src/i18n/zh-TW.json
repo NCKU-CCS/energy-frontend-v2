@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "能源交易平台",
+    "title": "電力交易平台",
     "home": "首頁　　",
     "bidding": "投標　　",
     "status": "競標動態",
@@ -9,7 +9,7 @@
     "logout": "登出　　"
   },
   "loginpage": {
-    "title": "能源交易平台",
+    "title": "電力交易平台",
     "account": "帳號",
     "password": "密碼",
     "remember": "記住我",
