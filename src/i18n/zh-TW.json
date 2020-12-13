@@ -79,7 +79,25 @@
   },
   "powerinfopage": {
     "pageTitle": "電力資訊",
-    "netLoad": "淨負載"
+    "netLoad": "淨負載",
+    "equipment": "產能設備",
+    "consume": "用電",
+    "generate": "產電",
+    "date": "日期",
+    "time": "時間",
+    "recordTime": "紀錄時間",
+    "electricity": "電力",
+    "type": "種類",
+    "useType": "用產電種類",
+    "link": "連結",
+    "PV": "太陽能",
+    "WT": "風能",
+    "ESS": "儲能系統",
+    "EV": "充電樁",
+    "normalConsume": "正常用電",
+    "netLoadSummary": "淨負載統計 (用電 - 產電)",
+    "equipmentSummary": "產電總量統計 (kWh)",
+    "view": "查看"
   },
   "statuspage": {
     "pageTitle": "競標動態",
