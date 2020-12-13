@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
@@ -22,6 +23,9 @@ interface IProps {
 }
 
 const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // map data
   const createList = data.map((d) => {
     let correctDate = dayjs(new Date()).add(1, 'day').format('YYYY/MM/DD');
@@ -63,7 +67,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-date',
           )}
         >
-          日期
+          {t('biddingpage.date')}
         </div>
         <div
           className={classNames(
@@ -71,7 +75,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-interval',
           )}
         >
-          時段
+          {t('biddingpage.time')}
         </div>
         <div
           className={classNames(
@@ -79,7 +83,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-value',
           )}
         >
-          DR量
+          {t('biddingpage.drVolume')}
         </div>
         <div
           className={classNames(
@@ -87,7 +91,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-price',
           )}
         >
-          單價
+          {t('biddingpage.price')}
         </div>
         <div
           className={classNames(
@@ -95,7 +99,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-total',
           )}
         >
-          總金額
+          {t('biddingpage.total')}
         </div>
         <div
           className={classNames(

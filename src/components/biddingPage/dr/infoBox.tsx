@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
@@ -34,6 +35,9 @@ const InfoBox: React.FC<IProps> = ({
   setDeleted,
   // setDisplayTotal
 }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // open infobox or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
 
@@ -119,7 +123,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>日期 :&nbsp;</span>
+                      <span>{t('biddingpage.date')} :&nbsp;</span>
                       <span>{displayDate}</span>
                     </div>
                     <div
@@ -128,7 +132,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>時段 :&nbsp;</span>
+                      <span>{t('biddingpage.time')} :&nbsp;</span>
                       <span>{displayInterval}</span>
                     </div>
                     <div
@@ -137,7 +141,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>度數 :&nbsp;</span>
+                      <span>{t('biddingpage.drVolume')} :&nbsp;</span>
                       <span>{displayValue}kWh</span>
                     </div>
                     <div
@@ -146,7 +150,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>單價 :&nbsp;</span>
+                      <span>{t('biddingpage.price')} :&nbsp;</span>
                       <span>${displayPrice}/kWh</span>
                     </div>
                     <div
@@ -155,7 +159,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>總金額 :&nbsp;</span>
+                      <span>{t('biddingpage.total')} :&nbsp;</span>
                       <span>${displayTotal.toFixed(1)}</span>
                     </div>
                   </div>

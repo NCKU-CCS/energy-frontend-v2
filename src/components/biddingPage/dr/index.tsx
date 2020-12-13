@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import List from './list';
 import AddBid from './addBid';
 import PageControl from './pageControl';
@@ -17,6 +18,9 @@ interface IData {
 }
 
 const Dr: React.FC = () => {
+  // i18n
+  const { t } = useTranslation();
+
   // data
   const [data, setData] = useState<IData[]>(testData);
 
@@ -67,7 +71,7 @@ const Dr: React.FC = () => {
   return (
     <div className={classNames('bidding-dr-container-in')}>
       <div className={classNames(`bidding-dr-title-container${className}`)}>
-        {isAggr ? '需量反應決標' : '需量反應競標'}
+        {isAggr ? t('biddingpage.drAward') : t('biddingpage.drBidding')}
       </div>
       <div className={classNames(`bidding-dr-list-container-out${className}`)}>
         <List data={data} setData={setData} isAggr={isAggr} />

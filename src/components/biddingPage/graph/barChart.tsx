@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import weekData from './newTest.json';
 
@@ -20,6 +21,9 @@ interface IData {
 }
 
 const BarChart: React.FC<IProps> = ({ date }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // day
   const [day, setDay] = useState<number>(new Date(date).getDay());
 
@@ -186,9 +190,9 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('DR量');
+      .text(`${t('biddingpage.drVolume')}`);
 
-    // append unit text DR量
+    // append unit text time
     svg
       .append('text')
       .attr('text-anchor', 'end')
@@ -197,7 +201,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('時間');
+      .text(`${t('biddingpage.time')}`);
 
     // append graph title text 每小時DR量預覽
     svg
@@ -208,7 +212,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('每小時DR量預覽');
+      .text(`${t('biddingpage.drPreview')}`);
 
     // return function
     return () => {
