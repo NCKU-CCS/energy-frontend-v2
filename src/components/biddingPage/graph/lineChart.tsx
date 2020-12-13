@@ -338,7 +338,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   useEffect(() => {
     setPadding({
       top: height * 0.13,
-      bottom: height * 0.1,
+      bottom: height * 0.15,
       left: width * 0.09,
       right: width * 0.07,
     });
