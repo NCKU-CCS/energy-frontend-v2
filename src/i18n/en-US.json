@@ -38,7 +38,19 @@
     "view": "view"
   },
   "biddingpage": {
-    "pageTitle": "Bidding"
+    "pageTitle": "Bidding",
+    "modeGreen": "Green Energy",
+    "modeDemand": "Demand Response",
+    "avgPrice": "Average Price",
+    "avgVolume": "Average Volume",
+    "currParticipants": "Current Participants",
+    "date": "Date",
+    "time": "Time",
+    "volume": "Volume",
+    "price": "Price",
+    "total": "Total",
+    "buy": "Buy",
+    "sell": "Sell"
   },
   "indexpage": {
     "pageTitle": "Home",
