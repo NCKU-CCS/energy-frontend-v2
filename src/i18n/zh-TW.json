@@ -78,7 +78,8 @@
     "sellFail": "未得標"
   },
   "powerinfopage": {
-    "pageTitle": "電力資訊"
+    "pageTitle": "電力資訊",
+    "netLoad": "淨負載"
   },
   "statuspage": {
     "pageTitle": "競標動態",

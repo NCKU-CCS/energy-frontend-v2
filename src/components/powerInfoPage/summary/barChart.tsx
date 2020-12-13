@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import * as d3 from 'd3';
 
 interface IApiData {
@@ -17,6 +18,9 @@ interface IProps {
 }
 
 const BarChart: React.FC<IProps> = ({ date, apiData }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // ref
   const svgRef = useRef(null);
 
@@ -139,8 +143,8 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
         {date}
       </div>
       <div className={classNames('powerinfo-summary-barchart-mode')}>
-        產電總量統計
-        <span>(kWh)</span>
+        {t('powerinfopage.equipmentSummary')}
+        {/* <span>(kWh)</span> */}
       </div>
       <svg
         ref={svgRef}

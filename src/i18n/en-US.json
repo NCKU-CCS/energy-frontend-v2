@@ -78,7 +78,26 @@
     "sellFail": "Fail"
   },
   "powerinfopage": {
-    "pageTitle": "Power Information"
+    "pageTitle": "Power Information",
+    "netLoad": "Net Load",
+    "equipment": "Equipment",
+    "consume": "Consume",
+    "generate": "Generate",
+    "date": "Date",
+    "time": "Time",
+    "recordTime": "Record Time",
+    "electricity": "Electricity",
+    "type": "Type",
+    "useType": "Type",
+    "link": "Link",
+    "PV": "PV",
+    "WT": "WT",
+    "ESS": "ESS",
+    "EV": "EV",
+    "normalConsume": "Normal Consume",
+    "netLoadSummary": "Net Load Summary (Consume - Generate)",
+    "equipmentSummary": "Equipment Summary (kWh)",
+    "view": "View"
   },
   "statuspage": {
     "pageTitle": "Bidding Status",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IApiData {
   Consume: number;
@@ -21,6 +22,9 @@ interface IProps {
 }
 
 const List: React.FC<IProps> = ({ date, apiData }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // positive and negative data from apiData
   const [posData, setPosData] = useState<IListItem[]>([]);
   const [negData, setNegData] = useState<IListItem[]>([]);
@@ -100,17 +104,17 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
   const dataType = (str: string) => {
     switch (str) {
       case 'Consume':
-        return '正常用電';
+        return t('powerinfopage.normalConsume');
       case 'NetLoad':
-        return '總淨負載';
+        return t('powerinfopage.netLoad');
       case 'ESS':
-        return '儲能系統';
+        return t('powerinfopage.ESS');
       case 'EV':
-        return '充電樁';
+        return t('powerinfopage.EV');
       case 'WT':
-        return '風能';
+        return t('powerinfopage.WT');
       case 'PV':
-        return '太陽能';
+        return t('powerinfopage.PV');
       default:
         return 'error';
     }
@@ -144,8 +148,8 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
     <div className={classNames('powerinfo-summary-list-container')}>
       <div className={classNames('powerinfo-summary-list-date')}>{date}</div>
       <div className={classNames('powerinfo-summary-list-mode')}>
-        淨負載統計
-        <span>(用電-產電)</span>
+        {t('powerinfopage.netLoadSummary')}
+        {/* <span>({t('powerinfopage.consume')}-{t('powerinfopage.generate')})</span> */}
       </div>
       <div className={classNames('powerinfo-summary-list-data-container')}>
         <div className={classNames('powerinfo-summary-list-posdata-container')}>
@@ -156,7 +160,7 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
         </div>
         <hr />
         <div className={classNames('powerinfo-summary-list-demand-container')}>
-          <span id="type">總淨負載</span>
+          <span id="type">{t('powerinfopage.netLoad')}</span>
           <span id="value">{apiData.Demand}kWh</span>
         </div>
       </div>
