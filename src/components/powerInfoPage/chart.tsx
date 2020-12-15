@@ -46,6 +46,46 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   // Api Data Array
   const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
 
+  // max value of data array
+  const [maxValue, setMaxValue] = useState<number>(0);
+
+  // min value of data array
+  const [minValue, setMinValue] = useState<number>(0);
+
+  useEffect(() => {
+    let tmpMaxValue = 0;
+    let tmpMinValue = 0;
+    apiDataArr.map((d: IApiData) => {
+      const maxOfItem = Math.max(
+        d.Consume,
+        d.Demand,
+        d.ESS,
+        d.EV,
+        d.Generate,
+        d.PV,
+        d.WT,
+      );
+      const minOfItem = Math.min(
+        d.Consume,
+        d.Demand,
+        d.ESS,
+        d.EV,
+        d.Generate,
+        d.PV,
+        d.WT,
+      );
+      if (tmpMaxValue < maxOfItem) {
+        tmpMaxValue = maxOfItem;
+      }
+      if (tmpMinValue > minOfItem) {
+        tmpMinValue = minOfItem;
+      }
+      return null;
+    });
+    setMaxValue(tmpMaxValue);
+    setMinValue(tmpMinValue);
+  }, [apiDataArr]);
+
   // fetch Api Data
   const fetchApiData = async () => {
     // get bearer token
@@ -107,12 +147,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const equipScaleY = d3
     .scaleLinear()
     .range([height - padding.top - padding.bottom, 0])
-    .domain([-40, 40]);
+    .domain([minValue - 2, maxValue + 2]);
 
   const loadScaleY = d3
     .scaleLinear()
     .range([height - padding.top - padding.bottom, 0])
-    .domain([-10, 10]);
+    .domain([minValue - 2, maxValue + 2]);
 
   // axisX
   const axisX = d3
@@ -139,7 +179,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .axisLeft(loadScaleY)
     .ticks(4)
     .tickPadding(tickPaddingY)
-    .tickFormat(null)
+    // .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
   // line -> equipLine
@@ -543,12 +583,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           g
             .select(':nth-child(3)')
             .select('line')
-            .attr('stroke-dasharray', '3'),
+            .attr('stroke-dasharray', '3')
+            .attr('stroke-width', '2px'),
         )
         .attr('stroke-width', '0.5px')
-        .call((g: any) =>
-          g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
-        )
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
@@ -1431,6 +1469,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(loadGrid)
         .call((g: any) => g.select('.domain').remove())
         .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
+        .call((g: any) =>
+          g
+            .select(':nth-child(3)')
+            .select('line')
+            .attr('stroke-dasharray', '3')
+            .attr('stroke-width', '2px'),
+        )
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)
