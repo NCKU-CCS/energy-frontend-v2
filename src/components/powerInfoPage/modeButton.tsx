@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   changeMode(mode: string): void;
 }
 
 const ModeButton: React.FC<IProps> = ({ changeMode }) => {
+  // i18n
+  const { t } = useTranslation();
+
   const [disabled, setDisabled] = useState(true);
 
   const onClickLoad = () => {
@@ -29,7 +33,7 @@ const ModeButton: React.FC<IProps> = ({ changeMode }) => {
         onClick={() => onClickLoad()}
         disabled={disabled}
       >
-        淨負載
+        {t('powerinfopage.netLoad')}
       </button>
       <button
         className={classNames(
@@ -40,7 +44,7 @@ const ModeButton: React.FC<IProps> = ({ changeMode }) => {
         onClick={() => onClickEquip()}
         disabled={!disabled}
       >
-        產能設備
+        {t('powerinfopage.equipment')}
       </button>
     </div>
   );

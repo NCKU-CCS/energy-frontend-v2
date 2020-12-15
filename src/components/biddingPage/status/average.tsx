@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   mode: string;
@@ -8,6 +9,9 @@ interface IProps {
 }
 
 const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
+  // i18n
+  const { t } = useTranslation();
+
   return (
     <div className={classNames('bidding-status-average-container-in')}>
       <div className={classNames('bidding-status-average-image-container')}>
@@ -31,7 +35,7 @@ const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
           <div
             className={classNames('bidding-status-average-text-price-title')}
           >
-            平均交易價
+            {t('biddingpage.avgPrice')}
           </div>
         </div>
         <div
@@ -45,7 +49,7 @@ const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
           <div
             className={classNames('bidding-status-average-text-volume-title')}
           >
-            平均交易量
+            {t('biddingpage.avgVolume')}
           </div>
         </div>
       </div>

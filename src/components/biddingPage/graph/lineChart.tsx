@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import * as d3 from 'd3';
 
 interface IData {
@@ -28,6 +29,9 @@ interface IPadding {
 }
 
 const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // ref
   const svgRef = useRef(null);
 
@@ -254,7 +258,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('單價');
+      .text(`${t('biddingpage.price')}`);
 
     // append unit text 量
     svg
@@ -265,7 +269,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('量');
+      .text(`${t('biddingpage.volume')}`);
 
     // append legend text 買
     svg
@@ -276,7 +280,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('買');
+      .text(`${t('biddingpage.buy')}`);
 
     // append legend text 賣
     svg
@@ -287,7 +291,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text('賣');
+      .text(`${t('biddingpage.sell')}`);
 
     // append legend circle red
     svg
@@ -334,7 +338,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   useEffect(() => {
     setPadding({
       top: height * 0.13,
-      bottom: height * 0.1,
+      bottom: height * 0.15,
       left: width * 0.09,
       right: width * 0.07,
     });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import InfoBox from './infoBox';
 
 interface IData {
@@ -23,6 +24,9 @@ interface IProps {
 }
 
 const Table: React.FC<IProps> = ({ date }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // api parameters
   const correctDate = date.getTime() > new Date().getTime() ? new Date() : date;
   // eslint-disable-next-line @typescript-eslint/camelcase
@@ -34,8 +38,10 @@ const Table: React.FC<IProps> = ({ date }) => {
   const [nextDisabled, setNextDisabled] = useState(false);
 
   // set text for RWD
-  const [timeText, setTimeText] = useState('紀錄時間');
-  const [typeText, setTypeText] = useState('用產電種類');
+  const [timeText, setTimeText] = useState<string>(
+    t('powerinfopage.recordTime'),
+  );
+  const [typeText, setTypeText] = useState<string>(t('powerinfopage.useType'));
 
   // text color for positive and negative data
   const redText = { color: '#d32f2f' };
@@ -86,17 +92,17 @@ const Table: React.FC<IProps> = ({ date }) => {
   const dataType = (str: string) => {
     switch (str) {
       case 'Consume':
-        return '正常用電';
+        return t('powerinfopage.normalConsume');
       case 'NetLoad':
-        return '總淨負載';
+        return t('powerinfopage.netLoad');
       case 'ESS':
-        return '儲能系統';
+        return t('powerinfopage.ESS');
       case 'EV':
-        return '充電樁';
+        return t('powerinfopage.EV');
       case 'WT':
-        return '風能';
+        return t('powerinfopage.WT');
       case 'PV':
-        return '太陽能';
+        return t('powerinfopage.PV');
       default:
         return 'error';
     }
@@ -210,11 +216,11 @@ const Table: React.FC<IProps> = ({ date }) => {
   useEffect(() => {
     const changeText = () => {
       if (window.innerWidth <= 320) {
-        setTimeText('時間');
-        setTypeText('種類');
+        setTimeText(t('powerinfopage.time'));
+        setTypeText(t('powerinfopage.type'));
       } else {
-        setTimeText('紀錄時間');
-        setTypeText('用產電種類');
+        setTimeText(t('powerinfopage.recordTime'));
+        setTypeText(t('powerinfopage.useType'));
       }
     };
     window.addEventListener('resize', changeText);
@@ -226,17 +232,21 @@ const Table: React.FC<IProps> = ({ date }) => {
   return (
     <div className={classNames('powerinfo-table-container')}>
       <div className={classNames('powerinfo-table-title-container', 'text')}>
-        <div className={classNames('powerinfo-table-title-date')}>日期</div>
+        <div className={classNames('powerinfo-table-title-date')}>
+          {t('powerinfopage.date')}
+        </div>
         <div className={classNames('powerinfo-table-title-time')}>
           {timeText}
         </div>
         <div className={classNames('powerinfo-table-title-value')}>
-          電力(kW)
+          {t('powerinfopage.electricity')} (kW)
         </div>
         <div className={classNames('powerinfo-table-title-type')}>
           {typeText}
         </div>
-        <div className={classNames('powerinfo-table-title-url')}>連結</div>
+        <div className={classNames('powerinfo-table-title-url')}>
+          {t('powerinfopage.link')}
+        </div>
       </div>
       <div>{dataList}</div>
       <div

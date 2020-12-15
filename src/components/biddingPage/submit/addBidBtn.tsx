@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
@@ -8,6 +9,9 @@ interface IProps {
 }
 
 const AddBidBtn: React.FC<IProps> = ({ type }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // click add bid btn or not
   const [add, setAdd] = useState<boolean>(false);
 
@@ -189,7 +193,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    日期 :
+                    {t('biddingpage.date')} :
                   </div>
                   <input
                     type="date"
@@ -216,7 +220,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    時段 :
+                    {t('biddingpage.time')} :
                   </div>
                   <select
                     className={classNames(
@@ -240,7 +244,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    度數 :
+                    {t('biddingpage.volume')} :
                   </div>
                   <input
                     type="number"
@@ -263,7 +267,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    單價 :
+                    {t('biddingpage.price')} :
                   </div>
                   <input
                     type="number"
@@ -286,7 +290,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    總金額 :
+                    {t('biddingpage.total')} :
                   </div>
                   <input
                     type="number"
@@ -317,7 +321,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                     submitDisabled ? 'disabled' : 'white'
                   }.png`}
                 />
-                確認
+                {t('biddingpage.confirm')}
               </button>
               <button
                 type="button"
@@ -330,7 +334,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   alt="submit"
                   src={`${process.env.PUBLIC_URL}/biddingPage/reset-white.png`}
                 />
-                重設
+                {t('biddingpage.reset')}
               </button>
             </div>
           </div>
