@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
@@ -30,6 +32,11 @@ const BiddingPageContainer: React.FC = () => {
             }
             title={dayjs(date).format('YYYY/MM/DD')}
           />
+        )}
+        {mode === '綠能交易' && (
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker value={date} onChange={() => {}} />
+          </MuiPickersUtilsProvider>
         )}
       </div>
       <div className={classNames('bidding-a2')}>
