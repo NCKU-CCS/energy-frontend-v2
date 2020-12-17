@@ -6,6 +6,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import dayjs from 'dayjs';
 
 interface IProps {
   setDate(date: Date): void;
@@ -13,27 +14,14 @@ interface IProps {
 }
 
 const DatePicker: React.FC<IProps> = ({ setDate, currDate }) => {
-  // const onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   // to prevent user from choosing invalid date cause a api can't fetch problem
-  //   const lastDate =
-  //     new Date(event.target.value).getTime() > new Date().getTime()
-  //       ? new Date()
-  //       : new Date(event.target.value);
-  //   setDate(lastDate);
-  // };
-
   return (
     <div className={classNames('powerinfo-datepicker-container')}>
-      {/* <input
-        className={classNames('powerinfo-datepicker-input')}
-        type="date"
-        value={dayjs(currDate).format('YYYY-MM-DD')}
-        onChange={(event) => onChangeDate(event)}
-      /> */}
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
           value={currDate}
-          onChange={() => setDate(new Date())}
+          onChange={(d) =>
+            setDate(new Date(dayjs(d?.toDateString()).format('YYYY-MM-DD')))
+          }
           format="yyyy/MM/dd"
           disableFuture
           allowKeyboardControl
