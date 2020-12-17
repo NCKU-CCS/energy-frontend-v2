@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
@@ -26,6 +27,9 @@ const InfoBox: React.FC<IProps> = ({
   price,
   totalPrice,
 }) => {
+  // i18n
+  const { t } = useTranslation();
+
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
   // new Date
@@ -214,7 +218,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>日期 :&nbsp;</span>
+                      <span>{t('biddingpage.date')} :&nbsp;</span>
                       <span>{date}</span>
                     </div>
                     <div
@@ -223,7 +227,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>時段 :&nbsp;</span>
+                      <span>{t('biddingpage.time')} :&nbsp;</span>
                       <span>{interval}</span>
                     </div>
                     <div
@@ -232,7 +236,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>度數 :&nbsp;</span>
+                      <span>{t('biddingpage.volume')} :&nbsp;</span>
                       <span>{volume}kWh</span>
                     </div>
                     <div
@@ -241,7 +245,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>單價 :&nbsp;</span>
+                      <span>{t('biddingpage.price')} :&nbsp;</span>
                       <span>${price}/kWh</span>
                     </div>
                     <div
@@ -250,7 +254,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>總金額 :&nbsp;</span>
+                      <span>{t('biddingpage.total')} :&nbsp;</span>
                       <span>${totalPrice.toFixed(2)}</span>
                     </div>
                   </div>
@@ -266,7 +270,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      日期 :
+                      {t('biddingpage.date')} :
                     </div>
                     <input
                       type="date"
@@ -288,7 +292,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      時段 :
+                      {t('biddingpage.time')} :
                     </div>
                     <select
                       className={classNames(
@@ -307,7 +311,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      度數 :
+                      {t('biddingpage.volume')} :
                     </div>
                     <input
                       type="number"
@@ -326,7 +330,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      單價 :
+                      {t('biddingpage.price')} :
                     </div>
                     <input
                       type="number"
@@ -345,7 +349,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      總金額 :
+                      {t('biddingpage.total')} :
                     </div>
                     <input
                       type="number"
@@ -379,7 +383,7 @@ const InfoBox: React.FC<IProps> = ({
                     !edit ? 'edit' : 'check'
                   }-white.png`}
                 />
-                {!edit ? '編輯' : '確認'}
+                {!edit ? t('biddingpage.edit') : t('biddingpage.confirm')}
               </button>
               <button
                 type="button"
@@ -397,7 +401,7 @@ const InfoBox: React.FC<IProps> = ({
                     !edit ? 'trash' : 'cancel'
                   }-white.png`}
                 />
-                {!edit ? '移除' : '取消'}
+                {!edit ? t('biddingpage.delete') : t('biddingpage.cancel')}
               </button>
             </div>
           </div>

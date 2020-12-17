@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "能源交易平台",
+    "title": "電力交易平台",
     "home": "首頁　　",
     "bidding": "投標　　",
     "status": "競標動態",
@@ -9,7 +9,7 @@
     "logout": "登出　　"
   },
   "loginpage": {
-    "title": "能源交易平台",
+    "title": "電力交易平台",
     "account": "帳號",
     "password": "密碼",
     "remember": "記住我",
@@ -38,7 +38,33 @@
     "view": "查看"
   },
   "biddingpage": {
-    "pageTitle": "投標"
+    "pageTitle": "Bidding",
+    "modeGreen": "綠能交易",
+    "modeDemand": "需量反應",
+    "avgPrice": "平均交易價",
+    "avgVolume": "平均交易量",
+    "currParticipants": "即時交易人數",
+    "date": "日期",
+    "time": "時段",
+    "volume": "度數",
+    "price": "單價",
+    "total": "總金額",
+    "buy": "買",
+    "sell": "賣",
+    "drVolume": "DR量",
+    "drPreview": "每小時DR量預覽",
+    "drAward": "需量反應決標",
+    "drBidding": "需量反應競標",
+    "accept": "接受",
+    "accepted": "已接受",
+    "delete": "刪除",
+    "deleted": "已刪除",
+    "bid": "已投標",
+    "new": "新增",
+    "confirm": "確認",
+    "reset": "重設",
+    "edit": "編輯",
+    "cancel": "取消"
   },
   "indexpage": {
     "pageTitle": "首頁",
@@ -52,7 +78,26 @@
     "sellFail": "未得標"
   },
   "powerinfopage": {
-    "pageTitle": "電力資訊"
+    "pageTitle": "電力資訊",
+    "netLoad": "淨負載",
+    "equipment": "產能設備",
+    "consume": "用電",
+    "generate": "產電",
+    "date": "日期",
+    "time": "時間",
+    "recordTime": "紀錄時間",
+    "electricity": "電力",
+    "type": "種類",
+    "useType": "用產電種類",
+    "link": "連結",
+    "PV": "太陽能",
+    "WT": "風能",
+    "ESS": "儲能系統",
+    "EV": "充電樁",
+    "normalConsume": "正常用電",
+    "netLoadSummary": "淨負載統計 (用電 - 產電)",
+    "equipmentSummary": "產電總量統計 (kWh)",
+    "view": "查看"
   },
   "statuspage": {
     "pageTitle": "競標動態",

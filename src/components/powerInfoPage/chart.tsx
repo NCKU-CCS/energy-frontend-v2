@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IApiData {
   Consume: number;
@@ -21,6 +22,9 @@ interface IProps {
 }
 
 const Chart: React.FC<IProps> = ({ mode, date }) => {
+  // i18n
+  const { t } = useTranslation();
+
   const chartContainer = useRef(null);
 
   // check whether lastDate is after today or not
@@ -41,6 +45,46 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
   // Api Data Array
   const [apiDataArr, setApiDataArr] = useState<IApiData[]>([]);
+
+  // max value of data array
+  const [maxValue, setMaxValue] = useState<number>(0);
+
+  // min value of data array
+  const [minValue, setMinValue] = useState<number>(0);
+
+  useEffect(() => {
+    let tmpMaxValue = 0;
+    let tmpMinValue = 0;
+    apiDataArr.map((d: IApiData) => {
+      const maxOfItem = Math.max(
+        d.Consume,
+        d.Demand,
+        d.ESS,
+        d.EV,
+        d.Generate,
+        d.PV,
+        d.WT,
+      );
+      const minOfItem = Math.min(
+        d.Consume,
+        d.Demand,
+        d.ESS,
+        d.EV,
+        d.Generate,
+        d.PV,
+        d.WT,
+      );
+      if (tmpMaxValue < maxOfItem) {
+        tmpMaxValue = maxOfItem;
+      }
+      if (tmpMinValue > minOfItem) {
+        tmpMinValue = minOfItem;
+      }
+      return null;
+    });
+    setMaxValue(tmpMaxValue);
+    setMinValue(tmpMinValue);
+  }, [apiDataArr]);
 
   // fetch Api Data
   const fetchApiData = async () => {
@@ -103,12 +147,12 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
   const equipScaleY = d3
     .scaleLinear()
     .range([height - padding.top - padding.bottom, 0])
-    .domain([-40, 40]);
+    .domain([minValue - 2, maxValue + 2]);
 
   const loadScaleY = d3
     .scaleLinear()
     .range([height - padding.top - padding.bottom, 0])
-    .domain([-10, 10]);
+    .domain([minValue - 2, maxValue + 2]);
 
   // axisX
   const axisX = d3
@@ -135,7 +179,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
     .axisLeft(loadScaleY)
     .ticks(4)
     .tickPadding(tickPaddingY)
-    .tickFormat(null)
+    // .tickFormat(null)
     .tickSize(0 - width + padding.left + padding.right);
 
   // line -> equipLine
@@ -512,7 +556,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
       .attr('y', height - padding.bottom / 2.5)
       .attr('fill', '#707070')
       .attr('font-size', unitTextSize)
-      .text('日期');
+      .text(`${t('powerinfopage.date')}`);
 
     if (mode === '產能設備') {
       // append axis
@@ -539,12 +583,10 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
           g
             .select(':nth-child(3)')
             .select('line')
-            .attr('stroke-dasharray', '3'),
+            .attr('stroke-dasharray', '3')
+            .attr('stroke-width', '2px'),
         )
         .attr('stroke-width', '0.5px')
-        .call((g: any) =>
-          g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
-        )
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)
         .attr('transform', `translate(${padding.left}, ${padding.top})`);
@@ -688,7 +730,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', yellowTextPos.y) // 1.4 -> 1.5
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('太陽能');
+        .text(`${t('powerinfopage.PV')}`);
       svg
         .append('text')
         .attr('text-anchor', 'start')
@@ -696,7 +738,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', blueTextPos.y) // 2 -> 2.25
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('風能');
+        .text(`${t('powerinfopage.WT')}`);
       svg
         .append('text')
         .attr('text-anchor', 'start')
@@ -704,7 +746,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', grayTextPos.y) // 2.6 -> 2.95
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('儲能系統');
+        .text(`${t('powerinfopage.ESS')}`);
       svg
         .append('text')
         .attr('text-anchor', 'start')
@@ -712,7 +754,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', purpleTextPos.y) // 3.2 -> 3.7
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('充電樁');
+        .text(`${t('powerinfopage.EV')}`);
 
       // append line of dataPV
       svg
@@ -954,7 +996,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
           // tooltip-title-PV
           tooltipTitlePV
-            .text('太陽能:')
+            .text(`${t('powerinfopage.PV')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1007,7 +1049,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
           // tooltip-title-WT
           tooltipTitleWT
-            .text('風能:')
+            .text(`${t('powerinfopage.WT')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1060,7 +1102,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
           // tooltip-title-ESS
           tooltipTitleESS
-            .text('儲能系統:')
+            .text(`${t('powerinfopage.ESS')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1113,7 +1155,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
           // tooltip-title-EV
           tooltipTitleEV
-            .text('充電樁:')
+            .text(`${t('powerinfopage.EV')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1427,6 +1469,13 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(loadGrid)
         .call((g: any) => g.select('.domain').remove())
         .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
+        .call((g: any) =>
+          g
+            .select(':nth-child(3)')
+            .select('line')
+            .attr('stroke-dasharray', '3')
+            .attr('stroke-width', '2px'),
+        )
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)
@@ -1518,7 +1567,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', redTextPos.y)
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('用電');
+        .text(`${t('powerinfopage.consume')}`);
 
       svg
         .append('text')
@@ -1527,7 +1576,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .attr('y', greenTextPos.y)
         .attr('fill', '#707070')
         .attr('font-size', legendTextSize)
-        .text('產電');
+        .text(`${t('powerinfopage.generate')}`);
 
       // test for tooltip
       tooltipCvs
@@ -1656,7 +1705,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             .attr('y2', height - padding.bottom);
 
           tooltipTitleConsume
-            .text('用電:')
+            .text(`${t('powerinfopage.consume')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1707,7 +1756,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             );
 
           tooltipTitleGenerate
-            .text('產電:')
+            .text(`${t('powerinfopage.generate')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,
@@ -1758,7 +1807,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
             );
 
           tooltipTitleDemand
-            .text('淨負載:')
+            .text(`${t('powerinfopage.netLoad')}:`)
             .attr(
               'x',
               d3.mouse(d3.event.currentTarget)[0] + tooltipWidth * 0.074 + 50,

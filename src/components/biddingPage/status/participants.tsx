@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   mode: string;
@@ -7,6 +8,9 @@ interface IProps {
 }
 
 const Participants: React.FC<IProps> = ({ mode, participants }) => {
+  // i18n
+  const { t } = useTranslation();
+
   return (
     <div className={classNames('bidding-status-participants-container-in')}>
       <div
@@ -25,7 +29,7 @@ const Participants: React.FC<IProps> = ({ mode, participants }) => {
           {participants}
         </div>
         <div className={classNames('bidding-status-participants-text-title')}>
-          即時交易人數
+          {t('biddingpage.currParticipants')}
         </div>
       </div>
     </div>

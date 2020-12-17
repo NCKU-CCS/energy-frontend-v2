@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
@@ -39,6 +40,9 @@ const ListItem: React.FC<IProps> = ({
   status,
   isAggr,
 }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // display data
   const [displayDate, setDisplayDate] = useState<string>(date);
   const [displayInterval, setDisplayInterval] = useState<string>(interval);
@@ -56,7 +60,9 @@ const ListItem: React.FC<IProps> = ({
   const [DeleteBtnDisabled, setDeleteBtnDisabled] = useState<boolean>(false);
 
   // bid btn's text
-  const [DeleteBtnText, setDeleteBtnText] = useState<string>('已投標');
+  const [DeleteBtnText, setDeleteBtnText] = useState<string>(
+    t('biddingpage.bid'),
+  );
 
   // this bid is editable or not
   const [editable, setEditable] = useState<boolean>(true);
@@ -66,7 +72,7 @@ const ListItem: React.FC<IProps> = ({
 
   useEffect(() => {
     if (isAggr) {
-      setDeleteBtnText('接受');
+      setDeleteBtnText(t('biddingpage.accept'));
       setDeleteBtnDisabled(false);
     } else if (
       new Date().getTime() >=
@@ -122,9 +128,9 @@ const ListItem: React.FC<IProps> = ({
 
   // handle click delete btn
   const handleClickDeleteBtn = () => {
-    if (isAggr) setDeleteBtnText('已接受');
+    if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
     else {
-      setDeleteBtnText('已刪除');
+      setDeleteBtnText(t('biddingpage.deleted'));
       setDeleted(true);
     }
     setDeleteBtnDisabled(true);
@@ -133,12 +139,12 @@ const ListItem: React.FC<IProps> = ({
 
   // handle mouse over bid button
   const handleMouseOverDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText('刪除');
+    if (!isAggr) setDeleteBtnText(t('biddingpage.delete'));
   };
 
   // handle mouse out bid button
   const handleMouseOutDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText('已投標');
+    if (!isAggr) setDeleteBtnText(t('biddingpage.bid'));
   };
 
   // handle click submit btn

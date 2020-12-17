@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   setMode(mode: string): void;
 }
 
 const ModeButton: React.FC<IProps> = ({ setMode }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // disable
   const [disabled, setDisabled] = useState(true);
 
@@ -32,7 +36,7 @@ const ModeButton: React.FC<IProps> = ({ setMode }) => {
         disabled={disabled}
         onClick={() => handleClickGreen()}
       >
-        綠能交易
+        {t('biddingpage.modeGreen')}
       </button>
       <button
         type="button"
@@ -43,7 +47,7 @@ const ModeButton: React.FC<IProps> = ({ setMode }) => {
         disabled={!disabled}
         onClick={() => handleClickNeed()}
       >
-        需量反應
+        {t('biddingpage.modeDemand')}
       </button>
     </div>
   );

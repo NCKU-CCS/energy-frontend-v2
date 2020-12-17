@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   date: string;
@@ -10,22 +11,25 @@ interface IProps {
 }
 
 const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
+  // i18n
+  const { t } = useTranslation();
+
   const [infoBoxShow, setInfoBoxShow] = useState(false);
 
   const dataType = (str: string) => {
     switch (str) {
       case 'Consume':
-        return '正常用電';
+        return t('powerinfopage.normalConsume');
       case 'NetLoad':
-        return '總淨負載';
+        return t('powerinfopage.netLoad');
       case 'ESS':
-        return '儲能系統';
+        return t('powerinfopage.ESS');
       case 'EV':
-        return '充電樁';
+        return t('powerinfopage.EV');
       case 'WT':
-        return '風能';
+        return t('powerinfopage.WT');
       case 'PV':
-        return '太陽能';
+        return t('powerinfopage.PV');
       default:
         return 'error';
     }
@@ -38,7 +42,7 @@ const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
         className={classNames('powerinfo-table-infobox-openbtn')}
         onClick={() => setInfoBoxShow(true)}
       >
-        查看
+        {t('powerinfopage.view')}
       </button>
       {infoBoxShow && (
         <div className={classNames('powerinfo-table-infobox-canvas')}>
@@ -51,11 +55,11 @@ const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
               &times;
             </button>
             <div className={classNames('powerinfo-table-infobox-date')}>
-              日期 :&nbsp;
+              {t('powerinfopage.date')} :&nbsp;
               {date}
             </div>
             <div className={classNames('powerinfo-table-infobox-type')}>
-              用產電種類 :&nbsp;
+              {t('powerinfopage.useType')} :&nbsp;
               <span
                 style={value >= 0 ? { color: '#d32f2f' } : { color: '#2e7d32' }}
               >
@@ -63,15 +67,15 @@ const InfoBox: React.FC<IProps> = ({ date, type, time, value, url }) => {
               </span>
             </div>
             <div className={classNames('powerinfo-table-infobox-time')}>
-              紀錄時間 :&nbsp;
+              {t('powerinfopage.recordTime')} :&nbsp;
               {time}
             </div>
             <div className={classNames('powerinfo-table-infobox-value')}>
-              電力(kW) :&nbsp;
+              {t('powerinfopage.electricity')}(kW) :&nbsp;
               {value}
             </div>
             <div className={classNames('powerinfo-table-infobox-url')}>
-              連結 :&nbsp;
+              {t('powerinfopage.link')} :&nbsp;
               <a href={url}>&#60;URL&#62;</a>
             </div>
           </div>

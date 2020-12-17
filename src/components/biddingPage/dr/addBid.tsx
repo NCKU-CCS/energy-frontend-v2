@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
@@ -20,6 +21,9 @@ interface IProps {
 }
 
 const AddBid: React.FC<IProps> = ({ data, setData }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // date
   const [date, setDate] = useState<string>('null');
 
@@ -166,7 +170,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           className={classNames('bidding-dr-addbid-button-submit')}
           onClick={() => handleClickSubmit()}
         >
-          新增
+          {t('biddingpage.new')}
         </button>
       </div>
     </div>

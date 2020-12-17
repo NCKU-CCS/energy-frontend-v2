@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
 
@@ -29,6 +30,9 @@ interface IProps {
 
 // whatever the mode is actually doesn't matter due to the reason that api data is based on mode
 const List: React.FC<IProps> = ({ apiData, type }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // create list
   const createList = apiData.data.map((d) => {
     // interval string
@@ -51,18 +55,20 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
   return (
     <div className={classNames('bidding-submit-list-container-in')}>
       <div className={classNames('bidding-submit-list-title-container')}>
-        <div className={classNames('bidding-submit-list-title-date')}>日期</div>
+        <div className={classNames('bidding-submit-list-title-date')}>
+          {t('biddingpage.date')}
+        </div>
         <div className={classNames('bidding-submit-list-title-interval')}>
-          時段
+          {t('biddingpage.time')}
         </div>
         <div className={classNames('bidding-submit-list-title-volume')}>
-          總度數
+          {t('biddingpage.volume')}
         </div>
         <div className={classNames('bidding-submit-list-title-price')}>
-          單價
+          {t('biddingpage.price')}
         </div>
         <div className={classNames('bidding-submit-list-title-totalprice')}>
-          總金額
+          {t('biddingpage.total')}
         </div>
         <div className={classNames('bidding-submit-list-title-button')}>
           <AddBidBtn type={type} />

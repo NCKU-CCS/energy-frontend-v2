@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   setType(type: string): void;
 }
 
 const TypeButton: React.FC<IProps> = ({ setType }) => {
+  // i18n
+  const { t } = useTranslation();
+
   // disabled
   const [disabled, setDisabled] = useState(true);
 
@@ -32,7 +36,7 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
         disabled={disabled}
         onClick={() => handleClickBuy()}
       >
-        買
+        {t('biddingpage.buy')}
       </button>
       <button
         type="button"
@@ -43,7 +47,7 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
         disabled={!disabled}
         onClick={() => handleClickSell()}
       >
-        賣
+        {t('biddingpage.sell')}
       </button>
     </div>
   );
