@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
@@ -195,7 +200,7 @@ const ListItem: React.FC<IProps> = ({
       >
         s
       </div>
-      <input
+      {/* <input
         type="date"
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
@@ -205,7 +210,29 @@ const ListItem: React.FC<IProps> = ({
         onChange={(e) =>
           setDisplayDate(dayjs(e.target.value).format('YYYY/MM/DD'))
         }
-      />
+      /> */}
+      <div
+        className={classNames(
+          'bidding-dr-list-listitem-item--edit',
+          'bidding-dr-list-listitem-date--edit',
+        )}
+      >
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            value={displayDate}
+            onChange={(d) =>
+              setDisplayDate(
+                dayjs(String(d?.toDateString())).format('YYYY/MM/DD'),
+              )
+            }
+            format="MM/dd/yyyy"
+            // label="Choose Data Date"
+            showTodayButton
+            disablePast
+            allowKeyboardControl
+          />
+        </MuiPickersUtilsProvider>
+      </div>
       <select
         className={classNames(
           'bidding-dr-list-listitem-item--edit',

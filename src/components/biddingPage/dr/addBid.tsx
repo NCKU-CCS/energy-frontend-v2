@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
@@ -103,17 +108,30 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
       >
         s
       </div>
-      <input
-        type="date"
+      <div
         className={classNames(
           'bidding-dr-addbid-item',
           'bidding-dr-addbid-date',
         )}
-        onChange={(e) => setDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
-        value={
-          reset ? '' : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
-        }
-      />
+      >
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            value={
+              reset
+                ? null
+                : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
+            }
+            onChange={(d) =>
+              setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
+            }
+            format="MM/dd/yyyy"
+            // label="Choose Data Date"
+            showTodayButton
+            disablePast
+            allowKeyboardControl
+          />
+        </MuiPickersUtilsProvider>
+      </div>
       <select
         className={classNames(
           'bidding-dr-addbid-item',
