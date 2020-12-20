@@ -197,17 +197,6 @@ const ListItem: React.FC<IProps> = ({
       >
         s
       </div>
-      {/* <input
-        type="date"
-        className={classNames(
-          'bidding-dr-list-listitem-item--edit',
-          'bidding-dr-list-listitem-date--edit',
-        )}
-        defaultValue={dayjs(new Date(date)).format('YYYY-MM-DD').toString()}
-        onChange={(e) =>
-          setDisplayDate(dayjs(e.target.value).format('YYYY/MM/DD'))
-        }
-      /> */}
       <div
         className={classNames(
           'bidding-dr-list-listitem-item--edit',
