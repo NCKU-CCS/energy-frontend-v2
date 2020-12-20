@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
@@ -266,12 +263,12 @@ const ListItem: React.FC<IProps> = ({
     <div className={classNames('bidding-submit-listitem-container--edit')}>
       <div className={classNames('bidding-submit-listitem-date--edit')}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
+          <DatePicker
             value={newDate}
             onChange={(d) =>
               setNewDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
             }
-            format="MM/dd/yyyy"
+            format="yyyy/MM/dd"
             // label="Choose Data Date"
             showTodayButton
             disablePast

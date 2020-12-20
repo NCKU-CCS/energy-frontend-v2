@@ -3,10 +3,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
@@ -218,14 +215,14 @@ const ListItem: React.FC<IProps> = ({
         )}
       >
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
+          <DatePicker
             value={displayDate}
             onChange={(d) =>
               setDisplayDate(
                 dayjs(String(d?.toDateString())).format('YYYY/MM/DD'),
               )
             }
-            format="MM/dd/yyyy"
+            format="yyyy/MM/dd"
             // label="Choose Data Date"
             showTodayButton
             disablePast
