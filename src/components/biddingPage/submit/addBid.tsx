@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
@@ -46,7 +48,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
-    // alert(`${type}, ${date}, ${time}, ${volume}, ${price}, ${user.bearer}`);
     // POST to bidsubmit API
     try {
       const response = await fetch(
@@ -80,18 +81,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
       }
       setSubmitDisabled(true);
     } catch (error) {
-      // console.error(`catch" ${error.toString()}`);
-      // console.log(JSON.stringify({
-      //   bid_type: type,
-      //   start_time: `${date} ${time}`,
-      //   end_time: `${date} ${time + 1}`,
-      //   value: volume,
-      //   price,
-      // }));
-      // console.log(new Headers({
-      //   // Authorization: `Bearer ${user.bearer}`,
-      //   'Content-Type': 'application/json',
-      // }));
       // eslint-disable-next-line no-alert
       alert('err');
     }
@@ -109,7 +98,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
 
     // clear input field
     setReset(true);
-    // setResetDisabled(true);
   };
 
   useEffect(() => {
@@ -123,24 +111,30 @@ const AddBid: React.FC<IProps> = ({ type }) => {
       setSubmitDisabled(false);
     if (date !== 'null' || time !== -1 || volume !== 0 || price !== 0)
       setReset(false);
-    // if (date !== 'null' || time !== -1 || volume !== -1 || price !== -1)
-    //   setResetDisabled(false);
   }, [date, time, volume, price]);
 
   return (
     <div className={classNames('bidding-submit-addbid-container-in')}>
       <form className={classNames('bidding-submit-addbid-form')}>
-        <input
-          type="date"
-          className={classNames('bidding-submit-addbid-form-date')}
-          onChange={(e) => setDate(dayjs(e.target.value).format('YYYY/MM/DD'))}
-          value={
-            reset ? '' : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
-          }
-          required
-          // value="2020-09-21"
-          // disabled
-        />
+        <div className={classNames('bidding-submit-addbid-form-date')}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker
+              value={
+                reset
+                  ? null
+                  : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
+              }
+              onChange={(d) =>
+                setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
+              }
+              format="yyyy/MM/dd"
+              // label="Choose Data Date"
+              showTodayButton
+              disablePast
+              allowKeyboardControl
+            />
+          </MuiPickersUtilsProvider>
+        </div>
         <select
           className={classNames('bidding-submit-addbid-form-select')}
           onChange={(e) => setTime(parseInt(e.target.value, 10))}
@@ -175,14 +169,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           value={reset ? '' : totalPrice}
           disabled
         />
-        {/* <input
-          className={classNames('bidding-submit-addbid-form-submit')}
-          type="button"
-          value="&#10003;"
-          title="Submit"
-          onClick={() => addBid()}
-          disabled={submitDisabled}
-        /> */}
         <button
           type="button"
           className={classNames('bidding-submit-addbid-form-submit')}
@@ -200,13 +186,6 @@ const AddBid: React.FC<IProps> = ({ type }) => {
             src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}.png`}
           />
         </button>
-        {/* <input
-          className={classNames('bidding-submit-addbid-form-reset')}
-          type="reset"
-          value="&#10005;"
-          title="Reset"
-          onClick={() => handleClickReset()}
-        /> */}
         <button
           type="button"
           title="reset"

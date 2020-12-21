@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import dayjs from 'dayjs';
 import Chart from './chart';
 import ModeButton from './modeButton';
-import DatePicker from './datePicker';
+// import DatePicker from './datePicker';
 import Summary from './summary';
 import Table from './table';
 
@@ -14,7 +17,21 @@ const PowerInfoPageContainer: React.FC = () => {
   return (
     <div className={classNames('powerinfo-container')}>
       <div className={classNames('c', 'c1')}>
-        <DatePicker changeDate={setDate} currDate={date} />
+        {/* <DatePicker setDate={setDate} currDate={date} /> */}
+        <div className={classNames('powerinfo-datepicker-container')}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker
+              value={date}
+              onChange={(d) =>
+                setDate(new Date(dayjs(d?.toDateString()).format('YYYY-MM-DD')))
+              }
+              format="yyyy/MM/dd"
+              disableFuture
+              showTodayButton
+              allowKeyboardControl
+            />
+          </MuiPickersUtilsProvider>
+        </div>
       </div>
       <div className={classNames('c', 'c2')}>
         <ModeButton changeMode={setMode} />

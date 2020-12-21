@@ -579,13 +579,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(equipGrid)
         .call((g: any) => g.select('.domain').remove())
         .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
-        .call((g: any) =>
-          g
-            .select(':nth-child(3)')
-            .select('line')
-            .attr('stroke-dasharray', '3')
-            .attr('stroke-width', '2px'),
-        )
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)
@@ -1469,13 +1462,6 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
         .call(loadGrid)
         .call((g: any) => g.select('.domain').remove())
         .call((g: any) => g.selectAll('.tick').attr('color', 'gray'))
-        .call((g: any) =>
-          g
-            .select(':nth-child(3)')
-            .select('line')
-            .attr('stroke-dasharray', '3')
-            .attr('stroke-width', '2px'),
-        )
         .attr('stroke-width', '0.5px')
         .attr('fill', 'none')
         .attr('font-size', axisTextSize)

@@ -32,8 +32,10 @@
   outline: 0;
   border: 0;
   color: #707070;
-  border-bottom: #d1d2d1 solid 1px;
+  // border-bottom: #d1d2d1 solid 1px;
   text-align: right;
+  display: flex;
+  align-items: flex-end;
   // border: green solid 1px;
 }
 

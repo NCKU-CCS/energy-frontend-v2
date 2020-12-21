@@ -70,8 +70,11 @@
 @media all and (max-width: 320px) {
   .bidding-modebutton-container-in {
     width: 90%;
-    height: 100%;
-    margin-left: 5%;
+    // height: 100%;
+    height: 60%;
+    // margin-left: 5%;
+    margin: 0;
+    // border: red solid 1px;
   }
   .bidding-modebutton-button {
     width: 49%;

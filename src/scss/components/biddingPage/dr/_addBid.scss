@@ -27,7 +27,9 @@
   border: 0;
   outline: 0;
   color: #707070;
-  border-bottom: #d1d2d1 solid 1px;
+  display: flex;
+  align-items: flex-end;
+  // border-bottom: #d1d2d1 solid 1px;
 }
 
 .bidding-dr-addbid-interval {
