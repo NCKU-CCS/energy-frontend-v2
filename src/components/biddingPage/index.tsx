@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import BiddingStatus from './status';
 import ModeButton from './modeButton';
@@ -27,7 +24,7 @@ const BiddingPageContainer: React.FC = () => {
         {mode === '需量反應' && (
           <div className={classNames('bidding-dr-date')}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
+              <DatePicker
                 value={date}
                 onChange={(d) =>
                   setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
