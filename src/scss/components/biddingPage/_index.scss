@@ -17,14 +17,14 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 2.4%;
-  padding-left: 2.4%;
+  justify-content: flex-start;
+  // padding-right: 2.4%;
+  // padding-left: 2.4%;
   // border: red solid 1px;
 }
 
 .bidding-dr-date {
-  // margin-left: 1.8%;
+  margin-left: 1.8%;
   width: 150px;
   // width: auto;
   height: 65%;
@@ -157,11 +157,11 @@
     height: 12%;
     justify-content: center;
     padding: 0%;
+    flex-direction: column-reverse;
     // border: red solid 1px;;
   }
 
   .bidding-dr-date {
-    // width: 100%;
     // margin-left: 50%;
     // margin-right: 4.4%;
     // margin-top: 0;
@@ -169,10 +169,12 @@
     padding-right: 0%;
     margin: 0;
     height: 40%;
+    // width: 90%;
     width: 90%;
     font-size: 1.5vh;
     color: white;
-    // border: olive solid 1px;
+    justify-content: flex-start;
+    // border: blue solid 1px;
     // overflow: hidden;
   }
 
