@@ -21,6 +21,7 @@ const BiddingPageContainer: React.FC = () => {
   return (
     <div className={classNames('bidding-container')}>
       <div className={classNames('bidding-a1')}>
+        <ModeButton setMode={setMode} />
         {mode === '需量反應' && (
           <div className={classNames('bidding-dr-date')}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -37,7 +38,6 @@ const BiddingPageContainer: React.FC = () => {
             </MuiPickersUtilsProvider>
           </div>
         )}
-        <ModeButton setMode={setMode} />
       </div>
       <div className={classNames('bidding-a2')}>
         <div className={classNames('bidding-a2-b1')}>

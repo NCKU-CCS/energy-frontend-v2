@@ -8,7 +8,6 @@
   display: flex;
   flex-wrap: wrap;
   height: 80%;
-  // border: black solid 2px;
 }
 
 .bidding-a1 {
@@ -17,26 +16,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 2.4%;
-  padding-left: 2.4%;
-  // border: red solid 1px;
+  justify-content: flex-start;
 }
 
 .bidding-dr-date {
-  // margin-left: 1.8%;
+  margin-left: 1.8%;
   width: 150px;
-  // width: auto;
   height: 65%;
   text-align: center;
   outline: 0;
   border-radius: 5px;
   color: #707070;
-  // border: #d1d2d1 solid 1px;
   display: flex;
   align-items: flex-end;
-  // background-color: white;
-  // box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 
 .bidding-a2 {
@@ -44,7 +36,6 @@
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-  // border: red solid 1px;
 }
 
 .bidding-a2-b1 {
@@ -52,27 +43,23 @@
   height: 30%;
   display: flex;
   flex-wrap: wrap;
-  // border: green solid 2px;
   overflow: hidden;
 }
 
 .bidding-a2-b1-c1 {
   flex-basis: 40%;
   height: 100%;
-  // border: blue solid 2px;
 }
 
 .bidding-a2-b1-c2 {
   flex-basis: 60%;
   height: 100%;
-  // border: blue solid 2px;
 }
 
 .bidding-a2-b2 {
   flex-basis: 100%;
   height: 70%;
   overflow: hidden;
-  // border: green solid 2px;
 }
 
 .bidding-a3 {
@@ -80,7 +67,6 @@
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-  // border: red solid 1px;
 }
 
 // 1920 < size
@@ -103,15 +89,10 @@
   .bidding-a1 {
     flex-basis: 100%;
     height: 10%;
-    // justify-content: space-between;
-    // border: red solid 1px;
   }
 
   .bidding-dr-date {
     width: 150px;
-    // margin-right: 0%;
-    // margin-left: 50%;
-    // margin-right: 2%;
   }
 
   .bidding-a2 {
@@ -153,18 +134,13 @@
 
   .bidding-a1 {
     flex-basis: 100%;
-    // height: 7%;
     height: 12%;
     justify-content: center;
     padding: 0%;
-    // border: red solid 1px;;
+    flex-direction: column-reverse;
   }
 
   .bidding-dr-date {
-    // width: 100%;
-    // margin-left: 50%;
-    // margin-right: 4.4%;
-    // margin-top: 0;
     padding-left: 40%;
     padding-right: 0%;
     margin: 0;
@@ -172,13 +148,11 @@
     width: 90%;
     font-size: 1.5vh;
     color: white;
-    // border: olive solid 1px;
-    // overflow: hidden;
+    justify-content: flex-start;
   }
 
   .bidding-a2 {
     flex-basis: 100%;
-    // height: 53%;
     height: 48%;
   }
 
