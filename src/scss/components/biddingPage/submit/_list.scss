@@ -5,7 +5,6 @@
   flex-wrap: wrap;
   color: #707070;
   background-color: white;
-  // border: red solid 2px;
 }
 
 .bidding-submit-list-title-container {
@@ -15,9 +14,8 @@
   height: 15%;
   display: flex;
   flex-wrap: wrap;
-  font-size: 1vw;
+  font-size: 1rem;
   text-align: center;
-  // border: red solid 2px;
 }
 
 .bidding-submit-list-listitem-container {
@@ -25,11 +23,7 @@
   margin-right: 3%;
   flex-basis: 94%;
   height: 85%;
-  // display: flex;
-  // flex-wrap: wrap;
-  // overflow-x: auto;
   overflow-y: auto;
-  // border: black solid 1px;
 }
 
 ::-webkit-scrollbar {
@@ -58,7 +52,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-list-title-interval {
@@ -67,7 +60,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-list-title-volume {
@@ -76,7 +68,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-list-title-price {
@@ -85,7 +76,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-list-title-totalprice {
@@ -94,13 +84,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-list-title-button {
   flex-basis: auto;
   height: 100%;
-  // border: black solid 1px;
 }
 
 // 1920 < size
@@ -110,12 +98,16 @@
 
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
-
+  .bidding-submit-list-title-container {
+    font-size: 0.9rem;
+  }
 }
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-
+  .bidding-submit-list-title-container {
+    font-size: 0.9rem;
+  }
 }
 
 // 320 < size <= 720
@@ -126,40 +118,49 @@
 
   .bidding-submit-list-listitem-container {
     height: 80%;
-    // border: red solid 1px;
   }
+
+  .bidding-submit-list-title-container {
+    font-size: 0.8rem;
+  }
+
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
+  .bidding-submit-list-title-container {
+    font-size: 0.8rem;
+  }
+
   .bidding-submit-list-title-container {
     height: 20%;
   }
 
   .bidding-submit-list-listitem-container {
     height: 80%;
-    // border: red solid 1px;
   }
+
   .bidding-submit-list-title-date {
     flex-basis: 35%;
-    // border: olive solid 1px;
   }
+
   .bidding-submit-list-title-interval {
     flex-basis: 35%;
-    // border: olive solid 1px;
   }
   .bidding-submit-list-title-volume {
     flex-basis: 20%;
-    // border: olive solid 1px;
   }
+
   .bidding-submit-list-title-button {
     flex-basis: 10%;
-    // border: olive solid 1px;
   }
+
   .bidding-submit-list-title-price {
     display: none;
   }
+
   .bidding-submit-list-title-totalprice {
     display: none;
   }
+
 }
