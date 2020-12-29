@@ -4,7 +4,6 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-open-btn {
@@ -18,14 +17,11 @@
   background-color: transparent;
   border: 0;
   outline: 0;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-open-btn-img {
   width: 100%;
-  // height: 100%;
   object-fit: contain;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-canvas {
@@ -58,17 +54,14 @@
   justify-content: flex-end;
   align-items: center;
   background-color: #ffa000;
-  // border: black solid 1px;
 }
 
 .bidding-submit-infobox-content-center {
   width: 100%;
   height: 75%;
   display: flex;
-  // flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  // border: black solid 1px;
 }
 
 .bidding-submit-infobox-content-footer {
@@ -80,7 +73,6 @@
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color: #ffa000;
-  // border: black solid 1px;
 }
 
 .bidding-submit-infobox-content-header-close {
@@ -102,7 +94,6 @@
   outline: 0;
   background-color: transparent;
   color: white;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-footer-right {
@@ -121,7 +112,6 @@
 .bidding-submit-infobox-content-center-inside {
   width: 90%;
   height: 90%;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside--show {
@@ -135,7 +125,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside-date--show {
@@ -165,30 +154,19 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    // border: red solid 1px;
-    font-size: 4vw;
-  }
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside-input--edit {
-  // display: flex;
-  // justify-content: flex-end;
-  // align-items: center;
-  // text-align: right;
   text-align-last:right;
   border: 0;
   outline: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
-  // border: green solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside-label--edit {
   flex-basis: 30%;
   text-align: left;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside-date--edit {
@@ -206,7 +184,6 @@
 
 .bidding-submit-infobox-content-center-inside-volume--edit {
   width: 60%;
-  // border: red solid 1px;
 }
 
 .bidding-submit-infobox-content-center-inside-price--edit {

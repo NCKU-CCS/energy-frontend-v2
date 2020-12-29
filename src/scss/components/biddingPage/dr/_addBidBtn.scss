@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   display: none;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-btn {
@@ -18,14 +17,12 @@
   border: 0;
   outline: 0;
   background-color: transparent;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-btn-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-container {
@@ -36,10 +33,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    // border: red solid 1px;
-    font-size: 4vw;
-  }
 }
 
 .bidding-dr-addbidbtn-infobox-content {
@@ -70,7 +63,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // border: black solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-footer {
@@ -83,7 +75,6 @@
   border-bottom-left-radius: 5px;
   background-color: #2d3161;
   color: white;
-  // border: black solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-header-close {
@@ -102,7 +93,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-center-item-container {
@@ -111,7 +101,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-center-item-input {
@@ -134,7 +123,6 @@
   outline: 0;
   background-color: transparent;
   color: white;
-  // border: red solid 1px;
 }
 
 .bidding-dr-addbidbtn-infobox-footer-rightbtn {
@@ -148,7 +136,6 @@
   background-color: transparent;
   color: white;
   border-left: white solid 0.5px;
-  // border: red solid 1px;
 }
 
 // 1920 < size

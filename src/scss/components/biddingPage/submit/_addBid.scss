@@ -1,13 +1,6 @@
 .bidding-submit-addbid-container-in {
   height: 100%;
-  // display: flex;
-  // flex-wrap: wrap;
   background-color: white;
-  // border: red solid 1px;
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    // border: red solid 1px;
-    font-size: 1.8vh;
-  }
 }
 
 .bidding-submit-addbid-form {
@@ -15,13 +8,10 @@
   margin-right: 3%;
   width: 94%;
   height: 100%;
-  // display: flex;
-  // flex-wrap: wrap;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1vw;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-date {
@@ -32,11 +22,9 @@
   outline: 0;
   border: 0;
   color: #707070;
-  // border-bottom: #d1d2d1 solid 1px;
   text-align: right;
   display: flex;
   align-items: flex-end;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-date:hover {
@@ -52,7 +40,6 @@
   border: 0;
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-select:hover {
@@ -68,7 +55,6 @@
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
   text-align: right;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-volume:hover, :focus {
@@ -84,7 +70,6 @@
   color: #707070;
   border-bottom: #d1d2d1 solid 1px;
   text-align: right;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-price:hover, :focus {
@@ -101,23 +86,17 @@
   background-color: white;
   border-bottom: #d1d2d1 solid 1px;
   text-align: right;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-submit {
-  // margin: 0.5%;
   cursor: pointer;
   width: 5%;
   height: 60%;
   font-size: 0;
-  // font-weight: bold;
-  // border-radius: 100%;
   border: 0;
   outline: 0;
   padding: 0.5%;
-  // color: #707070;
   background-color: transparent;
-  // border: green solid 1px;
 }
 
 .bidding-submit-addbid-form-submit-img {
@@ -125,7 +104,6 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  // border: red solid 1px;
 }
 
 .bidding-submit-addbid-form-submit:disabled {
@@ -133,21 +111,14 @@
 }
 
 .bidding-submit-addbid-form-reset {
-  // margin: 0.5%;
   cursor: pointer;
   width: 5%;
   height: 60%;
   font-size: 0;
-  // font-weight: bold;
-  // border-radius: 100%;
   border: 0;
   outline: 0;
   padding: 0.5%;
-  // color: #707070;
   background-color: transparent;
-  // text-align: center;
-  // font-size: 0.1vw;
-  // border: red solid 1px;
 }
 
 .bidding-submit-addbid-form-reset-img {
@@ -155,7 +126,6 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  // border: red solid 1px;
 }
 
 .bidding-submit-addbid-form-reset:disabled {

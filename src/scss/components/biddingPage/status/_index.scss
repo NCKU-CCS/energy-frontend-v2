@@ -13,14 +13,12 @@
   margin-left: 5%;
   margin-right: 3%;
   height: 100%;
-  // border: red solid 1px;
 }
 
 .bidding-status-average-container-out {
   flex-basis: 57%;
   margin-right: 3%;
   height: 100%;
-  // border: red solid 1px;
 }
 
 // 1920 < size
@@ -59,16 +57,14 @@
 @media all and (max-width: 320px) {
   .bidding-status-participants-container-out {
     flex-basis: 30%;
-    // margin-left: 5%;
     margin-right: 0%;
     height: 100%;
-    // border: red solid 1px;
   }
 
   .bidding-status-average-container-out {
     flex-basis: 60%;
-    // margin-left: 5%;
     margin-right: 5%;
     height: 100%;
   }
+
 }
