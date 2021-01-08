@@ -7,24 +7,20 @@
   background-color: white;
   color: #707070;
   border-radius: 5px;
-  // border: blue solid 1px;
 }
 
 .bidding-status-average-image-container {
   flex-basis: 33%;
   height: 40%;
   display: flex;
-  // flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  // border: red solid 1px;
 }
 
 .bidding-status-average-image-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  // border: blue solid 1px;
 }
 
 .bidding-status-average-text-container {
@@ -32,26 +28,16 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  // border: purple solid 3px;
-  // overflow: hidden;
 }
 
 .bidding-status-average-text-price-container {
-  // flex-basis: 50%;
   width: 50%;
   height: 100%;
-  // display: flex;
-  // flex-wrap: wrap;
-  // border: red solid 1px;
 }
 
 .bidding-status-average-text-volume-container {
-  // flex-basis: 50%;
   width: 50%;
   height: 100%;
-  // display: flex;
-  // flex-wrap: wrap;
-  // border: red solid 1px;
 }
 
 .bidding-status-average-text-price-value {
@@ -60,8 +46,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  // font-size: 24px;
-  // border: blue solid 1px;
 }
 
 .bidding-status-average-text-price-title {
@@ -70,8 +54,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  // font-size: 12px;
-  // border: blue solid 1px;
 }
 
 .bidding-status-average-text-volume-value {
@@ -80,8 +62,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  // font-size: 24px;
-  // border: red solid 1px;
 }
 
 .bidding-status-average-text-volume-title {
@@ -90,8 +70,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  // font-size: 12px;
-  // border: red solid 1px;
 }
 
 // 1920 < size
@@ -111,6 +89,7 @@
   .bidding-status-average-text-volume-title {
     font-size: 16px;
   }
+
 }
 
 // 1100 < size <= 1920
@@ -130,6 +109,7 @@
   .bidding-status-average-text-volume-title {
     font-size: 12px;
   }
+
 }
 
 // 720 < size <= 1100
@@ -139,22 +119,28 @@
     height: 30%;
     margin-top: auto;
   }
+
   .bidding-status-average-text-volume-container {
     width: 100%;
     height: 30%;
   }
+
   .bidding-status-average-text-price-value {
     font-size: 24px;
   }
+
   .bidding-status-average-text-price-title {
     font-size: 12px;
   }
+
   .bidding-status-average-text-volume-value {
     font-size: 24px;
   }
+
   .bidding-status-average-text-volume-title {
     font-size: 12px;
   }
+
 }
 
 // 600 < size <= 720
@@ -163,22 +149,28 @@
     width: 50%;
     height: 100%;
   }
+
   .bidding-status-average-text-volume-container {
     width: 50%;
     height: 100%;
   }
+
   .bidding-status-average-text-price-value {
     font-size: 20px;
   }
+
   .bidding-status-average-text-price-title {
     font-size: 12px;
   }
+
   .bidding-status-average-text-volume-value {
     font-size: 20px;
   }
+
   .bidding-status-average-text-volume-title {
     font-size: 12px;
   }
+
 }
 
 // 320 < size <= 600
@@ -186,30 +178,38 @@
   .bidding-status-average-image-container {
     flex-basis: 40%;
   }
+
   .bidding-status-average-text-container {
     flex-basis: 60%;
   }
+
   .bidding-status-average-text-price-container {
     width: 100%;
     height: 40%;
     margin-top: auto;
   }
+
   .bidding-status-average-text-volume-container {
     width: 100%;
     height: 40%;
   }
+
   .bidding-status-average-text-price-value {
     font-size: 16px;
   }
+
   .bidding-status-average-text-price-title {
     font-size: 12px;
   }
+
   .bidding-status-average-text-volume-value {
     font-size: 16px;
   }
+
   .bidding-status-average-text-volume-title {
     font-size: 12px;
   }
+
 }
 
 // size <= 320
@@ -217,30 +217,34 @@
   .bidding-status-average-image-container {
     flex-basis: 0%;
   }
+
   .bidding-status-average-text-container {
     flex-basis: 100%;
   }
+
   .bidding-status-average-text-price-value {
     font-size: 20px;
     border-left: #f1f2f1 solid 2.5px;
     border-right: #f1f2f1 solid 2.5px;
   }
+
   .bidding-status-average-text-price-title {
     font-size: 12px;
     border-left: #f1f2f1 solid 2.5px;
     border-right: #f1f2f1 solid 2.5px;
   }
+
   .bidding-status-average-text-volume-value {
     font-size: 20px;
-    // border: red solid 1px;
   }
+
   .bidding-status-average-text-volume-title {
     font-size: 12px;
-    // border: red solid 1px;
   }
+
   .bidding-status-average-container-in {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    // border: red solid 1px;
   }
+
 }
