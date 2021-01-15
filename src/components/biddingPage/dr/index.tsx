@@ -73,8 +73,8 @@ const Dr: React.FC<IProps> = ({ date }) => {
     );
     if (response.status === 200) {
       // fetch success
-      const apiData = await response.json();
-      setIsAggr(apiData.is_aggregator);
+      const tmp = await response.json();
+      setIsAggr(tmp.is_aggregator);
       // eslint-disable-next-line no-alert
     } else alert('failed fetching user info');
   };
