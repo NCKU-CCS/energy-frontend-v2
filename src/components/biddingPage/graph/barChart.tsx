@@ -20,6 +20,19 @@ interface IData {
   dr: number;
 }
 
+interface IApiData {
+  uuid: string;
+  executor: string;
+  acceptor: string | null;
+  start_time: string;
+  end_time: string | null;
+  volume: number;
+  price: number;
+  result: Boolean | null;
+  rate: number | null;
+  blockchain_url: string | null;
+}
+
 const BarChart: React.FC<IProps> = ({ date }) => {
   // i18n
   const { t } = useTranslation();
@@ -29,6 +42,9 @@ const BarChart: React.FC<IProps> = ({ date }) => {
 
   // new data
   const [data, setData] = useState<IData[]>([]);
+
+  // api data
+  const [apiData, setApiData] = useState<IApiData[]>([]);
 
   // ref
   const svgRef = useRef(null);
@@ -84,6 +100,46 @@ const BarChart: React.FC<IProps> = ({ date }) => {
     .tickPadding(10)
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right) + barWidth);
+
+  // fetch Api Data
+  const fetchApiData = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+
+    // GET to Power Info API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=${dayjs(
+        date,
+      ).format('YYYY-MM-DD')}&end_date=${dayjs(date)
+        .add(1, 'day')
+        .format('YYYY-MM-DD')}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+
+    // get response successfully or not
+    if (response.status === 200) {
+      const tmp = await response.json();
+      setApiData(tmp);
+    }
+  };
+
+  // React-Hook: useEffect -> get api data
+  useEffect(() => {
+    (async () => {
+      await fetchApiData();
+    })();
+  }, [date]);
 
   // set day
   useEffect(() => {
@@ -224,12 +280,17 @@ const BarChart: React.FC<IProps> = ({ date }) => {
   // get max of data
   useEffect(() => {
     let tmpMaxDr = 0;
-    data.map((d) => {
-      if (d.dr > tmpMaxDr) tmpMaxDr = d.dr;
-      return null;
+    // data.map((d) => {
+    //   if (d.dr > tmpMaxDr) tmpMaxDr = d.dr;
+    //   return null;
+    // });
+    apiData.forEach((d) => {
+      if (d.result && d.volume > tmpMaxDr) {
+        tmpMaxDr = d.volume;
+      }
     });
     setMaxDr(tmpMaxDr);
-  }, [data]);
+  }, [apiData]);
 
   useEffect(() => {
     // set padding
