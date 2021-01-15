@@ -102,6 +102,9 @@ const ListItem: React.FC<IProps> = ({
     setInterval(() => setCurrDate(new Date()), 1000);
   }, []);
 
+  // useless
+  useEffect(() => {}, [DeleteBtnText, DeleteBtnDisabled]);
+
   useEffect(() => {
     if (
       !isAggr &&
@@ -124,30 +127,30 @@ const ListItem: React.FC<IProps> = ({
   useEffect(() => {}, [status]);
 
   // handle click edit btn
-  const handleClickEditBtn = () => {
-    setEditMode(true);
-  };
+  // const handleClickEditBtn = () => {
+  //   setEditMode(true);
+  // };
 
   // handle click delete btn
-  const handleClickDeleteBtn = () => {
-    if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
-    else {
-      setDeleteBtnText(t('biddingpage.deleted'));
-      setDeleted(true);
-    }
-    setDeleteBtnDisabled(true);
-    setEditable(false);
-  };
+  // const handleClickDeleteBtn = () => {
+  //   if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
+  //   else {
+  //     setDeleteBtnText(t('biddingpage.deleted'));
+  //     setDeleted(true);
+  //   }
+  //   setDeleteBtnDisabled(true);
+  //   setEditable(false);
+  // };
 
   // handle mouse over bid button
-  const handleMouseOverDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText(t('biddingpage.delete'));
-  };
+  // const handleMouseOverDeleteBtn = () => {
+  //   if (!isAggr) setDeleteBtnText(t('biddingpage.delete'));
+  // };
 
   // handle mouse out bid button
-  const handleMouseOutDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText(t('biddingpage.bid'));
-  };
+  // const handleMouseOutDeleteBtn = () => {
+  //   if (!isAggr) setDeleteBtnText(t('biddingpage.bid'));
+  // };
 
   // handle click submit btn
   const handleClickSubmitBtn = () => {
@@ -295,7 +298,7 @@ const ListItem: React.FC<IProps> = ({
     </div>
   ) : deleted ? null : (
     <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
-      {!isAggr && (
+      {/* {!isAggr && (
         <button
           type="button"
           title="edit"
@@ -314,7 +317,7 @@ const ListItem: React.FC<IProps> = ({
             className={classNames('bidding-dr-list-listitem-edit-img--show')}
           />
         </button>
-      )}
+      )} */}
       <div
         className={classNames(
           'bidding-dr-list-listitem-item--show',
@@ -361,7 +364,7 @@ const ListItem: React.FC<IProps> = ({
           'bidding-dr-list-listitem-button-container--show',
         )}
       >
-        <button
+        {/* <button
           className={classNames('bidding-dr-list-listitem-delete-btn--show')}
           type="button"
           onClick={() => handleClickDeleteBtn()}
@@ -372,7 +375,7 @@ const ListItem: React.FC<IProps> = ({
           disabled={DeleteBtnDisabled}
         >
           {DeleteBtnText}
-        </button>
+        </button> */}
         <InfoBox
           isAggr={isAggr}
           editable={editable}
