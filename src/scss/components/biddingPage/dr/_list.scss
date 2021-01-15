@@ -32,11 +32,6 @@
   // border: blue solid 1px;
 }
 
-.bidding-dr-list-title-space1 {
-  width: 2%;
-  color: white;
-}
-
 .bidding-dr-list-title-date {
   width: 22.5%;
 }
@@ -45,21 +40,37 @@
   width: 22.5%;
 }
 
-.bidding-dr-list-title-value {
+.bidding-dr-list-title-value--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-title-price {
+.bidding-dr-list-title-value--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-title-price--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-title-total {
+.bidding-dr-list-title-price--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-title-total--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-title-space2 {
+.bidding-dr-list-title-total--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-title-space2--aggr {
   width: 12.5%;
   color: white;
+}
+
+.bidding-dr-list-title-space2--user {
+  display: none;
 }
 
 // 1920 < size

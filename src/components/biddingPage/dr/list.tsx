@@ -102,15 +102,8 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
         <div
           className={classNames(
             'bidding-dr-list-title-item',
-            'bidding-dr-list-title-space1',
-          )}
-        >
-          s
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-title-item',
             'bidding-dr-list-title-date',
+            `bidding-dr-list-title-date--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.date')}
@@ -119,6 +112,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-interval',
+            `bidding-dr-list-title-interval--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.time')}
@@ -127,6 +121,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-value',
+            `bidding-dr-list-title-value--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.drVolume')}
@@ -135,6 +130,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-price',
+            `bidding-dr-list-title-price--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.price')}
@@ -143,6 +139,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-total',
+            `bidding-dr-list-title-total--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.total')}
@@ -151,6 +148,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-space2',
+            `bidding-dr-list-title-space2--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {!isAggr && <AddBidBtn data={data} setData={setData} />}

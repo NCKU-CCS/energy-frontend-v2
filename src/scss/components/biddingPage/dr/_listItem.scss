@@ -51,21 +51,36 @@
   width: 22%;
 }
 
-.bidding-dr-list-listitem-value--show {
+.bidding-dr-list-listitem-value--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-listitem-price--show {
+.bidding-dr-list-listitem-value--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-listitem-price--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-listitem-total--show {
+.bidding-dr-list-listitem-price--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-listitem-total--aggr {
   width: 12.5%;
 }
 
-.bidding-dr-list-listitem-button-container--show {
+.bidding-dr-list-listitem-total--user {
+  width: 18.5%;
+}
+
+.bidding-dr-list-listitem-button-container--aggr {
   width: 12%;
-  // border: red solid 1px;
+}
+
+.bidding-dr-list-listitem-button-container--user {
+  display: none;
 }
 
 .bidding-dr-list-listitem-delete-btn--show {

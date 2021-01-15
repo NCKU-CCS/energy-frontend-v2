@@ -132,15 +132,15 @@ const ListItem: React.FC<IProps> = ({
   // };
 
   // handle click delete btn
-  // const handleClickDeleteBtn = () => {
-  //   if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
-  //   else {
-  //     setDeleteBtnText(t('biddingpage.deleted'));
-  //     setDeleted(true);
-  //   }
-  //   setDeleteBtnDisabled(true);
-  //   setEditable(false);
-  // };
+  const handleClickDeleteBtn = () => {
+    if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
+    else {
+      setDeleteBtnText(t('biddingpage.deleted'));
+      setDeleted(true);
+    }
+    setDeleteBtnDisabled(true);
+    setEditable(false);
+  };
 
   // handle mouse over bid button
   // const handleMouseOverDeleteBtn = () => {
@@ -322,6 +322,7 @@ const ListItem: React.FC<IProps> = ({
         className={classNames(
           'bidding-dr-list-listitem-item--show',
           'bidding-dr-list-listitem-date--show',
+          `bidding-dr-list-listitem-date--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
         {insertSpaces(displayDate)}
@@ -330,6 +331,7 @@ const ListItem: React.FC<IProps> = ({
         className={classNames(
           'bidding-dr-list-listitem-item--show',
           'bidding-dr-list-listitem-interval--show',
+          `bidding-dr-list-listitem-interval--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
         {displayInterval}
@@ -338,6 +340,7 @@ const ListItem: React.FC<IProps> = ({
         className={classNames(
           'bidding-dr-list-listitem-item--show',
           'bidding-dr-list-listitem-value--show',
+          `bidding-dr-list-listitem-value--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
         {displayValue}&thinsp;kWh
@@ -346,6 +349,7 @@ const ListItem: React.FC<IProps> = ({
         className={classNames(
           'bidding-dr-list-listitem-item--show',
           'bidding-dr-list-listitem-price--show',
+          `bidding-dr-list-listitem-price--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
         $&thinsp;{displayPrice}&thinsp;/&thinsp;kWh
@@ -354,6 +358,7 @@ const ListItem: React.FC<IProps> = ({
         className={classNames(
           'bidding-dr-list-listitem-item--show',
           'bidding-dr-list-listitem-total--show',
+          `bidding-dr-list-listitem-total--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
         $&thinsp;{displayTotal.toFixed(1)}
@@ -361,21 +366,21 @@ const ListItem: React.FC<IProps> = ({
       <div
         className={classNames(
           'bidding-dr-list-listitem-item--show',
-          'bidding-dr-list-listitem-button-container--show',
+          `bidding-dr-list-listitem-button-container--${
+            isAggr ? 'aggr' : 'user'
+          }`,
         )}
       >
-        {/* <button
-          className={classNames('bidding-dr-list-listitem-delete-btn--show')}
-          type="button"
-          onClick={() => handleClickDeleteBtn()}
-          onMouseOver={() => handleMouseOverDeleteBtn()}
-          onMouseOut={() => handleMouseOutDeleteBtn()}
-          onFocus={() => 0}
-          onBlur={() => 0}
-          disabled={DeleteBtnDisabled}
-        >
-          {DeleteBtnText}
-        </button> */}
+        {isAggr && (
+          <button
+            className={classNames('bidding-dr-list-listitem-delete-btn--show')}
+            type="button"
+            onClick={() => handleClickDeleteBtn()}
+            disabled={DeleteBtnDisabled}
+          >
+            {DeleteBtnText}
+          </button>
+        )}
         <InfoBox
           isAggr={isAggr}
           editable={editable}
