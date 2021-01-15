@@ -93,7 +93,7 @@ const Dr: React.FC<IProps> = ({ date }) => {
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=${dayjs(
         date,
       ).format('YYYY-MM-DD')}&end_date=${dayjs(date)
-        .add(3, 'day')
+        .add(2, 'day')
         .format('YYYY-MM-DD')}`,
       {
         method: 'GET',
@@ -108,7 +108,7 @@ const Dr: React.FC<IProps> = ({ date }) => {
     // get response successfully or not
     if (response.status === 200) {
       const tmp = await response.json();
-      setApiData(tmp);
+      setApiData(Array.from(tmp));
     }
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import ListItem from './listItem';
@@ -39,39 +39,13 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
   // i18n
   const { t } = useTranslation();
 
-  // map data
-  // const createList = data.map((d) => {
-  //   let correctDate = dayjs(new Date()).add(1, 'day').format('YYYY/MM/DD');
-  //   if (d.status === '2')
-  //     correctDate = dayjs(new Date()).add(2, 'day').format('YYYY/MM/DD');
-  //   else if (d.status === '3')
-  //     correctDate = dayjs(new Date()).add(3, 'day').format('YYYY/MM/DD');
-  //   return (
-  //     <ListItem
-  //       date={d.status !== 'new' ? correctDate : d.date}
-  //       interval={d.interval}
-  //       time={d.time}
-  //       value={d.value}
-  //       price={d.price}
-  //       total={d.total}
-  //       status={d.status}
-  //       accepted={d.accepted}
-  //       isAggr={isAggr}
-  //       data={data}
-  //       setData={setData}
-  //     />
-  //   );
-  // });
+  useEffect(() => {
+    console.log('api data content');
+    console.log(apiData);
+  }, [apiData]);
 
-  // useEffect(() => {
-  //   apiData.forEach((d) => {
-  //     console.log(d.start_time);
-  //     console.log(d.start_time.substring(11, 16));
-  //   });
-  // }, [apiData]);
-
-  const createList = apiData.map((d) => {
-    // console.log(d);
+  const createList = apiData.map((d, i) => {
+    console.log(i, d.start_time);
     return (
       <ListItem
         date={d.start_time.substring(0, 10)}
