@@ -85,3 +85,9 @@
   font-size: 0.7vw;
   background-color: #2e7d32;
 }
+
+.bidding-dr-addbid-button-submit:disabled {
+  cursor: default;
+  color: #d1d1d1;
+  background-color: #f1f2f1;
+}

@@ -97,7 +97,7 @@ const ListItem: React.FC<IProps> = ({
     }
   }, [isAggr, date, time]);
 
-  // determine editable or not every minute
+  // determine editable or not every second
   useEffect(() => {
     setInterval(() => setCurrDate(new Date()), 1000);
   }, []);
