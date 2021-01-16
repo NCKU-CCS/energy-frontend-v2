@@ -40,12 +40,11 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log('api data content');
-    console.log(apiData);
+    // console.log('api data content');
+    // console.log(apiData);
   }, [apiData]);
 
-  const createList = apiData.map((d, i) => {
-    console.log(i, d.start_time);
+  const createList = apiData.map((d) => {
     return (
       <ListItem
         date={d.start_time.substring(0, 10)}

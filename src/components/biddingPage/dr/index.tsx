@@ -108,7 +108,8 @@ const Dr: React.FC<IProps> = ({ date }) => {
     // get response successfully or not
     if (response.status === 200) {
       const tmp = await response.json();
-      setApiData(Array.from(tmp));
+      setApiData([]);
+      setApiData([...tmp]);
     }
   };
 
