@@ -22,7 +22,6 @@ interface IProps {
 
 const InfoBox: React.FC<IProps> = ({
   isAggr,
-  editable,
   displayDate,
   displayInterval,
   displayValue,
@@ -32,7 +31,6 @@ const InfoBox: React.FC<IProps> = ({
   setDisplayInterval,
   setDisplayValue,
   setDisplayPrice,
-  setDeleted,
   // setDisplayTotal
 }) => {
   // i18n
@@ -59,24 +57,24 @@ const InfoBox: React.FC<IProps> = ({
   };
 
   // handle click left btn
-  const handleClickLeft = () => {
-    // eslint-disable-next-line no-empty
-    if (edit) {
-      setEdit(false);
-    } else {
-      setEdit(true);
-    }
-  };
+  // const handleClickLeft = () => {
+  //   // eslint-disable-next-line no-empty
+  //   if (edit) {
+  //     setEdit(false);
+  //   } else {
+  //     setEdit(true);
+  //   }
+  // };
 
   // handle click right btn
-  const handleClickRight = () => {
-    if (edit) {
-      setEdit(false);
-      // eslint-disable-next-line no-empty
-    } else {
-      setDeleted(true);
-    }
-  };
+  // const handleClickRight = () => {
+  //   if (edit) {
+  //     setEdit(false);
+  //     // eslint-disable-next-line no-empty
+  //   } else {
+  //     setDeleted(true);
+  //   }
+  // };
 
   return (
     <div className={classNames('bidding-dr-infobox-container-in')}>
@@ -294,7 +292,7 @@ const InfoBox: React.FC<IProps> = ({
                   {btnText}
                 </button>
               )}
-              {!isAggr && editable && (
+              {/* {!isAggr && editable && (
                 <button
                   type="button"
                   className={classNames(
@@ -333,7 +331,7 @@ const InfoBox: React.FC<IProps> = ({
                   />
                   {!edit ? '移除' : '取消'}
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>
