@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';

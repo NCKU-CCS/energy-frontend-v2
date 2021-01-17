@@ -112,14 +112,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
       <div
         className={classNames(
           'bidding-dr-addbid-item',
-          'bidding-dr-addbid-space',
-        )}
-      >
-        s
-      </div>
-      <div
-        className={classNames(
-          'bidding-dr-addbid-item',
           'bidding-dr-addbid-date',
         )}
       >

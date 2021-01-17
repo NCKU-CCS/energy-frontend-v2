@@ -5,7 +5,7 @@
   justify-content: space-around;
   align-items: center;
   color: #707070;
-  // border: red solid 1px;
+  font-size: 1rem;
 }
 
 .bidding-dr-addbid-item {
@@ -14,7 +14,6 @@
   align-items: center;
   text-align: right;
   height: 60%;
-  font-size: 1vw;
 }
 
 .bidding-dr-addbid-space {
@@ -80,7 +79,6 @@
   outline: 0;
   border-radius: 5px;
   color: white;
-  font-size: 0.7vw;
   background-color: #2e7d32;
 }
 
@@ -88,4 +86,37 @@
   cursor: default;
   color: #d1d1d1;
   background-color: #f1f2f1;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+  .bidding-dr-addbid-container-in {
+    font-size: 0.9rem;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .bidding-dr-addbid-container-in {
+    font-size: 0.8rem;
+  }
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-dr-addbid-container-in {
+    font-size: 0.8rem;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-dr-addbid-container-in {
+    font-size: 0.8rem;
+  }
 }
