@@ -125,6 +125,11 @@
   color: white;
 }
 
+.bidding-dr-addbidbtn-infobox-footer-leftbtn:disabled {
+  cursor: default;
+  color: #707070;
+}
+
 .bidding-dr-addbidbtn-infobox-footer-rightbtn {
   cursor: pointer;
   display: inline-flex;
