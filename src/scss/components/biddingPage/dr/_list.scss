@@ -3,7 +3,6 @@
   width: 94%;
   height: 100%;
   color: #707070;
-  // border: black solid 1px;
 }
 
 .bidding-dr-list-title-container {
@@ -11,15 +10,12 @@
   height: 15%;
   display: flex;
   justify-content: space-around;
-  // border: red solid 1px;
 }
 
 .bidding-dr-list-listitem-container-out {
   width: 100%;
   height: 85%;
-  // overflow-x: auto;
   overflow-y: auto;
-  // border: red solid 1px;
 }
 
 .bidding-dr-list-title-item {
@@ -28,8 +24,7 @@
   align-items: center;
   text-align: center;
   height: 100%;
-  font-size: 1vw;
-  // border: blue solid 1px;
+  font-size: 1rem;
 }
 
 .bidding-dr-list-title-date {
@@ -85,16 +80,24 @@
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-
+  .bidding-dr-list-title-item {
+    font-size: 0.9rem;
+  }
 }
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-
+  .bidding-dr-list-title-item {
+    font-size: 0.8rem;
+  }
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
+  .bidding-dr-list-title-item {
+    font-size: 0.8rem;
+  }
+
   .bidding-dr-list-title-container {
     height: 20%;
   }
@@ -130,6 +133,6 @@
   .bidding-dr-list-title-space2 {
     width: 10%;
     color: black;
-    // border: red solid 1px;
   }
+
 }
