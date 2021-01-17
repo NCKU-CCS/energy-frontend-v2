@@ -21,7 +21,7 @@
   align-items: center;
   color: #2d3161;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .bidding-dr-list-container-out--aggr {
@@ -43,7 +43,7 @@
   align-items: center;
   color: #2d3161;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .bidding-dr-list-container-out--user {
@@ -79,6 +79,10 @@
   .bidding-dr-title-container--user {
     font-size: 1.4rem;
   }
+
+  .bidding-dr-title-container--aggr {
+    font-size: 1.4rem;
+  }
 }
 
 // 320 < size <= 720
@@ -89,6 +93,10 @@
   }
 
   .bidding-dr-title-container--user {
+    font-size: 1.2rem;
+  }
+
+  .bidding-dr-title-container--aggr {
     font-size: 1.2rem;
   }
 
@@ -127,6 +135,10 @@
 
   .bidding-dr-pagecontrol-container-out--user {
     height: 15%;
+  }
+
+  .bidding-dr-title-container--aggr {
+    font-size: 1rem;
   }
 
   .bidding-dr-list-container-out--aggr {

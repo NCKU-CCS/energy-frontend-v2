@@ -48,6 +48,9 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
   const createList = apiData.map((d) => {
     return (
       <ListItem
+        start_time={d.start_time}
+        end_time={d.end_time}
+        uuid={d.uuid}
         date={d.start_time.substring(0, 10)}
         interval={
           d.end_time

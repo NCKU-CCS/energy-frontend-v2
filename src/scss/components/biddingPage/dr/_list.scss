@@ -59,7 +59,13 @@
   width: 18.5%;
 }
 
-.bidding-dr-list-title-space2 {
+.bidding-dr-list-title-space2--aggr {
+  width: 12.5%;
+  color: white;
+}
+
+.bidding-dr-list-title-space2--user {
+  display: none;
   width: 12.5%;
   color: white;
 }
@@ -127,6 +133,7 @@
   }
 
   .bidding-dr-list-title-space2 {
+    display: block;
     width: 10%;
     color: black;
   }

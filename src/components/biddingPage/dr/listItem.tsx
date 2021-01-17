@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +21,9 @@ interface IData {
 }
 
 interface IProps {
+  start_time: string;
+  end_time: string | null;
+  uuid: string;
   date: string;
   interval: string;
   time: number;
@@ -33,13 +38,15 @@ interface IProps {
 }
 
 const ListItem: React.FC<IProps> = ({
+  start_time,
+  end_time,
+  uuid,
   date,
   interval,
   time,
   value,
   price,
   total,
-  status,
   isAggr,
 }) => {
   // i18n
@@ -59,11 +66,11 @@ const ListItem: React.FC<IProps> = ({
   const [deleted, setDeleted] = useState<boolean>(false);
 
   // bid btn disabled or not
-  const [DeleteBtnDisabled, setDeleteBtnDisabled] = useState<boolean>(false);
+  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(false);
 
   // bid btn's text
-  const [DeleteBtnText, setDeleteBtnText] = useState<string>(
-    t('biddingpage.bid'),
+  const [acceptBtnText, setAcceptBtnText] = useState<string>(
+    t('biddingpage.accept'),
   );
 
   // this bid is editable or not
@@ -72,38 +79,84 @@ const ListItem: React.FC<IProps> = ({
   // current time
   const [currDate, setCurrDate] = useState<Date>(new Date());
 
-  useEffect(() => {
-    if (isAggr) {
-      setDeleteBtnText(t('biddingpage.accept'));
-      setDeleteBtnDisabled(false);
-    } else if (
-      new Date().getTime() >=
-        new Date(
-          new Date().getFullYear(),
-          new Date().getMonth(),
-          new Date().getDate(),
-          10,
-          30,
-        ).getTime() &&
-      date === dayjs().add(1, 'day').format('YYYY/MM/DD')
-    ) {
-      // expired
-      setEditable(false);
-      setDeleteBtnDisabled(true);
-    } else {
-      // available
-      setEditable(true);
-      setDeleteBtnDisabled(false);
+  // post dr bid for aggregator
+  const acceptBid = async () => {
+    // start time
+    const startTime = end_time
+      ? start_time
+      : dayjs().minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+
+    // end time
+    const endTime =
+      end_time ||
+      dayjs().minute(0).add(1, 'hour').second(0).format('YYYY-MM-DD HH:mm:ss');
+
+    // console.log(startTime, endTime);
+
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+    // POST to DR bid
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+        {
+          method: 'POST',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            start_time: startTime,
+            end_time: endTime,
+            uuid: [uuid],
+          }),
+        },
+      );
+      // success or not
+      if (response.status === 200) {
+        alert('success');
+        setAcceptBtnText(t('biddingpage.accepted'));
+        setAcceptBtnDisabled(true);
+        window.location.reload();
+      } else alert('failed');
+    } catch (error) {
+      alert('err');
     }
-  }, [isAggr, date, time]);
+  };
+
+  // useEffect(() => {
+  //   if (isAggr) {
+  //     setAcceptBtnText(t('biddingpage.accept'));
+  //     setAcceptBtnDisabled(false);
+  //   } else if (
+  //     new Date().getTime() >=
+  //       new Date(
+  //         new Date().getFullYear(),
+  //         new Date().getMonth(),
+  //         new Date().getDate(),
+  //         10,
+  //         30,
+  //       ).getTime() &&
+  //     date === dayjs().add(1, 'day').format('YYYY/MM/DD')
+  //   ) {
+  //     // expired
+  //     setEditable(false);
+  //     setAcceptBtnDisabled(true);
+  //   } else {
+  //     // available
+  //     setEditable(true);
+  //     setAcceptBtnDisabled(false);
+  //   }
+  // }, [isAggr, date, time]);
 
   // determine editable or not every second
   useEffect(() => {
     setInterval(() => setCurrDate(new Date()), 1000);
   }, []);
-
-  // useless
-  useEffect(() => {}, [DeleteBtnText, DeleteBtnDisabled]);
 
   useEffect(() => {
     if (
@@ -120,36 +173,29 @@ const ListItem: React.FC<IProps> = ({
     ) {
       // expired
       setEditable(false);
-      setDeleteBtnDisabled(true);
+      setAcceptBtnDisabled(true);
     }
   }, [currDate]);
 
-  useEffect(() => {}, [status]);
-
-  // handle click edit btn
-  // const handleClickEditBtn = () => {
-  //   setEditMode(true);
-  // };
-
   // handle click delete btn
-  const handleClickDeleteBtn = () => {
-    if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
-    else {
-      setDeleteBtnText(t('biddingpage.deleted'));
-      setDeleted(true);
-    }
-    setDeleteBtnDisabled(true);
-    setEditable(false);
-  };
+  // const handleClickAcceptBtn = () => {
+  //   if (isAggr) setAcceptBtnText(t('biddingpage.accepted'));
+  //   else {
+  //     setAcceptBtnText(t('biddingpage.deleted'));
+  //     setDeleted(true);
+  //   }
+  //   setAcceptBtnDisabled(true);
+  //   setEditable(false);
+  // };
 
   // handle mouse over bid button
   // const handleMouseOverDeleteBtn = () => {
-  //   if (!isAggr) setDeleteBtnText(t('biddingpage.delete'));
+  //   if (!isAggr) setAcceptBtnText(t('biddingpage.delete'));
   // };
 
   // handle mouse out bid button
   // const handleMouseOutDeleteBtn = () => {
-  //   if (!isAggr) setDeleteBtnText(t('biddingpage.bid'));
+  //   if (!isAggr) setAcceptBtnText(t('biddingpage.bid'));
   // };
 
   // handle click submit btn
@@ -375,10 +421,11 @@ const ListItem: React.FC<IProps> = ({
           <button
             className={classNames('bidding-dr-list-listitem-delete-btn--show')}
             type="button"
-            onClick={() => handleClickDeleteBtn()}
-            disabled={DeleteBtnDisabled}
+            onClick={() => acceptBid()}
+            disabled={acceptBtnDisabled}
           >
-            {DeleteBtnText}
+            {/* {acceptBtnText} */}
+            {displayInterval ? acceptBtnText : displayInterval}
           </button>
         )}
         <InfoBox
