@@ -27,9 +27,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
   // i18n
   const { t } = useTranslation();
 
-  // date
-  const [date, setDate] = useState<string>('null');
-
   // volume
   const [value, setValue] = useState<number>(0);
 
@@ -38,9 +35,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
 
   // total price
   const [total, setTotal] = useState<number>(0);
-
-  // reset
-  const [reset, setReset] = useState<boolean>(true);
 
   // date for new bid
   const [bidDate, setBidDate] = useState<string>('');
@@ -63,10 +57,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
   }, []);
 
   useEffect(() => {
-    if (date !== 'null' || value !== 0 || price !== 0) setReset(false);
-  }, [date, value, price]);
-
-  useEffect(() => {
     if (value !== 0 && price !== 0) {
       setTotal(parseFloat((value * price).toFixed(2)));
       setNewBidDisabled(false);
@@ -75,15 +65,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
       setNewBidDisabled(true);
     }
   }, [value, price]);
-
-  useEffect(() => {
-    if (reset) {
-      setDate('null');
-      setValue(0);
-      setPrice(0);
-      setTotal(0);
-    }
-  }, [reset]);
 
   const addBid = async () => {
     // get bearer token
@@ -126,30 +107,6 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
     }
   };
 
-  // handle click submit
-  // const handleClickSubmit = () => {
-  //   setReset(true);
-  //   if (
-  //     date !== 'null' &&
-  //     value !== 0 &&
-  //     price !== 0 &&
-  //     total !== 0
-  //   ) {
-  //     const tmpDataArr: IData[] = [...data];
-  //     tmpDataArr.push({
-  //       date,
-  //       interval: intervalArr[time],
-  //       time,
-  //       value,
-  //       price,
-  //       total,
-  //       status: 'new',
-  //       accepted: false,
-  //     });
-  //     setData(tmpDataArr);
-  //   }
-  // };
-
   return (
     <div className={classNames('bidding-dr-addbid-container-in')}>
       <div
@@ -169,15 +126,13 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             value={bidDate}
-            onChange={(d) =>
-              setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
-            }
+            onChange={() => {}}
             format="yyyy/MM/dd"
             disabled
           />
         </MuiPickersUtilsProvider>
       </div>
-      <div>DR量</div>
+      <div>{t('biddingpage.drVolume')}</div>
       <input
         type="number"
         min="0"
@@ -187,9 +142,9 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-value',
         )}
         onChange={(e) => setValue(parseFloat(e.target.value))}
-        value={reset ? '' : value}
+        value={value}
       />
-      <div>單價</div>
+      <div>{t('biddingpage.price')}</div>
       <input
         type="number"
         min="0"
@@ -199,9 +154,9 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-price',
         )}
         onChange={(e) => setPrice(parseFloat(e.target.value))}
-        value={reset ? '' : price}
+        value={price}
       />
-      <div>總金額</div>
+      <div>{t('biddingpage.total')}</div>
       <input
         type="number"
         min="0"
@@ -210,7 +165,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-item',
           'bidding-dr-addbid-total',
         )}
-        value={reset ? '' : total}
+        value={total}
         disabled
       />
       <div
