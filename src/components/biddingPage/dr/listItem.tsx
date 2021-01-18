@@ -89,9 +89,7 @@ const ListItem: React.FC<IProps> = ({
     // end time
     const endTime =
       end_time ||
-      dayjs().minute(0).add(1, 'hour').second(0).format('YYYY-MM-DD HH:mm:ss');
-
-    // console.log(startTime, endTime);
+      dayjs().add(1, 'hour').minute(0).second(0).format('YYYY-M-/DD HH:mm:ss');
 
     // get bearer token
     const user = JSON.parse(
@@ -99,6 +97,7 @@ const ListItem: React.FC<IProps> = ({
         sessionStorage.getItem('BEMS_USER') ||
         '{}',
     );
+
     // POST to DR bid
     try {
       const response = await fetch(
@@ -112,10 +111,11 @@ const ListItem: React.FC<IProps> = ({
           body: JSON.stringify({
             start_time: startTime,
             end_time: endTime,
-            uuid: [uuid],
+            uuid: new Array(uuid),
           }),
         },
       );
+
       // success or not
       if (response.status === 200) {
         alert('success');
@@ -429,6 +429,9 @@ const ListItem: React.FC<IProps> = ({
           </button>
         )}
         <InfoBox
+          start_time={start_time}
+          end_time={end_time}
+          uuid={uuid}
           isAggr={isAggr}
           editable={editable}
           displayDate={displayDate}

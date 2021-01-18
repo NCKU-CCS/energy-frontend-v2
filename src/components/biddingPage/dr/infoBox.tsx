@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
@@ -5,6 +7,9 @@ import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
+  start_time: string;
+  end_time: string | null;
+  uuid: string;
   isAggr: boolean;
   editable: boolean;
   displayDate: string;
@@ -21,6 +26,9 @@ interface IProps {
 }
 
 const InfoBox: React.FC<IProps> = ({
+  start_time,
+  end_time,
+  uuid,
   isAggr,
   displayDate,
   displayInterval,
@@ -42,8 +50,62 @@ const InfoBox: React.FC<IProps> = ({
   // edit or not
   const [edit, setEdit] = useState<boolean>(false);
 
-  // set accept btn text for aggr
-  const [btnText, setBtnText] = useState<string>('接受');
+  // bid btn disabled or not
+  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(false);
+
+  // bid btn's text
+  const [acceptBtnText, setAcceptBtnText] = useState<string>(
+    t('biddingpage.accept'),
+  );
+
+  // post dr bid for aggregator
+  const acceptBid = async () => {
+    // start time
+    const startTime = end_time
+      ? start_time
+      : dayjs().minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+
+    // end time
+    const endTime =
+      end_time ||
+      dayjs().add(1, 'hour').minute(0).second(0).format('YYYY-M-/DD HH:mm:ss');
+
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+
+    // POST to DR bid
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+        {
+          method: 'POST',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            start_time: startTime,
+            end_time: endTime,
+            uuid: new Array(uuid),
+          }),
+        },
+      );
+
+      // success or not
+      if (response.status === 200) {
+        alert('success');
+        setAcceptBtnText(t('biddingpage.accepted'));
+        setAcceptBtnDisabled(true);
+        window.location.reload();
+      } else alert('failed');
+    } catch (error) {
+      alert('err');
+    }
+  };
 
   // map the interval array and return options
   const createOptions = intervalArr.map((str) => {
@@ -280,7 +342,8 @@ const InfoBox: React.FC<IProps> = ({
                   className={classNames(
                     'bidding-dr-infobox-content-footer-accept',
                   )}
-                  onClick={() => setBtnText('已接受')}
+                  onClick={() => acceptBid()}
+                  disabled={acceptBtnDisabled}
                 >
                   <img
                     alt="accept"
@@ -289,7 +352,7 @@ const InfoBox: React.FC<IProps> = ({
                     )}
                     src={`${process.env.PUBLIC_URL}/biddingPage/check-white.png`}
                   />
-                  {btnText}
+                  {acceptBtnText}
                 </button>
               )}
               {/* {!isAggr && editable && (
