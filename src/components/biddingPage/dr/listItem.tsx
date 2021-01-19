@@ -24,6 +24,7 @@ interface IProps {
   start_time: string;
   end_time: string | null;
   uuid: string;
+  accepted: Boolean | null;
   date: string;
   interval: string;
   time: number;
@@ -31,7 +32,6 @@ interface IProps {
   price: number;
   total: number;
   status: string;
-  accepted: boolean;
   isAggr: boolean;
   data: IData[];
   setData(d: IData[]): void;
@@ -41,6 +41,7 @@ const ListItem: React.FC<IProps> = ({
   start_time,
   end_time,
   uuid,
+  accepted,
   date,
   interval,
   time,
@@ -66,11 +67,13 @@ const ListItem: React.FC<IProps> = ({
   const [deleted, setDeleted] = useState<boolean>(false);
 
   // bid btn disabled or not
-  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(false);
+  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(
+    !!accepted,
+  );
 
   // bid btn's text
   const [acceptBtnText, setAcceptBtnText] = useState<string>(
-    t('biddingpage.accept'),
+    accepted ? t('biddingpage.accepted') : t('biddingpage.accept'),
   );
 
   // this bid is editable or not
@@ -84,12 +87,20 @@ const ListItem: React.FC<IProps> = ({
     // start time
     const startTime = end_time
       ? start_time
-      : dayjs().minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+      : dayjs().add(1, 'day').minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
 
     // end time
     const endTime =
       end_time ||
-      dayjs().add(1, 'hour').minute(0).second(0).format('YYYY-M-/DD HH:mm:ss');
+      dayjs()
+        .add(1, 'day')
+        .add(1, 'hour')
+        .minute(0)
+        .second(0)
+        .format('YYYY-MM-DD HH:mm:ss');
+
+    console.log(start_time, end_time);
+    console.log(startTime, endTime);
 
     // get bearer token
     const user = JSON.parse(
@@ -432,6 +443,7 @@ const ListItem: React.FC<IProps> = ({
           start_time={start_time}
           end_time={end_time}
           uuid={uuid}
+          accepted={accepted}
           isAggr={isAggr}
           editable={editable}
           displayDate={displayDate}

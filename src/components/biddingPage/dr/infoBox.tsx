@@ -10,6 +10,7 @@ interface IProps {
   start_time: string;
   end_time: string | null;
   uuid: string;
+  accepted: Boolean | null;
   isAggr: boolean;
   editable: boolean;
   displayDate: string;
@@ -29,6 +30,7 @@ const InfoBox: React.FC<IProps> = ({
   start_time,
   end_time,
   uuid,
+  accepted,
   isAggr,
   displayDate,
   displayInterval,
@@ -51,11 +53,13 @@ const InfoBox: React.FC<IProps> = ({
   const [edit, setEdit] = useState<boolean>(false);
 
   // bid btn disabled or not
-  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(false);
+  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(
+    !!accepted,
+  );
 
   // bid btn's text
   const [acceptBtnText, setAcceptBtnText] = useState<string>(
-    t('biddingpage.accept'),
+    accepted ? t('biddingpage.accepted') : t('biddingpage.accept'),
   );
 
   // post dr bid for aggregator
@@ -63,12 +67,17 @@ const InfoBox: React.FC<IProps> = ({
     // start time
     const startTime = end_time
       ? start_time
-      : dayjs().minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+      : dayjs().add(1, 'day').minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
 
     // end time
     const endTime =
       end_time ||
-      dayjs().add(1, 'hour').minute(0).second(0).format('YYYY-M-/DD HH:mm:ss');
+      dayjs()
+        .add(1, 'day')
+        .add(1, 'hour')
+        .minute(0)
+        .second(0)
+        .format('YYYY-MM-DD HH:mm:ss');
 
     // get bearer token
     const user = JSON.parse(

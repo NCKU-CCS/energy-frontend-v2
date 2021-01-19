@@ -65,7 +65,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
         price={d.price}
         total={d.volume * d.price}
         status="api"
-        accepted
+        accepted={d.result}
         isAggr={isAggr}
         data={data}
         setData={setData}
