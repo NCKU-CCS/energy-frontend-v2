@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
@@ -36,31 +36,75 @@ const ListItem: React.FC<IProps> = ({
   const { t } = useTranslation();
 
   // accept bid btn disabled or not
-  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(
-    !!accepted,
-  );
+  const [btnDisabled, setBtnDisabled] = useState<boolean>(!!accepted);
 
   // bid btn's text
-  const [acceptBtnText, setAcceptBtnText] = useState<string>(
+  const [btnText, setBtnText] = useState<string>(
     accepted ? t('biddingpage.accepted') : t('biddingpage.accept'),
   );
+
+  // aggregator clicked accept button
+  const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
+
+  // start hour
+  const [startHr, setStartHr] = useState<number>(0);
+
+  // end hour
+  const [endHr, setEndHr] = useState<number>(0);
+
+  // hour array
+  const hrArr = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+  ];
+
+  // create <select> start hour options
+  const startHrOptions = hrArr.slice(0, 23).map((hr) => {
+    return <option value={hr}>{hr}</option>;
+  });
+
+  // create <select> end hour options
+  const endHrOptions = hrArr.slice(startHr + 1).map((hr) => {
+    return <option value={hr}>{hr}</option>;
+  });
 
   // post dr bid for aggregator
   const acceptBid = async () => {
     // start time
-    const startTime = end_time
-      ? start_time
-      : dayjs().add(1, 'day').minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+    const startTime = dayjs(date)
+      .hour(startHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
 
     // end time
-    const endTime =
-      end_time ||
-      dayjs()
-        .add(1, 'day')
-        .add(1, 'hour')
-        .minute(0)
-        .second(0)
-        .format('YYYY-MM-DD HH:mm:ss');
+    const endTime = dayjs(date)
+      .hour(endHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
 
     // get bearer token
     const user = JSON.parse(
@@ -90,12 +134,22 @@ const ListItem: React.FC<IProps> = ({
       // success or not
       if (response.status === 200) {
         alert('success');
-        setAcceptBtnText(t('biddingpage.accepted'));
-        setAcceptBtnDisabled(true);
+        setBtnText(t('biddingpage.accepted'));
+        setBtnDisabled(true);
         window.location.reload();
       } else alert('failed');
     } catch (error) {
       alert('err');
+    }
+  };
+
+  // handle click accept button
+  const handleClickBtn = () => {
+    if (acceptClicked) {
+      acceptBid();
+    } else {
+      setAcceptClicked(true);
+      setBtnText('確認');
     }
   };
 
@@ -106,6 +160,9 @@ const ListItem: React.FC<IProps> = ({
       10,
     )}`;
   };
+
+  // determine end hour when start hour changes
+  useEffect(() => setEndHr(startHr + 1), [startHr]);
 
   return (
     <div className={classNames('bidding-dr-list-listitem-container-in--show')}>
@@ -125,7 +182,19 @@ const ListItem: React.FC<IProps> = ({
           `bidding-dr-list-listitem-interval--${isAggr ? 'aggr' : 'user'}`,
         )}
       >
-        {interval}
+        {isAggr && acceptClicked ? (
+          <div>
+            <select onChange={(e) => setStartHr(parseInt(e.target.value, 10))}>
+              {startHrOptions}
+            </select>
+            <span>{' - '}</span>
+            <select onChange={(e) => setEndHr(parseInt(e.target.value, 10))}>
+              {endHrOptions}
+            </select>
+          </div>
+        ) : (
+          interval
+        )}
       </div>
       <div
         className={classNames(
@@ -166,10 +235,10 @@ const ListItem: React.FC<IProps> = ({
           <button
             className={classNames('bidding-dr-list-listitem-delete-btn--show')}
             type="button"
-            onClick={() => acceptBid()}
-            disabled={acceptBtnDisabled}
+            onClick={() => handleClickBtn()}
+            disabled={btnDisabled}
           >
-            {interval ? acceptBtnText : interval}
+            {interval ? btnText : interval}
           </button>
         )}
         <InfoBox
