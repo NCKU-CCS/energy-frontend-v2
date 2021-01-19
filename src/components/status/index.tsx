@@ -69,9 +69,11 @@ const Status: React.FC = () => {
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
-  const [listStop, setListStop] = useState<number>(0);
-  const [trainStop, setTrainStop] = useState<number>(0);
-  const [percentStop, setPercentStop] = useState<number>(0);
+  const [listStopUseEffect, setListStopUseEffect] = useState<boolean>(false);
+  const [trainStopUseEffect, setTrainStopUseEffect] = useState<boolean>(false);
+  const [percentStopUseEffect, setPercentStopUseEffect] = useState<boolean>(
+    false,
+  );
   const [isAggregator, setIsAggregator] = useState<boolean>();
 
   const fetchMatchResult = async () => {
@@ -103,6 +105,16 @@ const Status: React.FC = () => {
   };
 
   const fetchDR = async () => {
+    const nowSecond = Date.now() + 172800000;
+    const endTime = new Date(nowSecond);
+    let date = '';
+    let month = '';
+    if (endTime.getDate() < 10) date = `0${endTime.getDate().toString()}`;
+    else date = endTime.getDate().toString();
+    if (endTime.getMonth() + 1 < 10)
+      month = `0${(endTime.getMonth() + 1).toString()}`;
+    else month = (endTime.getMonth() + 1).toString();
+    const current = `${endTime.getFullYear()}-${month}-${date}`;
     // get bearer token
     const user = JSON.parse(
       localStorage.getItem('BEMS_USER') ||
@@ -111,7 +123,7 @@ const Status: React.FC = () => {
     );
     // GET to User Info API
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=2021-01-02`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${current}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -125,9 +137,9 @@ const Status: React.FC = () => {
       // fetch success
       const data = await response.json();
       setListInfoDB(data);
-      setListStop(1);
-      setTrainStop(1);
-      setPercentStop(1);
+      setListStopUseEffect(true);
+      setTrainStopUseEffect(true);
+      setPercentStopUseEffect(true);
     }
   };
 
@@ -167,13 +179,8 @@ const Status: React.FC = () => {
 
   // add list data
   useEffect(() => {
-    if (
-      listInfo.length > 0 &&
-      listInfoDB.length > 0 &&
-      listStop === 1 &&
-      isAggregator != null
-    ) {
-      setListStop(0);
+    if (listInfoDB.length > 0 && listStopUseEffect && isAggregator != null) {
+      setListStopUseEffect(false);
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         const APItime = listInfoDB[i].start_time.split(' ');
@@ -209,7 +216,7 @@ const Status: React.FC = () => {
             value: listInfoDB[i].volume,
           },
           transaction_hash: listInfoDB[i].blockchain_url,
-          id: '',
+          id: listInfoDB[i].uuid,
           upload: '',
           achievement: rate,
         };
@@ -217,17 +224,12 @@ const Status: React.FC = () => {
       }
       setListInfo([...listInfo, ...listDBData]);
     }
-  }, [listInfo, listInfoDB, listStop, isAggregator]);
+  }, [listInfo, listInfoDB, listStopUseEffect, isAggregator]);
 
   // add train data
   useEffect(() => {
-    if (
-      trainInfo.length > 0 &&
-      listInfoDB.length > 0 &&
-      trainStop === 1 &&
-      isAggregator != null
-    ) {
-      setTrainStop(0);
+    if (listInfoDB.length > 0 && trainStopUseEffect && isAggregator != null) {
+      setTrainStopUseEffect(false);
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         let name = '';
@@ -256,12 +258,12 @@ const Status: React.FC = () => {
       }
       setTrainInfo([...trainInfo, ...listDBData]);
     }
-  }, [trainInfo, listInfoDB, trainStop, isAggregator]);
+  }, [trainInfo, listInfoDB, trainStopUseEffect, isAggregator]);
 
   // add status data
   useEffect(() => {
-    if (trainInfo.length > 0 && listInfoDB.length > 0 && percentStop === 1) {
-      setPercentStop(0);
+    if (listInfoDB.length > 0 && percentStopUseEffect) {
+      setPercentStopUseEffect(false);
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         let { rate } = listInfoDB[i];
@@ -274,7 +276,7 @@ const Status: React.FC = () => {
       }
       setStatusInfo([...statusInfo, ...listDBData]);
     }
-  }, [statusInfo, statusInfo, percentStop]);
+  }, [statusInfo, statusInfo, percentStopUseEffect]);
 
   return (
     <div className={classnames('status')}>
