@@ -4,26 +4,8 @@ import { useTranslation } from 'react-i18next';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
-// import { intervalArr } from '../../../constants/constant';
 
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
-}
-
-interface IProps {
-  data: IData[];
-  setData(d: IData[]): void;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AddBid: React.FC<IProps> = ({ data, setData }) => {
+const AddBid: React.FC = () => {
   // i18n
   const { t } = useTranslation();
 
@@ -56,6 +38,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
     }, 1000);
   }, []);
 
+  // check if there's is any zero value
   useEffect(() => {
     if (value !== 0 && price !== 0) {
       setTotal(parseFloat((value * price).toFixed(2)));

@@ -5,21 +5,9 @@ import { useTranslation } from 'react-i18next';
 import List from './list';
 import AddBid from './addBid';
 import PageControl from './pageControl';
-import testData from './user.json';
 
 interface IProps {
   date: string;
-}
-
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
 }
 
 interface IApiData {
@@ -38,9 +26,6 @@ interface IApiData {
 const Dr: React.FC<IProps> = ({ date }) => {
   // i18n
   const { t } = useTranslation();
-
-  // data
-  const [data, setData] = useState<IData[]>(testData);
 
   // api data
   const [apiData, setApiData] = useState<IApiData[]>([]);
@@ -136,11 +121,11 @@ const Dr: React.FC<IProps> = ({ date }) => {
         {isAggr ? t('biddingpage.drAward') : t('biddingpage.drBidding')}
       </div>
       <div className={classNames(`bidding-dr-list-container-out${className}`)}>
-        <List apiData={apiData} data={data} setData={setData} isAggr={isAggr} />
+        <List apiData={apiData} isAggr={isAggr} />
       </div>
       {!isAggr && (
         <div className={`bidding-dr-addbid-container-out${className}`}>
-          <AddBid data={data} setData={setData} />
+          <AddBid />
         </div>
       )}
       <div

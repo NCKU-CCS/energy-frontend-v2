@@ -5,32 +5,12 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
-}
-
-interface IProps {
-  data: IData[];
-  setData(d: IData[]): void;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
+const AddBidBtn: React.FC = () => {
   // i18n
   const { t } = useTranslation();
 
   // click add btn or not
   const [add, setAdd] = useState<boolean>(false);
-
-  // date
-  const [date, setDate] = useState<string>('null');
 
   // volume
   const [value, setValue] = useState<number>(0);
@@ -40,9 +20,6 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
 
   // total price
   const [total, setTotal] = useState<number>(0);
-
-  // reset
-  const [reset, setReset] = useState<boolean>(true);
 
   // date for new bid
   const [bidDate, setBidDate] = useState<string>('');
@@ -64,10 +41,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
     }, 1000);
   }, []);
 
-  useEffect(() => {
-    if (date !== 'null' || value !== 0 || price !== 0) setReset(false);
-  }, [date, value, price]);
-
+  // check if there is any zero value
   useEffect(() => {
     if (value !== 0 && price !== 0) {
       setTotal(parseFloat((value * price).toFixed(2)));
@@ -77,15 +51,6 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
       setNewBidDisabled(true);
     }
   }, [value, price]);
-
-  useEffect(() => {
-    if (reset) {
-      setDate('null');
-      setValue(0);
-      setPrice(0);
-      setTotal(0);
-    }
-  }, [reset]);
 
   const addBid = async () => {
     // get bearer token
@@ -182,30 +147,6 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
                     />
                   </MuiPickersUtilsProvider>
                 </div>
-                {/* <div
-                  className={classNames(
-                    'bidding-dr-addbidbtn-infobox-center-item-container',
-                  )}
-                >
-                  <div
-                    className={classNames(
-                      'bidding-dr-addbidbtn-infobox-center-item-text',
-                    )}
-                  >
-                    {t('biddingpage.time')} :
-                  </div>
-                  <select
-                    className={classNames(
-                      'bidding-dr-addbidbtn-infobox-center-item-input',
-                    )}
-                    onChange={(e) => setTime(parseInt(e.target.value, 10))}
-                  >
-                    <option value="-1" selected={reset}>
-                      {' '}
-                    </option>
-                    {createOptions}
-                  </select>
-                </div> */}
                 <div
                   className={classNames(
                     'bidding-dr-addbidbtn-infobox-center-item-container',
@@ -226,7 +167,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
                       'bidding-dr-addbidbtn-infobox-center-item-input',
                     )}
                     onChange={(e) => setValue(parseFloat(e.target.value))}
-                    value={reset ? '' : value}
+                    value={value}
                   />
                 </div>
                 <div
@@ -249,7 +190,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
                       'bidding-dr-addbidbtn-infobox-center-item-input',
                     )}
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
-                    value={reset ? '' : price}
+                    value={price}
                   />
                 </div>
                 <div
@@ -271,7 +212,7 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
                     className={classNames(
                       'bidding-dr-addbidbtn-infobox-center-item-input',
                     )}
-                    value={reset ? '' : total}
+                    value={total}
                   />
                 </div>
               </div>
@@ -292,7 +233,6 @@ const AddBidBtn: React.FC<IProps> = ({ data, setData }) => {
                 className={classNames(
                   'bidding-dr-addbidbtn-infobox-footer-rightbtn',
                 )}
-                onClick={() => setReset(true)}
               >
                 {t('biddingpage.reset')}
               </button>

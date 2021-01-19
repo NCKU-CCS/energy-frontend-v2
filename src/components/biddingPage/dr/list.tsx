@@ -1,20 +1,9 @@
 /* eslint-disable @typescript-eslint/indent */
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
-
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
-}
 
 interface IApiData {
   uuid: string;
@@ -31,19 +20,12 @@ interface IApiData {
 
 interface IProps {
   apiData: IApiData[];
-  data: IData[];
-  setData(d: IData[]): void;
   isAggr: boolean;
 }
 
-const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
+const List: React.FC<IProps> = ({ apiData, isAggr }) => {
   // i18n
   const { t } = useTranslation();
-
-  useEffect(() => {
-    // console.log('api data content');
-    // console.log(apiData);
-  }, [apiData]);
 
   const createList = apiData.map((d) => {
     return (
@@ -60,15 +42,12 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
               )}`
             : '未決標'
         }
-        time={Number(d.start_time.substring(11, 13))}
         value={d.volume}
         price={d.price}
         total={d.volume * d.price}
         status="api"
         accepted={d.result}
         isAggr={isAggr}
-        data={data}
-        setData={setData}
       />
     );
   });
@@ -128,7 +107,7 @@ const List: React.FC<IProps> = ({ apiData, data, isAggr, setData }) => {
             `bidding-dr-list-title-space2--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
-          {!isAggr && <AddBidBtn data={data} setData={setData} />}
+          {!isAggr && <AddBidBtn />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>
