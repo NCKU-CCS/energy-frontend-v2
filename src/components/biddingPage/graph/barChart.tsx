@@ -14,11 +14,6 @@ interface IPadding {
   right: number;
 }
 
-interface IData {
-  time: number;
-  dr: number;
-}
-
 interface IApiData {
   uuid: string;
   executor: string;

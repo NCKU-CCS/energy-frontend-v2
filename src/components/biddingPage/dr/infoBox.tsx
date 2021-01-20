@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import { hrArr } from '../../../constants/constant';
 
 interface IProps {
   start_time: string;
@@ -19,8 +20,6 @@ interface IProps {
 }
 
 const InfoBox: React.FC<IProps> = ({
-  start_time,
-  end_time,
   uuid,
   accepted,
   isAggr,
@@ -37,31 +36,47 @@ const InfoBox: React.FC<IProps> = ({
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
 
   // bid btn disabled or not
-  const [acceptBtnDisabled, setAcceptBtnDisabled] = useState<boolean>(
-    !!accepted,
-  );
+  const [btnDisabled, setBtnDisabled] = useState<boolean>(!!accepted);
 
   // bid btn's text
-  const [acceptBtnText, setAcceptBtnText] = useState<string>(
+  const [btnText, setBtnText] = useState<string>(
     accepted ? t('biddingpage.accepted') : t('biddingpage.accept'),
   );
+
+  // aggregator clicked accept button
+  const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
+
+  // start hour
+  const [startHr, setStartHr] = useState<number>(0);
+
+  // end hour
+  const [endHr, setEndHr] = useState<number>(0);
+
+  // create <select> start hour options
+  const startHrOptions = hrArr.slice(0, 23).map((hr) => {
+    return <option value={hr}>{hr}</option>;
+  });
+
+  // create <select> end hour options
+  const endHrOptions = hrArr.slice(startHr + 1).map((hr) => {
+    return <option value={hr}>{hr}</option>;
+  });
 
   // post dr bid for aggregator
   const acceptBid = async () => {
     // start time
-    const startTime = end_time
-      ? start_time
-      : dayjs().add(1, 'day').minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
+    const startTime = dayjs(date)
+      .hour(startHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
 
     // end time
-    const endTime =
-      end_time ||
-      dayjs()
-        .add(1, 'day')
-        .add(1, 'hour')
-        .minute(0)
-        .second(0)
-        .format('YYYY-MM-DD HH:mm:ss');
+    const endTime = dayjs(date)
+      .hour(endHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
 
     // get bearer token
     const user = JSON.parse(
@@ -91,14 +106,27 @@ const InfoBox: React.FC<IProps> = ({
       // success or not
       if (response.status === 200) {
         alert('success');
-        setAcceptBtnText(t('biddingpage.accepted'));
-        setAcceptBtnDisabled(true);
+        setBtnText(t('biddingpage.accepted'));
+        setBtnDisabled(true);
         window.location.reload();
       } else alert('failed');
     } catch (error) {
       alert('err');
     }
   };
+
+  // handle click accept button
+  const handleClickBtn = () => {
+    if (acceptClicked) {
+      acceptBid();
+    } else {
+      setAcceptClicked(true);
+      setBtnText('確認');
+    }
+  };
+
+  // determine end hour when start hour changes
+  useEffect(() => setEndHr(startHr + 1), [startHr]);
 
   return (
     <div className={classNames('bidding-dr-infobox-container-in')}>
@@ -154,7 +182,29 @@ const InfoBox: React.FC<IProps> = ({
                     )}
                   >
                     <span>{t('biddingpage.time')} :&nbsp;</span>
-                    <span>{interval}</span>
+                    <span>
+                      {isAggr && acceptClicked ? (
+                        <div>
+                          <select
+                            onChange={(e) =>
+                              setStartHr(parseInt(e.target.value, 10))
+                            }
+                          >
+                            {startHrOptions}
+                          </select>
+                          <span>{' - '}</span>
+                          <select
+                            onChange={(e) =>
+                              setEndHr(parseInt(e.target.value, 10))
+                            }
+                          >
+                            {endHrOptions}
+                          </select>
+                        </div>
+                      ) : (
+                        interval
+                      )}
+                    </span>
                   </div>
                   <div
                     className={classNames(
@@ -193,8 +243,8 @@ const InfoBox: React.FC<IProps> = ({
                   className={classNames(
                     'bidding-dr-infobox-content-footer-accept',
                   )}
-                  onClick={() => acceptBid()}
-                  disabled={acceptBtnDisabled}
+                  onClick={() => handleClickBtn()}
+                  disabled={btnDisabled}
                 >
                   <img
                     alt="accept"
@@ -203,7 +253,7 @@ const InfoBox: React.FC<IProps> = ({
                     )}
                     src={`${process.env.PUBLIC_URL}/biddingPage/check-white.png`}
                   />
-                  {acceptBtnText}
+                  {btnText}
                 </button>
               )}
             </div>
