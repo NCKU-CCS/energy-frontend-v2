@@ -40,7 +40,7 @@ const List: React.FC<IProps> = ({ apiData, isAggr }) => {
                 11,
                 16,
               )}`
-            : '未決標'
+            : t('biddingpage.notAccepted')
         }
         value={d.volume}
         price={d.price}
