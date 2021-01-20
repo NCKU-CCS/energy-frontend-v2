@@ -72,11 +72,16 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
         </div>
         <div className={classNames('bidding-submit-list-title-button')}>
           <AddBidBtn type={type} />
-          {/* for button */}
         </div>
       </div>
       <div className={classNames('bidding-submit-list-listitem-container')}>
-        {createList}
+        {apiData.data.length === 0 ? (
+          <div className={classNames('bidding-submit-list-null')}>
+            {t('biddingpage.null')}
+          </div>
+        ) : (
+          createList
+        )}
       </div>
     </div>
   );

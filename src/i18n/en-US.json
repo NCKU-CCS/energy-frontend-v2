@@ -64,7 +64,8 @@
     "confirm": "Confirm",
     "reset": "Reset",
     "edit": "Edit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "null": "No information yet"
   },
   "indexpage": {
     "pageTitle": "Home",
