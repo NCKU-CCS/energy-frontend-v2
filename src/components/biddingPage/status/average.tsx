@@ -3,12 +3,16 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
-  mode: string;
+  userType: string;
   averagePrice: number;
   averageVolume: number;
 }
 
-const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
+const Average: React.FC<IProps> = ({
+  userType,
+  averagePrice,
+  averageVolume,
+}) => {
   // i18n
   const { t } = useTranslation();
 
@@ -18,9 +22,7 @@ const Average: React.FC<IProps> = ({ mode, averagePrice, averageVolume }) => {
         <img
           className={classNames('bidding-status-average-image-img')}
           alt=""
-          src={`${process.env.PUBLIC_URL}/biddingPage/arrow${
-            mode === '需量反應' ? '-b' : ''
-          }.png`}
+          src={`${process.env.PUBLIC_URL}/biddingPage/arrow-${userType}.png`}
         />
       </div>
       <div className={classNames('bidding-status-average-text-container')}>
