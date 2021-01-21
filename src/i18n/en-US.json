@@ -40,7 +40,7 @@
   "biddingpage": {
     "pageTitle": "Bidding",
     "modeGreen": "Green Energy",
-    "modeDemand": "Demand Response",
+    "modeDemand": "DR",
     "avgPrice": "Average Price",
     "avgVolume": "Average Volume",
     "currParticipants": "Current Participants",
@@ -57,6 +57,7 @@
     "drBidding": "DR Bidding",
     "accept": "Accept",
     "accepted": "Accepted",
+    "notAccepted": "Not accepted",
     "delete": "Delete",
     "deleted": "Deleted",
     "bid": "Bid",

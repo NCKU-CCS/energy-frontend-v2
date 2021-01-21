@@ -1,51 +1,53 @@
+/* eslint-disable @typescript-eslint/indent */
 import React from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import dayjs from 'dayjs';
 import ListItem from './listItem';
 import AddBidBtn from './addBidBtn';
 
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
+interface IApiData {
+  uuid: string;
+  executor: string;
+  acceptor: string | null;
+  start_time: string;
+  end_time: string | null;
+  volume: number;
   price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
+  result: Boolean | null;
+  rate: number | null;
+  blockchain_url: string | null;
 }
 
 interface IProps {
-  data: IData[];
-  setData(d: IData[]): void;
+  apiData: IApiData[];
   isAggr: boolean;
 }
 
-const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
+const List: React.FC<IProps> = ({ apiData, isAggr }) => {
   // i18n
   const { t } = useTranslation();
 
-  // map data
-  const createList = data.map((d) => {
-    let correctDate = dayjs(new Date()).add(1, 'day').format('YYYY/MM/DD');
-    if (d.status === '2')
-      correctDate = dayjs(new Date()).add(2, 'day').format('YYYY/MM/DD');
-    else if (d.status === '3')
-      correctDate = dayjs(new Date()).add(3, 'day').format('YYYY/MM/DD');
+  const createList = apiData.map((d) => {
     return (
       <ListItem
-        date={d.status !== 'new' ? correctDate : d.date}
-        interval={d.interval}
-        time={d.time}
-        value={d.value}
+        start_time={d.start_time}
+        end_time={d.end_time}
+        uuid={d.uuid}
+        date={d.start_time.substring(0, 10)}
+        interval={
+          d.end_time
+            ? `${d.start_time.substring(11, 16)} - ${d.end_time.substring(
+                11,
+                16,
+              )}`
+            : t('biddingpage.notAccepted')
+        }
+        value={d.volume}
         price={d.price}
-        total={d.total}
-        status={d.status}
-        accepted={d.accepted}
+        total={d.volume * d.price}
+        status="api"
+        accepted={d.result}
         isAggr={isAggr}
-        data={data}
-        setData={setData}
       />
     );
   });
@@ -56,15 +58,8 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
         <div
           className={classNames(
             'bidding-dr-list-title-item',
-            'bidding-dr-list-title-space1',
-          )}
-        >
-          s
-        </div>
-        <div
-          className={classNames(
-            'bidding-dr-list-title-item',
             'bidding-dr-list-title-date',
+            `bidding-dr-list-title-date--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.date')}
@@ -73,6 +68,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-interval',
+            `bidding-dr-list-title-interval--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.time')}
@@ -81,6 +77,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-value',
+            `bidding-dr-list-title-value--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.drVolume')}
@@ -89,6 +86,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-price',
+            `bidding-dr-list-title-price--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.price')}
@@ -97,6 +95,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-total',
+            `bidding-dr-list-title-total--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
           {t('biddingpage.total')}
@@ -105,9 +104,10 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
           className={classNames(
             'bidding-dr-list-title-item',
             'bidding-dr-list-title-space2',
+            `bidding-dr-list-title-space2--${isAggr ? 'aggr' : 'user'}`,
           )}
         >
-          {!isAggr && <AddBidBtn data={data} setData={setData} />}
+          {!isAggr && <AddBidBtn />}
         </div>
       </div>
       <div className={classNames('bidding-dr-list-listitem-container-out')}>
