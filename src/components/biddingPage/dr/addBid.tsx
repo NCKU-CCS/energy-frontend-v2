@@ -4,33 +4,10 @@ import { useTranslation } from 'react-i18next';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
-import { intervalArr } from '../../../constants/constant';
 
-interface IData {
-  date: string;
-  interval: string;
-  time: number;
-  value: number;
-  price: number;
-  total: number;
-  status: string;
-  accepted: boolean;
-}
-
-interface IProps {
-  data: IData[];
-  setData(d: IData[]): void;
-}
-
-const AddBid: React.FC<IProps> = ({ data, setData }) => {
+const AddBid: React.FC = () => {
   // i18n
   const { t } = useTranslation();
-
-  // date
-  const [date, setDate] = useState<string>('null');
-
-  // time
-  const [time, setTime] = useState<number>(-1);
 
   // volume
   const [value, setValue] = useState<number>(0);
@@ -41,70 +18,80 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
   // total price
   const [total, setTotal] = useState<number>(0);
 
-  // reset
-  const [reset, setReset] = useState<boolean>(true);
+  // date for new bid
+  const [bidDate, setBidDate] = useState<string>('');
 
-  useEffect(() => {
-    if (date !== 'null' || time !== -1 || value !== 0 || price !== 0)
-      setReset(false);
-  }, [date, value, price]);
+  // new bid button disabled
+  const [newBidDisabled, setNewBidDisabled] = useState(true);
 
+  // determine bid date on every second
   useEffect(() => {
-    if (value !== 0 && price !== 0)
+    setInterval(() => {
+      const now = new Date();
+      const boundary = new Date();
+      boundary.setHours(10, 30);
+      setBidDate(
+        now.getTime() >= boundary.getTime()
+          ? dayjs(now).add(2, 'day').format('YYYY/MM/DD')
+          : dayjs(now).add(1, 'day').format('YYYY/MM/DD'),
+      );
+    }, 1000);
+  }, []);
+
+  // check if there's is any zero value
+  useEffect(() => {
+    if (value !== 0 && price !== 0) {
       setTotal(parseFloat((value * price).toFixed(2)));
-    else setTotal(0);
+      setNewBidDisabled(false);
+    } else {
+      setTotal(0);
+      setNewBidDisabled(true);
+    }
   }, [value, price]);
 
-  useEffect(() => {
-    if (reset) {
-      setDate('null');
-      setTime(-1);
-      setValue(0);
-      setPrice(0);
-      setTotal(0);
-    }
-  }, [reset]);
-
-  // handle click submit
-  const handleClickSubmit = () => {
-    setReset(true);
-    if (
-      date !== 'null' &&
-      time !== -1 &&
-      value !== 0 &&
-      price !== 0 &&
-      total !== 0
-    ) {
-      const tmpDataArr: IData[] = [...data];
-      tmpDataArr.push({
-        date,
-        interval: intervalArr[time],
-        time,
-        value,
-        price,
-        total,
-        status: 'new',
-        accepted: false,
-      });
-      setData(tmpDataArr);
+  const addBid = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+    // POST to DR bid
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+        {
+          method: 'POST',
+          // mode: 'cors',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            volume: value,
+            price,
+          }),
+          // redirect: 'follow',
+        },
+      );
+      // success or not
+      if (response.status === 200) {
+        // eslint-disable-next-line no-alert
+        alert('success');
+        // reload the page
+        window.location.reload();
+      } else {
+        // eslint-disable-next-line no-alert
+        alert('failed');
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert('err');
     }
   };
 
-  // map the interval array and return options
-  const createOptions = intervalArr.map((str, i) => {
-    return <option value={i}>{str}</option>;
-  });
-
   return (
     <div className={classNames('bidding-dr-addbid-container-in')}>
-      <div
-        className={classNames(
-          'bidding-dr-addbid-item',
-          'bidding-dr-addbid-space',
-        )}
-      >
-        s
-      </div>
       <div
         className={classNames(
           'bidding-dr-addbid-item',
@@ -113,34 +100,14 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
       >
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
-            value={
-              reset
-                ? null
-                : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
-            }
-            onChange={(d) =>
-              setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
-            }
+            value={bidDate}
+            onChange={() => {}}
             format="yyyy/MM/dd"
-            // label="Choose Data Date"
-            showTodayButton
-            disablePast
-            allowKeyboardControl
+            disabled
           />
         </MuiPickersUtilsProvider>
       </div>
-      <select
-        className={classNames(
-          'bidding-dr-addbid-item',
-          'bidding-dr-addbid-interval',
-        )}
-        onChange={(e) => setTime(parseInt(e.target.value, 10))}
-      >
-        <option value="-1" selected={reset}>
-          {}
-        </option>
-        {createOptions}
-      </select>
+      <div>{t('biddingpage.drVolume')}</div>
       <input
         type="number"
         min="0"
@@ -150,8 +117,9 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-value',
         )}
         onChange={(e) => setValue(parseFloat(e.target.value))}
-        value={reset ? '' : value}
+        value={value}
       />
+      <div>{t('biddingpage.price')}</div>
       <input
         type="number"
         min="0"
@@ -161,8 +129,9 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-price',
         )}
         onChange={(e) => setPrice(parseFloat(e.target.value))}
-        value={reset ? '' : price}
+        value={price}
       />
+      <div>{t('biddingpage.total')}</div>
       <input
         type="number"
         min="0"
@@ -171,7 +140,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           'bidding-dr-addbid-item',
           'bidding-dr-addbid-total',
         )}
-        value={reset ? '' : total}
+        value={total}
         disabled
       />
       <div
@@ -183,7 +152,8 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
         <button
           type="button"
           className={classNames('bidding-dr-addbid-button-submit')}
-          onClick={() => handleClickSubmit()}
+          onClick={() => addBid()}
+          disabled={newBidDisabled}
         >
           {t('biddingpage.new')}
         </button>

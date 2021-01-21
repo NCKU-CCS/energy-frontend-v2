@@ -48,7 +48,7 @@ const BiddingPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('bidding-a3')}>
-        {mode === '綠能交易' ? <Submit /> : <Dr />}
+        {mode === '綠能交易' ? <Submit /> : <Dr date={date} />}
       </div>
     </div>
   );

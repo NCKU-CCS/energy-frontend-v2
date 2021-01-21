@@ -1,39 +1,33 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable no-alert */
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import { intervalArr } from '../../../constants/constant';
+import { hrArr } from '../../../constants/constant';
 
 interface IProps {
+  start_time: string;
+  end_time: string | null;
+  uuid: string;
+  accepted: Boolean | null;
   isAggr: boolean;
-  editable: boolean;
-  displayDate: string;
-  displayInterval: string;
-  displayValue: number;
-  displayPrice: number;
-  displayTotal: number;
-  setDisplayDate(d: string): void;
-  setDisplayInterval(i: string): void;
-  setDisplayValue(v: number): void;
-  setDisplayPrice(p: number): void;
-  setDisplayTotal(t: number): void;
-  setDeleted(b: boolean): void;
+  date: string;
+  interval: string;
+  value: number;
+  price: number;
+  total: number;
 }
 
 const InfoBox: React.FC<IProps> = ({
+  uuid,
+  accepted,
   isAggr,
-  editable,
-  displayDate,
-  displayInterval,
-  displayValue,
-  displayPrice,
-  displayTotal,
-  setDisplayDate,
-  setDisplayInterval,
-  setDisplayValue,
-  setDisplayPrice,
-  setDeleted,
-  // setDisplayTotal
+  date,
+  interval,
+  value,
+  price,
+  total,
 }) => {
   // i18n
   const { t } = useTranslation();
@@ -41,42 +35,98 @@ const InfoBox: React.FC<IProps> = ({
   // open infobox or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
 
-  // edit or not
-  const [edit, setEdit] = useState<boolean>(false);
+  // bid btn disabled or not
+  const [btnDisabled, setBtnDisabled] = useState<boolean>(!!accepted);
 
-  // set accept btn text for aggr
-  const [btnText, setBtnText] = useState<string>('接受');
+  // bid btn's text
+  const [btnText, setBtnText] = useState<string>(
+    accepted ? t('biddingpage.accepted') : t('biddingpage.accept'),
+  );
 
-  // map the interval array and return options
-  const createOptions = intervalArr.map((str) => {
-    return <option value={str}>{str}</option>;
+  // aggregator clicked accept button
+  const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
+
+  // start hour
+  const [startHr, setStartHr] = useState<number>(0);
+
+  // end hour
+  const [endHr, setEndHr] = useState<number>(0);
+
+  // create <select> start hour options
+  const startHrOptions = hrArr.slice(0, 23).map((hr) => {
+    return <option value={hr}>{hr}</option>;
   });
 
-  // handle click close
-  const handleClickClose = () => {
-    setOpenInfoBox(false);
-    setEdit(false);
-  };
+  // create <select> end hour options
+  const endHrOptions = hrArr.slice(startHr + 1).map((hr) => {
+    return <option value={hr}>{hr}</option>;
+  });
 
-  // handle click left btn
-  const handleClickLeft = () => {
-    // eslint-disable-next-line no-empty
-    if (edit) {
-      setEdit(false);
-    } else {
-      setEdit(true);
+  // post dr bid for aggregator
+  const acceptBid = async () => {
+    // start time
+    const startTime = dayjs(date)
+      .hour(startHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
+
+    // end time
+    const endTime = dayjs(date)
+      .hour(endHr)
+      .minute(0)
+      .second(0)
+      .format('YYYY-MM-DD HH:mm:ss');
+
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
+
+    // POST to DR bid
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+        {
+          method: 'POST',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            start_time: startTime,
+            end_time: endTime,
+            uuid: new Array(uuid),
+          }),
+        },
+      );
+
+      // success or not
+      if (response.status === 200) {
+        alert('success');
+        setBtnText(t('biddingpage.accepted'));
+        setBtnDisabled(true);
+        window.location.reload();
+      } else alert('failed');
+    } catch (error) {
+      alert('err');
     }
   };
 
-  // handle click right btn
-  const handleClickRight = () => {
-    if (edit) {
-      setEdit(false);
-      // eslint-disable-next-line no-empty
+  // handle click accept button
+  const handleClickBtn = () => {
+    if (acceptClicked) {
+      acceptBid();
     } else {
-      setDeleted(true);
+      setAcceptClicked(true);
+      setBtnText('確認');
     }
   };
+
+  // determine end hour when start hour changes
+  useEffect(() => setEndHr(startHr + 1), [startHr]);
 
   return (
     <div className={classNames('bidding-dr-infobox-container-in')}>
@@ -100,7 +150,7 @@ const InfoBox: React.FC<IProps> = ({
                 className={classNames(
                   'bidding-dr-infobox-content-header-close',
                 )}
-                onClick={() => handleClickClose()}
+                onClick={() => setOpenInfoBox(false)}
               >
                 X
               </button>
@@ -111,168 +161,79 @@ const InfoBox: React.FC<IProps> = ({
                   'bidding-dr-infobox-content-center-inside',
                 )}
               >
-                {!edit ? (
+                <div
+                  className={classNames(
+                    'bidding-dr-infobox-content-center-inside--show',
+                  )}
+                >
                   <div
                     className={classNames(
-                      'bidding-dr-infobox-content-center-inside--show',
+                      'bidding-dr-infobox-content-center-inside-date--show',
+                      'bidding-dr-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-date--show',
-                        'bidding-dr-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('biddingpage.date')} :&nbsp;</span>
-                      <span>{displayDate}</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-interval--show',
-                        'bidding-dr-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('biddingpage.time')} :&nbsp;</span>
-                      <span>{displayInterval}</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-volume--show',
-                        'bidding-dr-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('biddingpage.drVolume')} :&nbsp;</span>
-                      <span>{displayValue}kWh</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-price--show',
-                        'bidding-dr-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('biddingpage.price')} :&nbsp;</span>
-                      <span>${displayPrice}/kWh</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-total--show',
-                        'bidding-dr-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('biddingpage.total')} :&nbsp;</span>
-                      <span>${displayTotal.toFixed(1)}</span>
-                    </div>
+                    <span>{t('biddingpage.date')} :&nbsp;</span>
+                    <span>{date}</span>
                   </div>
-                ) : (
                   <div
                     className={classNames(
-                      'bidding-dr-infobox-content-center-inside--edit',
+                      'bidding-dr-infobox-content-center-inside-interval--show',
+                      'bidding-dr-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-label--edit',
-                        'bidding-dr-infobox-content-center-inside-item--edit',
+                    <span>{t('biddingpage.time')} :&nbsp;</span>
+                    <span>
+                      {isAggr && acceptClicked ? (
+                        <div>
+                          <select
+                            onChange={(e) =>
+                              setStartHr(parseInt(e.target.value, 10))
+                            }
+                          >
+                            {startHrOptions}
+                          </select>
+                          <span>{' - '}</span>
+                          <select
+                            onChange={(e) =>
+                              setEndHr(parseInt(e.target.value, 10))
+                            }
+                          >
+                            {endHrOptions}
+                          </select>
+                        </div>
+                      ) : (
+                        interval
                       )}
-                    >
-                      日期 :
-                    </div>
-                    <input
-                      type="date"
-                      id="date"
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-date--edit',
-                        'bidding-dr-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={dayjs(new Date(displayDate))
-                        .format('YYYY-MM-DD')
-                        .toString()}
-                      onChange={(e) =>
-                        setDisplayDate(
-                          dayjs(e.target.value).format('YYYY/MM/DD'),
-                        )
-                      }
-                    />
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-label--edit',
-                        'bidding-dr-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      時段 :
-                    </div>
-                    <select
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-interval--edit',
-                        'bidding-dr-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={displayInterval}
-                      onChange={(e) => setDisplayInterval(e.target.value)}
-                    >
-                      <option value={displayInterval}>{displayInterval}</option>
-                      {createOptions}
-                    </select>
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-label--edit',
-                        'bidding-dr-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      DR量 :
-                    </div>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-volume--edit',
-                        'bidding-dr-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={displayValue}
-                      onChange={(e) =>
-                        setDisplayValue(parseFloat(e.target.value))
-                      }
-                    />
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-label--edit',
-                        'bidding-dr-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      單價 :
-                    </div>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-price--edit',
-                        'bidding-dr-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={displayPrice}
-                      onChange={(e) =>
-                        setDisplayPrice(parseFloat(e.target.value))
-                      }
-                    />
-                    <div
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-label--edit',
-                        'bidding-dr-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      總金額 :
-                    </div>
-                    <input
-                      type="number"
-                      className={classNames(
-                        'bidding-dr-infobox-content-center-inside-total--edit',
-                        'bidding-dr-infobox-content-center-inside-input--edit',
-                      )}
-                      value={displayTotal.toFixed(1)}
-                      disabled
-                    />
+                    </span>
                   </div>
-                )}
+                  <div
+                    className={classNames(
+                      'bidding-dr-infobox-content-center-inside-volume--show',
+                      'bidding-dr-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('biddingpage.drVolume')} :&nbsp;</span>
+                    <span>{value}kWh</span>
+                  </div>
+                  <div
+                    className={classNames(
+                      'bidding-dr-infobox-content-center-inside-price--show',
+                      'bidding-dr-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('biddingpage.price')} :&nbsp;</span>
+                    <span>${price}/kWh</span>
+                  </div>
+                  <div
+                    className={classNames(
+                      'bidding-dr-infobox-content-center-inside-total--show',
+                      'bidding-dr-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('biddingpage.total')} :&nbsp;</span>
+                    <span>${total.toFixed(1)}</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={classNames('bidding-dr-infobox-content-footer')}>
@@ -282,7 +243,8 @@ const InfoBox: React.FC<IProps> = ({
                   className={classNames(
                     'bidding-dr-infobox-content-footer-accept',
                   )}
-                  onClick={() => setBtnText('已接受')}
+                  onClick={() => handleClickBtn()}
+                  disabled={btnDisabled}
                 >
                   <img
                     alt="accept"
@@ -292,46 +254,6 @@ const InfoBox: React.FC<IProps> = ({
                     src={`${process.env.PUBLIC_URL}/biddingPage/check-white.png`}
                   />
                   {btnText}
-                </button>
-              )}
-              {!isAggr && editable && (
-                <button
-                  type="button"
-                  className={classNames(
-                    'bidding-dr-infobox-content-footer-left',
-                  )}
-                  onClick={() => handleClickLeft()}
-                >
-                  <img
-                    alt="left"
-                    className={classNames(
-                      'bidding-dr-infobox-content-footer-left-img',
-                    )}
-                    src={`${process.env.PUBLIC_URL}/biddingPage/${
-                      !edit ? 'edit' : 'check'
-                    }-white.png`}
-                  />
-                  {!edit ? '編輯' : '確認'}
-                </button>
-              )}
-              {!isAggr && editable && (
-                <button
-                  type="button"
-                  className={classNames(
-                    'bidding-dr-infobox-content-footer-right',
-                  )}
-                  onClick={() => handleClickRight()}
-                >
-                  <img
-                    alt="right"
-                    className={classNames(
-                      'bidding-dr-infobox-content-footer-right-img',
-                    )}
-                    src={`${process.env.PUBLIC_URL}/biddingPage/${
-                      !edit ? 'trash' : 'cancel'
-                    }-white.png`}
-                  />
-                  {!edit ? '移除' : '取消'}
                 </button>
               )}
             </div>

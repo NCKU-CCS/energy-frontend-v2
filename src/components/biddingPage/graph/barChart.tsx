@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import weekData from './newTest.json';
 
 interface IProps {
   date: string;
@@ -15,20 +14,25 @@ interface IPadding {
   right: number;
 }
 
-interface IData {
-  time: number;
-  dr: number;
+interface IApiData {
+  uuid: string;
+  executor: string;
+  acceptor: string | null;
+  start_time: string;
+  end_time: string | null;
+  volume: number;
+  price: number;
+  result: Boolean | null;
+  rate: number | null;
+  blockchain_url: string | null;
 }
 
 const BarChart: React.FC<IProps> = ({ date }) => {
   // i18n
   const { t } = useTranslation();
 
-  // day
-  const [day, setDay] = useState<number>(new Date(date).getDay());
-
-  // new data
-  const [data, setData] = useState<IData[]>([]);
+  // api data
+  const [apiData, setApiData] = useState<IApiData[]>([]);
 
   // ref
   const svgRef = useRef(null);
@@ -85,18 +89,45 @@ const BarChart: React.FC<IProps> = ({ date }) => {
     .tickFormat(null)
     .tickSize(width - (padding.left + padding.right) + barWidth);
 
-  // set day
-  useEffect(() => {
-    setDay(new Date(date).getDay());
-  }, [date]);
+  // fetch Api Data
+  const fetchApiData = async () => {
+    // get bearer token
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
 
-  // set the data to display depends on day
+    // GET to Power Info API
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=${dayjs(
+        date,
+      ).format('YYYY-MM-DD')}&end_date=${dayjs(date)
+        .add(1, 'day')
+        .format('YYYY-MM-DD')}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+
+    // get response successfully or not
+    if (response.status === 200) {
+      const tmp = await response.json();
+      setApiData(tmp);
+    }
+  };
+
+  // React-Hook: useEffect -> get api data
   useEffect(() => {
-    weekData.map((d) => {
-      if (d.day === day + 1) setData(d.data);
-      return null;
-    });
-  }, [day]);
+    (async () => {
+      await fetchApiData();
+    })();
+  }, [date]);
 
   // React Hook: useEffect -> render chart
   useEffect(() => {
@@ -145,9 +176,6 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .call((g: any) => g.selectAll('text').attr('color', '#707070'))
       .call((g: any) => g.select(':nth-child(1)').select('text').remove())
       .attr('stroke-width', '0.5px')
-      // .call((g: any) =>
-      //   g.select(':nth-child(3)').select('line').attr('stroke-width', '2px'),
-      // )
       .attr('fill', 'none')
       .attr('font-size', 10)
       .attr(
@@ -158,18 +186,23 @@ const BarChart: React.FC<IProps> = ({ date }) => {
     // append bar
     svg
       .selectAll('rect')
-      .data(data)
+      .data(apiData)
       .enter()
       .append('rect')
-      .attr('x', (d: IData) => {
-        return padding.left + Number(scaleX(d.time)) - barWidth / 2;
+      .attr('x', (d: IApiData) => {
+        const time = dayjs(d.start_time).get('hour');
+        return padding.left + Number(scaleX(time)) - barWidth / 2;
       })
-      .attr('y', (d: IData) => height - padding.bottom - Number(scaleY(d.dr)))
-      .attr('width', barWidth)
-      .attr('height', (d: IData) => scaleY(d.dr))
-      .attr('fill', (d: IData) => {
+      .attr(
+        'y',
+        (d: IApiData) => height - padding.bottom - Number(scaleY(d.volume)),
+      )
+      .attr('width', (d: IApiData) => (d.result ? barWidth : 0))
+      .attr('height', (d: IApiData) => (d.result ? scaleY(d.volume) : 0))
+      .attr('fill', (d: IApiData) => {
+        const time = dayjs(d.start_time).get('hour');
         if (
-          (d.time > new Date().getHours() &&
+          (time > new Date().getHours() &&
             dayjs(new Date()).format('YYYY-MM-DD') ===
               dayjs(date).format('YYYY-MM-DD')) ||
           new Date(date).getTime() > new Date().getTime()
@@ -179,7 +212,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       })
       .style('cursor', 'pointer')
       .append('title')
-      .text((d: IData) => d.dr);
+      .text((d: IApiData) => d.volume);
 
     // append unit text DR量
     svg
@@ -224,12 +257,13 @@ const BarChart: React.FC<IProps> = ({ date }) => {
   // get max of data
   useEffect(() => {
     let tmpMaxDr = 0;
-    data.map((d) => {
-      if (d.dr > tmpMaxDr) tmpMaxDr = d.dr;
-      return null;
+    apiData.forEach((d) => {
+      if (d.result && d.volume > tmpMaxDr) {
+        tmpMaxDr = d.volume;
+      }
     });
     setMaxDr(tmpMaxDr);
-  }, [data]);
+  }, [apiData]);
 
   useEffect(() => {
     // set padding
