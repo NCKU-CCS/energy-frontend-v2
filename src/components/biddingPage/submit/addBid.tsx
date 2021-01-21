@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
+import { parseISO } from 'date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import { intervalArr } from '../../../constants/constant';
@@ -122,7 +123,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
               value={
                 reset
                   ? null
-                  : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
+                  : parseISO(dayjs(new Date(date)).format('YYYY-MM-DD'))
               }
               onChange={(d) =>
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))

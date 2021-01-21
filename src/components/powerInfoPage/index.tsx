@@ -17,13 +17,14 @@ const PowerInfoPageContainer: React.FC = () => {
   return (
     <div className={classNames('powerinfo-container')}>
       <div className={classNames('c', 'c1')}>
-        {/* <DatePicker setDate={setDate} currDate={date} /> */}
         <div className={classNames('powerinfo-datepicker-container')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
               value={date}
               onChange={(d) =>
-                setDate(new Date(dayjs(d?.toDateString()).format('YYYY-MM-DD')))
+                setDate(
+                  new Date(dayjs(d?.toDateString()).format('YYYY-MM-DD 00:00')),
+                )
               }
               format="yyyy/MM/dd"
               disableFuture
