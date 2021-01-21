@@ -193,7 +193,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('biddingpage.date')} :
+                    {t('greenpage.date')} :
                   </div>
                   <input
                     type="date"
@@ -220,7 +220,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('biddingpage.time')} :
+                    {t('greenpage.time')} :
                   </div>
                   <select
                     className={classNames(
@@ -244,7 +244,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('biddingpage.volume')} :
+                    {t('greenpage.volume')} :
                   </div>
                   <input
                     type="number"
@@ -267,7 +267,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('biddingpage.price')} :
+                    {t('greenpage.price')} :
                   </div>
                   <input
                     type="number"
@@ -290,7 +290,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'bidding-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('biddingpage.total')} :
+                    {t('greenpage.total')} :
                   </div>
                   <input
                     type="number"
@@ -321,7 +321,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                     submitDisabled ? 'disabled' : 'white'
                   }.png`}
                 />
-                {t('biddingpage.confirm')}
+                {t('greenpage.confirm')}
               </button>
               <button
                 type="button"
@@ -334,7 +334,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   alt="submit"
                   src={`${process.env.PUBLIC_URL}/biddingPage/reset-white.png`}
                 />
-                {t('biddingpage.reset')}
+                {t('greenpage.reset')}
               </button>
             </div>
           </div>

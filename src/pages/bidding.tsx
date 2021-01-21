@@ -6,7 +6,7 @@ import Container from '../components/greenPage';
 const BiddingPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Layout title={t('biddingpage.pageTitle')}>
+    <Layout title={t('greenpage.pageTitle')}>
       <Container />
     </Layout>
   );

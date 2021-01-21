@@ -37,7 +37,7 @@ const Average: React.FC<IProps> = ({
           <div
             className={classNames('bidding-status-average-text-price-title')}
           >
-            {t('biddingpage.avgPrice')}
+            {t('greenpage.avgPrice')}
           </div>
         </div>
         <div
@@ -51,7 +51,7 @@ const Average: React.FC<IProps> = ({
           <div
             className={classNames('bidding-status-average-text-volume-title')}
           >
-            {t('biddingpage.avgVolume')}
+            {t('greenpage.avgVolume')}
           </div>
         </div>
       </div>

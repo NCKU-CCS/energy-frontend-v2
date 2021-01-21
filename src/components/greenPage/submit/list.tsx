@@ -56,19 +56,19 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
     <div className={classNames('bidding-submit-list-container-in')}>
       <div className={classNames('bidding-submit-list-title-container')}>
         <div className={classNames('bidding-submit-list-title-date')}>
-          {t('biddingpage.date')}
+          {t('greenpage.date')}
         </div>
         <div className={classNames('bidding-submit-list-title-interval')}>
-          {t('biddingpage.time')}
+          {t('greenpage.time')}
         </div>
         <div className={classNames('bidding-submit-list-title-volume')}>
-          {t('biddingpage.volume')}
+          {t('greenpage.volume')}
         </div>
         <div className={classNames('bidding-submit-list-title-price')}>
-          {t('biddingpage.price')}
+          {t('greenpage.price')}
         </div>
         <div className={classNames('bidding-submit-list-title-totalprice')}>
-          {t('biddingpage.total')}
+          {t('greenpage.total')}
         </div>
         <div className={classNames('bidding-submit-list-title-button')}>
           <AddBidBtn type={type} />
@@ -77,7 +77,7 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
       <div className={classNames('bidding-submit-list-listitem-container')}>
         {apiData.data.length === 0 ? (
           <div className={classNames('bidding-submit-list-null')}>
-            {t('biddingpage.null')}
+            {t('greenpage.null')}
           </div>
         ) : (
           createList

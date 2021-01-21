@@ -36,7 +36,7 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
         disabled={disabled}
         onClick={() => handleClickBuy()}
       >
-        {t('biddingpage.buy')}
+        {t('greenpage.buy')}
       </button>
       <button
         type="button"
@@ -47,7 +47,7 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
         disabled={!disabled}
         onClick={() => handleClickSell()}
       >
-        {t('biddingpage.sell')}
+        {t('greenpage.sell')}
       </button>
     </div>
   );

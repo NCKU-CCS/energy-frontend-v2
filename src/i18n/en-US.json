@@ -37,7 +37,7 @@
     "name": "name",
     "view": "view"
   },
-  "biddingpage": {
+  "greenpage": {
     "pageTitle": "Green Energy Trading",
     "modeGreen": "Green Energy",
     "modeDemand": "Demand Response",
