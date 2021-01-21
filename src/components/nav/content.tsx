@@ -65,7 +65,7 @@ const Content: React.FC<IContent> = ({ isAggregator }) => {
       <div ref={dropdownRef} className={navbarClass}>
         <NavLink pathname="/" imgName="home_icon" name={t('navbar.home')} />
         <NavLink
-          pathname="/bidding"
+          pathname="/green"
           imgName="b_icon"
           name={t('navbar.bidding')}
         />

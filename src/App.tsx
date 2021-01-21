@@ -20,7 +20,7 @@ const App: React.FC = () => {
       <Route path="/setting" component={withAuthorization(SettingPage)} />
       <Route path="/status" component={withAuthorization(StatusPage)} />
       <Route path="/electron" component={withAuthorization(ElectronPage)} />
-      <Route path="/bidding" component={withAuthorization(GreenPage)} />
+      <Route path="/green" component={withAuthorization(GreenPage)} />
       <Route path="/power_info" component={withAuthorization(PowerInfoPage)} />
       <Route path="/login" component={LoginPage} />
       <Route component={ErrorPage} />
