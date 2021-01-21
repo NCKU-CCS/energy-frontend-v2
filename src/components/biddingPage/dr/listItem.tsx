@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import InfoBox from './infoBox';
+import { hrArr } from '../../../constants/constant';
 
 interface IProps {
   start_time: string;
@@ -51,34 +52,6 @@ const ListItem: React.FC<IProps> = ({
 
   // end hour
   const [endHr, setEndHr] = useState<number>(0);
-
-  // hour array
-  const hrArr = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-  ];
 
   // create <select> start hour options
   const startHrOptions = hrArr.slice(0, 23).map((hr) => {
