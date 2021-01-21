@@ -142,33 +142,29 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
   }, [date, time, volume, price]);
 
   return (
-    <div className={classNames('bidding-submit-addbidbtn-container-in')}>
+    <div className={classNames('green-submit-addbidbtn-container-in')}>
       <button
         type="button"
         title="新增"
-        className={classNames('bidding-submit-addbidbtn-btn')}
+        className={classNames('green-submit-addbidbtn-btn')}
         onClick={() => setAdd(true)}
       >
         <img
           alt="add"
           src={`${process.env.PUBLIC_URL}/greenPage/add-gray.png`}
-          className={classNames('bidding-submit-addbidbtn-btn-img')}
+          className={classNames('green-submit-addbidbtn-btn-img')}
         />
       </button>
       {add && (
-        <div
-          className={classNames('bidding-submit-addbidbtn-infobox-container')}
-        >
-          <div
-            className={classNames('bidding-submit-addbidbtn-infobox-content')}
-          >
+        <div className={classNames('green-submit-addbidbtn-infobox-container')}>
+          <div className={classNames('green-submit-addbidbtn-infobox-content')}>
             <div
-              className={classNames('bidding-submit-addbidbtn-infobox-header')}
+              className={classNames('green-submit-addbidbtn-infobox-header')}
             >
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-addbidbtn-infobox-header-close',
+                  'green-submit-addbidbtn-infobox-header-close',
                 )}
                 onClick={() => handleClickClose()}
               >
@@ -176,21 +172,21 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
               </button>
             </div>
             <div
-              className={classNames('bidding-submit-addbidbtn-infobox-center')}
+              className={classNames('green-submit-addbidbtn-infobox-center')}
             >
               <div
                 className={classNames(
-                  'bidding-submit-addbidbtn-infobox-center-content',
+                  'green-submit-addbidbtn-infobox-center-content',
                 )}
               >
                 <div
                   className={classNames(
-                    'bidding-submit-addbidbtn-infobox-center-item-container',
+                    'green-submit-addbidbtn-infobox-center-item-container',
                   )}
                 >
                   <div
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-text',
+                      'green-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
                     {t('greenpage.date')} :
@@ -198,7 +194,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   <input
                     type="date"
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-input',
+                      'green-submit-addbidbtn-infobox-center-item-input',
                     )}
                     onChange={(e) =>
                       setDate(dayjs(e.target.value).format('YYYY/MM/DD'))
@@ -212,19 +208,19 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                 </div>
                 <div
                   className={classNames(
-                    'bidding-submit-addbidbtn-infobox-center-item-container',
+                    'green-submit-addbidbtn-infobox-center-item-container',
                   )}
                 >
                   <div
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-text',
+                      'green-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
                     {t('greenpage.time')} :
                   </div>
                   <select
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-input',
+                      'green-submit-addbidbtn-infobox-center-item-input',
                     )}
                     onChange={(e) => setTime(parseInt(e.target.value, 10))}
                   >
@@ -236,12 +232,12 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                 </div>
                 <div
                   className={classNames(
-                    'bidding-submit-addbidbtn-infobox-center-item-container',
+                    'green-submit-addbidbtn-infobox-center-item-container',
                   )}
                 >
                   <div
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-text',
+                      'green-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
                     {t('greenpage.volume')} :
@@ -249,7 +245,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   <input
                     type="number"
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-input',
+                      'green-submit-addbidbtn-infobox-center-item-input',
                     )}
                     min="0"
                     step="0.1"
@@ -259,12 +255,12 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                 </div>
                 <div
                   className={classNames(
-                    'bidding-submit-addbidbtn-infobox-center-item-container',
+                    'green-submit-addbidbtn-infobox-center-item-container',
                   )}
                 >
                   <div
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-text',
+                      'green-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
                     {t('greenpage.price')} :
@@ -272,7 +268,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   <input
                     type="number"
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-input',
+                      'green-submit-addbidbtn-infobox-center-item-input',
                     )}
                     min="0"
                     step="0.1"
@@ -282,12 +278,12 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                 </div>
                 <div
                   className={classNames(
-                    'bidding-submit-addbidbtn-infobox-center-item-container',
+                    'green-submit-addbidbtn-infobox-center-item-container',
                   )}
                 >
                   <div
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-text',
+                      'green-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
                     {t('greenpage.total')} :
@@ -295,7 +291,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   <input
                     type="number"
                     className={classNames(
-                      'bidding-submit-addbidbtn-infobox-center-item-input',
+                      'green-submit-addbidbtn-infobox-center-item-input',
                     )}
                     min="0"
                     value={reset ? '' : totalPrice}
@@ -305,12 +301,12 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
               </div>
             </div>
             <div
-              className={classNames('bidding-submit-addbidbtn-infobox-footer')}
+              className={classNames('green-submit-addbidbtn-infobox-footer')}
             >
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-addbidbtn-infobox-footer-leftbtn',
+                  'green-submit-addbidbtn-infobox-footer-leftbtn',
                 )}
                 onClick={() => addBid()}
                 disabled={submitDisabled}
@@ -326,7 +322,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-addbidbtn-infobox-footer-rightbtn',
+                  'green-submit-addbidbtn-infobox-footer-rightbtn',
                 )}
                 onClick={() => handleClickReset()}
               >

@@ -26,12 +26,12 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
   };
 
   return (
-    <div className={classNames('bidding-submit-modebutton-container-in')}>
+    <div className={classNames('green-submit-modebutton-container-in')}>
       <button
         type="button"
         className={classNames(
-          'bidding-submit-modebutton-button',
-          'bidding-submit-modebutton-button-buy',
+          'green-submit-modebutton-button',
+          'green-submit-modebutton-button-buy',
         )}
         disabled={disabled}
         onClick={() => handleClickBuy()}
@@ -41,8 +41,8 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
       <button
         type="button"
         className={classNames(
-          'bidding-submit-modebutton-button',
-          'bidding-submit-modebutton-button-sell',
+          'green-submit-modebutton-button',
+          'green-submit-modebutton-button-sell',
         )}
         disabled={!disabled}
         onClick={() => handleClickSell()}

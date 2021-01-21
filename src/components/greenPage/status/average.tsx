@@ -17,40 +17,32 @@ const Average: React.FC<IProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className={classNames('bidding-status-average-container-in')}>
-      <div className={classNames('bidding-status-average-image-container')}>
+    <div className={classNames('green-status-average-container-in')}>
+      <div className={classNames('green-status-average-image-container')}>
         <img
-          className={classNames('bidding-status-average-image-img')}
+          className={classNames('green-status-average-image-img')}
           alt=""
           src={`${process.env.PUBLIC_URL}/greenPage/arrow-${userType}.png`}
         />
       </div>
-      <div className={classNames('bidding-status-average-text-container')}>
+      <div className={classNames('green-status-average-text-container')}>
         <div
-          className={classNames('bidding-status-average-text-price-container')}
+          className={classNames('green-status-average-text-price-container')}
         >
-          <div
-            className={classNames('bidding-status-average-text-price-value')}
-          >
+          <div className={classNames('green-status-average-text-price-value')}>
             ${averagePrice.toFixed(0)}/kWh
           </div>
-          <div
-            className={classNames('bidding-status-average-text-price-title')}
-          >
+          <div className={classNames('green-status-average-text-price-title')}>
             {t('greenpage.avgPrice')}
           </div>
         </div>
         <div
-          className={classNames('bidding-status-average-text-volume-container')}
+          className={classNames('green-status-average-text-volume-container')}
         >
-          <div
-            className={classNames('bidding-status-average-text-volume-value')}
-          >
+          <div className={classNames('green-status-average-text-volume-value')}>
             {averageVolume.toFixed(0)}kWh
           </div>
-          <div
-            className={classNames('bidding-status-average-text-volume-title')}
-          >
+          <div className={classNames('green-status-average-text-volume-title')}>
             {t('greenpage.avgVolume')}
           </div>
         </div>

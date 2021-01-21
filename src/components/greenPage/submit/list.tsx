@@ -53,30 +53,30 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
   });
 
   return (
-    <div className={classNames('bidding-submit-list-container-in')}>
-      <div className={classNames('bidding-submit-list-title-container')}>
-        <div className={classNames('bidding-submit-list-title-date')}>
+    <div className={classNames('green-submit-list-container-in')}>
+      <div className={classNames('green-submit-list-title-container')}>
+        <div className={classNames('green-submit-list-title-date')}>
           {t('greenpage.date')}
         </div>
-        <div className={classNames('bidding-submit-list-title-interval')}>
+        <div className={classNames('green-submit-list-title-interval')}>
           {t('greenpage.time')}
         </div>
-        <div className={classNames('bidding-submit-list-title-volume')}>
+        <div className={classNames('green-submit-list-title-volume')}>
           {t('greenpage.volume')}
         </div>
-        <div className={classNames('bidding-submit-list-title-price')}>
+        <div className={classNames('green-submit-list-title-price')}>
           {t('greenpage.price')}
         </div>
-        <div className={classNames('bidding-submit-list-title-totalprice')}>
+        <div className={classNames('green-submit-list-title-totalprice')}>
           {t('greenpage.total')}
         </div>
-        <div className={classNames('bidding-submit-list-title-button')}>
+        <div className={classNames('green-submit-list-title-button')}>
           <AddBidBtn type={type} />
         </div>
       </div>
-      <div className={classNames('bidding-submit-list-listitem-container')}>
+      <div className={classNames('green-submit-list-listitem-container')}>
         {apiData.data.length === 0 ? (
-          <div className={classNames('bidding-submit-list-null')}>
+          <div className={classNames('green-submit-list-null')}>
             {t('greenpage.null')}
           </div>
         ) : (

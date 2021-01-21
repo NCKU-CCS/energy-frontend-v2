@@ -1,9 +1,9 @@
-.bidding-submit-addbid-container-in {
+.green-submit-addbid-container-in {
   height: 100%;
   background-color: white;
 }
 
-.bidding-submit-addbid-form {
+.green-submit-addbid-form {
   margin-left: 3%;
   margin-right: 3%;
   width: 94%;
@@ -14,7 +14,7 @@
   font-size: 1vw;
 }
 
-.bidding-submit-addbid-form-date {
+.green-submit-addbid-form-date {
   cursor: pointer;
   margin: 1%;
   width: 18%;
@@ -27,11 +27,11 @@
   align-items: flex-end;
 }
 
-.bidding-submit-addbid-form-date:hover {
+.green-submit-addbid-form-date:hover {
   border-bottom: #707070 solid 1px;
 }
 
-.bidding-submit-addbid-form-select {
+.green-submit-addbid-form-select {
   cursor: pointer;
   margin: 1%;
   width: 18%;
@@ -42,11 +42,11 @@
   border-bottom: #d1d2d1 solid 1px;
 }
 
-.bidding-submit-addbid-form-select:hover {
+.green-submit-addbid-form-select:hover {
   border-bottom: #707070 solid 1px;
 }
 
-.bidding-submit-addbid-form-volume {
+.green-submit-addbid-form-volume {
   margin: 1%;
   width: 15%;
   height: 70%;
@@ -57,11 +57,11 @@
   text-align: right;
 }
 
-.bidding-submit-addbid-form-volume:hover, :focus {
+.green-submit-addbid-form-volume:hover, :focus {
   border-bottom: #707070 solid 1px;
 }
 
-.bidding-submit-addbid-form-price {
+.green-submit-addbid-form-price {
   margin: 1%;
   width: 16%;
   height: 70%;
@@ -72,11 +72,11 @@
   text-align: right;
 }
 
-.bidding-submit-addbid-form-price:hover, :focus {
+.green-submit-addbid-form-price:hover, :focus {
   border-bottom: #707070 solid 1px;
 }
 
-.bidding-submit-addbid-form-total {
+.green-submit-addbid-form-total {
   margin: 1%;
   width: 13%;
   height: 70%;
@@ -88,7 +88,7 @@
   text-align: right;
 }
 
-.bidding-submit-addbid-form-submit {
+.green-submit-addbid-form-submit {
   cursor: pointer;
   width: 5%;
   height: 60%;
@@ -99,18 +99,18 @@
   background-color: transparent;
 }
 
-.bidding-submit-addbid-form-submit-img {
+.green-submit-addbid-form-submit-img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
 }
 
-.bidding-submit-addbid-form-submit:disabled {
+.green-submit-addbid-form-submit:disabled {
   display: none;
 }
 
-.bidding-submit-addbid-form-reset {
+.green-submit-addbid-form-reset {
   cursor: pointer;
   width: 5%;
   height: 60%;
@@ -121,14 +121,14 @@
   background-color: transparent;
 }
 
-.bidding-submit-addbid-form-reset-img {
+.green-submit-addbid-form-reset-img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
 }
 
-.bidding-submit-addbid-form-reset:disabled {
+.green-submit-addbid-form-reset:disabled {
   display: none;
 }
 

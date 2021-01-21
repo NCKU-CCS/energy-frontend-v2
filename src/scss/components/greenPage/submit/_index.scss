@@ -6,7 +6,7 @@
 @import './infoBox';
 @import './addBidBtn';
 
-.bidding-submit-container-in {
+.green-submit-container-in {
   flex-basis: 95%;
   height: 100%;
   display: flex;
@@ -15,25 +15,25 @@
   border-radius: 5px;
 }
 
-.bidding-submit-modebutton-container-out {
+.green-submit-modebutton-container-out {
   flex-basis: 100%;
   height: 10%;
 }
 
-.bidding-submit-list-container-out {
+.green-submit-list-container-out {
   flex-basis: 100%;
   height: 70%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.bidding-submit-addbid-container-out {
+.green-submit-addbid-container-out {
   flex-basis: 100%;
   height: 8%;
   margin-top: 2%;
 }
 
-.bidding-submit-pagecontrol-container-out {
+.green-submit-pagecontrol-container-out {
   flex-basis: 100%;
   height: 10%;
   border-bottom-left-radius: 5px;
@@ -57,36 +57,36 @@
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-  .bidding-submit-container-in {
+  .green-submit-container-in {
     margin-left: 2.5%;
   }
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .bidding-submit-container-in {
+  .green-submit-container-in {
     flex-basis: 90%;
     margin-left: 5%;
     margin-top: 1%;
   }
 
-  .bidding-submit-modebutton-container-out {
+  .green-submit-modebutton-container-out {
     height: 10%;
   }
 
-  .bidding-submit-list-container-out {
+  .green-submit-list-container-out {
     height: 75%;
     display: flex;
     flex-wrap: wrap;
   }
 
-  .bidding-submit-addbid-container-out {
+  .green-submit-addbid-container-out {
     height: 15%;
     margin-top: 0%;
     display: none;
   }
 
-  .bidding-submit-pagecontrol-container-out {
+  .green-submit-pagecontrol-container-out {
     height: 15%;
   }
 

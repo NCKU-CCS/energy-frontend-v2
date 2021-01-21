@@ -114,9 +114,9 @@ const AddBid: React.FC<IProps> = ({ type }) => {
   }, [date, time, volume, price]);
 
   return (
-    <div className={classNames('bidding-submit-addbid-container-in')}>
-      <form className={classNames('bidding-submit-addbid-form')}>
-        <div className={classNames('bidding-submit-addbid-form-date')}>
+    <div className={classNames('green-submit-addbid-container-in')}>
+      <form className={classNames('green-submit-addbid-form')}>
+        <div className={classNames('green-submit-addbid-form-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
               value={
@@ -136,7 +136,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           </MuiPickersUtilsProvider>
         </div>
         <select
-          className={classNames('bidding-submit-addbid-form-select')}
+          className={classNames('green-submit-addbid-form-select')}
           onChange={(e) => setTime(parseInt(e.target.value, 10))}
         >
           <option value="-1" selected={reset}>
@@ -145,7 +145,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           {createOptions}
         </select>
         <input
-          className={classNames('bidding-submit-addbid-form-volume')}
+          className={classNames('green-submit-addbid-form-volume')}
           type="number"
           min="0"
           step="0.1"
@@ -154,7 +154,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           required
         />
         <input
-          className={classNames('bidding-submit-addbid-form-price')}
+          className={classNames('green-submit-addbid-form-price')}
           type="number"
           min="0"
           step="0.1"
@@ -163,7 +163,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           required
         />
         <input
-          className={classNames('bidding-submit-addbid-form-total')}
+          className={classNames('green-submit-addbid-form-total')}
           type="number"
           min="0"
           value={reset ? '' : totalPrice}
@@ -171,7 +171,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         />
         <button
           type="button"
-          className={classNames('bidding-submit-addbid-form-submit')}
+          className={classNames('green-submit-addbid-form-submit')}
           title="Submit"
           onClick={() => addBid()}
           onMouseOver={() => setCheckImg('check-green')}
@@ -182,14 +182,14 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         >
           <img
             alt="submit"
-            className={classNames('bidding-submit-addbid-form-submit-img')}
+            className={classNames('green-submit-addbid-form-submit-img')}
             src={`${process.env.PUBLIC_URL}/greenPage/${checkImg}.png`}
           />
         </button>
         <button
           type="button"
           title="reset"
-          className={classNames('bidding-submit-addbid-form-reset')}
+          className={classNames('green-submit-addbid-form-reset')}
           onClick={() => handleClickReset()}
           onMouseOver={() => setResetImg('cancel-red')}
           onMouseOut={() => setResetImg('cancel-gray')}
@@ -198,7 +198,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         >
           <img
             alt="reset"
-            className={classNames('bidding-submit-addbid-form-reset-img')}
+            className={classNames('green-submit-addbid-form-reset-img')}
             src={`${process.env.PUBLIC_URL}/greenPage/${resetImg}.png`}
           />
         </button>

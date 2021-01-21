@@ -12,21 +12,19 @@ const Participants: React.FC<IProps> = ({ userType, participants }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={classNames('bidding-status-participants-container-in')}>
-      <div
-        className={classNames('bidding-status-participants-image-container')}
-      >
+    <div className={classNames('green-status-participants-container-in')}>
+      <div className={classNames('green-status-participants-image-container')}>
         <img
-          className={classNames('bidding-status-participants-image-img')}
+          className={classNames('green-status-participants-image-img')}
           alt=""
           src={`${process.env.PUBLIC_URL}/greenPage/people-${userType}.png`}
         />
       </div>
-      <div className={classNames('bidding-status-participants-text-container')}>
-        <div className={classNames('bidding-status-participants-text-value')}>
+      <div className={classNames('green-status-participants-text-container')}>
+        <div className={classNames('green-status-participants-text-value')}>
           {participants}
         </div>
-        <div className={classNames('bidding-status-participants-text-title')}>
+        <div className={classNames('green-status-participants-text-title')}>
           {t('greenpage.currParticipants')}
         </div>
       </div>

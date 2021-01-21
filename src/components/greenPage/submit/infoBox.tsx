@@ -169,53 +169,49 @@ const InfoBox: React.FC<IProps> = ({
   };
 
   return (
-    <div className={classNames('bidding-submit-infobox-container-in')}>
+    <div className={classNames('green-submit-infobox-container-in')}>
       {!openInfoBox ? (
         <button
           type="button"
-          className={classNames('bidding-submit-infobox-open-btn')}
+          className={classNames('green-submit-infobox-open-btn')}
           onClick={() => setOpenInfoBox(true)}
         >
           <img
-            className={classNames('bidding-submit-infobox-open-btn-img')}
+            className={classNames('green-submit-infobox-open-btn-img')}
             alt="magnifier"
             src={`${process.env.PUBLIC_URL}/greenPage/magnifier-gray.png`}
           />
         </button>
       ) : (
-        <div className={classNames('bidding-submit-infobox-canvas')}>
-          <div className={classNames('bidding-submit-infobox-content')}>
-            <div
-              className={classNames('bidding-submit-infobox-content-header')}
-            >
+        <div className={classNames('green-submit-infobox-canvas')}>
+          <div className={classNames('green-submit-infobox-content')}>
+            <div className={classNames('green-submit-infobox-content-header')}>
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-infobox-content-header-close',
+                  'green-submit-infobox-content-header-close',
                 )}
                 onClick={() => handleClickClose()}
               >
                 X
               </button>
             </div>
-            <div
-              className={classNames('bidding-submit-infobox-content-center')}
-            >
+            <div className={classNames('green-submit-infobox-content-center')}>
               <div
                 className={classNames(
-                  'bidding-submit-infobox-content-center-inside',
+                  'green-submit-infobox-content-center-inside',
                 )}
               >
                 {!edit ? (
                   <div
                     className={classNames(
-                      'bidding-submit-infobox-content-center-inside--show',
+                      'green-submit-infobox-content-center-inside--show',
                     )}
                   >
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-date--show',
-                        'bidding-submit-infobox-content-center-inside-item--show',
+                        'green-submit-infobox-content-center-inside-date--show',
+                        'green-submit-infobox-content-center-inside-item--show',
                       )}
                     >
                       <span>{t('greenpage.date')} :&nbsp;</span>
@@ -223,8 +219,8 @@ const InfoBox: React.FC<IProps> = ({
                     </div>
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-interval--show',
-                        'bidding-submit-infobox-content-center-inside-item--show',
+                        'green-submit-infobox-content-center-inside-interval--show',
+                        'green-submit-infobox-content-center-inside-item--show',
                       )}
                     >
                       <span>{t('greenpage.time')} :&nbsp;</span>
@@ -232,8 +228,8 @@ const InfoBox: React.FC<IProps> = ({
                     </div>
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-volume--show',
-                        'bidding-submit-infobox-content-center-inside-item--show',
+                        'green-submit-infobox-content-center-inside-volume--show',
+                        'green-submit-infobox-content-center-inside-item--show',
                       )}
                     >
                       <span>{t('greenpage.volume')} :&nbsp;</span>
@@ -241,8 +237,8 @@ const InfoBox: React.FC<IProps> = ({
                     </div>
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-price--show',
-                        'bidding-submit-infobox-content-center-inside-item--show',
+                        'green-submit-infobox-content-center-inside-price--show',
+                        'green-submit-infobox-content-center-inside-item--show',
                       )}
                     >
                       <span>{t('greenpage.price')} :&nbsp;</span>
@@ -250,8 +246,8 @@ const InfoBox: React.FC<IProps> = ({
                     </div>
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-total--show',
-                        'bidding-submit-infobox-content-center-inside-item--show',
+                        'green-submit-infobox-content-center-inside-total--show',
+                        'green-submit-infobox-content-center-inside-item--show',
                       )}
                     >
                       <span>{t('greenpage.total')} :&nbsp;</span>
@@ -261,13 +257,13 @@ const InfoBox: React.FC<IProps> = ({
                 ) : (
                   <div
                     className={classNames(
-                      'bidding-submit-infobox-content-center-inside--edit',
+                      'green-submit-infobox-content-center-inside--edit',
                     )}
                   >
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-label--edit',
-                        'bidding-submit-infobox-content-center-inside-item--edit',
+                        'green-submit-infobox-content-center-inside-label--edit',
+                        'green-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
                       {t('greenpage.date')} :
@@ -276,8 +272,8 @@ const InfoBox: React.FC<IProps> = ({
                       type="date"
                       id="date"
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-date--edit',
-                        'bidding-submit-infobox-content-center-inside-input--edit',
+                        'green-submit-infobox-content-center-inside-date--edit',
+                        'green-submit-infobox-content-center-inside-input--edit',
                       )}
                       defaultValue={dayjs(new Date(date))
                         .format('YYYY-MM-DD')
@@ -288,16 +284,16 @@ const InfoBox: React.FC<IProps> = ({
                     />
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-label--edit',
-                        'bidding-submit-infobox-content-center-inside-item--edit',
+                        'green-submit-infobox-content-center-inside-label--edit',
+                        'green-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
                       {t('greenpage.time')} :
                     </div>
                     <select
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-interval--edit',
-                        'bidding-submit-infobox-content-center-inside-input--edit',
+                        'green-submit-infobox-content-center-inside-interval--edit',
+                        'green-submit-infobox-content-center-inside-input--edit',
                       )}
                       defaultValue={interval}
                       onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
@@ -307,8 +303,8 @@ const InfoBox: React.FC<IProps> = ({
                     </select>
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-label--edit',
-                        'bidding-submit-infobox-content-center-inside-item--edit',
+                        'green-submit-infobox-content-center-inside-label--edit',
+                        'green-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
                       {t('greenpage.volume')} :
@@ -318,16 +314,16 @@ const InfoBox: React.FC<IProps> = ({
                       min="0"
                       step="0.1"
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-volume--edit',
-                        'bidding-submit-infobox-content-center-inside-input--edit',
+                        'green-submit-infobox-content-center-inside-volume--edit',
+                        'green-submit-infobox-content-center-inside-input--edit',
                       )}
                       defaultValue={volume}
                       onChange={(e) => setNewVolume(parseFloat(e.target.value))}
                     />
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-label--edit',
-                        'bidding-submit-infobox-content-center-inside-item--edit',
+                        'green-submit-infobox-content-center-inside-label--edit',
+                        'green-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
                       {t('greenpage.price')} :
@@ -337,16 +333,16 @@ const InfoBox: React.FC<IProps> = ({
                       min="0"
                       step="0.1"
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-price--edit',
-                        'bidding-submit-infobox-content-center-inside-input--edit',
+                        'green-submit-infobox-content-center-inside-price--edit',
+                        'green-submit-infobox-content-center-inside-input--edit',
                       )}
                       defaultValue={price}
                       onChange={(e) => setNewPrice(parseFloat(e.target.value))}
                     />
                     <div
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-label--edit',
-                        'bidding-submit-infobox-content-center-inside-item--edit',
+                        'green-submit-infobox-content-center-inside-label--edit',
+                        'green-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
                       {t('greenpage.total')} :
@@ -354,8 +350,8 @@ const InfoBox: React.FC<IProps> = ({
                     <input
                       type="number"
                       className={classNames(
-                        'bidding-submit-infobox-content-center-inside-total--edit',
-                        'bidding-submit-infobox-content-center-inside-input--edit',
+                        'green-submit-infobox-content-center-inside-total--edit',
+                        'green-submit-infobox-content-center-inside-input--edit',
                       )}
                       value={newTotalPrice}
                       disabled
@@ -364,20 +360,18 @@ const InfoBox: React.FC<IProps> = ({
                 )}
               </div>
             </div>
-            <div
-              className={classNames('bidding-submit-infobox-content-footer')}
-            >
+            <div className={classNames('green-submit-infobox-content-footer')}>
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-infobox-content-footer-left',
+                  'green-submit-infobox-content-footer-left',
                 )}
                 onClick={() => handleClickLeft()}
               >
                 <img
                   alt="left"
                   className={classNames(
-                    'bidding-submit-infobox-content-footer-left-img',
+                    'green-submit-infobox-content-footer-left-img',
                   )}
                   src={`${process.env.PUBLIC_URL}/greenPage/${
                     !edit ? 'edit' : 'check'
@@ -388,14 +382,14 @@ const InfoBox: React.FC<IProps> = ({
               <button
                 type="button"
                 className={classNames(
-                  'bidding-submit-infobox-content-footer-right',
+                  'green-submit-infobox-content-footer-right',
                 )}
                 onClick={() => handleClickRight()}
               >
                 <img
                   alt="right"
                   className={classNames(
-                    'bidding-submit-infobox-content-footer-right-img',
+                    'green-submit-infobox-content-footer-right-img',
                   )}
                   src={`${process.env.PUBLIC_URL}/greenPage/${
                     !edit ? 'trash' : 'cancel'

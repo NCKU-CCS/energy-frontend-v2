@@ -1,4 +1,4 @@
-.bidding-status-participants-container-in {
+.green-status-participants-container-in {
   flex-basis: 100%;
   height: 100%;
   display: flex;
@@ -8,18 +8,18 @@
   border-radius: 5px;
 }
 
-.bidding-status-participants-image-container {
+.green-status-participants-image-container {
   flex-basis: 50%;
   height: 40%;
 }
 
-.bidding-status-participants-image-img {
+.green-status-participants-image-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.bidding-status-participants-text-container {
+.green-status-participants-text-container {
   flex-basis: 50%;
   height: 100%;
   display: flex;
@@ -27,7 +27,7 @@
   color: #707070;
 }
 
-.bidding-status-participants-text-value {
+.green-status-participants-text-value {
   flex-basis: 100%;
   height: 55%;
   display: flex;
@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-.bidding-status-participants-text-title {
+.green-status-participants-text-title {
   flex-basis: 100%;
   height: 45%;
   display: flex;
@@ -47,11 +47,11 @@
 
 // 1920 < size
 @media all and (min-width: 1920px) {
-  .bidding-status-participants-text-value {
+  .green-status-participants-text-value {
     font-size: 40px;
   }
 
-  .bidding-status-participants-text-title {
+  .green-status-participants-text-title {
     font-size: 16px;
   }
 
@@ -59,11 +59,11 @@
 
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
-  .bidding-status-participants-text-value {
+  .green-status-participants-text-value {
     font-size: 36px;
   }
 
-  .bidding-status-participants-text-title {
+  .green-status-participants-text-title {
     font-size: 12px;
   }
 
@@ -71,11 +71,11 @@
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-  .bidding-status-participants-text-value {
+  .green-status-participants-text-value {
     font-size: 30px;
   }
 
-  .bidding-status-participants-text-title {
+  .green-status-participants-text-title {
     font-size: 12px;
   }
 
@@ -83,20 +83,20 @@
 
 // 320 < size <= 720
 @media all and (min-width: 321px) and (max-width: 720px) {
-  .bidding-status-participants-image-container {
+  .green-status-participants-image-container {
     flex-basis: 40%;
   }
 
-  .bidding-status-participants-text-container {
+  .green-status-participants-text-container {
     flex-basis: 60%;
   }
 
-  .bidding-status-participants-text-value {
+  .green-status-participants-text-value {
     height: 60%;
     font-size: 30px;
   }
 
-  .bidding-status-participants-text-title {
+  .green-status-participants-text-title {
     height: 40%;
     font-size: 12px;
   }
@@ -105,23 +105,23 @@
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .bidding-status-participants-image-container {
+  .green-status-participants-image-container {
     flex-basis: 0%;
   }
 
-  .bidding-status-participants-text-container {
+  .green-status-participants-text-container {
     flex-basis: 100%;
   }
 
-  .bidding-status-participants-text-value {
+  .green-status-participants-text-value {
     font-size: 24px;
   }
 
-  .bidding-status-participants-text-title {
+  .green-status-participants-text-title {
     font-size: 12px;
   }
 
-  .bidding-status-participants-container-in {
+  .green-status-participants-container-in {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }

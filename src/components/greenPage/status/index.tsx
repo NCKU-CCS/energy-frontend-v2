@@ -58,11 +58,11 @@ const Status: React.FC<IProps> = ({ userType }) => {
   }, []);
 
   return (
-    <div className={classNames('bidding-status-container')}>
-      <div className={classNames('bidding-status-participants-container-out')}>
+    <div className={classNames('green-status-container')}>
+      <div className={classNames('green-status-participants-container-out')}>
         <Participants userType={userType} participants={apiData.participants} />
       </div>
-      <div className={classNames('bidding-status-average-container-out')}>
+      <div className={classNames('green-status-average-container-out')}>
         <Average
           userType={userType}
           averagePrice={apiData.average_price}

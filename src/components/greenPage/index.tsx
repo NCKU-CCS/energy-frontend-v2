@@ -18,17 +18,17 @@ const GreenPageContainer: React.FC = () => {
   );
 
   return (
-    <div className={classNames('bidding-container')}>
-      <div className={classNames('bidding-a1')}>{}</div>
-      <div className={classNames('bidding-a2')}>
-        <div className={classNames('bidding-a2-b1')}>
+    <div className={classNames('green-container')}>
+      <div className={classNames('green-a1')}>{}</div>
+      <div className={classNames('green-a2')}>
+        <div className={classNames('green-a2-b1')}>
           <Status userType={userType} />
         </div>
-        <div className={classNames('bidding-a2-b2')}>
+        <div className={classNames('green-a2-b2')}>
           <Graph />
         </div>
       </div>
-      <div className={classNames('bidding-a3')}>
+      <div className={classNames('green-a3')}>
         <Submit />
       </div>
     </div>
