@@ -12,7 +12,7 @@ const GreenPageContainer: React.FC = () => {
       '{}',
   );
 
-  // user type: user, aggregator, tai
+  // user type: user, aggregator
   const [userType] = useState<string>(
     user.is_aggregator ? 'aggregator' : 'user',
   );
