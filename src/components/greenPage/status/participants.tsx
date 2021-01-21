@@ -19,7 +19,7 @@ const Participants: React.FC<IProps> = ({ userType, participants }) => {
         <img
           className={classNames('bidding-status-participants-image-img')}
           alt=""
-          src={`${process.env.PUBLIC_URL}/biddingPage/people-${userType}.png`}
+          src={`${process.env.PUBLIC_URL}/greenPage/people-${userType}.png`}
         />
       </div>
       <div className={classNames('bidding-status-participants-text-container')}>

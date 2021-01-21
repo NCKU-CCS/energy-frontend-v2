@@ -183,7 +183,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           <img
             alt="submit"
             className={classNames('bidding-submit-addbid-form-submit-img')}
-            src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}.png`}
+            src={`${process.env.PUBLIC_URL}/greenPage/${checkImg}.png`}
           />
         </button>
         <button
@@ -199,7 +199,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
           <img
             alt="reset"
             className={classNames('bidding-submit-addbid-form-reset-img')}
-            src={`${process.env.PUBLIC_URL}/biddingPage/${resetImg}.png`}
+            src={`${process.env.PUBLIC_URL}/greenPage/${resetImg}.png`}
           />
         </button>
       </form>

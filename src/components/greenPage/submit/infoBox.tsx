@@ -179,7 +179,7 @@ const InfoBox: React.FC<IProps> = ({
           <img
             className={classNames('bidding-submit-infobox-open-btn-img')}
             alt="magnifier"
-            src={`${process.env.PUBLIC_URL}/biddingPage/magnifier-gray.png`}
+            src={`${process.env.PUBLIC_URL}/greenPage/magnifier-gray.png`}
           />
         </button>
       ) : (
@@ -379,7 +379,7 @@ const InfoBox: React.FC<IProps> = ({
                   className={classNames(
                     'bidding-submit-infobox-content-footer-left-img',
                   )}
-                  src={`${process.env.PUBLIC_URL}/biddingPage/${
+                  src={`${process.env.PUBLIC_URL}/greenPage/${
                     !edit ? 'edit' : 'check'
                   }-white.png`}
                 />
@@ -397,7 +397,7 @@ const InfoBox: React.FC<IProps> = ({
                   className={classNames(
                     'bidding-submit-infobox-content-footer-right-img',
                   )}
-                  src={`${process.env.PUBLIC_URL}/biddingPage/${
+                  src={`${process.env.PUBLIC_URL}/greenPage/${
                     !edit ? 'trash' : 'cancel'
                   }-white.png`}
                 />

@@ -22,7 +22,7 @@ const Average: React.FC<IProps> = ({
         <img
           className={classNames('bidding-status-average-image-img')}
           alt=""
-          src={`${process.env.PUBLIC_URL}/biddingPage/arrow-${userType}.png`}
+          src={`${process.env.PUBLIC_URL}/greenPage/arrow-${userType}.png`}
         />
       </div>
       <div className={classNames('bidding-status-average-text-container')}>
