@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
-import { parseISO } from 'date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import BiddingStatus from './status';
@@ -27,10 +26,12 @@ const BiddingPageContainer: React.FC = () => {
           <div className={classNames('bidding-dr-date')}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <DatePicker
-                value={parseISO(date)}
-                onChange={(d) =>
-                  setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
-                }
+                value={dayjs(date).format('YYYY-MM-DD 00:00')}
+                onChange={(d) => {
+                  setDate(
+                    dayjs(String(d?.toDateString())).format('YYYY/MM/DD'),
+                  );
+                }}
                 format="yyyy/MM/dd"
                 showTodayButton
                 allowKeyboardControl
