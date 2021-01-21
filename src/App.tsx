@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import moment from 'moment-timezone';
 import withAuthorization from './utils/withAuthorization';
 
 import IndexPage from './pages/index';
@@ -14,8 +13,6 @@ import ErrorPage from './pages/_error';
 import i18n from './i18n';
 
 const App: React.FC = () => {
-  // timezone setting
-  moment.tz.setDefault('Asia/Taipei');
   i18n.changeLanguage(sessionStorage.getItem('Language') || 'zh-TW');
   return (
     <Switch>
