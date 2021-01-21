@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import classnames from 'classnames';
 import List from './list';
 import Percentage from './percentage';
@@ -50,7 +51,7 @@ interface IStatus {
   achievement: number;
 }
 
-interface IDB {
+interface IDR {
   acceptor: string;
   blockchain_url: string;
   end_time: string;
@@ -65,7 +66,7 @@ interface IDB {
 
 const Status: React.FC = () => {
   const [listInfo, setListInfo] = useState<IListInfo[]>([]);
-  const [listInfoDB, setListInfoDB] = useState<IDB[]>([]);
+  const [DRResult, setDRResult] = useState<IDR[]>([]);
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
@@ -100,16 +101,8 @@ const Status: React.FC = () => {
   };
 
   const fetchDR = async () => {
-    const nowSecond = Date.now() + 172800000;
-    const endTime = new Date(nowSecond);
-    let date = '';
-    let month = '';
-    if (endTime.getDate() < 10) date = `0${endTime.getDate().toString()}`;
-    else date = endTime.getDate().toString();
-    if (endTime.getMonth() + 1 < 10)
-      month = `0${(endTime.getMonth() + 1).toString()}`;
-    else month = (endTime.getMonth() + 1).toString();
-    const current = `${endTime.getFullYear()}-${month}-${date}`;
+    const day = dayjs().add(2, 'day');
+    const endTime = day.format('YYYY-MM-DD');
     // get bearer token
     const user = JSON.parse(
       localStorage.getItem('BEMS_USER') ||
@@ -118,7 +111,7 @@ const Status: React.FC = () => {
     );
     // GET to User Info API
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${current}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${endTime}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -131,7 +124,7 @@ const Status: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const data = await response.json();
-      setListInfoDB(data);
+      setDRResult(data);
     }
   };
 
@@ -171,31 +164,24 @@ const Status: React.FC = () => {
 
   // add list data
   useEffect(() => {
-    if (listInfoDB.length > 0 && isAggregator != null) {
+    if (DRResult.length > 0 && isAggregator != null) {
       const listDBData = [];
-      for (let i = 0; i < listInfoDB.length; i += 1) {
-        const APItime = listInfoDB[i].start_time.split(' ');
-        const time = APItime[1].split(':');
-        let newTime = parseInt(time[0], 10);
-        let inputTime = '';
-        if (newTime !== 24) newTime += 1;
-        else newTime = 0;
-        if (newTime >= 10) inputTime = newTime.toString();
-        else inputTime = `0${newTime.toString()}`;
+      for (let i = 0; i < DRResult.length; i += 1) {
+        const APItime = dayjs(DRResult[i].start_time);
         let name = '';
         name =
-          isAggregator === true
-            ? listInfoDB[i].executor
-            : listInfoDB[i].acceptor;
-        let { rate } = listInfoDB[i];
+          isAggregator === true ? DRResult[i].executor : DRResult[i].acceptor;
+        let { rate } = DRResult[i];
         if (rate == null) rate = 0;
         const DBdata: IListInfo = {
           bid_type: 'dr',
-          status: listInfoDB[i].status,
-          date: APItime[0],
-          time: `${time[0]}:${time[1]}-${inputTime}:00`,
+          status: DRResult[i].status,
+          date: APItime.format('YYYY-MM-DD'),
+          time: `${APItime.format('HH:mm')}-${APItime.add(1, 'hour').format(
+            'HH:mm',
+          )}`,
           bids: {
-            price: Math.round(listInfoDB[i].price * listInfoDB[i].volume),
+            price: Math.round(DRResult[i].price * DRResult[i].volume),
             value: 0,
           },
           counterpart: {
@@ -204,10 +190,10 @@ const Status: React.FC = () => {
           },
           wins: {
             price: 0,
-            value: listInfoDB[i].volume,
+            value: DRResult[i].volume,
           },
-          transaction_hash: listInfoDB[i].blockchain_url,
-          id: listInfoDB[i].uuid,
+          transaction_hash: DRResult[i].blockchain_url,
+          id: DRResult[i].uuid,
           upload: '',
           achievement: rate,
         };
@@ -215,22 +201,20 @@ const Status: React.FC = () => {
       }
       setListInfo([...listInfo, ...listDBData]);
     }
-  }, [listInfoDB, isAggregator]);
+  }, [DRResult, isAggregator]);
 
   // add train data
   useEffect(() => {
-    if (listInfoDB.length > 0 && isAggregator != null) {
+    if (DRResult.length > 0 && isAggregator != null) {
       const listDBData = [];
-      for (let i = 0; i < listInfoDB.length; i += 1) {
+      for (let i = 0; i < DRResult.length; i += 1) {
         let name = '';
         name =
-          isAggregator === true
-            ? listInfoDB[i].executor
-            : listInfoDB[i].acceptor;
+          isAggregator === true ? DRResult[i].executor : DRResult[i].acceptor;
         const DBdata: ITrainInfo = {
-          status: listInfoDB[i].status,
+          status: DRResult[i].status,
           bids: {
-            price: Math.round(listInfoDB[i].price * listInfoDB[i].volume),
+            price: Math.round(DRResult[i].price * DRResult[i].volume),
             value: 0,
           },
           counterpart: {
@@ -239,33 +223,33 @@ const Status: React.FC = () => {
           },
           wins: {
             price: 0,
-            value: listInfoDB[i].volume,
+            value: DRResult[i].volume,
           },
-          id: listInfoDB[i].uuid,
+          id: DRResult[i].uuid,
           upload: '',
         };
         listDBData.push(DBdata);
       }
       setTrainInfo([...trainInfo, ...listDBData]);
     }
-  }, [listInfoDB, isAggregator]);
+  }, [DRResult, isAggregator]);
 
   // add status data
   useEffect(() => {
-    if (listInfoDB.length > 0) {
+    if (DRResult.length > 0) {
       const listDBData = [];
-      for (let i = 0; i < listInfoDB.length; i += 1) {
-        let { rate } = listInfoDB[i];
+      for (let i = 0; i < DRResult.length; i += 1) {
+        let { rate } = DRResult[i];
         if (rate == null) rate = 0;
         const DBdata: IStatus = {
-          status: listInfoDB[i].status,
+          status: DRResult[i].status,
           achievement: rate,
         };
         listDBData.push(DBdata);
       }
       setStatusInfo([...statusInfo, ...listDBData]);
     }
-  }, [statusInfo]);
+  }, [DRResult]);
 
   return (
     <div className={classnames('status')}>
