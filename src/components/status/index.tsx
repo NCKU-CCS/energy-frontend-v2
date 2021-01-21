@@ -69,11 +69,6 @@ const Status: React.FC = () => {
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
-  const [listStopUseEffect, setListStopUseEffect] = useState<boolean>(false);
-  const [trainStopUseEffect, setTrainStopUseEffect] = useState<boolean>(false);
-  const [percentStopUseEffect, setPercentStopUseEffect] = useState<boolean>(
-    false,
-  );
   const [isAggregator, setIsAggregator] = useState<boolean>();
 
   const fetchMatchResult = async () => {
@@ -137,9 +132,6 @@ const Status: React.FC = () => {
       // fetch success
       const data = await response.json();
       setListInfoDB(data);
-      setListStopUseEffect(true);
-      setTrainStopUseEffect(true);
-      setPercentStopUseEffect(true);
     }
   };
 
@@ -179,8 +171,7 @@ const Status: React.FC = () => {
 
   // add list data
   useEffect(() => {
-    if (listInfoDB.length > 0 && listStopUseEffect && isAggregator != null) {
-      setListStopUseEffect(false);
+    if (listInfoDB.length > 0 && isAggregator != null) {
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         const APItime = listInfoDB[i].start_time.split(' ');
@@ -224,12 +215,11 @@ const Status: React.FC = () => {
       }
       setListInfo([...listInfo, ...listDBData]);
     }
-  }, [listInfo, listInfoDB, listStopUseEffect, isAggregator]);
+  }, [listInfoDB, isAggregator]);
 
   // add train data
   useEffect(() => {
-    if (listInfoDB.length > 0 && trainStopUseEffect && isAggregator != null) {
-      setTrainStopUseEffect(false);
+    if (listInfoDB.length > 0 && isAggregator != null) {
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         let name = '';
@@ -258,12 +248,11 @@ const Status: React.FC = () => {
       }
       setTrainInfo([...trainInfo, ...listDBData]);
     }
-  }, [trainInfo, listInfoDB, trainStopUseEffect, isAggregator]);
+  }, [listInfoDB, isAggregator]);
 
   // add status data
   useEffect(() => {
-    if (listInfoDB.length > 0 && percentStopUseEffect) {
-      setPercentStopUseEffect(false);
+    if (listInfoDB.length > 0) {
       const listDBData = [];
       for (let i = 0; i < listInfoDB.length; i += 1) {
         let { rate } = listInfoDB[i];
@@ -276,7 +265,7 @@ const Status: React.FC = () => {
       }
       setStatusInfo([...statusInfo, ...listDBData]);
     }
-  }, [statusInfo, statusInfo, percentStopUseEffect]);
+  }, [statusInfo]);
 
   return (
     <div className={classnames('status')}>
