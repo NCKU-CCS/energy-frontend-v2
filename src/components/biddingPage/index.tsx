@@ -4,7 +4,7 @@ import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
 
-const BiddingPageContainer: React.FC = () => {
+const GreenPageContainer: React.FC = () => {
   // get user from local storage or session storage
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
@@ -35,4 +35,4 @@ const BiddingPageContainer: React.FC = () => {
   );
 };
 
-export default BiddingPageContainer;
+export default GreenPageContainer;

@@ -13,7 +13,7 @@ interface IProps {
   userType: string;
 }
 
-const BiddingStatus: React.FC<IProps> = ({ userType }) => {
+const Status: React.FC<IProps> = ({ userType }) => {
   // api data
   const [apiData, setApiData] = useState<IApiData>({
     average_price: 0,
@@ -73,4 +73,4 @@ const BiddingStatus: React.FC<IProps> = ({ userType }) => {
   );
 };
 
-export default BiddingStatus;
+export default Status;
