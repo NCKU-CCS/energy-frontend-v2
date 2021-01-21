@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Layout from '../layouts/generalLayout';
 import Container from '../components/greenPage';
 
-const BiddingPage: React.FC = () => {
+const GreenPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <Layout title={t('greenpage.pageTitle')}>
@@ -12,4 +12,4 @@ const BiddingPage: React.FC = () => {
   );
 };
 
-export default BiddingPage;
+export default GreenPage;
