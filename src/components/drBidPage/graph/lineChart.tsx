@@ -347,8 +347,8 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
   useEffect(() => {}, [maxVolume]);
 
   return (
-    <div className={classNames('bidding-graph-linechart-container')}>
-      <svg className={classNames('bidding-graph-linechart-svg')} ref={svgRef} />
+    <div className={classNames('drbid-graph-linechart-container')}>
+      <svg className={classNames('drbid-graph-linechart-svg')} ref={svgRef} />
     </div>
   );
 };

@@ -26,9 +26,9 @@ const BiddingPageContainer: React.FC = () => {
   );
 
   return (
-    <div className={classNames('bidding-container')}>
-      <div className={classNames('bidding-a1')}>
-        <div className={classNames('bidding-dr-date')}>
+    <div className={classNames('drbid-container')}>
+      <div className={classNames('drbid-a1')}>
+        <div className={classNames('drbid-dr-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
               value={date}
@@ -42,15 +42,15 @@ const BiddingPageContainer: React.FC = () => {
           </MuiPickersUtilsProvider>
         </div>
       </div>
-      <div className={classNames('bidding-a2')}>
-        <div className={classNames('bidding-a2-b1')}>
+      <div className={classNames('drbid-a2')}>
+        <div className={classNames('drbid-a2-b1')}>
           <BiddingStatus userType={userType} />
         </div>
-        <div className={classNames('bidding-a2-b2')}>
+        <div className={classNames('drbid-a2-b2')}>
           <Graph />
         </div>
       </div>
-      <div className={classNames('bidding-a3')}>
+      <div className={classNames('drbid-a3')}>
         <Submit />
       </div>
     </div>

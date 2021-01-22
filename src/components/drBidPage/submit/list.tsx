@@ -53,29 +53,29 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
   });
 
   return (
-    <div className={classNames('bidding-submit-list-container-in')}>
-      <div className={classNames('bidding-submit-list-title-container')}>
-        <div className={classNames('bidding-submit-list-title-date')}>
+    <div className={classNames('drbid-submit-list-container-in')}>
+      <div className={classNames('drbid-submit-list-title-container')}>
+        <div className={classNames('drbid-submit-list-title-date')}>
           {t('drbidpage.date')}
         </div>
-        <div className={classNames('bidding-submit-list-title-interval')}>
+        <div className={classNames('drbid-submit-list-title-interval')}>
           {t('drbidpage.time')}
         </div>
-        <div className={classNames('bidding-submit-list-title-volume')}>
+        <div className={classNames('drbid-submit-list-title-volume')}>
           {t('drbidpage.volume')}
         </div>
-        <div className={classNames('bidding-submit-list-title-price')}>
+        <div className={classNames('drbid-submit-list-title-price')}>
           {t('drbidpage.price')}
         </div>
-        <div className={classNames('bidding-submit-list-title-totalprice')}>
+        <div className={classNames('drbid-submit-list-title-totalprice')}>
           {t('drbidpage.total')}
         </div>
-        <div className={classNames('bidding-submit-list-title-button')}>
+        <div className={classNames('drbid-submit-list-title-button')}>
           <AddBidBtn type={type} />
           {/* for button */}
         </div>
       </div>
-      <div className={classNames('bidding-submit-list-listitem-container')}>
+      <div className={classNames('drbid-submit-list-listitem-container')}>
         {createList}
       </div>
     </div>

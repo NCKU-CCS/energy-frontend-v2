@@ -190,29 +190,29 @@ const ListItem: React.FC<IProps> = ({
   }, [type]);
 
   return !edit ? (
-    <div className={classNames('bidding-submit-listitem-container--show')}>
-      <div className={classNames('bidding-submit-listitem-date--show')}>
+    <div className={classNames('drbid-submit-listitem-container--show')}>
+      <div className={classNames('drbid-submit-listitem-date--show')}>
         {insertSpaces(date)}
       </div>
-      <div className={classNames('bidding-submit-listitem-interval--show')}>
+      <div className={classNames('drbid-submit-listitem-interval--show')}>
         {interval}
       </div>
-      <div className={classNames('bidding-submit-listitem-volume--show')}>
+      <div className={classNames('drbid-submit-listitem-volume--show')}>
         {volume}&thinsp;kWh
       </div>
-      <div className={classNames('bidding-submit-listitem-price--show')}>
+      <div className={classNames('drbid-submit-listitem-price--show')}>
         $&thinsp;{price}&thinsp;/&thinsp;kWh
       </div>
-      <div className={classNames('bidding-submit-listitem-total--show')}>
+      <div className={classNames('drbid-submit-listitem-total--show')}>
         $&thinsp;{totalPrice.toFixed(1)}
       </div>
       <div
-        className={classNames('bidding-submit-listitem-button-container--show')}
+        className={classNames('drbid-submit-listitem-button-container--show')}
       >
         <button
           type="button"
           title="edit"
-          className={classNames('bidding-submit-listitem-edit--show')}
+          className={classNames('drbid-submit-listitem-edit--show')}
           onClick={() => handleClickEdit()}
           onMouseOver={() => setPencilImg('pencil-orange.png')}
           onMouseOut={() => setPencilImg('pencil-gray.png')}
@@ -220,7 +220,7 @@ const ListItem: React.FC<IProps> = ({
           onBlur={() => 0}
         >
           <img
-            className={classNames('bidding-submit-listitem-edit-img--show')}
+            className={classNames('drbid-submit-listitem-edit-img--show')}
             alt="pencil"
             src={`${process.env.PUBLIC_URL}/biddingPage/${pencilImg}`}
           />
@@ -228,7 +228,7 @@ const ListItem: React.FC<IProps> = ({
         <button
           type="button"
           title="remove"
-          className={classNames('bidding-submit-listitem-remove--show')}
+          className={classNames('drbid-submit-listitem-remove--show')}
           onClick={() => handleClickRemove()}
           onMouseOver={() => setTrashImg('trash-red.png')}
           onMouseOut={() => setTrashImg('trash-gray.png')}
@@ -236,16 +236,14 @@ const ListItem: React.FC<IProps> = ({
           onBlur={() => 0}
         >
           <img
-            className={classNames('bidding-submit-listitem-remove-img--show')}
+            className={classNames('drbid-submit-listitem-remove-img--show')}
             alt="trash"
             src={`${process.env.PUBLIC_URL}/biddingPage/${trashImg}`}
           />
         </button>
       </div>
       <div
-        className={classNames(
-          'bidding-submit-listitem-view-container-out--320',
-        )}
+        className={classNames('drbid-submit-listitem-view-container-out--320')}
       >
         <InfoBox
           id={id}
@@ -260,8 +258,8 @@ const ListItem: React.FC<IProps> = ({
       </div>
     </div>
   ) : (
-    <div className={classNames('bidding-submit-listitem-container--edit')}>
-      <div className={classNames('bidding-submit-listitem-date--edit')}>
+    <div className={classNames('drbid-submit-listitem-container--edit')}>
+      <div className={classNames('drbid-submit-listitem-date--edit')}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DatePicker
             value={newDate}
@@ -277,7 +275,7 @@ const ListItem: React.FC<IProps> = ({
         </MuiPickersUtilsProvider>
       </div>
       <select
-        className={classNames('bidding-submit-listitem-interval--edit')}
+        className={classNames('drbid-submit-listitem-interval--edit')}
         defaultValue={interval}
         onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
       >
@@ -288,7 +286,7 @@ const ListItem: React.FC<IProps> = ({
         type="number"
         min="0"
         step="0.1"
-        className={classNames('bidding-submit-listitem-volume--edit')}
+        className={classNames('drbid-submit-listitem-volume--edit')}
         defaultValue={volume}
         onChange={(e) => setNewVolume(parseFloat(e.target.value))}
       />
@@ -296,24 +294,24 @@ const ListItem: React.FC<IProps> = ({
         type="number"
         min="0"
         step="0.1"
-        className={classNames('bidding-submit-listitem-price--edit')}
+        className={classNames('drbid-submit-listitem-price--edit')}
         defaultValue={price}
         onChange={(e) => setNewPrice(parseFloat(e.target.value))}
       />
       <input
         type="number"
         min="0"
-        className={classNames('bidding-submit-listitem-total--edit')}
+        className={classNames('drbid-submit-listitem-total--edit')}
         value={newTotalPrice}
         disabled
       />
       <div
-        className={classNames('bidding-submit-listitem-button-container--edit')}
+        className={classNames('drbid-submit-listitem-button-container--edit')}
       >
         <button
           type="button"
           title="submit"
-          className={classNames('bidding-submit-listitem-submit--edit')}
+          className={classNames('drbid-submit-listitem-submit--edit')}
           onClick={() => handleClickSubmit()}
           onMouseOver={() => setCheckImg('check-green.png')}
           onMouseOut={() => setCheckImg('check-gray.png')}
@@ -322,14 +320,14 @@ const ListItem: React.FC<IProps> = ({
         >
           <img
             alt="submit"
-            className={classNames('bidding-submit-listitem-submit-img--edit')}
+            className={classNames('drbid-submit-listitem-submit-img--edit')}
             src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}`}
           />
         </button>
         <button
           type="button"
           title="cancel"
-          className={classNames('bidding-submit-listitem-cancel--edit')}
+          className={classNames('drbid-submit-listitem-cancel--edit')}
           onClick={() => handleClickCancel()}
           onMouseOver={() => setCancelImg('cancel-red.png')}
           onMouseOut={() => setCancelImg('cancel-gray.png')}
@@ -338,7 +336,7 @@ const ListItem: React.FC<IProps> = ({
         >
           <img
             alt="cancel"
-            className={classNames('bidding-submit-listitem-cancel-img--edit')}
+            className={classNames('drbid-submit-listitem-cancel-img--edit')}
             src={`${process.env.PUBLIC_URL}/biddingPage/${cancelImg}`}
           />
         </button>

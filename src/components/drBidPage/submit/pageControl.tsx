@@ -82,9 +82,9 @@ const PageControl: React.FC<IProps> = ({
   }, [type, perPage]);
 
   return (
-    <div className={classNames('bidding-submit-pagecontrol-container-in')}>
+    <div className={classNames('drbid-submit-pagecontrol-container-in')}>
       <select
-        className={classNames('bidding-submit-pagecontrol-select')}
+        className={classNames('drbid-submit-pagecontrol-select')}
         onChange={(e) => setPerPage(parseInt(e.target.value, 10))}
       >
         <option value="5">5 rows</option>
@@ -93,8 +93,8 @@ const PageControl: React.FC<IProps> = ({
       </select>
       <button
         className={classNames(
-          'bidding-submit-pagecontrol-first',
-          'bidding-submit-pagecontrol-btn',
+          'drbid-submit-pagecontrol-first',
+          'drbid-submit-pagecontrol-btn',
         )}
         type="button"
         title="First Page"
@@ -105,8 +105,8 @@ const PageControl: React.FC<IProps> = ({
       </button>
       <button
         className={classNames(
-          'bidding-submit-pagecontrol-prev',
-          'bidding-submit-pagecontrol-btn',
+          'drbid-submit-pagecontrol-prev',
+          'drbid-submit-pagecontrol-btn',
         )}
         type="button"
         title="Previous Page"
@@ -115,13 +115,13 @@ const PageControl: React.FC<IProps> = ({
       >
         &#60;
       </button>
-      <div className={classNames('bidding-submit-pagecontrol-text')}>
+      <div className={classNames('drbid-submit-pagecontrol-text')}>
         {page} / {lastPage()}
       </div>
       <button
         className={classNames(
-          'bidding-submit-pagecontrol-next',
-          'bidding-submit-pagecontrol-btn',
+          'drbid-submit-pagecontrol-next',
+          'drbid-submit-pagecontrol-btn',
         )}
         type="button"
         title="Next Page"
@@ -132,8 +132,8 @@ const PageControl: React.FC<IProps> = ({
       </button>
       <button
         className={classNames(
-          'bidding-submit-pagecontrol-last',
-          'bidding-submit-pagecontrol-btn',
+          'drbid-submit-pagecontrol-last',
+          'drbid-submit-pagecontrol-btn',
         )}
         type="button"
         title="Last Page"

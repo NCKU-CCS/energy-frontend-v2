@@ -79,17 +79,17 @@ const Submit: React.FC = () => {
   }, [perPage, page, type]);
 
   return (
-    <div className={classNames('bidding-submit-container-in')}>
-      <div className={classNames('bidding-submit-modebutton-container-out')}>
+    <div className={classNames('drbid-submit-container-in')}>
+      <div className={classNames('drbid-submit-modebutton-container-out')}>
         <TypeButton setType={setType} />
       </div>
-      <div className={classNames('bidding-submit-list-container-out')}>
+      <div className={classNames('drbid-submit-list-container-out')}>
         <List apiData={apiData} type={type} />
       </div>
-      <div className={classNames('bidding-submit-addbid-container-out')}>
+      <div className={classNames('drbid-submit-addbid-container-out')}>
         <AddBid type={type} />
       </div>
-      <div className={classNames('bidding-submit-pagecontrol-container-out')}>
+      <div className={classNames('drbid-submit-pagecontrol-container-out')}>
         <PageControl
           type={type}
           totalCount={apiData.totalCount}

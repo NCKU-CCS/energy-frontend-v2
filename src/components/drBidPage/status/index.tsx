@@ -57,11 +57,11 @@ const BiddingStatus: React.FC<IProps> = ({ userType }) => {
   }, []);
 
   return (
-    <div className={classNames('bidding-status-container')}>
-      <div className={classNames('bidding-status-participants-container-out')}>
+    <div className={classNames('drbid-status-container')}>
+      <div className={classNames('drbid-status-participants-container-out')}>
         {/* <Participants mode={mode} participants={apiData.participants} /> */}
       </div>
-      <div className={classNames('bidding-status-average-container-out')}>
+      <div className={classNames('drbid-status-average-container-out')}>
         <Average
           mode={userType}
           averagePrice={apiData.average_price}

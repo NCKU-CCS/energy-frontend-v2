@@ -106,7 +106,7 @@ const Graph: React.FC = () => {
   }, []);
 
   return (
-    <div className={classNames('bidding-graph-container')}>
+    <div className={classNames('drbid-graph-container')}>
       <LineChart
         dataBuy={apiDataBuy.data.sort((a, b) => {
           if (a.volume > b.volume) return 1;

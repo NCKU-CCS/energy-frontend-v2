@@ -1,4 +1,4 @@
-.bidding-submit-pagecontrol-container-in {
+.drbid-submit-pagecontrol-container-in {
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,7 +10,7 @@
   border-bottom-right-radius: 5px;
 }
 
-.bidding-submit-pagecontrol-select {
+.drbid-submit-pagecontrol-select {
   cursor: pointer;
   margin-right: 2.5%;
   margin-left: 2.5%;
@@ -21,7 +21,7 @@
   border-radius: 5px;
 }
 
-.bidding-submit-pagecontrol-btn {
+.drbid-submit-pagecontrol-btn {
   cursor: pointer;
   margin-right: 2.5%;
   margin-left: 2.5%;
@@ -32,15 +32,15 @@
   background-color: #f1f2f1;
 }
 
-.bidding-submit-pagecontrol-btn:active {
+.drbid-submit-pagecontrol-btn:active {
   background-color: #e8e8e8;
 }
 
-.bidding-submit-pagecontrol-btn:disabled {
+.drbid-submit-pagecontrol-btn:disabled {
   color: #d1d1d1;
   cursor: default;
 }
 
-.bidding-submit-pagecontrol-text {
+.drbid-submit-pagecontrol-text {
   font-size: 1rem;
 }
