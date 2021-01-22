@@ -4,15 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 interface IProps {
   userType: string;
-  averagePrice: number;
-  averageVolume: number;
+  totalPrice: number;
+  totalVolume: number;
 }
 
-const Average: React.FC<IProps> = ({
-  userType,
-  averagePrice,
-  averageVolume,
-}) => {
+const Average: React.FC<IProps> = ({ userType, totalPrice, totalVolume }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -28,7 +24,7 @@ const Average: React.FC<IProps> = ({
       <div className={classNames('drbid-status-total-text-container')}>
         <div className={classNames('drbid-status-total-text-price-container')}>
           <div className={classNames('drbid-status-total-text-price-value')}>
-            ${averagePrice.toFixed(0)}
+            ${totalPrice.toFixed(0)}
           </div>
           <div className={classNames('drbid-status-total-text-price-title')}>
             {t('drbidpage.totalPrice')}
@@ -36,7 +32,7 @@ const Average: React.FC<IProps> = ({
         </div>
         <div className={classNames('drbid-status-total-text-volume-container')}>
           <div className={classNames('drbid-status-total-text-volume-value')}>
-            {averageVolume.toFixed(0)}kWh
+            {totalVolume.toFixed(0)}kWh
           </div>
           <div className={classNames('drbid-status-total-text-volume-title')}>
             {t('drbidpage.totalVolume')}

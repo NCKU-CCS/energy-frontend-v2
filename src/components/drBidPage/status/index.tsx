@@ -1,71 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import Total from './total';
 
-interface IApiData {
-  average_price: number;
-  average_volume: number;
-  participants: number;
-}
-
 interface IProps {
   userType: string;
+  totalPrice: number;
+  totalVolume: number;
 }
 
-const BiddingStatus: React.FC<IProps> = ({ userType }) => {
-  // api data
-  const [apiData, setApiData] = useState<IApiData>({
-    average_price: 0,
-    average_volume: 0,
-    participants: 0,
-  });
-
-  // fetch api data
-  const fetchApiData = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // GET to User Info API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidstatus`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-      },
-    );
-    if (response.status === 200) {
-      // fetch success
-      const tmp = await response.json();
-      setApiData(tmp);
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('failed');
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      fetchApiData();
-    })();
-  }, []);
-
+const BiddingStatus: React.FC<IProps> = ({
+  userType,
+  totalPrice,
+  totalVolume,
+}) => {
   return (
     <div className={classNames('drbid-status-container')}>
-      <div className={classNames('drbid-status-participants-container-out')}>
-        {/* <Participants mode={mode} participants={apiData.participants} /> */}
-      </div>
       <div className={classNames('drbid-status-total-container-out')}>
         <Total
           userType={userType}
-          averagePrice={apiData.average_price}
-          averageVolume={apiData.average_volume}
+          totalPrice={totalPrice}
+          totalVolume={totalVolume}
         />
       </div>
     </div>

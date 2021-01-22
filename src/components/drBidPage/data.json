@@ -7,7 +7,7 @@
         "mode": 2,
         "total_volume": 10,
         "price": 3,
-        "total_price": 0,
+        "total_price": 30,
         "is_submitted": false
       },
       {
@@ -15,7 +15,7 @@
         "mode": 1,
         "total_volume": 12,
         "price": 5,
-        "total_price": 0,
+        "total_price": 60,
         "is_submitted": true
       },
       {
@@ -23,7 +23,7 @@
         "mode": 1,
         "total_volume": 3,
         "price": 13,
-        "total_price": 0,
+        "total_price": 39,
         "is_submitted": false
       },
       {
@@ -31,7 +31,7 @@
         "mode": 5,
         "total_volume": 6,
         "price": 6,
-        "total_price": 0,
+        "total_price": 36,
         "is_submitted": false
       },
       {
@@ -39,7 +39,7 @@
         "mode": 3,
         "total_volume": 12,
         "price": 1,
-        "total_price": 0,
+        "total_price": 12,
         "is_submitted": true
       },
       {
@@ -47,7 +47,7 @@
         "mode": 4,
         "total_volume": 9,
         "price": 8,
-        "total_price": 0,
+        "total_price": 72,
         "is_submitted": false
       },
       {
@@ -55,7 +55,7 @@
         "mode": 3,
         "total_volume": 8,
         "price": 2,
-        "total_price": 0,
+        "total_price": 16,
         "is_submitted": false
       },
       {
@@ -63,7 +63,7 @@
         "mode": 5,
         "total_volume": 4,
         "price": 9,
-        "total_price": 0,
+        "total_price": 36,
         "is_submitted": false
       },
       {
@@ -71,7 +71,7 @@
         "mode": 2,
         "total_volume": 7,
         "price": 6,
-        "total_price": 0,
+        "total_price": 42,
         "is_submitted": true
       },
       {
@@ -79,7 +79,7 @@
         "mode": 1,
         "total_volume": 10,
         "price": 4,
-        "total_price": 0,
+        "total_price": 40,
         "is_submitted": false
       }
     ]
@@ -92,7 +92,7 @@
         "mode": 3,
         "total_volume": 14,
         "price": 4,
-        "total_price": 0,
+        "total_price": 56,
         "is_submitted": true
       },
       {
@@ -100,7 +100,7 @@
         "mode": 3,
         "total_volume": 6,
         "price": 2,
-        "total_price": 0,
+        "total_price": 12,
         "is_submitted": false
       },
       {
@@ -108,7 +108,7 @@
         "mode": 4,
         "total_volume": 9,
         "price": 7,
-        "total_price": 0,
+        "total_price": 63,
         "is_submitted": false
       },
       {
@@ -116,7 +116,7 @@
         "mode": 5,
         "total_volume": 7,
         "price": 10,
-        "total_price": 0,
+        "total_price": 70,
         "is_submitted": false
       },
       {
@@ -124,7 +124,7 @@
         "mode": 2,
         "total_volume": 9,
         "price": 6,
-        "total_price": 0,
+        "total_price": 54,
         "is_submitted": true
       },
       {
@@ -132,7 +132,7 @@
         "mode": 2,
         "total_volume": 17,
         "price": 2,
-        "total_price": 0,
+        "total_price": 34,
         "is_submitted": false
       },
       {
@@ -140,7 +140,7 @@
         "mode": 2,
         "total_volume": 6,
         "price": 9,
-        "total_price": 0,
+        "total_price": 54,
         "is_submitted": true
       },
       {
@@ -148,7 +148,7 @@
         "mode": 1,
         "total_volume": 5,
         "price": 5,
-        "total_price": 0,
+        "total_price": 25,
         "is_submitted": false
       },
       {
@@ -156,7 +156,7 @@
         "mode": 3,
         "total_volume": 15,
         "price": 6,
-        "total_price": 0,
+        "total_price": 90,
         "is_submitted": false
       },
       {
@@ -164,7 +164,7 @@
         "mode": 4,
         "total_volume": 2,
         "price": 8,
-        "total_price": 0,
+        "total_price": 16,
         "is_submitted": true
       }
     ]
@@ -177,7 +177,7 @@
         "mode": 3,
         "total_volume": 11,
         "price": 4,
-        "total_price": 0,
+        "total_price": 44,
         "is_submitted": false
       },
       {
@@ -185,7 +185,7 @@
         "mode": 3,
         "total_volume": 8,
         "price": 9,
-        "total_price": 0,
+        "total_price": 72,
         "is_submitted": false
       },
       {
@@ -193,7 +193,7 @@
         "mode": 1,
         "total_volume": 7,
         "price": 11,
-        "total_price": 0,
+        "total_price": 77,
         "is_submitted": true
       },
       {
@@ -201,7 +201,7 @@
         "mode": 2,
         "total_volume": 12,
         "price": 4,
-        "total_price": 0,
+        "total_price": 48,
         "is_submitted": false
       },
       {
@@ -209,7 +209,7 @@
         "mode": 1,
         "total_volume": 6,
         "price": 5,
-        "total_price": 0,
+        "total_price": 30,
         "is_submitted": false
       },
       {
@@ -217,7 +217,7 @@
         "mode": 3,
         "total_volume": 19,
         "price": 2,
-        "total_price": 0,
+        "total_price": 38,
         "is_submitted": false
       },
       {
@@ -225,7 +225,7 @@
         "mode": 4,
         "total_volume": 3,
         "price": 11,
-        "total_price": 0,
+        "total_price": 33,
         "is_submitted": false
       },
       {
@@ -233,7 +233,7 @@
         "mode": 5,
         "total_volume": 2,
         "price": 15,
-        "total_price": 0,
+        "total_price": 60,
         "is_submitted": true
       },
       {
@@ -241,7 +241,7 @@
         "mode": 4,
         "total_volume": 16,
         "price": 5,
-        "total_price": 0,
+        "total_price": 80,
         "is_submitted": false
       },
       {
@@ -249,7 +249,7 @@
         "mode": 5,
         "total_volume": 3,
         "price": 2,
-        "total_price": 0,
+        "total_price": 6,
         "is_submitted": true
       }
     ]
@@ -262,7 +262,7 @@
         "mode": 3,
         "total_volume": 2,
         "price": 15,
-        "total_price": 0,
+        "total_price": 30,
         "is_submitted": true
       },
       {
@@ -270,7 +270,7 @@
         "mode": 4,
         "total_volume": 9,
         "price": 16,
-        "total_price": 0,
+        "total_price": 144,
         "is_submitted": false
       },
       {
@@ -278,7 +278,7 @@
         "mode": 3,
         "total_volume": 7,
         "price": 5,
-        "total_price": 0,
+        "total_price": 35,
         "is_submitted": false
       },
       {
@@ -286,7 +286,7 @@
         "mode": 1,
         "total_volume": 9,
         "price": 2,
-        "total_price": 0,
+        "total_price": 18,
         "is_submitted": false
       },
       {
@@ -294,7 +294,7 @@
         "mode": 1,
         "total_volume": 3,
         "price": 14,
-        "total_price": 0,
+        "total_price": 42,
         "is_submitted": false
       },
       {
@@ -302,7 +302,7 @@
         "mode": 5,
         "total_volume": 7,
         "price": 4,
-        "total_price": 0,
+        "total_price": 28,
         "is_submitted": true
       },
       {
@@ -310,7 +310,7 @@
         "mode": 5,
         "total_volume": 2,
         "price": 3,
-        "total_price": 0,
+        "total_price": 6,
         "is_submitted": false
       },
       {
@@ -318,7 +318,7 @@
         "mode": 4,
         "total_volume": 5,
         "price": 2,
-        "total_price": 0,
+        "total_price": 10,
         "is_submitted": false
       },
       {
@@ -326,7 +326,7 @@
         "mode": 2,
         "total_volume": 4,
         "price": 4,
-        "total_price": 0,
+        "total_price": 16,
         "is_submitted": true
       },
       {
@@ -334,7 +334,7 @@
         "mode": 3,
         "total_volume": 13,
         "price": 5,
-        "total_price": 0,
+        "total_price": 65,
         "is_submitted": false
       }
     ]
@@ -347,7 +347,7 @@
         "mode": 2,
         "total_volume": 2,
         "price": 13,
-        "total_price": 0,
+        "total_price": 26,
         "is_submitted": false
       },
       {
@@ -355,7 +355,7 @@
         "mode": 2,
         "total_volume": 3,
         "price": 4,
-        "total_price": 0,
+        "total_price": 12,
         "is_submitted": false
       },
       {
@@ -363,7 +363,7 @@
         "mode": 1,
         "total_volume": 5,
         "price": 11,
-        "total_price": 0,
+        "total_price": 55,
         "is_submitted": true
       },
       {
@@ -371,7 +371,7 @@
         "mode": 1,
         "total_volume": 8,
         "price": 7,
-        "total_price": 0,
+        "total_price": 56,
         "is_submitted": false
       },
       {
@@ -379,7 +379,7 @@
         "mode": 4,
         "total_volume": 9,
         "price": 3,
-        "total_price": 0,
+        "total_price": 27,
         "is_submitted": false
       },
       {
@@ -387,7 +387,7 @@
         "mode": 3,
         "total_volume": 2,
         "price": 6,
-        "total_price": 0,
+        "total_price": 12,
         "is_submitted": false
       },
       {
@@ -395,7 +395,7 @@
         "mode": 2,
         "total_volume": 9,
         "price": 6,
-        "total_price": 0,
+        "total_price": 54,
         "is_submitted": false
       },
       {
@@ -403,7 +403,7 @@
         "mode": 5,
         "total_volume": 7,
         "price": 7,
-        "total_price": 0,
+        "total_price": 49,
         "is_submitted": false
       },
       {
@@ -411,7 +411,7 @@
         "mode": 4,
         "total_volume": 6,
         "price": 4,
-        "total_price": 0,
+        "total_price": 24,
         "is_submitted": true
       },
       {
@@ -419,7 +419,7 @@
         "mode": 4,
         "total_volume": 15,
         "price": 2,
-        "total_price": 0,
+        "total_price": 30,
         "is_submitted": false
       }
     ]
@@ -432,7 +432,7 @@
         "mode": 5,
         "total_volume": 14,
         "price": 5,
-        "total_price": 0,
+        "total_price": 70,
         "is_submitted": true
       },
       {
@@ -440,7 +440,7 @@
         "mode": 5,
         "total_volume": 11,
         "price": 2,
-        "total_price": 0,
+        "total_price": 22,
         "is_submitted": false
       },
       {
@@ -448,7 +448,7 @@
         "mode": 3,
         "total_volume": 12,
         "price": 5,
-        "total_price": 0,
+        "total_price": 60,
         "is_submitted": false
       },
       {
@@ -456,7 +456,7 @@
         "mode": 1,
         "total_volume": 15,
         "price": 7,
-        "total_price": 0,
+        "total_price": 105,
         "is_submitted": true
       },
       {
@@ -464,7 +464,7 @@
         "mode": 1,
         "total_volume": 4,
         "price": 8,
-        "total_price": 0,
+        "total_price": 32,
         "is_submitted": true
       },
       {
@@ -472,7 +472,7 @@
         "mode": 4,
         "total_volume": 19,
         "price": 6,
-        "total_price": 0,
+        "total_price": 144,
         "is_submitted": false
       },
       {
@@ -480,7 +480,7 @@
         "mode": 4,
         "total_volume": 14,
         "price": 4,
-        "total_price": 0,
+        "total_price": 56,
         "is_submitted": false
       },
       {
@@ -488,7 +488,7 @@
         "mode": 4,
         "total_volume": 3,
         "price": 7,
-        "total_price": 0,
+        "total_price": 21,
         "is_submitted": false
       },
       {
@@ -496,7 +496,7 @@
         "mode": 1,
         "total_volume": 4,
         "price": 7,
-        "total_price": 0,
+        "total_price": 28,
         "is_submitted": true
       },
       {
@@ -504,7 +504,7 @@
         "mode": 3,
         "total_volume": 1,
         "price": 2,
-        "total_price": 0,
+        "total_price": 2,
         "is_submitted": false
       }
     ]
@@ -517,7 +517,7 @@
         "mode": 3,
         "total_volume": 4,
         "price": 6,
-        "total_price": 0,
+        "total_price": 24,
         "is_submitted": true
       },
       {
@@ -525,7 +525,7 @@
         "mode": 2,
         "total_volume": 2,
         "price": 12,
-        "total_price": 0,
+        "total_price": 24,
         "is_submitted": false
       },
       {
@@ -533,7 +533,7 @@
         "mode": 2,
         "total_volume": 11,
         "price": 3,
-        "total_price": 0,
+        "total_price": 33,
         "is_submitted": false
       },
       {
@@ -541,7 +541,7 @@
         "mode": 1,
         "total_volume": 11,
         "price": 6,
-        "total_price": 0,
+        "total_price": 66,
         "is_submitted": true
       },
       {
@@ -549,7 +549,7 @@
         "mode": 5,
         "total_volume": 8,
         "price": 5,
-        "total_price": 0,
+        "total_price": 40,
         "is_submitted": false
       },
       {
@@ -557,7 +557,7 @@
         "mode": 4,
         "total_volume": 3,
         "price": 8,
-        "total_price": 0,
+        "total_price": 24,
         "is_submitted": false
       },
       {
@@ -565,7 +565,7 @@
         "mode": 1,
         "total_volume": 6,
         "price": 9,
-        "total_price": 0,
+        "total_price": 54,
         "is_submitted": true
       },
       {
@@ -573,7 +573,7 @@
         "mode": 3,
         "total_volume": 14,
         "price": 3,
-        "total_price": 0,
+        "total_price": 42,
         "is_submitted": false
       },
       {
@@ -581,7 +581,7 @@
         "mode": 2,
         "total_volume": 17,
         "price": 9,
-        "total_price": 0,
+        "total_price": 153,
         "is_submitted": false
       },
       {
@@ -589,7 +589,7 @@
         "mode": 2,
         "total_volume": 11,
         "price": 8,
-        "total_price": 0,
+        "total_price": 88,
         "is_submitted": true
       }
     ]

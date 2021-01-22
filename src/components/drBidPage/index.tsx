@@ -34,7 +34,6 @@ const DrBidPageContainer: React.FC = () => {
   const [date, setDate] = useState<string>(dayjs().format('YYYY-MM-DD'));
 
   // api data
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [apiData, setApiData] = useState<IApiData[]>([]);
 
   useEffect(() => {
@@ -62,7 +61,17 @@ const DrBidPageContainer: React.FC = () => {
       </div>
       <div className={classNames('drbid-a2')}>
         <div className={classNames('drbid-a2-b1')}>
-          <Status userType={userType} />
+          <Status
+            userType={userType}
+            totalPrice={apiData
+              .filter((d) => d.is_submitted)
+              .map((d) => d.total_price)
+              .reduce((a, b) => a + b, 0)}
+            totalVolume={apiData
+              .filter((d) => d.is_submitted)
+              .map((d) => d.total_volume)
+              .reduce((a, b) => a + b, 0)}
+          />
         </div>
         <div className={classNames('drbid-a2-b2')}>
           <Graph />
