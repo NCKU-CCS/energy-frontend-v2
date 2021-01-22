@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import LineChart from './lineChart';
-import BarChart from './barChart';
-
-interface IProps {
-  mode: string;
-  date: string;
-}
 
 interface IData {
   bid_type: string;
@@ -27,7 +21,7 @@ interface IApiData {
   totalCount: number;
 }
 
-const Graph: React.FC<IProps> = ({ mode, date }) => {
+const Graph: React.FC = () => {
   // api data of buy
   const [apiDataBuy, setApiDataBuy] = useState<IApiData>({
     data: [],
@@ -113,22 +107,18 @@ const Graph: React.FC<IProps> = ({ mode, date }) => {
 
   return (
     <div className={classNames('bidding-graph-container')}>
-      {mode === '綠能交易' ? (
-        <LineChart
-          dataBuy={apiDataBuy.data.sort((a, b) => {
-            if (a.volume > b.volume) return 1;
-            if (a.volume < b.volume) return -1;
-            return 0;
-          })}
-          dataSell={apiDataSell.data.sort((a, b) => {
-            if (a.volume > b.volume) return 1;
-            if (a.volume < b.volume) return -1;
-            return 0;
-          })}
-        />
-      ) : (
-        <BarChart date={date} />
-      )}
+      <LineChart
+        dataBuy={apiDataBuy.data.sort((a, b) => {
+          if (a.volume > b.volume) return 1;
+          if (a.volume < b.volume) return -1;
+          return 0;
+        })}
+        dataSell={apiDataSell.data.sort((a, b) => {
+          if (a.volume > b.volume) return 1;
+          if (a.volume < b.volume) return -1;
+          return 0;
+        })}
+      />
     </div>
   );
 };
