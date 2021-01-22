@@ -1,6 +1,7 @@
 .drbid-submit-modebutton-container-in {
   width: 100%;
   height: 100%;
+  background-color: #f1f2f1;
 }
 
 .drbid-submit-modebutton-button {
@@ -23,11 +24,11 @@
 }
 
 .drbid-submit-modebutton-button-buy:disabled {
-  color: #d32f2f;
+  color: #2d6131;
 }
 
 .drbid-submit-modebutton-button-sell:disabled {
-  color: #2e7d32;
+  color: #ffa000;
 }
 
 // 1920 < size
