@@ -37,7 +37,7 @@
     "name": "name",
     "view": "view"
   },
-  "biddingpage": {
+  "drbidpage": {
     "pageTitle": "Bidding",
     "modeGreen": "Green Energy",
     "modeDemand": "Demand Response",

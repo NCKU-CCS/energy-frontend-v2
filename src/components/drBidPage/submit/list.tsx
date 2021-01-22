@@ -56,19 +56,19 @@ const List: React.FC<IProps> = ({ apiData, type }) => {
     <div className={classNames('bidding-submit-list-container-in')}>
       <div className={classNames('bidding-submit-list-title-container')}>
         <div className={classNames('bidding-submit-list-title-date')}>
-          {t('biddingpage.date')}
+          {t('drbidpage.date')}
         </div>
         <div className={classNames('bidding-submit-list-title-interval')}>
-          {t('biddingpage.time')}
+          {t('drbidpage.time')}
         </div>
         <div className={classNames('bidding-submit-list-title-volume')}>
-          {t('biddingpage.volume')}
+          {t('drbidpage.volume')}
         </div>
         <div className={classNames('bidding-submit-list-title-price')}>
-          {t('biddingpage.price')}
+          {t('drbidpage.price')}
         </div>
         <div className={classNames('bidding-submit-list-title-totalprice')}>
-          {t('biddingpage.total')}
+          {t('drbidpage.total')}
         </div>
         <div className={classNames('bidding-submit-list-title-button')}>
           <AddBidBtn type={type} />

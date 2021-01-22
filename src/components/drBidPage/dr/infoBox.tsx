@@ -123,7 +123,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.date')} :&nbsp;</span>
+                      <span>{t('drbidpage.date')} :&nbsp;</span>
                       <span>{displayDate}</span>
                     </div>
                     <div
@@ -132,7 +132,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.time')} :&nbsp;</span>
+                      <span>{t('drbidpage.time')} :&nbsp;</span>
                       <span>{displayInterval}</span>
                     </div>
                     <div
@@ -141,7 +141,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.drVolume')} :&nbsp;</span>
+                      <span>{t('drbidpage.drVolume')} :&nbsp;</span>
                       <span>{displayValue}kWh</span>
                     </div>
                     <div
@@ -150,7 +150,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.price')} :&nbsp;</span>
+                      <span>{t('drbidpage.price')} :&nbsp;</span>
                       <span>${displayPrice}/kWh</span>
                     </div>
                     <div
@@ -159,7 +159,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-dr-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.total')} :&nbsp;</span>
+                      <span>{t('drbidpage.total')} :&nbsp;</span>
                       <span>${displayTotal.toFixed(1)}</span>
                     </div>
                   </div>

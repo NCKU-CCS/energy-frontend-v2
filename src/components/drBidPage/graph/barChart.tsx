@@ -190,7 +190,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.drVolume')}`);
+      .text(`${t('drbidpage.drVolume')}`);
 
     // append unit text time
     svg
@@ -201,7 +201,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.time')}`);
+      .text(`${t('drbidpage.time')}`);
 
     // append graph title text 每小時DR量預覽
     svg
@@ -212,7 +212,7 @@ const BarChart: React.FC<IProps> = ({ date }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.drPreview')}`);
+      .text(`${t('drbidpage.drPreview')}`);
 
     // return function
     return () => {

@@ -36,7 +36,7 @@ const ModeButton: React.FC<IProps> = ({ setMode }) => {
         disabled={disabled}
         onClick={() => handleClickGreen()}
       >
-        {t('biddingpage.modeGreen')}
+        {t('drbidpage.modeGreen')}
       </button>
       <button
         type="button"
@@ -47,7 +47,7 @@ const ModeButton: React.FC<IProps> = ({ setMode }) => {
         disabled={!disabled}
         onClick={() => handleClickNeed()}
       >
-        {t('biddingpage.modeDemand')}
+        {t('drbidpage.modeDemand')}
       </button>
     </div>
   );

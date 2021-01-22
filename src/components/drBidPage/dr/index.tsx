@@ -71,7 +71,7 @@ const Dr: React.FC = () => {
   return (
     <div className={classNames('bidding-dr-container-in')}>
       <div className={classNames(`bidding-dr-title-container${className}`)}>
-        {isAggr ? t('biddingpage.drAward') : t('biddingpage.drBidding')}
+        {isAggr ? t('drbidpage.drAward') : t('drbidpage.drBidding')}
       </div>
       <div className={classNames(`bidding-dr-list-container-out${className}`)}>
         <List data={data} setData={setData} isAggr={isAggr} />

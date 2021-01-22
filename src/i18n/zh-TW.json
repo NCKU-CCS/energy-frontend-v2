@@ -37,7 +37,7 @@
     "name": "名稱",
     "view": "查看"
   },
-  "biddingpage": {
+  "drbidpage": {
     "pageTitle": "投標",
     "modeGreen": "綠能交易",
     "modeDemand": "需量反應",

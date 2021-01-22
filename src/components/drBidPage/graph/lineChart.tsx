@@ -258,7 +258,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.price')}`);
+      .text(`${t('drbidpage.price')}`);
 
     // append unit text 量
     svg
@@ -269,7 +269,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.volume')}`);
+      .text(`${t('drbidpage.volume')}`);
 
     // append legend text 買
     svg
@@ -280,7 +280,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.buy')}`);
+      .text(`${t('drbidpage.buy')}`);
 
     // append legend text 賣
     svg
@@ -291,7 +291,7 @@ const LineChart: React.FC<IProps> = ({ dataBuy, dataSell }) => {
       .attr('fill', '#707070')
       .attr('font-size', '1.7vh')
       .attr('font-weight', 'bold')
-      .text(`${t('biddingpage.sell')}`);
+      .text(`${t('drbidpage.sell')}`);
 
     // append legend circle red
     svg

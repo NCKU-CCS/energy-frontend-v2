@@ -185,7 +185,7 @@ const AddBid: React.FC<IProps> = ({ data, setData }) => {
           className={classNames('bidding-dr-addbid-button-submit')}
           onClick={() => handleClickSubmit()}
         >
-          {t('biddingpage.new')}
+          {t('drbidpage.new')}
         </button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Container from '../components/drBidPage';
 const DrBidPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Layout title={t('biddingpage.pageTitle')}>
+    <Layout title={t('drbidpage.pageTitle')}>
       <Container />
     </Layout>
   );

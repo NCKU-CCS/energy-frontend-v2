@@ -29,7 +29,7 @@ const Participants: React.FC<IProps> = ({ mode, participants }) => {
           {participants}
         </div>
         <div className={classNames('bidding-status-participants-text-title')}>
-          {t('biddingpage.currParticipants')}
+          {t('drbidpage.currParticipants')}
         </div>
       </div>
     </div>

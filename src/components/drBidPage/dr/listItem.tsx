@@ -63,7 +63,7 @@ const ListItem: React.FC<IProps> = ({
 
   // bid btn's text
   const [DeleteBtnText, setDeleteBtnText] = useState<string>(
-    t('biddingpage.bid'),
+    t('drbidpage.bid'),
   );
 
   // this bid is editable or not
@@ -74,7 +74,7 @@ const ListItem: React.FC<IProps> = ({
 
   useEffect(() => {
     if (isAggr) {
-      setDeleteBtnText(t('biddingpage.accept'));
+      setDeleteBtnText(t('drbidpage.accept'));
       setDeleteBtnDisabled(false);
     } else if (
       new Date().getTime() >=
@@ -130,9 +130,9 @@ const ListItem: React.FC<IProps> = ({
 
   // handle click delete btn
   const handleClickDeleteBtn = () => {
-    if (isAggr) setDeleteBtnText(t('biddingpage.accepted'));
+    if (isAggr) setDeleteBtnText(t('drbidpage.accepted'));
     else {
-      setDeleteBtnText(t('biddingpage.deleted'));
+      setDeleteBtnText(t('drbidpage.deleted'));
       setDeleted(true);
     }
     setDeleteBtnDisabled(true);
@@ -141,12 +141,12 @@ const ListItem: React.FC<IProps> = ({
 
   // handle mouse over bid button
   const handleMouseOverDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText(t('biddingpage.delete'));
+    if (!isAggr) setDeleteBtnText(t('drbidpage.delete'));
   };
 
   // handle mouse out bid button
   const handleMouseOutDeleteBtn = () => {
-    if (!isAggr) setDeleteBtnText(t('biddingpage.bid'));
+    if (!isAggr) setDeleteBtnText(t('drbidpage.bid'));
   };
 
   // handle click submit btn

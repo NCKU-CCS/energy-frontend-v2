@@ -218,7 +218,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.date')} :&nbsp;</span>
+                      <span>{t('drbidpage.date')} :&nbsp;</span>
                       <span>{date}</span>
                     </div>
                     <div
@@ -227,7 +227,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.time')} :&nbsp;</span>
+                      <span>{t('drbidpage.time')} :&nbsp;</span>
                       <span>{interval}</span>
                     </div>
                     <div
@@ -236,7 +236,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.volume')} :&nbsp;</span>
+                      <span>{t('drbidpage.volume')} :&nbsp;</span>
                       <span>{volume}kWh</span>
                     </div>
                     <div
@@ -245,7 +245,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.price')} :&nbsp;</span>
+                      <span>{t('drbidpage.price')} :&nbsp;</span>
                       <span>${price}/kWh</span>
                     </div>
                     <div
@@ -254,7 +254,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--show',
                       )}
                     >
-                      <span>{t('biddingpage.total')} :&nbsp;</span>
+                      <span>{t('drbidpage.total')} :&nbsp;</span>
                       <span>${totalPrice.toFixed(2)}</span>
                     </div>
                   </div>
@@ -270,7 +270,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      {t('biddingpage.date')} :
+                      {t('drbidpage.date')} :
                     </div>
                     <input
                       type="date"
@@ -292,7 +292,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      {t('biddingpage.time')} :
+                      {t('drbidpage.time')} :
                     </div>
                     <select
                       className={classNames(
@@ -311,7 +311,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      {t('biddingpage.volume')} :
+                      {t('drbidpage.volume')} :
                     </div>
                     <input
                       type="number"
@@ -330,7 +330,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      {t('biddingpage.price')} :
+                      {t('drbidpage.price')} :
                     </div>
                     <input
                       type="number"
@@ -349,7 +349,7 @@ const InfoBox: React.FC<IProps> = ({
                         'bidding-submit-infobox-content-center-inside-item--edit',
                       )}
                     >
-                      {t('biddingpage.total')} :
+                      {t('drbidpage.total')} :
                     </div>
                     <input
                       type="number"
@@ -383,7 +383,7 @@ const InfoBox: React.FC<IProps> = ({
                     !edit ? 'edit' : 'check'
                   }-white.png`}
                 />
-                {!edit ? t('biddingpage.edit') : t('biddingpage.confirm')}
+                {!edit ? t('drbidpage.edit') : t('drbidpage.confirm')}
               </button>
               <button
                 type="button"
@@ -401,7 +401,7 @@ const InfoBox: React.FC<IProps> = ({
                     !edit ? 'trash' : 'cancel'
                   }-white.png`}
                 />
-                {!edit ? t('biddingpage.delete') : t('biddingpage.cancel')}
+                {!edit ? t('drbidpage.delete') : t('drbidpage.cancel')}
               </button>
             </div>
           </div>

@@ -67,7 +67,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-date',
           )}
         >
-          {t('biddingpage.date')}
+          {t('drbidpage.date')}
         </div>
         <div
           className={classNames(
@@ -75,7 +75,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-interval',
           )}
         >
-          {t('biddingpage.time')}
+          {t('drbidpage.time')}
         </div>
         <div
           className={classNames(
@@ -83,7 +83,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-value',
           )}
         >
-          {t('biddingpage.drVolume')}
+          {t('drbidpage.drVolume')}
         </div>
         <div
           className={classNames(
@@ -91,7 +91,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-price',
           )}
         >
-          {t('biddingpage.price')}
+          {t('drbidpage.price')}
         </div>
         <div
           className={classNames(
@@ -99,7 +99,7 @@ const List: React.FC<IProps> = ({ data, isAggr, setData }) => {
             'bidding-dr-list-title-total',
           )}
         >
-          {t('biddingpage.total')}
+          {t('drbidpage.total')}
         </div>
         <div
           className={classNames(
