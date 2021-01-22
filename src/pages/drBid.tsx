@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Layout from '../layouts/generalLayout';
-import Container from '../components/biddingPage';
+import Container from '../components/drBidPage';
 
-const BiddingPage: React.FC = () => {
+const DrBidPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <Layout title={t('biddingpage.pageTitle')}>
@@ -12,4 +12,4 @@ const BiddingPage: React.FC = () => {
   );
 };
 
-export default BiddingPage;
+export default DrBidPage;
