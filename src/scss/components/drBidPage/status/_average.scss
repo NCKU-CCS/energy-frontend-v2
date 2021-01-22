@@ -215,23 +215,19 @@
 // size <= 320
 @media all and (max-width: 320px) {
   .drbid-status-average-image-container {
-    flex-basis: 0%;
+    flex-basis: 33%;
   }
 
   .drbid-status-average-text-container {
-    flex-basis: 100%;
+    flex-basis: 67%;
   }
 
   .drbid-status-average-text-price-value {
     font-size: 20px;
-    border-left: #f1f2f1 solid 2.5px;
-    border-right: #f1f2f1 solid 2.5px;
   }
 
   .drbid-status-average-text-price-title {
     font-size: 12px;
-    border-left: #f1f2f1 solid 2.5px;
-    border-right: #f1f2f1 solid 2.5px;
   }
 
   .drbid-status-average-text-volume-value {
@@ -240,11 +236,6 @@
 
   .drbid-status-average-text-volume-title {
     font-size: 12px;
-  }
-
-  .drbid-status-average-container-in {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
   }
 
 }
