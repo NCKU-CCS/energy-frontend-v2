@@ -16,7 +16,7 @@
   height: 100%;
 }
 
-.drbid-submit-listitem-interval--show {
+.drbid-submit-listitem-mode--show {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@
 
 .drbid-submit-listitem-button-container--show {
   flex-basis: 10%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -123,7 +123,7 @@
   border-bottom: #707070 solid 1px;
 }
 
-.drbid-submit-listitem-interval--edit {
+.drbid-submit-listitem-mode--edit {
   cursor: pointer;
   font-size: 1rem;
   margin: 1%;
@@ -135,7 +135,7 @@
   border-bottom: #d1d2d1 solid 1px;
 }
 
-.drbid-submit-listitem-interval--edit:hover {
+.drbid-submit-listitem-mode--edit:hover {
   border-bottom: #707070 solid 1px;
 }
 
@@ -245,7 +245,7 @@
     font-size: 0.8rem;
   }
 
-  .drbid-submit-listitem-interval--edit {
+  .drbid-submit-listitem-mode--edit {
     font-size: 0.8rem;
   }
 
@@ -270,7 +270,7 @@
     height: 25%;
   }
 
-  .drbid-submit-listitem-interval--edit {
+  .drbid-submit-listitem-mode--edit {
     font-size: 0.8rem;
   }
 
@@ -299,7 +299,7 @@
     height: 25%;
   }
 
-  .drbid-submit-listitem-interval--edit {
+  .drbid-submit-listitem-mode--edit {
     font-size: 0.8rem;
   }
 
@@ -327,7 +327,7 @@
     flex-basis: 35%;
   }
 
-  .drbid-submit-listitem-interval--show {
+  .drbid-submit-listitem-mode--show {
     flex-basis: 35%;
   }
 

@@ -22,7 +22,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
         {date}
       </div>
       {/* remember to change class name from interval to mode */}
-      <div className={classNames('drbid-submit-listitem-interval--show')}>
+      <div className={classNames('drbid-submit-listitem-mode--show')}>
         {data.mode}
       </div>
       <div className={classNames('drbid-submit-listitem-volume--show')}>
@@ -33,6 +33,11 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
       </div>
       <div className={classNames('drbid-submit-listitem-total--show')}>
         $&thinsp;{data.total_price.toFixed(1)}
+      </div>
+      <div
+        className={classNames('drbid-submit-listitem-button-container--show')}
+      >
+        <button type="button">{data.is_submitted ? '已接受' : '接受'}</button>
       </div>
     </div>
   );
