@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
@@ -6,10 +6,11 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
+import allTestData from './data.json';
 
 interface IApiData {
   date: string;
-  mode: string;
+  mode: number;
   total_volume: number;
   price: number;
   total_price: number;
@@ -31,6 +32,16 @@ const DrBidPageContainer: React.FC = () => {
 
   // date
   const [date, setDate] = useState<string>(dayjs().format('YYYY-MM-DD'));
+
+  // api data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [apiData, setApiData] = useState<IApiData[]>([]);
+
+  useEffect(() => {
+    setApiData([
+      ...allTestData.filter((d) => d.day === dayjs(date).day())[0].data,
+    ]);
+  }, [date]);
 
   return (
     <div className={classNames('drbid-container')}>
