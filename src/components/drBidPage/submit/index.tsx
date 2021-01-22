@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import TypeButton from './typeButton';
-import List from './list';
+import List from './list/index';
 import AddBid from './addBid';
 
 interface IData {
