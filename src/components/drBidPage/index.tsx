@@ -7,7 +7,16 @@ import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
 
-const BiddingPageContainer: React.FC = () => {
+interface IApiData {
+  date: string;
+  mode: string;
+  total_volume: number;
+  price: number;
+  total_price: number;
+  is_submitted: boolean;
+}
+
+const DrBidPageContainer: React.FC = () => {
   // get user from local storage or session storage
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
@@ -21,9 +30,7 @@ const BiddingPageContainer: React.FC = () => {
   );
 
   // date
-  const [date, setDate] = useState<string>(
-    dayjs(new Date()).format('YYYY-MM-DD'),
-  );
+  const [date, setDate] = useState<string>(dayjs().format('YYYY-MM-DD'));
 
   return (
     <div className={classNames('drbid-container')}>
@@ -57,4 +64,4 @@ const BiddingPageContainer: React.FC = () => {
   );
 };
 
-export default BiddingPageContainer;
+export default DrBidPageContainer;
