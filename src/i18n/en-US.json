@@ -2,7 +2,7 @@
   "navbar": {
     "title": "Energy Trading Platform",
     "home": "Home",
-    "bidding": "Bidding",
+    "drBid": "DR 一 Bid",
     "status": "Bidding Status",
     "powerInfo": "Power Information",
     "setting": "Setting",

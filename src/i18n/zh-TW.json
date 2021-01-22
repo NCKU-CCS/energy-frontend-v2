@@ -2,7 +2,7 @@
   "navbar": {
     "title": "電力交易平台",
     "home": "首頁　　",
-    "bidding": "投標　　",
+    "drBid": "需量反應 一 投標",
     "status": "競標動態",
     "powerInfo": "電力資訊",
     "setting": "設定　　",
