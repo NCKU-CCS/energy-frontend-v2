@@ -63,7 +63,7 @@ const BiddingStatus: React.FC<IProps> = ({ userType }) => {
       </div>
       <div className={classNames('drbid-status-average-container-out')}>
         <Average
-          mode={userType}
+          userType={userType}
           averagePrice={apiData.average_price}
           averageVolume={apiData.average_volume}
         />

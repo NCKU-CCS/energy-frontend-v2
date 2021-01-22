@@ -151,7 +151,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
       >
         <img
           alt="add"
-          src={`${process.env.PUBLIC_URL}/biddingPage/add-gray.png`}
+          src={`${process.env.PUBLIC_URL}/drBidPage/add-gray.png`}
           className={classNames('drbid-submit-addbidbtn-btn-img')}
         />
       </button>
@@ -313,7 +313,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
               >
                 <img
                   alt="submit"
-                  src={`${process.env.PUBLIC_URL}/biddingPage/check-${
+                  src={`${process.env.PUBLIC_URL}/drBidPage/check-${
                     submitDisabled ? 'disabled' : 'white'
                   }.png`}
                 />
@@ -328,7 +328,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
               >
                 <img
                   alt="submit"
-                  src={`${process.env.PUBLIC_URL}/biddingPage/reset-white.png`}
+                  src={`${process.env.PUBLIC_URL}/drBidPage/reset-white.png`}
                 />
                 {t('drbidpage.reset')}
               </button>

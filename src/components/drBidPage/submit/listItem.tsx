@@ -222,7 +222,7 @@ const ListItem: React.FC<IProps> = ({
           <img
             className={classNames('drbid-submit-listitem-edit-img--show')}
             alt="pencil"
-            src={`${process.env.PUBLIC_URL}/biddingPage/${pencilImg}`}
+            src={`${process.env.PUBLIC_URL}/drBidPage/${pencilImg}`}
           />
         </button>
         <button
@@ -238,7 +238,7 @@ const ListItem: React.FC<IProps> = ({
           <img
             className={classNames('drbid-submit-listitem-remove-img--show')}
             alt="trash"
-            src={`${process.env.PUBLIC_URL}/biddingPage/${trashImg}`}
+            src={`${process.env.PUBLIC_URL}/drBidPage/${trashImg}`}
           />
         </button>
       </div>
@@ -321,7 +321,7 @@ const ListItem: React.FC<IProps> = ({
           <img
             alt="submit"
             className={classNames('drbid-submit-listitem-submit-img--edit')}
-            src={`${process.env.PUBLIC_URL}/biddingPage/${checkImg}`}
+            src={`${process.env.PUBLIC_URL}/drBidPage/${checkImg}`}
           />
         </button>
         <button
@@ -337,7 +337,7 @@ const ListItem: React.FC<IProps> = ({
           <img
             alt="cancel"
             className={classNames('drbid-submit-listitem-cancel-img--edit')}
-            src={`${process.env.PUBLIC_URL}/biddingPage/${cancelImg}`}
+            src={`${process.env.PUBLIC_URL}/drBidPage/${cancelImg}`}
           />
         </button>
       </div>
