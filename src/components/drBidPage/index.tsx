@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
-import BiddingStatus from './status';
+import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
 
@@ -44,7 +44,7 @@ const BiddingPageContainer: React.FC = () => {
       </div>
       <div className={classNames('drbid-a2')}>
         <div className={classNames('drbid-a2-b1')}>
-          <BiddingStatus userType={userType} />
+          <Status userType={userType} />
         </div>
         <div className={classNames('drbid-a2-b2')}>
           <Graph />
