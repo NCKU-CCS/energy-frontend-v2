@@ -1,4 +1,4 @@
-.drbid-status-average-container-in {
+.drbid-status-total-container-in {
   flex-basis: 100%;
   height: 100%;
   display: flex;
@@ -9,7 +9,7 @@
   border-radius: 5px;
 }
 
-.drbid-status-average-image-container {
+.drbid-status-total-image-container {
   flex-basis: 33%;
   height: 40%;
   display: flex;
@@ -17,30 +17,30 @@
   align-items: center;
 }
 
-.drbid-status-average-image-img {
+.drbid-status-total-image-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.drbid-status-average-text-container {
+.drbid-status-total-text-container {
   flex-basis: 67%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.drbid-status-average-text-price-container {
+.drbid-status-total-text-price-container {
   width: 50%;
   height: 100%;
 }
 
-.drbid-status-average-text-volume-container {
+.drbid-status-total-text-volume-container {
   width: 50%;
   height: 100%;
 }
 
-.drbid-status-average-text-price-value {
+.drbid-status-total-text-price-value {
   width: 100%;
   height: 55%;
   display: flex;
@@ -48,15 +48,16 @@
   align-items: flex-end;
 }
 
-.drbid-status-average-text-price-title {
+.drbid-status-total-text-price-title {
   width: 100%;
   height: 45%;
+  padding-top: 3%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-.drbid-status-average-text-volume-value {
+.drbid-status-total-text-volume-value {
   width: 100%;
   height: 55%;
   display: flex;
@@ -64,9 +65,10 @@
   align-items: flex-end;
 }
 
-.drbid-status-average-text-volume-title {
+.drbid-status-total-text-volume-title {
   width: 100%;
   height: 45%;
+  padding-top: 3%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -74,19 +76,19 @@
 
 // 1920 < size
 @media all and (min-width: 1920px) {
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 30px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 16px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 30px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 16px;
   }
 
@@ -94,19 +96,19 @@
 
 // 1100 < size <= 1920
 @media all and (min-width: 1100px) and (max-width: 1920px) {
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 24px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 12px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 24px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 12px;
   }
 
@@ -114,30 +116,30 @@
 
 // 720 < size <= 1100
 @media all and (min-width: 720px) and (max-width: 1100px) {
-  .drbid-status-average-text-price-container {
+  .drbid-status-total-text-price-container {
     width: 100%;
     height: 30%;
     margin-top: auto;
   }
 
-  .drbid-status-average-text-volume-container {
+  .drbid-status-total-text-volume-container {
     width: 100%;
     height: 30%;
   }
 
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 24px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 12px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 24px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 12px;
   }
 
@@ -145,29 +147,29 @@
 
 // 600 < size <= 720
 @media all and (min-width: 600px) and (max-width: 720px) {
-  .drbid-status-average-text-price-container {
+  .drbid-status-total-text-price-container {
     width: 50%;
     height: 100%;
   }
 
-  .drbid-status-average-text-volume-container {
+  .drbid-status-total-text-volume-container {
     width: 50%;
     height: 100%;
   }
 
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 20px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 12px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 20px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 12px;
   }
 
@@ -175,38 +177,38 @@
 
 // 320 < size <= 600
 @media all and (min-width: 321px) and (max-width: 600px) {
-  .drbid-status-average-image-container {
+  .drbid-status-total-image-container {
     flex-basis: 40%;
   }
 
-  .drbid-status-average-text-container {
+  .drbid-status-total-text-container {
     flex-basis: 60%;
   }
 
-  .drbid-status-average-text-price-container {
+  .drbid-status-total-text-price-container {
     width: 100%;
     height: 40%;
     margin-top: auto;
   }
 
-  .drbid-status-average-text-volume-container {
+  .drbid-status-total-text-volume-container {
     width: 100%;
     height: 40%;
   }
 
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 16px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 12px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 16px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 12px;
   }
 
@@ -214,27 +216,27 @@
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .drbid-status-average-image-container {
+  .drbid-status-total-image-container {
     flex-basis: 33%;
   }
 
-  .drbid-status-average-text-container {
+  .drbid-status-total-text-container {
     flex-basis: 67%;
   }
 
-  .drbid-status-average-text-price-value {
+  .drbid-status-total-text-price-value {
     font-size: 20px;
   }
 
-  .drbid-status-average-text-price-title {
+  .drbid-status-total-text-price-title {
     font-size: 12px;
   }
 
-  .drbid-status-average-text-volume-value {
+  .drbid-status-total-text-volume-value {
     font-size: 20px;
   }
 
-  .drbid-status-average-text-volume-title {
+  .drbid-status-total-text-volume-title {
     font-size: 12px;
   }
 

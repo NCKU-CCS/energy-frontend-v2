@@ -1,4 +1,4 @@
-@import './average';
+@import './total';
 
 .drbid-status-container {
   flex-basis: 100%;
@@ -11,7 +11,7 @@
   display: none;
 }
 
-.drbid-status-average-container-out {
+.drbid-status-total-container-out {
   width: 92%;
   margin-left: 5%;
   margin-right: 3%;
@@ -35,7 +35,7 @@
 
 // 320 < size <= 720
 @media all and (min-width: 321px) and (max-width: 720px) {
-  .drbid-status-average-container-out {
+  .drbid-status-total-container-out {
     width: 94%;
     margin-left: 6%;
     margin-right: 0%;
@@ -46,7 +46,7 @@
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .drbid-status-average-container-out {
+  .drbid-status-total-container-out {
     margin-left: 4.5%;
     margin-right: 4.5%;
     width: 100%;

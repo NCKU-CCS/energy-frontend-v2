@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import Average from './average';
+import Total from './total';
 
 interface IApiData {
   average_price: number;
@@ -61,8 +61,8 @@ const BiddingStatus: React.FC<IProps> = ({ userType }) => {
       <div className={classNames('drbid-status-participants-container-out')}>
         {/* <Participants mode={mode} participants={apiData.participants} /> */}
       </div>
-      <div className={classNames('drbid-status-average-container-out')}>
-        <Average
+      <div className={classNames('drbid-status-total-container-out')}>
+        <Total
           userType={userType}
           averagePrice={apiData.average_price}
           averageVolume={apiData.average_volume}
