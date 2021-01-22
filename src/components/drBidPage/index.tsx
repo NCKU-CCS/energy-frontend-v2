@@ -31,7 +31,7 @@ const DrBidPageContainer: React.FC = () => {
   );
 
   // date
-  const [date, setDate] = useState<string>(dayjs().format('YYYY-MM-DD'));
+  const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
 
   // data type: dayBefore(日前), realTime(即時)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -90,7 +90,7 @@ const DrBidPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('drbid-right')}>
-        <Submit apiData={apiData} setDataType={setDataType} />
+        <Submit date={date} apiData={apiData} setDataType={setDataType} />
       </div>
     </div>
   );
