@@ -75,28 +75,12 @@ const DrBidPageContainer: React.FC = () => {
         </div>
         <div className={classNames('drbid-a2-b2')}>
           <Graph
-            values={[
-              apiData
-                .filter((d) => d.is_submitted && d.mode === 1)
+            values={[1, 2, 3, 4, 5].map((i) => {
+              return apiData
+                .filter((d) => d.is_submitted && d.mode === i)
                 .map((d) => d.total_price)
-                .reduce((a, b) => a + b, 0),
-              apiData
-                .filter((d) => d.is_submitted && d.mode === 2)
-                .map((d) => d.total_price)
-                .reduce((a, b) => a + b, 0),
-              apiData
-                .filter((d) => d.is_submitted && d.mode === 3)
-                .map((d) => d.total_price)
-                .reduce((a, b) => a + b, 0),
-              apiData
-                .filter((d) => d.is_submitted && d.mode === 4)
-                .map((d) => d.total_price)
-                .reduce((a, b) => a + b, 0),
-              apiData
-                .filter((d) => d.is_submitted && d.mode === 5)
-                .map((d) => d.total_price)
-                .reduce((a, b) => a + b, 0),
-            ]}
+                .reduce((a, b) => a + b, 0);
+            })}
           />
         </div>
       </div>
