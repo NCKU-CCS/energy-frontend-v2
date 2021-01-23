@@ -50,12 +50,20 @@ const AddBid: React.FC = () => {
         <div className={classNames('drbid-submit-addbid-form-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
+              inputProps={{
+                style: {
+                  color: `${date ? '#707070' : '#d1d2d1'}`,
+                  textAlign: 'right',
+                  fontSize: '0.9rem',
+                  paddingRight: '15px',
+                  paddingBottom: '5px',
+                },
+              }}
               value={date}
               onChange={(d) =>
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
               }
               format="yyyy/MM/dd"
-              // label={date ? '' : '選擇日期'}
               emptyLabel="選擇日期"
               showTodayButton
               disablePast

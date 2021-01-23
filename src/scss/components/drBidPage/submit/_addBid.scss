@@ -31,61 +31,57 @@
   margin: 2%;
   width: 16%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
-  text-align: right;
-  display: flex;
-  align-items: flex-end;
   border-radius: 5px;
   border: #d1d2d1 solid 1px;
+}
+
+.drbid-submit-addbid-form-date:hover {
+  border: #707070 solid 1px;
 }
 
 .drbid-submit-addbid-form-select {
   cursor: pointer;
   text-align-last: right;
-  margin: 1%;
-  width: 18%;
+  margin: 2%;
+  width: 16%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
 }
 
+.drbid-submit-addbid-form-select:hover {
+  border: #707070 solid 1px;
+}
+
 .drbid-submit-addbid-form-select--invalid {
   cursor: pointer;
   text-align-last: right;
-  margin: 1%;
-  width: 18%;
+  margin: 2%;
+  width: 16%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #d1d2d1;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
+}
+
+.drbid-submit-addbid-form-select--invalid:hover {
+  border: #707070 solid 1px;
 }
 
 .drbid-submit-addbid-form-select--invalid:focus {
   color: #707070;
 }
 
-
-.drbid-submit-addbid-form-select:hover {
-  border: #707070 solid 1px;
-}
-
 .drbid-submit-addbid-form-volume {
   margin: 1%;
   width: 15%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
+  text-align: right;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
-  text-align: right;
 }
 
 .drbid-submit-addbid-form-volume:hover, :focus {
@@ -96,13 +92,11 @@
   margin: 1%;
   width: 16%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
+  text-align: right;
   border-bottom: #707070 solid 1px;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
-  text-align: right;
 }
 
 .drbid-submit-addbid-form-price:hover, :focus {
@@ -124,17 +118,25 @@
 
 .drbid-submit-addbid-form-submit {
   cursor: pointer;
-  margin: 1%;
-  width: 8%;
-  height: 60%;
-  padding: 0.5%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 0;
+  border-radius: 5px;
+  outline: 0;
+  margin: 1%;
+  width: 8%;
+  height: 70%;
+  color: white;
+  background-color: #2e7d32;
 }
 
-// .drbid-submit-addbid-form-submit:disabled {
-// }
+.drbid-submit-addbid-form-submit:disabled {
+  cursor: default;
+  border: #e8e8e8 solid 1px;
+  color: #d1d1d1;
+  background-color: #f1f2f1;
+}
 
 // 1920 < size
 @media all and (min-width: 1920px) {
