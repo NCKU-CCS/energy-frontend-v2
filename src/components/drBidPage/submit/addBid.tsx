@@ -9,7 +9,7 @@ const AddBid: React.FC = () => {
   // date
   const [date, setDate] = useState<string | null>(null);
 
-  // time
+  // mode
   const [mode, setMode] = useState<number>(0);
 
   // volume
@@ -21,14 +21,22 @@ const AddBid: React.FC = () => {
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
+  // determine data validity
   useEffect(() => {
-    if (date !== 'null' && mode !== 0 && volume !== 0 && price !== 0)
+    if (date && mode !== 0 && volume && volume !== 0 && price && price !== 0) {
       setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
   }, [date, mode, volume, price]);
 
   // creat options for <select>
   const createOptions = [1, 2, 3, 4, 5].map((i) => {
-    return <option value={i}>{i}</option>;
+    return (
+      <option dir="rtl" value={i}>
+        {i}
+      </option>
+    );
   });
 
   // handle click submit
@@ -47,19 +55,22 @@ const AddBid: React.FC = () => {
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
               }
               format="yyyy/MM/dd"
-              label={date ? '' : '選擇日期'}
+              // label={date ? '' : '選擇日期'}
+              emptyLabel="選擇日期"
               showTodayButton
               disablePast
               allowKeyboardControl
+              autoOk
             />
           </MuiPickersUtilsProvider>
         </div>
         <select
-          className={classNames('drbid-submit-addbid-form-select')}
+          className={classNames(
+            `drbid-submit-addbid-form-select${mode === 0 ? '--invalid' : ''}`,
+          )}
           onChange={(e) => setMode(parseInt(e.target.value, 10))}
-          dir="rtl"
         >
-          <option value="0" selected>
+          <option dir="rtl" value="0" selected>
             交易模式
           </option>
           {createOptions}
@@ -88,17 +99,22 @@ const AddBid: React.FC = () => {
           className={classNames('drbid-submit-addbid-form-total')}
           type="number"
           min="0"
-          value={price && volume ? (price * volume).toFixed(1) : 0}
+          value={
+            price !== undefined && volume !== undefined
+              ? (price * volume).toFixed(1)
+              : undefined
+          }
+          placeholder="總金額"
           disabled
         />
         <button
           type="button"
-          // className={classNames('drbid-submit-addbid-form-submit')}
+          className={classNames('drbid-submit-addbid-form-submit')}
           title="Submit"
           onClick={() => handleSubmit()}
           disabled={submitDisabled}
         >
-          確認
+          新增
         </button>
       </form>
     </div>
