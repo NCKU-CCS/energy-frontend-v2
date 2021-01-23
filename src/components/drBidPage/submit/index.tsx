@@ -29,7 +29,7 @@ const Submit: React.FC<IProps> = ({ date, apiData, setDataType }) => {
         <List date={date} apiData={apiData} />
       </div>
       <div className={classNames('drbid-submit-addbid-container-out')}>
-        <AddBid type="" />
+        <AddBid />
       </div>
       <div className={classNames('drbid-submit-pagecontrol-container-out')}>
         {}
