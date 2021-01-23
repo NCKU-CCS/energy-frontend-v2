@@ -37,7 +37,9 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
       <div
         className={classNames('drbid-submit-listitem-button-container--show')}
       >
-        <button type="button">{data.is_submitted ? '已接受' : '接受'}</button>
+        <button type="button" disabled={data.is_submitted}>
+          {data.is_submitted ? '已接受' : '接受'}
+        </button>
       </div>
     </div>
   );
