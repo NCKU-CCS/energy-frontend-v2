@@ -22,7 +22,6 @@ const DrBidPageContainer: React.FC = () => {
   const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
 
   // data type: dayBefore(日前), realTime(即時)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dataType, setDataType] = useState<string>('dayBefore');
 
   // api data

@@ -1,11 +1,15 @@
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 
 const AddBid: React.FC = () => {
+  // i18n
+  const { t } = useTranslation();
+
   // date
   const [date, setDate] = useState<string | null>(null);
 
@@ -124,7 +128,7 @@ const AddBid: React.FC = () => {
           onClick={() => handleSubmit()}
           disabled={submitDisabled}
         >
-          新增
+          {t('drbidpage.new')}
         </button>
       </form>
     </div>

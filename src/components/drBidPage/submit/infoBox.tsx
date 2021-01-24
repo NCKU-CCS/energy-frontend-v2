@@ -1,4 +1,3 @@
-/* eslint-disable no-lonely-if */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import classNames from 'classnames';
@@ -140,7 +139,9 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 type="button"
                 disabled={data.is_submitted}
               >
-                {data.is_submitted ? '已接受' : '接受'}
+                {data.is_submitted
+                  ? t('drbidpage.accepted')
+                  : t('drbidpage.accept')}
               </button>
             </div>
           </div>
