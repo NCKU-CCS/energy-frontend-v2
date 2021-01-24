@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
-  userType: string;
   totalPrice: number;
   totalVolume: number;
 }
 
-const Average: React.FC<IProps> = ({ userType, totalPrice, totalVolume }) => {
+const Average: React.FC<IProps> = ({ totalPrice, totalVolume }) => {
   // i18n
   const { t } = useTranslation();
+
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
+  // user type: user, aggregator
+  const [userType] = useState<string>(
+    user.is_aggregator ? 'aggregator' : 'user',
+  );
 
   return (
     <div className={classNames('drbid-status-total-container-in')}>
