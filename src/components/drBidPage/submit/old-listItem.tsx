@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
-import InfoBox from './infoBox';
+// import InfoBox from './infoBox';
 import { intervalArr } from '../../../constants/constant';
 
 interface IProps {
@@ -245,7 +245,7 @@ const ListItem: React.FC<IProps> = ({
       <div
         className={classNames('drbid-submit-listitem-view-container-out--320')}
       >
-        <InfoBox
+        {/* <InfoBox
           id={id}
           type={type}
           time={time}
@@ -254,7 +254,7 @@ const ListItem: React.FC<IProps> = ({
           volume={volume}
           price={price}
           totalPrice={totalPrice}
-        />
+        /> */}
       </div>
     </div>
   ) : (

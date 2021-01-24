@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import InfoBox from '../infoBox';
 
 interface IData {
   date: string;
@@ -42,6 +43,11 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
         >
           {data.is_submitted ? '已接受' : '接受'}
         </button>
+      </div>
+      <div
+        className={classNames('drbid-submit-listitem-view-container-out--320')}
+      >
+        <InfoBox date={date} data={data} />
       </div>
     </div>
   );
