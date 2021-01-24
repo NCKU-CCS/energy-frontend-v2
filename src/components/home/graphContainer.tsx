@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
-import { testingData } from './data';
+import { io } from 'socket.io-client';
 import {
   buildingsPos,
   buildingsNamePos,
@@ -34,9 +34,17 @@ const GraphContainer: React.FC = () => {
     'off', 'off', 'off', 'off',
   ]);
   const [dataReady, setDataReady] = useState(false);
+  // web socket for getting data
+  const [socket, setSocket] = useState<any>(null);
+
   // parameter
   const refreshTime = 50;
-  const buildings = ['Carlab_BEMS', 'NCKU_BEMS', 'SGESC_C_BEMS', 'ABRI_BEMS'];
+  const buildings = [
+    'Carlab_BEMS',
+    'SGESC_D_BEMS',
+    'SGESC_C_BEMS',
+    'ABRI_BEMS',
+  ];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
@@ -50,12 +58,6 @@ const GraphContainer: React.FC = () => {
   // init data
   useEffect(() => {
     (async () => {
-      /**
-       * testing data, need to change these data source to API
-       * inputData: transmission data
-       */
-      setInputData(testingData);
-
       // set currUser
       const { bearer } = JSON.parse(
         localStorage.getItem('BEMS_USER') ||
@@ -75,12 +77,31 @@ const GraphContainer: React.FC = () => {
       );
       const userInfo = await res.json();
       setCurrUser(userInfo.account);
+
+      // init socket
+      if (socket == null) {
+        setSocket(io('https://web-socket-et.herokuapp.com/'));
+      }
     })();
   }, []);
 
+  // socket state function
+  socket?.on('connect', () => {
+    console.log('connect!!!!!');
+  });
+  // Handle messages sent by the server.
+  socket?.on('transaction', (msg: any) => {
+    console.log('Get msg:');
+    console.log(JSON.parse(msg));
+    setInputData(JSON.parse(msg));
+  });
+  // Template for handling disconnet and error
+  // socket.on('disconnect', () => {});
+  // socket.on('error', (error) => {});
+
   // init graph
   useEffect(() => {
-    if (inputData !== emptyData && currUser && dataReady) {
+    if (inputData && currUser && dataReady) {
       initDraw();
     }
   }, [inputData, currUser, dataReady]);
@@ -163,16 +184,20 @@ const GraphContainer: React.FC = () => {
       if (lightingType[index] === 'off') {
         continue;
       }
-      drawAchievement(
-        ctx,
-        achievePos[index][0],
-        achievePos[index][1],
-        lightingType[index],
-        transaction.achievement,
-      );
+      if (inputData !== emptyData) {
+        drawAchievement(
+          ctx,
+          achievePos[index][0],
+          achievePos[index][1],
+          lightingType[index],
+          transaction.achievement,
+        );
+      }
     }
 
-    drawLightings(ctx);
+    if (inputData !== emptyData) {
+      drawLightings(ctx);
+    }
 
     // draw building
     ctx.drawImage(building1, buildingsPos[0][0], buildingsPos[0][1]);
