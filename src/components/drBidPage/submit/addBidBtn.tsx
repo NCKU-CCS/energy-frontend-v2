@@ -50,24 +50,6 @@ const AddBidBtn: React.FC = () => {
   const handleClickClose = () => {
     setAdd(false);
     setReset(true);
-    setDate(null);
-    setMode(0);
-    setVolume(undefined);
-    setPrice(undefined);
-    setSubmitDisabled(true);
-  };
-
-  // handle click reset btn
-  const handleClickReset = () => {
-    // clear data
-    setDate(null);
-    setMode(0);
-    setVolume(undefined);
-    setPrice(undefined);
-    setSubmitDisabled(true);
-
-    // clear input field
-    setReset(true);
   };
 
   // determine data validity
@@ -79,6 +61,14 @@ const AddBidBtn: React.FC = () => {
       setSubmitDisabled(true);
     }
   }, [date, mode, volume, price]);
+
+  // when reset, clear data
+  useEffect(() => {
+    setDate(null);
+    setMode(0);
+    setVolume(undefined);
+    setPrice(undefined);
+  }, [reset]);
 
   return (
     <div className={classNames('drbid-submit-addbidbtn-container-in')}>
@@ -130,20 +120,6 @@ const AddBidBtn: React.FC = () => {
                   >
                     {t('drbidpage.date')} :
                   </div>
-                  {/* <input
-                    type="date"
-                    className={classNames(
-                      'drbid-submit-addbidbtn-infobox-center-item-input',
-                    )}
-                    onChange={(e) =>
-                      setDate(dayjs(e.target.value).format('YYYY/MM/DD'))
-                    }
-                    value={
-                      reset
-                        ? ''
-                        : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
-                    }
-                  /> */}
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <DatePicker
                       inputProps={{
@@ -163,7 +139,6 @@ const AddBidBtn: React.FC = () => {
                         )
                       }
                       format="yyyy/MM/dd"
-                      // emptyLabel="選擇日期"
                       showTodayButton
                       disablePast
                       allowKeyboardControl
@@ -262,7 +237,7 @@ const AddBidBtn: React.FC = () => {
                     value={
                       !reset && price !== undefined && volume !== undefined
                         ? (price * volume).toFixed(1)
-                        : undefined
+                        : ''
                     }
                     disabled
                   />
@@ -293,7 +268,7 @@ const AddBidBtn: React.FC = () => {
                 className={classNames(
                   'drbid-submit-addbidbtn-infobox-footer-rightbtn',
                 )}
-                onClick={() => handleClickReset()}
+                onClick={() => setReset(true)}
               >
                 <img
                   alt="submit"
