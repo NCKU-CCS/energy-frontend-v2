@@ -2,9 +2,9 @@
   height: 20%;
   display: flex;
   flex-wrap: wrap;
-  overflow-y: auto;
   font-size: 1rem;
   text-align: center;
+  overflow: hidden;
   border-bottom: #d1d2d1 solid 1px;
 }
 
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20%;
+  flex-basis: 22.5%;
   height: 100%;
 }
 
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20%;
+  flex-basis: 15%;
   height: 100%;
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 18%;
+  flex-basis: 20.5%;
   height: 100%;
 }
 
@@ -60,7 +60,9 @@
 .drbid-submit-listitem-button-btn {
   cursor: pointer;
   width: 80%;
-  height: 40%;
+  height: auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
   background-color: #FFA000;
   color: white;
   border: 0;
@@ -121,7 +123,6 @@
   .drbid-submit-listitem-container {
     font-size: 0.8rem;
     height: 25%;
-    overflow-y: auto;
   }
 
   .drbid-submit-listitem-date {
