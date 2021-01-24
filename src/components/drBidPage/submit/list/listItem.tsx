@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 interface IData {
   date: string;
@@ -15,19 +16,11 @@ interface IProps {
   data: IData;
 }
 
-// insert spaces to date string for RWD
-const insertSpaces = (str: string) => {
-  return `${str.substring(0, 4)} /${str.substring(5, 7)}/${str.substring(
-    8,
-    10,
-  )}`;
-};
-
 const ListItem: React.FC<IProps> = ({ date, data }) => {
   return (
     <div className={classNames('drbid-submit-listitem-container')}>
       <div className={classNames('drbid-submit-listitem-date')}>
-        {insertSpaces(date)}
+        {dayjs(date).format('YYYY /MM/DD')}
       </div>
       <div className={classNames('drbid-submit-listitem-mode')}>
         {data.mode}
