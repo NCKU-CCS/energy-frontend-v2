@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
@@ -40,6 +41,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           className={classNames('drbid-submit-listitem-button-btn')}
           type="button"
           disabled={data.is_submitted}
+          onClick={() => alert('success')}
         >
           {data.is_submitted ? '已接受' : '接受'}
         </button>
