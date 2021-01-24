@@ -1,172 +1,41 @@
 /* eslint-disable no-lonely-if */
 /* eslint-disable no-alert */
-import React, { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { intervalArr } from '../../../constants/constant';
 
-interface IProps {
-  id: string;
-  type: string;
-  time: number;
+interface IData {
   date: string;
-  interval: string;
-  volume: number;
+  mode: number;
+  total_volume: number;
   price: number;
-  totalPrice: number;
+  total_price: number;
+  is_submitted: boolean;
 }
 
-const InfoBox: React.FC<IProps> = ({
-  id,
-  type,
-  time,
-  date,
-  interval,
-  volume,
-  price,
-  totalPrice,
-}) => {
+interface IProps {
+  date: string;
+  data: IData;
+}
+
+const InfoBox: React.FC<IProps> = ({ date, data }) => {
   // i18n
   const { t } = useTranslation();
 
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
+  // user type: user, aggregator
+  const [userType] = useState<string>(
+    user.is_aggregator ? 'aggregator' : 'user',
+  );
+
+  // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
-  const [edit, setEdit] = useState<boolean>(false);
-  // new Date
-  const [newDate, setNewDate] = useState<string>(date);
-
-  // new time for interval
-  const [newTime, setNewTime] = useState<number>(time);
-
-  // new volume
-  const [newVolume, setNewVolume] = useState<number>(volume);
-
-  // new price
-  const [newPrice, setNewPrice] = useState<number>(price);
-
-  // new total price
-  const [newTotalPrice, setNewTotalPrice] = useState<number>(totalPrice);
-
-  // map the interval array and return options
-  const createOptions = intervalArr.map((str, i) => {
-    return (
-      <option value={i} selected={i === time}>
-        {str}
-      </option>
-    );
-  });
-
-  // change total price
-  useEffect(() => {
-    setNewTotalPrice(parseFloat((newVolume * newPrice).toFixed(2)));
-  }, [newVolume, newPrice]);
-
-  // edit a bid using api
-  const submitEditedBid = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // PUT to bidsubmit API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
-      {
-        method: 'PUT',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          id,
-          bid_type: type,
-          start_time: `${newDate} ${newTime}`,
-          end_time: `${newDate} ${newTime + 1}`,
-          value: newVolume,
-          price: newPrice,
-        }),
-      },
-    );
-    // success or not
-    if (response.status === 200) {
-      // eslint-disable-next-line no-alert
-      alert('success');
-      // reload the window
-      window.location.reload();
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('failed');
-    }
-  };
-
-  // remove a bid using api
-  const removeBid = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // DELETE to bidsubmit API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
-      {
-        method: 'DELETE',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          id,
-        }),
-      },
-    );
-    // success or not
-    if (response.status === 200) {
-      // eslint-disable-next-line no-alert
-      alert('success');
-      // reload the window
-      window.location.reload();
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('failed');
-    }
-  };
-
-  // handle click close
-  const handleClickClose = () => {
-    setOpenInfoBox(false);
-    setEdit(false);
-  };
-
-  // handle click left button
-  const handleClickLeft = () => {
-    if (edit) {
-      // editing
-      submitEditedBid();
-      // setEdit(false);
-      // console.log('edit : ', edit);
-    } else {
-      // not editing
-      setEdit(true);
-      // console.log('edit : ', edit);
-    }
-  };
-
-  // handle click right
-  const handleClickRight = () => {
-    if (edit) {
-      // editing
-      setEdit(false);
-    } else {
-      // not editing
-      // eslint-disable-next-line no-restricted-globals
-      if (confirm('Are you sure to remove')) removeBid();
-    }
-  };
 
   return (
     <div className={classNames('drbid-submit-infobox-container-in')}>
@@ -185,13 +54,17 @@ const InfoBox: React.FC<IProps> = ({
       ) : (
         <div className={classNames('drbid-submit-infobox-canvas')}>
           <div className={classNames('drbid-submit-infobox-content')}>
-            <div className={classNames('drbid-submit-infobox-content-header')}>
+            <div
+              className={classNames(
+                `drbid-submit-infobox-content-header--${userType}`,
+              )}
+            >
               <button
                 type="button"
                 className={classNames(
                   'drbid-submit-infobox-content-header-close',
                 )}
-                onClick={() => handleClickClose()}
+                onClick={() => setOpenInfoBox(false)}
               >
                 X
               </button>
@@ -202,200 +75,72 @@ const InfoBox: React.FC<IProps> = ({
                   'drbid-submit-infobox-content-center-inside',
                 )}
               >
-                {!edit ? (
+                <div
+                  className={classNames(
+                    'drbid-submit-infobox-content-center-inside--show',
+                  )}
+                >
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside--show',
+                      'drbid-submit-infobox-content-center-inside-date--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-date--show',
-                        'drbid-submit-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('drbidpage.date')} :&nbsp;</span>
-                      <span>{date}</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-interval--show',
-                        'drbid-submit-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('drbidpage.time')} :&nbsp;</span>
-                      <span>{interval}</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-volume--show',
-                        'drbid-submit-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('drbidpage.volume')} :&nbsp;</span>
-                      <span>{volume}kWh</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-price--show',
-                        'drbid-submit-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('drbidpage.price')} :&nbsp;</span>
-                      <span>${price}/kWh</span>
-                    </div>
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-total--show',
-                        'drbid-submit-infobox-content-center-inside-item--show',
-                      )}
-                    >
-                      <span>{t('drbidpage.total')} :&nbsp;</span>
-                      <span>${totalPrice.toFixed(2)}</span>
-                    </div>
+                    <span>{t('drbidpage.date')} :&nbsp;</span>
+                    <span>{date}</span>
                   </div>
-                ) : (
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside--edit',
+                      'drbid-submit-infobox-content-center-inside-interval--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-label--edit',
-                        'drbid-submit-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      {t('drbidpage.date')} :
-                    </div>
-                    <input
-                      type="date"
-                      id="date"
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-date--edit',
-                        'drbid-submit-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={dayjs(new Date(date))
-                        .format('YYYY-MM-DD')
-                        .toString()}
-                      onChange={(e) =>
-                        setNewDate(dayjs(e.target.value).format('YYYY/MM/DD'))
-                      }
-                    />
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-label--edit',
-                        'drbid-submit-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      {t('drbidpage.time')} :
-                    </div>
-                    <select
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-interval--edit',
-                        'drbid-submit-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={interval}
-                      onChange={(e) => setNewTime(parseInt(e.target.value, 10))}
-                    >
-                      <option value={time}>{interval}</option>
-                      {createOptions}
-                    </select>
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-label--edit',
-                        'drbid-submit-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      {t('drbidpage.volume')} :
-                    </div>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-volume--edit',
-                        'drbid-submit-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={volume}
-                      onChange={(e) => setNewVolume(parseFloat(e.target.value))}
-                    />
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-label--edit',
-                        'drbid-submit-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      {t('drbidpage.price')} :
-                    </div>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-price--edit',
-                        'drbid-submit-infobox-content-center-inside-input--edit',
-                      )}
-                      defaultValue={price}
-                      onChange={(e) => setNewPrice(parseFloat(e.target.value))}
-                    />
-                    <div
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-label--edit',
-                        'drbid-submit-infobox-content-center-inside-item--edit',
-                      )}
-                    >
-                      {t('drbidpage.total')} :
-                    </div>
-                    <input
-                      type="number"
-                      className={classNames(
-                        'drbid-submit-infobox-content-center-inside-total--edit',
-                        'drbid-submit-infobox-content-center-inside-input--edit',
-                      )}
-                      value={newTotalPrice}
-                      disabled
-                    />
+                    <span>{t('drbidpage.mode')} :&nbsp;</span>
+                    <span>{data.mode}</span>
                   </div>
-                )}
+                  <div
+                    className={classNames(
+                      'drbid-submit-infobox-content-center-inside-volume--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('drbidpage.volume')} :&nbsp;</span>
+                    <span>{data.total_volume.toFixed(1)}kWh</span>
+                  </div>
+                  <div
+                    className={classNames(
+                      'drbid-submit-infobox-content-center-inside-price--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('drbidpage.price')} :&nbsp;</span>
+                    <span>${data.price.toFixed(1)}/kWh</span>
+                  </div>
+                  <div
+                    className={classNames(
+                      'drbid-submit-infobox-content-center-inside-total--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('drbidpage.total')} :&nbsp;</span>
+                    <span>${data.total_price.toFixed(1)}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className={classNames('drbid-submit-infobox-content-footer')}>
+            <div
+              className={classNames(
+                `drbid-submit-infobox-content-footer--${userType}`,
+              )}
+            >
               <button
-                type="button"
                 className={classNames(
-                  'drbid-submit-infobox-content-footer-left',
+                  'drbid-submit-infobox-content-footer-btn',
                 )}
-                onClick={() => handleClickLeft()}
-              >
-                <img
-                  alt="left"
-                  className={classNames(
-                    'drbid-submit-infobox-content-footer-left-img',
-                  )}
-                  src={`${process.env.PUBLIC_URL}/drBidPage/${
-                    !edit ? 'edit' : 'check'
-                  }-white.png`}
-                />
-                {!edit ? t('drbidpage.edit') : t('drbidpage.confirm')}
-              </button>
-              <button
                 type="button"
-                className={classNames(
-                  'drbid-submit-infobox-content-footer-right',
-                )}
-                onClick={() => handleClickRight()}
+                disabled={data.is_submitted}
               >
-                <img
-                  alt="right"
-                  className={classNames(
-                    'drbid-submit-infobox-content-footer-right-img',
-                  )}
-                  src={`${process.env.PUBLIC_URL}/drBidPage/${
-                    !edit ? 'trash' : 'cancel'
-                  }-white.png`}
-                />
-                {!edit ? t('drbidpage.delete') : t('drbidpage.cancel')}
+                {data.is_submitted ? '已接受' : '接受'}
               </button>
             </div>
           </div>
