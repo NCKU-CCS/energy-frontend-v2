@@ -10,6 +10,18 @@ const AddBidBtn: React.FC = () => {
   // i18n
   const { t } = useTranslation();
 
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
+  // user type: user, aggregator
+  const [userType] = useState<string>(
+    user.is_aggregator ? 'aggregator' : 'user',
+  );
+
   // click add bid btn or not
   const [add, setAdd] = useState<boolean>(false);
 
@@ -88,7 +100,9 @@ const AddBidBtn: React.FC = () => {
         <div className={classNames('drbid-submit-addbidbtn-infobox-container')}>
           <div className={classNames('drbid-submit-addbidbtn-infobox-content')}>
             <div
-              className={classNames('drbid-submit-addbidbtn-infobox-header')}
+              className={classNames(
+                `drbid-submit-addbidbtn-infobox-header--${userType}`,
+              )}
             >
               <button
                 type="button"
@@ -120,31 +134,39 @@ const AddBidBtn: React.FC = () => {
                   >
                     {t('drbidpage.date')} :
                   </div>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker
-                      inputProps={{
-                        style: {
-                          color: `${date ? '#707070' : '#d1d2d1'}`,
-                          textAlign: 'right',
-                          fontSize: '0.9rem',
-                          paddingRight: '15px',
-                          paddingBottom: '5px',
-                          cursor: 'pointer',
-                        },
-                      }}
-                      value={date}
-                      onChange={(d) =>
-                        setDate(
-                          dayjs(String(d?.toDateString())).format('YYYY/MM/DD'),
-                        )
-                      }
-                      format="yyyy/MM/dd"
-                      showTodayButton
-                      disablePast
-                      allowKeyboardControl
-                      autoOk
-                    />
-                  </MuiPickersUtilsProvider>
+                  <div
+                    className={classNames(
+                      '.drbid-submit-addbidbtn-infobox-center-item-input',
+                    )}
+                  >
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <DatePicker
+                        inputProps={{
+                          style: {
+                            color: `${date ? '#707070' : '#d1d2d1'}`,
+                            textAlign: 'right',
+                            fontSize: '0.9rem',
+                            paddingRight: '15px',
+                            paddingBottom: '5px',
+                            cursor: 'pointer',
+                          },
+                        }}
+                        value={date}
+                        onChange={(d) =>
+                          setDate(
+                            dayjs(String(d?.toDateString())).format(
+                              'YYYY/MM/DD',
+                            ),
+                          )
+                        }
+                        format="yyyy/MM/dd"
+                        showTodayButton
+                        disablePast
+                        allowKeyboardControl
+                        autoOk
+                      />
+                    </MuiPickersUtilsProvider>
+                  </div>
                 </div>
                 <div
                   className={classNames(
@@ -245,7 +267,9 @@ const AddBidBtn: React.FC = () => {
               </div>
             </div>
             <div
-              className={classNames('drbid-submit-addbidbtn-infobox-footer')}
+              className={classNames(
+                `drbid-submit-addbidbtn-infobox-footer--${userType}`,
+              )}
             >
               <button
                 type="button"
