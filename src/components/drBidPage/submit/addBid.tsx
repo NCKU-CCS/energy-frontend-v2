@@ -42,6 +42,7 @@ const AddBid: React.FC = () => {
   // handle click submit
   const handleSubmit = () => {
     alert('success');
+    window.location.reload();
   };
 
   return (
@@ -57,6 +58,7 @@ const AddBid: React.FC = () => {
                   fontSize: '0.9rem',
                   paddingRight: '15px',
                   paddingBottom: '5px',
+                  cursor: 'pointer',
                 },
               }}
               value={date}

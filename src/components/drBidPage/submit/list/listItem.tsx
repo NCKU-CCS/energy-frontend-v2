@@ -17,27 +17,26 @@ interface IProps {
 
 const ListItem: React.FC<IProps> = ({ date, data }) => {
   return (
-    <div className={classNames('drbid-submit-listitem-container--show')}>
-      <div className={classNames('drbid-submit-listitem-date--show')}>
-        {date}
-      </div>
-      {/* remember to change class name from interval to mode */}
-      <div className={classNames('drbid-submit-listitem-mode--show')}>
+    <div className={classNames('drbid-submit-listitem-container')}>
+      <div className={classNames('drbid-submit-listitem-date')}>{date}</div>
+      <div className={classNames('drbid-submit-listitem-mode')}>
         {data.mode}
       </div>
-      <div className={classNames('drbid-submit-listitem-volume--show')}>
+      <div className={classNames('drbid-submit-listitem-volume')}>
         {data.total_volume.toFixed(1)}&thinsp;kWh
       </div>
-      <div className={classNames('drbid-submit-listitem-price--show')}>
+      <div className={classNames('drbid-submit-listitem-price')}>
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
-      <div className={classNames('drbid-submit-listitem-total--show')}>
+      <div className={classNames('drbid-submit-listitem-total')}>
         $&thinsp;{data.total_price.toFixed(1)}
       </div>
-      <div
-        className={classNames('drbid-submit-listitem-button-container--show')}
-      >
-        <button type="button" disabled={data.is_submitted}>
+      <div className={classNames('drbid-submit-listitem-button-container')}>
+        <button
+          className={classNames('drbid-submit-listitem-button-btn')}
+          type="button"
+          disabled={data.is_submitted}
+        >
           {data.is_submitted ? '已接受' : '接受'}
         </button>
       </div>
