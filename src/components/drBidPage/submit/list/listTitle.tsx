@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import AddBidBtn from '../addBidBtn';
 
 const ListTitle: React.FC = () => {
   // i18n
@@ -24,7 +25,7 @@ const ListTitle: React.FC = () => {
         {t('drbidpage.total')}
       </div>
       <div className={classNames('drbid-submit-list-title-button')}>
-        {/* <AddBidBtn type="" /> */}
+        <AddBidBtn />
       </div>
     </div>
   );

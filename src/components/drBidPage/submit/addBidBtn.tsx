@@ -1,19 +1,29 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { intervalArr } from '../../../constants/constant';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 
-interface IProps {
-  type: string;
-}
-
-const AddBidBtn: React.FC<IProps> = ({ type }) => {
+const AddBidBtn: React.FC = () => {
   // i18n
   const { t } = useTranslation();
 
   // click add bid btn or not
   const [add, setAdd] = useState<boolean>(false);
+
+  // date
+  const [date, setDate] = useState<string | null>(null);
+
+  // mode
+  const [mode, setMode] = useState<number>(0);
+
+  // volume
+  const [volume, setVolume] = useState<number | undefined>(undefined);
+
+  // price
+  const [price, setPrice] = useState<number | undefined>(undefined);
 
   // click reset btn or not
   const [reset, setReset] = useState<boolean>(true);
@@ -21,125 +31,54 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
   // control submit btn disabled or not
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
-  // date
-  const [date, setDate] = useState<string>('null');
-
-  // time
-  const [time, setTime] = useState<number>(-1);
-
-  // volume
-  const [volume, setVolume] = useState<number>(0);
-
-  // price
-  const [price, setPrice] = useState<number>(0);
-
-  // total price
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-
-  // map the interval array and return options
-  const createOptions = intervalArr.map((str, i) => {
-    return <option value={i}>{str}</option>;
+  // creat options for <select>
+  const createOptions = [1, 2, 3, 4, 5].map((i) => {
+    return (
+      <option dir="rtl" value={i}>
+        {i}
+      </option>
+    );
   });
 
-  // add a bid using api
-  const addBid = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // alert(`${type}, ${date}, ${time}, ${volume}, ${price}, ${user.bearer}`);
-    // POST to bidsubmit API
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit`,
-        {
-          method: 'POST',
-          // mode: 'cors',
-          headers: new Headers({
-            Authorization: `Bearer ${user.bearer}`,
-            'Content-Type': 'application/json',
-          }),
-          body: JSON.stringify({
-            bid_type: type,
-            start_time: `${date} ${time}`,
-            end_time: `${date} ${time + 1}`,
-            value: volume,
-            price,
-          }),
-          // redirect: 'follow',
-        },
-      );
-      // success or not
-      if (response.status === 200) {
-        // eslint-disable-next-line no-alert
-        alert('success');
-        // reload the page
-        window.location.reload();
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('failed');
-      }
-      setSubmitDisabled(true);
-    } catch (error) {
-      // console.error(`catch" ${error.toString()}`);
-      // console.log(JSON.stringify({
-      //   bid_type: type,
-      //   start_time: `${date} ${time}`,
-      //   end_time: `${date} ${time + 1}`,
-      //   value: volume,
-      //   price,
-      // }));
-      // console.log(new Headers({
-      //   // Authorization: `Bearer ${user.bearer}`,
-      //   'Content-Type': 'application/json',
-      // }));
-      // eslint-disable-next-line no-alert
-      alert('err');
-    }
+  // handle click submit
+  const handleSubmit = () => {
+    alert('success');
+    window.location.reload();
   };
 
   // handle click close btn
   const handleClickClose = () => {
     setAdd(false);
     setReset(true);
-    setDate('null');
-    setTime(-1);
-    setVolume(0);
-    setPrice(0);
-    setTotalPrice(0);
+    setDate(null);
+    setMode(0);
+    setVolume(undefined);
+    setPrice(undefined);
     setSubmitDisabled(true);
   };
 
   // handle click reset btn
   const handleClickReset = () => {
     // clear data
-    setDate('null');
-    setTime(-1);
-    setVolume(0);
-    setPrice(0);
-    setTotalPrice(0);
+    setDate(null);
+    setMode(0);
+    setVolume(undefined);
+    setPrice(undefined);
     setSubmitDisabled(true);
 
     // clear input field
     setReset(true);
   };
 
+  // determine data validity
   useEffect(() => {
-    if (volume !== 0 && price !== 0)
-      setTotalPrice(parseFloat((volume * price).toFixed(2)));
-    else setTotalPrice(0);
-  }, [volume, price]);
-
-  useEffect(() => {
-    if (date !== 'null' && time !== -1 && volume !== 0 && price !== 0)
+    if (date && mode !== 0 && volume && volume !== 0 && price && price !== 0) {
       setSubmitDisabled(false);
-    if (date !== 'null' || time !== -1 || volume !== 0 || price !== 0)
+    } else {
       setReset(false);
-    // if (date !== 'null' || time !== -1 || volume !== -1 || price !== -1)
-    //   setResetDisabled(false);
-  }, [date, time, volume, price]);
+      setSubmitDisabled(true);
+    }
+  }, [date, mode, volume, price]);
 
   return (
     <div className={classNames('drbid-submit-addbidbtn-container-in')}>
@@ -191,7 +130,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                   >
                     {t('drbidpage.date')} :
                   </div>
-                  <input
+                  {/* <input
                     type="date"
                     className={classNames(
                       'drbid-submit-addbidbtn-infobox-center-item-input',
@@ -204,7 +143,33 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                         ? ''
                         : dayjs(new Date(date)).format('YYYY-MM-DD').toString()
                     }
-                  />
+                  /> */}
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker
+                      inputProps={{
+                        style: {
+                          color: `${date ? '#707070' : '#d1d2d1'}`,
+                          textAlign: 'right',
+                          fontSize: '0.9rem',
+                          paddingRight: '15px',
+                          paddingBottom: '5px',
+                          cursor: 'pointer',
+                        },
+                      }}
+                      value={date}
+                      onChange={(d) =>
+                        setDate(
+                          dayjs(String(d?.toDateString())).format('YYYY/MM/DD'),
+                        )
+                      }
+                      format="yyyy/MM/dd"
+                      // emptyLabel="選擇日期"
+                      showTodayButton
+                      disablePast
+                      allowKeyboardControl
+                      autoOk
+                    />
+                  </MuiPickersUtilsProvider>
                 </div>
                 <div
                   className={classNames(
@@ -216,16 +181,16 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'drbid-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.time')} :
+                    {t('drbidpage.mode')} :
                   </div>
                   <select
                     className={classNames(
                       'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
-                    onChange={(e) => setTime(parseInt(e.target.value, 10))}
+                    onChange={(e) => setMode(parseInt(e.target.value, 10))}
                   >
-                    <option value="-1" selected={reset}>
-                      {' '}
+                    <option dir="rtl" value="0" selected={reset}>
+                      {}
                     </option>
                     {createOptions}
                   </select>
@@ -243,10 +208,10 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                     {t('drbidpage.volume')} :
                   </div>
                   <input
-                    type="number"
                     className={classNames(
                       'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
+                    type="number"
                     min="0"
                     step="0.1"
                     onChange={(e) => setVolume(parseFloat(e.target.value))}
@@ -266,10 +231,10 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                     {t('drbidpage.price')} :
                   </div>
                   <input
-                    type="number"
                     className={classNames(
                       'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
+                    type="number"
                     min="0"
                     step="0.1"
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
@@ -294,7 +259,11 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                       'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
                     min="0"
-                    value={reset ? '' : totalPrice}
+                    value={
+                      !reset && price !== undefined && volume !== undefined
+                        ? (price * volume).toFixed(1)
+                        : undefined
+                    }
                     disabled
                   />
                 </div>
@@ -308,7 +277,7 @@ const AddBidBtn: React.FC<IProps> = ({ type }) => {
                 className={classNames(
                   'drbid-submit-addbidbtn-infobox-footer-leftbtn',
                 )}
-                onClick={() => addBid()}
+                onClick={() => handleSubmit()}
                 disabled={submitDisabled}
               >
                 <img
