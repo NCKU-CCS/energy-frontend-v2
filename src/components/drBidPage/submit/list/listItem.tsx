@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
@@ -19,6 +20,9 @@ interface IProps {
 }
 
 const ListItem: React.FC<IProps> = ({ date, data }) => {
+  // i18n
+  const { t } = useTranslation();
+
   return (
     <div className={classNames('drbid-submit-listitem-container')}>
       <div className={classNames('drbid-submit-listitem-date')}>
@@ -43,7 +47,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           disabled={data.is_submitted}
           onClick={() => alert('success')}
         >
-          {data.is_submitted ? '已接受' : '接受'}
+          {data.is_submitted ? t('drbidpage.accepted') : t('drbidpage.accept')}
         </button>
       </div>
       <div

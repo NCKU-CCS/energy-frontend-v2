@@ -70,7 +70,7 @@ const AddBid: React.FC = () => {
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
               }
               format="yyyy/MM/dd"
-              emptyLabel="選擇日期"
+              emptyLabel={t('drbidpage.date')}
               showTodayButton
               disablePast
               allowKeyboardControl
@@ -85,7 +85,7 @@ const AddBid: React.FC = () => {
           onChange={(e) => setMode(parseInt(e.target.value, 10))}
         >
           <option dir="rtl" value="0" selected>
-            交易模式
+            {t('drbidpage.mode')}
           </option>
           {createOptions}
         </select>
@@ -96,7 +96,7 @@ const AddBid: React.FC = () => {
           step="0.1"
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           value={volume}
-          placeholder="總度數"
+          placeholder={t('drbidpage.volume')}
           required
         />
         <input
@@ -106,7 +106,7 @@ const AddBid: React.FC = () => {
           step="0.1"
           onChange={(e) => setPrice(parseFloat(e.target.value))}
           value={price}
-          placeholder="單價"
+          placeholder={t('drbidpage.price')}
           required
         />
         <input
@@ -118,7 +118,7 @@ const AddBid: React.FC = () => {
               ? (price * volume).toFixed(1)
               : undefined
           }
-          placeholder="總金額"
+          placeholder={t('drbidpage.total')}
           disabled
         />
         <button
