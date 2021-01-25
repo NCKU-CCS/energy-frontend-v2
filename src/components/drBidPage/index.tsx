@@ -66,6 +66,7 @@ const DrBidPageContainer: React.FC = () => {
         </div>
         <div className={classNames('drbid-a2-b2')}>
           <Graph
+            date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
               return apiData
                 .filter((d) => d.is_submitted && d.mode === i)

@@ -64,7 +64,9 @@
     "confirm": "確認",
     "reset": "重設",
     "edit": "編輯",
-    "cancel": "取消"
+    "cancel": "取消",
+    "transactionMode": "交易模式",
+    "businessModelDrSummary": "商業模式 需量反應計量 (kWh)"
   },
   "indexpage": {
     "pageTitle": "首頁",

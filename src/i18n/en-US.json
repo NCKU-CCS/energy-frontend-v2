@@ -64,7 +64,9 @@
     "confirm": "Confirm",
     "reset": "Reset",
     "edit": "Edit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "transactionMode": "Transaction Mode",
+    "businessModelDrSummary": "Business Model DR Summary (kWh)"
   },
   "indexpage": {
     "pageTitle": "Home",
