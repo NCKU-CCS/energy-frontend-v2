@@ -149,12 +149,17 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
         `translate(${width - padding.right + barWidth / 2}, ${padding.top})`,
       );
 
+    // transition
+    const transition = d3.transition().duration(500);
+
     // append bar
     svg
       .selectAll('rect')
       .data(values)
       .enter()
       .append('rect')
+      .attr('rx', 4)
+      .attr('ry', 4)
       .attr(
         'x',
         (_: number, i: number) =>
@@ -162,7 +167,15 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       )
       .attr('y', (d: number) => height - padding.bottom - Number(scaleY(d)))
       .attr('width', barWidth)
-      .attr('height', (d: number) => scaleY(d))
+      .call(
+        (enter: {
+          transition: (
+            arg0: d3.Transition<HTMLElement, unknown, null, undefined>,
+          ) => any;
+        }) =>
+          enter.transition(transition).attr('height', (d: number) => scaleY(d)),
+      )
+      // .attr('height', (d: number) => scaleY(d))
       .attr('fill', (_: number, i: number) => {
         switch (i + 1) {
           case 1:
