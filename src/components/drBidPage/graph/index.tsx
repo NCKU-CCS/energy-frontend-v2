@@ -173,7 +173,9 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             arg0: d3.Transition<HTMLElement, unknown, null, undefined>,
           ) => any;
         }) =>
-          enter.transition(transition).attr('height', (d: number) => scaleY(d)),
+          enter
+            .transition(transition)
+            .attr('height', (d: number) => scaleY(d + 0.5)),
       )
       // .attr('height', (d: number) => scaleY(d))
       .attr('fill', (_: number, i: number) => {
