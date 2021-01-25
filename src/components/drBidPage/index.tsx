@@ -40,6 +40,12 @@ const DrBidPageContainer: React.FC = () => {
         <div className={classNames('drbid-dr-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
+              inputProps={{
+                style: {
+                  color: `${date ? '#707070' : '#d1d2d1'}`,
+                  cursor: 'pointer',
+                },
+              }}
               value={date}
               onChange={(d) =>
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
