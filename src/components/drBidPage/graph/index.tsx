@@ -165,7 +165,20 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
         (_: number, i: number) =>
           padding.left + Number(scaleX(i + 1)) - barWidth / 2,
       )
-      .attr('y', (d: number) => height - padding.bottom - Number(scaleY(d)))
+      .attr('y', () => height - padding.bottom)
+      .call(
+        (enter: {
+          transition: (
+            arg0: d3.Transition<HTMLElement, unknown, null, undefined>,
+          ) => any;
+        }) =>
+          enter
+            .transition(transition)
+            .attr(
+              'y',
+              (d: number) => height - padding.bottom - Number(scaleY(d)),
+            ),
+      )
       .attr('width', barWidth)
       .call(
         (enter: {
@@ -177,7 +190,6 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             .transition(transition)
             .attr('height', (d: number) => scaleY(d + 0.5)),
       )
-      // .attr('height', (d: number) => scaleY(d))
       .attr('fill', (_: number, i: number) => {
         switch (i + 1) {
           case 1:
