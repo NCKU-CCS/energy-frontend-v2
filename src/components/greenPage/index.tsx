@@ -19,16 +19,16 @@ const GreenPageContainer: React.FC = () => {
 
   return (
     <div className={classNames('green-container')}>
-      <div className={classNames('green-a1')}>{}</div>
-      <div className={classNames('green-a2')}>
-        <div className={classNames('green-a2-b1')}>
+      <div className={classNames('green-top')}>{}</div>
+      <div className={classNames('green-left')}>
+        <div className={classNames('green-left-top')}>
           <Status userType={userType} />
         </div>
-        <div className={classNames('green-a2-b2')}>
+        <div className={classNames('green-left-bottom')}>
           <Graph />
         </div>
       </div>
-      <div className={classNames('green-a3')}>
+      <div className={classNames('green-right')}>
         <Submit />
       </div>
     </div>
