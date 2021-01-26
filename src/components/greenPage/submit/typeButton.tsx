@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
-  setDataType(type: string): void;
+  setType(type: string): void;
 }
 
-const TypeButton: React.FC<IProps> = ({ setDataType }) => {
+const TypeButton: React.FC<IProps> = ({ setType }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -15,39 +15,39 @@ const TypeButton: React.FC<IProps> = ({ setDataType }) => {
 
   // click buy button
   const handleClickBuy = () => {
-    setDataType('buy');
+    setType('buy');
     setDisabled(true);
   };
 
   // click sell button
   const handleClickSell = () => {
-    setDataType('sell');
+    setType('sell');
     setDisabled(false);
   };
 
   return (
-    <div className={classNames('drbid-submit-modebutton-container-in')}>
+    <div className={classNames('green-submit-modebutton-container-in')}>
       <button
         type="button"
         className={classNames(
-          'drbid-submit-modebutton-button',
-          'drbid-submit-modebutton-button-buy',
+          'green-submit-modebutton-button',
+          'green-submit-modebutton-button-buy',
         )}
         disabled={disabled}
         onClick={() => handleClickBuy()}
       >
-        {t('drbidpage.dayAhead')}
+        {t('greenpage.buy')}
       </button>
       <button
         type="button"
         className={classNames(
-          'drbid-submit-modebutton-button',
-          'drbid-submit-modebutton-button-sell',
+          'green-submit-modebutton-button',
+          'green-submit-modebutton-button-sell',
         )}
         disabled={!disabled}
         onClick={() => handleClickSell()}
       >
-        {t('drbidpage.realTime')}
+        {t('greenpage.sell')}
       </button>
     </div>
   );
