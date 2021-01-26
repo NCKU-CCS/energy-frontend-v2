@@ -8,7 +8,7 @@
   height: 80%;
 }
 
-.drbid-a1 {
+.drbid-date-container {
   flex-basis: 100%;
   height: 10%;
   display: flex;
@@ -29,28 +29,28 @@
   align-items: flex-end;
 }
 
-.drbid-a2 {
+.drbid-left {
   flex-basis: 30%;
   height: 90%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.drbid-a3 {
+.drbid-right {
   flex-basis: 70%;
   height: 90%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.drbid-a2-b1 {
+.drbid-left-top {
   flex-basis: 100%;
   height: 35%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.drbid-a2-b2 {
+.drbid-left-bottom {
   flex-basis: 100%;
   height: 65%;
 }
@@ -72,7 +72,7 @@
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-  .drbid-a1 {
+  .drbid-date-container {
     flex-basis: 100%;
     height: 10%;
   }
@@ -81,32 +81,32 @@
     width: 150px;
   }
 
-  .drbid-a2 {
+  .drbid-left {
     flex-basis: 100%;
     height: 40%;
   }
 
-  .drbid-a3 {
+  .drbid-right {
     flex-basis: 100%;
     height: 65%;
   }
 
-  .drbid-a2-b1 {
+  .drbid-left-top {
     flex-basis: 40%;
     height: 100%;
   }
 
-  .drbid-a2-b2 {
+  .drbid-left-bottom {
     flex-basis: 60%;
     height: 100%;
   }
 
-  .drbid-a2-b1-c1 {
+  .drbid-left-top-c1 {
     flex-basis: 100%;
     height: 50%;;
   }
 
-  .drbid-a2-b1-c2 {
+  .drbid-left-top-c2 {
     flex-basis: 100%;
     height: 50%;;
   }
@@ -118,7 +118,7 @@
     height: 90%;
   }
 
-  .drbid-a1 {
+  .drbid-date-container {
     flex-basis: 100%;
     height: 12%;
     justify-content: center;
@@ -137,32 +137,32 @@
     justify-content: flex-start;
   }
 
-  .drbid-a2 {
+  .drbid-left {
     flex-basis: 100%;
     height: 48%;
   }
 
-  .drbid-a3 {
+  .drbid-right {
     flex-basis: 100%;
     height: 40%;
   }
 
-  .drbid-a2-b1 {
+  .drbid-left-top {
     flex-basis: 100%;
     height: 33%;
   }
 
-  .drbid-a2-b2 {
+  .drbid-left-bottom {
     flex-basis: 100%;
     height: 67%;
   }
 
-  .drbid-a2-b1-c1 {
+  .drbid-left-top-c1 {
     flex-basis: 30%;
     height: 100%;
   }
 
-  .drbid-a2-b1-c2 {
+  .drbid-left-top-c2 {
     flex-basis: 70%;
     height: 100%;
   }

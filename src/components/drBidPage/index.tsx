@@ -44,7 +44,7 @@ const DrBidPageContainer: React.FC = () => {
 
   return (
     <div className={classNames('drbid-container')}>
-      <div className={classNames('drbid-a1')}>
+      <div className={classNames('drbid-date-container')}>
         <div className={classNames('drbid-dr-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
@@ -59,8 +59,8 @@ const DrBidPageContainer: React.FC = () => {
           </MuiPickersUtilsProvider>
         </div>
       </div>
-      <div className={classNames('drbid-a2')}>
-        <div className={classNames('drbid-a2-b1')}>
+      <div className={classNames('drbid-left')}>
+        <div className={classNames('drbid-left-top')}>
           <Status
             userType={userType}
             totalPrice={apiData
@@ -73,7 +73,7 @@ const DrBidPageContainer: React.FC = () => {
               .reduce((a, b) => a + b, 0)}
           />
         </div>
-        <div className={classNames('drbid-a2-b2')}>
+        <div className={classNames('drbid-left-bottom')}>
           <Graph
             values={[1, 2, 3, 4, 5].map((i) => {
               return apiData
@@ -84,7 +84,7 @@ const DrBidPageContainer: React.FC = () => {
           />
         </div>
       </div>
-      <div className={classNames('drbid-a3')}>
+      <div className={classNames('drbid-right')}>
         <Submit />
       </div>
     </div>
