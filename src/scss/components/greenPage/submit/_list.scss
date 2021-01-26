@@ -1,4 +1,4 @@
-.drbid-submit-list-container-in {
+.green-submit-list-container-in {
   flex-basis: 100%;
   height: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   background-color: white;
 }
 
-.drbid-submit-list-title-container {
+.green-submit-list-title-container {
   margin-left: 3%;
   margin-right: 3%;
   flex-basis: 94%;
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-.drbid-submit-list-listitem-container {
+.green-submit-list-listitem-container {
   margin-left: 3%;
   margin-right: 3%;
   flex-basis: 94%;
@@ -48,7 +48,7 @@
   background: #d1d1d1;
 }
 
-.drbid-submit-list-listitem-item-container {
+.green-submit-list-listitem-item-container {
   width: 100%;
   height: 15%;
   display: flex;
@@ -56,7 +56,7 @@
   border-bottom: #d1d2d1 solid 1px;
 }
 
-.drbid-submit-list-title-date {
+.green-submit-list-title-date {
   flex-basis: 20%;
   height: 100%;
   display: flex;
@@ -64,7 +64,7 @@
   justify-content: center;
 }
 
-.drbid-submit-list-title-interval {
+.green-submit-list-title-interval {
   flex-basis: 20%;
   height: 100%;
   display: flex;
@@ -72,7 +72,7 @@
   justify-content: center;
 }
 
-.drbid-submit-list-title-volume {
+.green-submit-list-title-volume {
   flex-basis: 17%;
   height: 100%;
   display: flex;
@@ -80,7 +80,7 @@
   justify-content: center;
 }
 
-.drbid-submit-list-title-price {
+.green-submit-list-title-price {
   flex-basis: 18%;
   height: 100%;
   display: flex;
@@ -88,7 +88,7 @@
   justify-content: center;
 }
 
-.drbid-submit-list-title-totalprice {
+.green-submit-list-title-totalprice {
   flex-basis: 15%;
   height: 100%;
   display: flex;
@@ -96,7 +96,7 @@
   justify-content: center;
 }
 
-.drbid-submit-list-title-button {
+.green-submit-list-title-button {
   flex-basis: auto;
   height: 100%;
 }
@@ -108,29 +108,41 @@
 
 // 1280 < size <= 1920
 @media all and (min-width: 1280px) and (max-width: 1920px) {
-  .drbid-submit-list-title-container {
+  .green-submit-list-title-container {
+    font-size: 1rem;
+  }
+
+  .green-submit-list-null {
     font-size: 1rem;
   }
 }
 
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
-  .drbid-submit-list-title-container {
+  .green-submit-list-title-container {
+    font-size: 0.9rem;
+  }
+
+  .green-submit-list-null {
     font-size: 0.9rem;
   }
 }
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-  .drbid-submit-list-title-container {
+  .green-submit-list-title-container {
     height: 20%;
   }
 
-  .drbid-submit-list-listitem-container {
+  .green-submit-list-listitem-container {
     height: 80%;
   }
 
-  .drbid-submit-list-title-container {
+  .green-submit-list-title-container {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-list-null {
     font-size: 0.8rem;
   }
 
@@ -138,38 +150,42 @@
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .drbid-submit-list-title-container {
+  .green-submit-list-title-container {
     font-size: 0.8rem;
   }
 
-  .drbid-submit-list-title-container {
+  .green-submit-list-null {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-list-title-container {
     height: 20%;
   }
 
-  .drbid-submit-list-listitem-container {
+  .green-submit-list-listitem-container {
     height: 80%;
   }
 
-  .drbid-submit-list-title-date {
+  .green-submit-list-title-date {
     flex-basis: 35%;
   }
 
-  .drbid-submit-list-title-interval {
+  .green-submit-list-title-interval {
     flex-basis: 35%;
   }
-  .drbid-submit-list-title-volume {
+  .green-submit-list-title-volume {
     flex-basis: 20%;
   }
 
-  .drbid-submit-list-title-button {
+  .green-submit-list-title-button {
     flex-basis: 10%;
   }
 
-  .drbid-submit-list-title-price {
+  .green-submit-list-title-price {
     display: none;
   }
 
-  .drbid-submit-list-title-totalprice {
+  .green-submit-list-title-totalprice {
     display: none;
   }
 

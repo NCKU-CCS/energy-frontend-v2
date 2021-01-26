@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "電力交易平台",
+    "title": "金門電力共享平台",
     "home": "首頁　　",
     "drBid": "需量反應 一 投標",
     "green": "綠電交易",
@@ -10,7 +10,7 @@
     "logout": "登出　　"
   },
   "loginpage": {
-    "title": "電力交易平台",
+    "title": "金門電力共享平台",
     "account": "帳號",
     "password": "密碼",
     "remember": "記住我",
@@ -65,10 +65,38 @@
     "confirm": "確認",
     "reset": "重設",
     "edit": "編輯",
-    "cancel": "取消"
+    "cancel": "取消",
+    "null": "目前暫無資料"
   },
   "greenpage": {
-    "pageTitle": "綠電交易"
+    "pageTitle": "綠電交易",
+    "modeGreen": "綠能交易",
+    "modeDemand": "需量反應",
+    "avgPrice": "平均交易價",
+    "avgVolume": "平均交易量",
+    "currParticipants": "即時交易人數",
+    "date": "日期",
+    "time": "時段",
+    "volume": "度數",
+    "price": "單價",
+    "total": "總金額",
+    "buy": "買",
+    "sell": "賣",
+    "drVolume": "DR量",
+    "drPreview": "每小時DR量預覽",
+    "drAward": "需量反應決標",
+    "drBidding": "需量反應競標",
+    "accept": "接受",
+    "accepted": "已接受",
+    "delete": "刪除",
+    "deleted": "已刪除",
+    "bid": "已投標",
+    "new": "新增",
+    "confirm": "確認",
+    "reset": "重設",
+    "edit": "編輯",
+    "cancel": "取消",
+    "null": "目前暫無資料"
   },
   "indexpage": {
     "pageTitle": "首頁",
@@ -128,7 +156,7 @@
     "url": "連結",
     "buy": "買",
     "sell": "賣",
-    "need": "須量反應",
+    "need": "需量反應",
     "bidding": "投標中",
     "finish": "已投標",
     "win": "得標",
