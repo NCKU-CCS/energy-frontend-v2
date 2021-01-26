@@ -18,6 +18,18 @@ interface IData {
 }
 
 const DrBidPageContainer: React.FC = () => {
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
+  // user type: user, aggregator
+  const [userType] = useState<string>(
+    user.is_aggregator ? 'aggregator' : 'user',
+  );
+
   // date
   const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
 
@@ -60,6 +72,7 @@ const DrBidPageContainer: React.FC = () => {
       <div className={classNames('drbid-left')}>
         <div className={classNames('drbid-left-top')}>
           <Status
+            userType={userType}
             totalPrice={apiData
               .filter((d) => d.is_submitted)
               .map((d) => d.total_price)
