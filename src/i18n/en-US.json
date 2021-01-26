@@ -3,6 +3,7 @@
     "title": "Energy Trading Platform",
     "home": "Home",
     "drBid": "DR 一 Bid",
+    "green": "Green Energy Trading",
     "status": "Bidding Status",
     "powerInfo": "Power Information",
     "setting": "Setting",
@@ -65,6 +66,9 @@
     "reset": "Reset",
     "edit": "Edit",
     "cancel": "Cancel"
+  },
+  "greenpage": {
+    "pageTitle": "Green Energy Trading"
   },
   "indexpage": {
     "pageTitle": "Home",

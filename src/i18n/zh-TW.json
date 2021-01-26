@@ -3,6 +3,7 @@
     "title": "電力交易平台",
     "home": "首頁　　",
     "drBid": "需量反應 一 投標",
+    "green": "綠電交易",
     "status": "競標動態",
     "powerInfo": "電力資訊",
     "setting": "設定　　",
@@ -65,6 +66,9 @@
     "reset": "重設",
     "edit": "編輯",
     "cancel": "取消"
+  },
+  "greenpage": {
+    "pageTitle": "綠電交易"
   },
   "indexpage": {
     "pageTitle": "首頁",
