@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "Energy Trading Platform",
+    "title": "Kinmen Energy Sharing Platform",
     "home": "Home",
     "green": "Green Energy Trading",
     "status": "Bidding Status",
@@ -9,7 +9,7 @@
     "logout": "Logout"
   },
   "loginpage": {
-    "title": "Energy Trading Platform",
+    "title": "Kinmen Energy Sharing Platform",
     "account": "Account",
     "password": "Password",
     "remember": "Remember me",
