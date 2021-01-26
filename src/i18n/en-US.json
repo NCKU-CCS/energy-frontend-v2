@@ -3,6 +3,7 @@
     "title": "Kinmen Energy Sharing Platform",
     "home": "Home",
     "drBid": "DR 一 Bid",
+    "drAccept": "DR 一 Accept",
     "green": "Green Energy Trading",
     "status": "Bidding Status",
     "powerInfo": "Power Information",
@@ -69,6 +70,9 @@
     "transactionMode": "Transaction Mode",
     "businessModelDrSummary": "Business Model DR Summary (kWh)",
     "null": "No information yet"
+  },
+  "dracceptpage": {
+    "pageTitle": "DR 一 Accept"
   },
   "greenpage": {
     "pageTitle": "Green Energy Trading",
