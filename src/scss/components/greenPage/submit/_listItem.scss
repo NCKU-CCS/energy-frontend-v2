@@ -1,0 +1,355 @@
+.green-submit-listitem-container--show {
+  height: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  font-size: 1rem;
+  text-align: center;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-date--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20%;
+  height: 100%;
+}
+
+.green-submit-listitem-interval--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20%;
+  height: 100%;
+}
+
+.green-submit-listitem-volume--show {
+  flex-basis: 17%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.green-submit-listitem-price--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 18%;
+  height: 100%;
+}
+
+.green-submit-listitem-total--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.green-submit-listitem-button-container--show {
+  flex-basis: 10%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-submit-listitem-edit--show {
+  cursor: pointer;
+  flex-basis: 100%;
+  height: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  border: 0;
+  padding: 11%;
+  background-color: transparent;
+}
+
+.green-submit-listitem-edit-img--show {
+  width: 100%;
+  height: 95%;
+  object-fit: contain;
+}
+
+.green-submit-listitem-remove--show {
+  cursor: pointer;
+  flex-basis: 100%;
+  height: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  border: 0;
+  padding: 11%;
+  background-color: transparent;
+}
+
+.green-submit-listitem-remove-img--show {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+.green-submit-listitem-view-container-out--320 {
+  display: none;
+}
+
+.green-submit-listitem-container--edit {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-date--edit {
+  cursor: pointer;
+  margin: 1%;
+  width: 18%;
+  height: 50%;
+  outline: 0;
+  border: 0;
+  color: #707070;
+  display: flex;
+  align-items: flex-end;
+}
+
+.green-submit-listitem-date--edit:hover {
+  border-bottom: #707070 solid 1px;
+}
+
+.green-submit-listitem-interval--edit {
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 1%;
+  width: 18%;
+  height: 50%;
+  outline: 0;
+  border: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-interval--edit:hover {
+  border-bottom: #707070 solid 1px;
+}
+
+.green-submit-listitem-volume--edit {
+  font-size: 1rem;
+  margin: 1%;
+  width: 15%;
+  height: 50%;
+  text-align: right;
+  outline: 0;
+  border: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-volume--edit:hover {
+  border-bottom: #707070 solid 1px;
+}
+
+.green-submit-listitem-price--edit {
+  font-size: 1rem;
+  margin: 1%;
+  width: 16%;
+  height: 50%;
+  text-align: right;
+  outline: 0;
+  border: 0;
+  color: #707070;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-price--edit:hover {
+  border-bottom: #707070 solid 1px;
+}
+
+.green-submit-listitem-total--edit {
+  font-size: 1rem;
+  margin: 1%;
+  width: 13%;
+  height: 50%;
+  text-align: right;
+  outline: 0;
+  border: 0;
+  color: #707070;
+  background-color: white;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.green-submit-listitem-button-container--edit {
+  width: 10%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-submit-listitem-submit--edit {
+  cursor: pointer;
+  height: 35%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.green-submit-listitem-submit-img--edit {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.green-submit-listitem-cancel--edit {
+  cursor: pointer;
+  height: 35%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.green-submit-listitem-cancel-img--edit {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1000 < size <= 1920
+@media all and (min-width: 1000px) and (max-width: 1920px) {
+  .green-submit-listitem-container--show {
+    font-size: 1rem;
+  }
+}
+
+// 720 < size <= 1000
+@media all and (min-width: 720px) and (max-width: 1000px) {
+  .green-submit-listitem-container--show {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-interval--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-volume--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-price--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-total--edit {
+    font-size: 0.8rem;
+  }
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .green-submit-listitem-container--show {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+  .green-submit-listitem-interval--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-volume--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-price--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-total--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-container--edit {
+    height: 25%;
+  }
+
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .green-submit-listitem-container--show {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+  .green-submit-listitem-interval--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-volume--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-price--edit {
+    font-size: .8rem;
+  }
+
+  .green-submit-listitem-total--edit {
+    font-size: 0.8rem;
+  }
+
+  .green-submit-listitem-container--edit {
+    height: 25%;
+  }
+
+  .green-submit-listitem-container--show {
+    overflow-y: auto;
+  }
+
+  .green-submit-listitem-date--show {
+    flex-basis: 35%;
+  }
+
+  .green-submit-listitem-interval--show {
+    flex-basis: 35%;
+  }
+
+  .green-submit-listitem-volume--show {
+    flex-basis: 20%;
+  }
+
+  .green-submit-listitem-view-container-out--320 {
+    display: block;
+    flex-basis: 10%;
+  }
+
+  .green-submit-listitem-button-container--show {
+    display: none;
+  }
+
+  .green-submit-listitem-price--show {
+    display: none;
+  }
+
+  .green-submit-listitem-total--show {
+    display: none;
+  }
+
+}

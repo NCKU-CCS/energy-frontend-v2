@@ -2,7 +2,7 @@
   "navbar": {
     "title": "Energy Trading Platform",
     "home": "Home",
-    "bidding": "Bidding",
+    "green": "Green Energy Trading",
     "status": "Bidding Status",
     "powerInfo": "Power Information",
     "setting": "Setting",
@@ -37,8 +37,8 @@
     "name": "name",
     "view": "view"
   },
-  "biddingpage": {
-    "pageTitle": "Bidding",
+  "greenpage": {
+    "pageTitle": "Green Energy Trading",
     "modeGreen": "Green Energy",
     "modeDemand": "Demand Response",
     "avgPrice": "Average Price",
@@ -64,7 +64,8 @@
     "confirm": "Confirm",
     "reset": "Reset",
     "edit": "Edit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "null": "No information yet"
   },
   "indexpage": {
     "pageTitle": "Home",

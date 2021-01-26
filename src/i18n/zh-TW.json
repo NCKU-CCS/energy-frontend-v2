@@ -2,7 +2,7 @@
   "navbar": {
     "title": "電力交易平台",
     "home": "首頁　　",
-    "bidding": "投標　　",
+    "green": "綠電交易",
     "status": "競標動態",
     "powerInfo": "電力資訊",
     "setting": "設定　　",
@@ -37,8 +37,8 @@
     "name": "名稱",
     "view": "查看"
   },
-  "biddingpage": {
-    "pageTitle": "投標",
+  "greenpage": {
+    "pageTitle": "綠電交易",
     "modeGreen": "綠能交易",
     "modeDemand": "需量反應",
     "avgPrice": "平均交易價",
@@ -64,7 +64,8 @@
     "confirm": "確認",
     "reset": "重設",
     "edit": "編輯",
-    "cancel": "取消"
+    "cancel": "取消",
+    "null": "目前暫無資料"
   },
   "indexpage": {
     "pageTitle": "首頁",
@@ -124,7 +125,7 @@
     "url": "連結",
     "buy": "買",
     "sell": "賣",
-    "need": "須量反應",
+    "need": "需量反應",
     "bidding": "投標中",
     "finish": "已投標",
     "win": "得標",
