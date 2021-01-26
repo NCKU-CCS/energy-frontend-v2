@@ -49,7 +49,7 @@
     "volume": "總度數",
     "price": "單價",
     "total": "總金額",
-    "day": "日前",
+    "dayAhead": "日前",
     "realTime": "即時",
     "drVolume": "DR量",
     "drPreview": "每小時DR量預覽",

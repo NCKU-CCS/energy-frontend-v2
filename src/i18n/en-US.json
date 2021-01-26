@@ -49,7 +49,7 @@
     "volume": "Volume",
     "price": "Price",
     "total": "Total",
-    "day": "Day",
+    "dayAhead": "Day Ahead",
     "realTime": "Real Time",
     "drVolume": "DR Volume",
     "drPreview": "DR Preview",

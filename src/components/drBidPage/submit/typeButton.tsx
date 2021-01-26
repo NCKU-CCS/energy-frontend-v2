@@ -36,7 +36,7 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
         disabled={disabled}
         onClick={() => handleClickBuy()}
       >
-        {t('drbidpage.day')}
+        {t('drbidpage.dayAhead')}
       </button>
       <button
         type="button"
