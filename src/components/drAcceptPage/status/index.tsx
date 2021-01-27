@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 interface IProps {
+  userType: string;
   totalPrice: number;
   totalVolume: number;
 }
 
-const BiddingStatus: React.FC<IProps> = ({ totalPrice, totalVolume }) => {
+const BiddingStatus: React.FC<IProps> = ({
+  userType,
+  totalPrice,
+  totalVolume,
+}) => {
   // i18n
   const { t } = useTranslation();
-
-  // get user from local storage or session storage
-  const user = JSON.parse(
-    localStorage.getItem('BEMS_USER') ||
-      sessionStorage.getItem('BEMS_USER') ||
-      '{}',
-  );
-
-  // user type: user, aggregator
-  const [userType] = useState<string>(
-    user.is_aggregator ? 'aggregator' : 'taipower',
-  );
 
   return (
     <div className={classNames('draccept-status-container')}>
