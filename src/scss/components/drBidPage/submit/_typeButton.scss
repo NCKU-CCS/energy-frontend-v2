@@ -1,11 +1,10 @@
-.green-submit-modebutton-container-in {
-  background-color: #f1f2f1;
+.drbid-submit-modebutton-container-in {
   width: 100%;
   height: 100%;
   background-color: #f1f2f1;
 }
 
-.green-submit-modebutton-button {
+.drbid-submit-modebutton-button {
   cursor: pointer;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -19,17 +18,17 @@
   background-color: #d8d8d8;
 }
 
-.green-submit-modebutton-button:disabled {
+.drbid-submit-modebutton-button:disabled {
   cursor: default;
   background-color: white;
 }
 
-.green-submit-modebutton-button-buy:disabled {
-  color: #d32f2f;
+.drbid-submit-modebutton-button-buy:disabled {
+  color: #2d6131;
 }
 
-.green-submit-modebutton-button-sell:disabled {
-  color: #2e7d32;
+.drbid-submit-modebutton-button-sell:disabled {
+  color: #ffa000;
 }
 
 // 1920 < size
@@ -49,14 +48,14 @@
 
 // 320 < size <= 720
 @media all and (min-width: 320px) and (max-width: 720px) {
-  .green-submit-modebutton-button {
+  .drbid-submit-modebutton-button {
     font-size: 0.9rem;
   }
 }
 
 // size <= 320
 @media all and (max-width: 320px) {
-  .green-submit-modebutton-button {
+  .drbid-submit-modebutton-button {
     font-size: 0.8rem;
   }
 }
