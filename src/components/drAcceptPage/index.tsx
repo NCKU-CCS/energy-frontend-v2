@@ -114,8 +114,8 @@ const DrAcceptPageContainer: React.FC = () => {
           <Graph
             date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
-              return apiData
-                .filter((d) => d.is_submitted && d.mode === i)
+              return newApiData
+                .filter((d) => d.is_accepted && d.mode === i)
                 .map((d) => d.total_price)
                 .reduce((a, b) => a + b, 0);
             })}
