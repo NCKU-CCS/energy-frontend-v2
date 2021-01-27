@@ -1,0 +1,162 @@
+.draccept-submit-infobox-container-in {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.draccept-submit-infobox-open-btn {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.draccept-submit-infobox-open-btn-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.draccept-submit-infobox-canvas {
+  z-index: 1;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4)
+}
+
+.draccept-submit-infobox-content {
+  // top right bottom left
+  margin: 60% 10% 0% 10%;
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  opacity: 1;
+  color: #707070;
+  border-radius: 5px;
+}
+
+.draccept-submit-infobox-content-header--user {
+  width: 100%;
+  height: 10%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #39625E;
+}
+
+.draccept-submit-infobox-content-header--aggregator {
+  width: 100%;
+  height: 10%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #464147;
+}
+
+.draccept-submit-infobox-content-center {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draccept-submit-infobox-content-footer--user {
+  display: flex;
+  width: 100%;
+  height: 15%;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #39625E;
+}
+
+.draccept-submit-infobox-content-footer--aggregator {
+  display: flex;
+  width: 100%;
+  height: 15%;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #464147;
+}
+
+.draccept-submit-infobox-content-header-close {
+  cursor: pointer;
+  margin-right: 3%;
+  background-color: transparent;
+  color: white;
+  border: 0;
+  outline: 0;
+}
+
+.draccept-submit-infobox-content-footer-btn {
+  width: 30%;
+  height: 60%;
+  border-radius: 5px;
+  outline: 0;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draccept-submit-infobox-content-footer-btn:disabled {
+  border: 0;
+  box-shadow: 0px 3px 5px #444 inset;
+}
+
+.draccept-submit-infobox-content-center-inside {
+  width: 90%;
+  height: 90%;
+}
+
+.draccept-submit-infobox-content-center-inside--show {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-submit-infobox-content-center-inside-item--show {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.draccept-submit-infobox-content-center-inside-date--show {
+  flex-basis: 100%;
+}
+
+.draccept-submit-infobox-content-center-inside-interval--show {
+  flex-basis: 100%;
+}
+
+.draccept-submit-infobox-content-center-inside-volume--show {
+  flex-basis: 100%;
+}
+
+.draccept-submit-infobox-content-center-inside-price--show {
+  flex-basis: 100%;
+}
+
+.draccept-submit-infobox-content-center-inside-total--show {
+  flex-basis: 100%;
+}

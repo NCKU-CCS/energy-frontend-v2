@@ -1,0 +1,180 @@
+.draccept-status-container {
+  flex-basis: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-status-participants-container-out {
+  display: none;
+}
+
+.draccept-status-total-container-out {
+  width: 87%;
+  margin-left: 10%;
+  height: 100%;
+}
+
+.draccept-status-total-container-in {
+  flex-basis: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  color: #707070;
+  border-radius: 5px;
+}
+
+.draccept-status-total-image-container {
+  flex-basis: 100%;
+  height: 50%;
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draccept-status-total-image-img {
+  width: 100%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.draccept-status-total-text-container {
+  flex-basis: 100%;
+  height: 50%;
+  padding-bottom: 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-status-total-text-price-container {
+  width: 50%;
+  height: 100%;
+}
+
+.draccept-status-total-text-volume-container {
+  width: 50%;
+  height: 100%;
+}
+
+.draccept-status-total-text-price-value {
+  width: 100%;
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 1.3rem;
+}
+
+.draccept-status-total-text-price-title {
+  width: 100%;
+  height: 45%;
+  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 0.5rem;
+}
+
+.draccept-status-total-text-volume-value {
+  width: 100%;
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 1.3rem;
+}
+
+.draccept-status-total-text-volume-title {
+  width: 100%;
+  height: 45%;
+  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 0.5rem;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+  .draccept-status-total-text-price-value {
+    font-size: 30px;
+  }
+
+  .draccept-status-total-text-price-title {
+    font-size: 16px;
+  }
+
+  .draccept-status-total-text-volume-value {
+    font-size: 30px;
+  }
+
+  .draccept-status-total-text-volume-title {
+    font-size: 16px;
+  }
+
+}
+
+// 1100 < size <= 1920
+@media all and (min-width: 1100px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1100
+@media all and (min-width: 720px) and (max-width: 1100px) {
+
+}
+
+// 600 < size <= 720
+@media all and (min-width: 600px) and (max-width: 720px) {
+  .draccept-status-total-container-out {
+    width: 94%;
+    margin-left: 6%;
+    height: 95%;
+  }
+
+  .draccept-status-total-text-price-container {
+    width: 50%;
+    height: 100%;
+  }
+
+  .draccept-status-total-text-volume-container {
+    width: 50%;
+    height: 100%;
+  }
+
+}
+
+// 320 < size <= 600
+@media all and (min-width: 321px) and (max-width: 600px) {
+  .draccept-status-total-container-out {
+    width: 94%;
+    margin-left: 6%;
+    height: 95%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .draccept-status-total-container-out {
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+    width: 100%;
+    height: 100%;
+    // border: red solid 1px;
+  }
+
+  .draccept-status-total-image-container {
+    flex-basis: 25%;
+    padding-top: 0%;
+  }
+
+  .draccept-status-total-text-container {
+    flex-basis: 75%;
+    padding-top: 3%;
+    padding-bottom: 0%;
+  }
+
+}

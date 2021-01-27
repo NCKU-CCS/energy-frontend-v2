@@ -1,0 +1,121 @@
+.draccept-submit-list-title-container {
+  margin-left: 3%;
+  margin-right: 3%;
+  flex-basis: 94%;
+  height: 15%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.draccept-submit-list-title-date {
+  flex-basis: 22.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draccept-submit-list-title-mode {
+  flex-basis: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draccept-submit-list-title-volume {
+  flex-basis: 17%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draccept-submit-list-title-price {
+  flex-basis: 20.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draccept-submit-list-title-totalprice {
+  flex-basis: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draccept-submit-list-title-button {
+  flex-basis: auto;
+  height: 100%;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+  .draccept-submit-list-title-container {
+    font-size: 1rem;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .draccept-submit-list-title-container {
+    font-size: 0.9rem;
+  }
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .draccept-submit-list-title-container {
+    height: 20%;
+  }
+
+  .draccept-submit-list-title-container {
+    font-size: 0.8rem;
+  }
+
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .draccept-submit-list-title-container {
+    font-size: 0.8rem;
+  }
+
+  .draccept-submit-list-title-container {
+    height: 20%;
+  }
+
+  .draccept-submit-list-title-date {
+    flex-basis: 35%;
+  }
+
+  .draccept-submit-list-title-mode {
+    flex-basis: 25%;
+  }
+  .draccept-submit-list-title-volume {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-list-title-button {
+    flex-basis: 10%;
+  }
+
+  .draccept-submit-list-title-price {
+    display: none;
+  }
+
+  .draccept-submit-list-title-totalprice {
+    display: none;
+  }
+
+}
