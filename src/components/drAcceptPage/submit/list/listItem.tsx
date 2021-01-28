@@ -2,7 +2,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
 
 interface IData {
@@ -39,29 +38,34 @@ const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
 
   return (
     <div className={classNames('draccept-submit-listitem-container')}>
-      <div className={classNames('draccept-submit-listitem-date')}>
-        {dayjs(date).format('YYYY /MM/DD')}
-      </div>
       <div className={classNames('draccept-submit-listitem-mode')}>
-        {data.mode}
+        {newData.mode}
+      </div>
+      <div className={classNames('draccept-submit-listitem-user')}>
+        {userType === 'taipower' ? newData.aggregator : newData.executor}
+      </div>
+      <div className={classNames('draccept-submit-listitem-interval')}>
+        15:00 - 16:00
       </div>
       <div className={classNames('draccept-submit-listitem-volume')}>
-        {data.total_volume.toFixed(1)}&thinsp;kWh
+        {newData.total_volume.toFixed(1)}&thinsp;kWh
       </div>
       <div className={classNames('draccept-submit-listitem-price')}>
-        $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
+        $&thinsp;{newData.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('draccept-submit-listitem-total')}>
-        $&thinsp;{data.total_price.toFixed(1)}
+        $&thinsp;{newData.total_price.toFixed(1)}
       </div>
       <div className={classNames('draccept-submit-listitem-button-container')}>
         <button
           className={classNames('draccept-submit-listitem-button-btn')}
           type="button"
-          disabled={data.is_submitted}
+          disabled={newData.is_accepted}
           onClick={() => alert('success')}
         >
-          {data.is_submitted ? t('drbidpage.accepted') : t('drbidpage.accept')}
+          {newData.is_accepted
+            ? t('drbidpage.accepted')
+            : t('drbidpage.accept')}
         </button>
       </div>
       <div

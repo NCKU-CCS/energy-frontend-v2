@@ -32,14 +32,9 @@ interface IProps {
 
 const List: React.FC<IProps> = ({ date, userType, apiData, newApiData }) => {
   // map data and create list items
-  const createList = apiData.map((d) => {
+  const createList = newApiData.map((d) => {
     return (
-      <ListItem
-        date={date}
-        userType={userType}
-        data={d}
-        newData={newApiData[0]}
-      />
+      <ListItem date={date} userType={userType} data={apiData[0]} newData={d} />
     );
   });
 

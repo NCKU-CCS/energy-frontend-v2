@@ -3,7 +3,7 @@
     "day": 1,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 10,
@@ -12,7 +12,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 12,
@@ -21,7 +21,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 3,
@@ -30,7 +30,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 6,
@@ -39,7 +39,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 12,
@@ -48,7 +48,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 9,
@@ -57,7 +57,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 8,
@@ -66,7 +66,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 4,
@@ -75,7 +75,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 7,
@@ -84,7 +84,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 10,
@@ -98,7 +98,7 @@
     "day": 2,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 14,
@@ -107,7 +107,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 6,
@@ -116,7 +116,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 9,
@@ -125,7 +125,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 7,
@@ -134,7 +134,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 9,
@@ -143,7 +143,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 17,
@@ -152,7 +152,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 6,
@@ -161,7 +161,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 5,
@@ -170,7 +170,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 15,
@@ -179,7 +179,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 2,
@@ -193,7 +193,7 @@
     "day": 3,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 11,
@@ -202,7 +202,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 8,
@@ -211,7 +211,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 7,
@@ -220,7 +220,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 12,
@@ -229,7 +229,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 6,
@@ -238,7 +238,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 19,
@@ -247,7 +247,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 3,
@@ -256,7 +256,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 2,
@@ -265,7 +265,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 16,
@@ -274,7 +274,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 3,
@@ -288,7 +288,7 @@
     "day": 4,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 2,
@@ -297,7 +297,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 9,
@@ -306,7 +306,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 7,
@@ -315,7 +315,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 9,
@@ -324,7 +324,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 3,
@@ -333,7 +333,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 7,
@@ -342,7 +342,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 2,
@@ -351,7 +351,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 5,
@@ -360,7 +360,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 4,
@@ -369,7 +369,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 13,
@@ -383,7 +383,7 @@
     "day": 5,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 2,
@@ -392,7 +392,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 3,
@@ -401,7 +401,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 5,
@@ -410,7 +410,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 8,
@@ -419,7 +419,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 9,
@@ -428,7 +428,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 2,
@@ -437,7 +437,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 9,
@@ -446,7 +446,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 7,
@@ -455,7 +455,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 6,
@@ -464,7 +464,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 15,
@@ -478,7 +478,7 @@
     "day": 6,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 14,
@@ -487,7 +487,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 11,
@@ -496,7 +496,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 12,
@@ -505,7 +505,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 15,
@@ -514,7 +514,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 4,
@@ -523,7 +523,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 19,
@@ -532,7 +532,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 14,
@@ -541,7 +541,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 3,
@@ -550,7 +550,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 4,
@@ -559,7 +559,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 1,
@@ -573,7 +573,7 @@
     "day": 0,
     "data": [
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 4,
@@ -582,7 +582,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 2,
@@ -591,7 +591,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 11,
@@ -600,7 +600,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 11,
@@ -609,7 +609,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 5,
         "total_volume": 8,
@@ -618,7 +618,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 4,
         "total_volume": 3,
@@ -627,7 +627,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 6,
@@ -636,7 +636,7 @@
         "is_accepted": false
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 14,
@@ -645,7 +645,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 17,
@@ -654,7 +654,7 @@
         "is_accepted": true
       },
       {
-        "aggregator": "Aggregator A",
+        "aggregator": "Aggr. A",
         "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 11,

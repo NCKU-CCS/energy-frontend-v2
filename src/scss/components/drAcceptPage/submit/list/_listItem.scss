@@ -4,16 +4,8 @@
   flex-wrap: wrap;
   font-size: 1rem;
   text-align: center;
-  overflow: hidden;
+  // overflow: hidden;
   border-bottom: #d1d2d1 solid 1px;
-}
-
-.draccept-submit-listitem-date {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-basis: 22.5%;
-  height: 100%;
 }
 
 .draccept-submit-listitem-mode {
@@ -24,8 +16,24 @@
   height: 100%;
 }
 
+.draccept-submit-listitem-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.draccept-submit-listitem-interval {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 18.5%;
+  height: 100%;
+}
+
 .draccept-submit-listitem-volume {
-  flex-basis: 17%;
+  flex-basis: 12%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +44,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20.5%;
+  flex-basis: 16.5%;
   height: 100%;
 }
 
@@ -44,7 +52,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 15%;
+  flex-basis: 12%;
   height: 100%;
 }
 
@@ -97,7 +105,7 @@
 // 1000 < size <= 1920
 @media all and (min-width: 1000px) and (max-width: 1920px) {
   .draccept-submit-listitem-container {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }
 
