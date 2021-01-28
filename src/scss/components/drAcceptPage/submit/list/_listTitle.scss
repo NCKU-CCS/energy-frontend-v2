@@ -9,49 +9,64 @@
   text-align: center;
 }
 
-.draccept-submit-list-title-date {
-  flex-basis: 22.5%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .draccept-submit-list-title-mode {
   flex-basis: 15%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: red solid 1px;
 }
 
-.draccept-submit-list-title-volume {
-  flex-basis: 17%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.draccept-submit-list-title-price {
-  flex-basis: 20.5%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.draccept-submit-list-title-totalprice {
+.draccept-submit-list-title-user {
   flex-basis: 15%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: red solid 1px;
+}
+
+.draccept-submit-list-title-interval {
+  flex-basis: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: red solid 1px;
+}
+
+.draccept-submit-list-title-volume {
+  flex-basis: 16.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: red solid 1px;
+}
+
+.draccept-submit-list-title-price {
+  flex-basis: 16.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: red solid 1px;
+}
+
+.draccept-submit-list-title-totalprice {
+  flex-basis: 12%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: red solid 1px;
 }
 
 .draccept-submit-list-title-button {
   flex-basis: auto;
   height: 100%;
+  border: red solid 1px;
 }
 
 // 1920 < size

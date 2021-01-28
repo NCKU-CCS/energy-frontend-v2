@@ -3,17 +3,24 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import AddBidBtn from '../addBidBtn';
 
-const ListTitle: React.FC = () => {
+interface IProps {
+  userType: string;
+}
+
+const ListTitle: React.FC<IProps> = ({ userType }) => {
   // i18n
   const { t } = useTranslation();
 
   return (
     <div className={classNames('draccept-submit-list-title-container')}>
-      <div className={classNames('draccept-submit-list-title-date')}>
-        {t('drbidpage.date')}
-      </div>
       <div className={classNames('draccept-submit-list-title-mode')}>
         {t('drbidpage.mode')}
+      </div>
+      <div className={classNames('draccept-submit-list-title-user')}>
+        {userType === 'taipower' ? '提報者' : '執行者'}
+      </div>
+      <div className={classNames('draccept-submit-list-title-interval')}>
+        時段
       </div>
       <div className={classNames('draccept-submit-list-title-volume')}>
         {t('drbidpage.volume')}

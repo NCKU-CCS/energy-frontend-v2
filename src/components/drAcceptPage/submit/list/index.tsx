@@ -45,7 +45,7 @@ const List: React.FC<IProps> = ({ date, userType, apiData, newApiData }) => {
 
   return (
     <div className={classNames('draccept-submit-list-container-in')}>
-      <ListTitle />
+      <ListTitle userType={userType} />
       <div className={classNames('draccept-submit-list-listitem-container')}>
         {createList}
       </div>
