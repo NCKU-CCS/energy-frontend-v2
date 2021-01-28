@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -64,8 +65,12 @@ const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
           onClick={() => alert('success')}
         >
           {newData.is_accepted
-            ? t('dracceptpage.accepted')
-            : t('dracceptpage.accept')}
+            ? userType === 'taipower'
+              ? t('dracceptpage.announced')
+              : t('dracceptpage.bidAccepted')
+            : userType === 'taipower'
+            ? t('dracceptpage.accept')
+            : t('dracceptpage.acceptBid')}
         </button>
       </div>
       <div
