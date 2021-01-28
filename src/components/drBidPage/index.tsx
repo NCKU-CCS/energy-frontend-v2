@@ -8,7 +8,7 @@ import Submit from './submit';
 import Graph from './graph';
 import allTestData from './data.json';
 
-interface IApiData {
+interface IData {
   date: string;
   mode: number;
   total_volume: number;
@@ -31,16 +31,20 @@ const DrBidPageContainer: React.FC = () => {
   );
 
   // date
-  const [date, setDate] = useState<string>(dayjs().format('YYYY-MM-DD'));
+  const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
+
+  // data type: dayBefore(日前), realTime(即時)
+  const [dataType, setDataType] = useState<string>('dayBefore');
 
   // api data
-  const [apiData, setApiData] = useState<IApiData[]>([]);
+  const [apiData, setApiData] = useState<IData[]>([]);
 
+  // fetch api data
   useEffect(() => {
     setApiData([
       ...allTestData.filter((d) => d.day === dayjs(date).day())[0].data,
     ]);
-  }, [date]);
+  }, [date, dataType]);
 
   return (
     <div className={classNames('drbid-container')}>
@@ -85,7 +89,7 @@ const DrBidPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('drbid-right')}>
-        <Submit />
+        <Submit date={date} apiData={apiData} setDataType={setDataType} />
       </div>
     </div>
   );

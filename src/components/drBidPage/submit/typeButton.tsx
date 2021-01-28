@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
-  setType(type: string): void;
+  setDataType(type: string): void;
 }
 
-const TypeButton: React.FC<IProps> = ({ setType }) => {
+const TypeButton: React.FC<IProps> = ({ setDataType }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -15,13 +15,13 @@ const TypeButton: React.FC<IProps> = ({ setType }) => {
 
   // click buy button
   const handleClickBuy = () => {
-    setType('buy');
+    setDataType('buy');
     setDisabled(true);
   };
 
   // click sell button
   const handleClickSell = () => {
-    setType('sell');
+    setDataType('sell');
     setDisabled(false);
   };
 

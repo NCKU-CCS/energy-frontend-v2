@@ -1,0 +1,157 @@
+.drbid-submit-listitem-container {
+  height: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.drbid-submit-listitem-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 22.5%;
+  height: 100%;
+}
+
+.drbid-submit-listitem-mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.drbid-submit-listitem-volume {
+  flex-basis: 17%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.drbid-submit-listitem-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20.5%;
+  height: 100%;
+}
+
+.drbid-submit-listitem-total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.drbid-submit-listitem-button-container {
+  flex-basis: 10%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.drbid-submit-listitem-button-btn {
+  cursor: pointer;
+  width: 80%;
+  height: auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #FFA000;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+}
+
+.drbid-submit-listitem-button-btn:hover:not([disabled]) {
+  cursor: pointer;
+  width: 85%;
+  height: 45%;
+  background-color: #fcb43a;
+  box-shadow: 0px 3px 10px #cccccc;
+}
+
+.drbid-submit-listitem-button-btn:disabled {
+  cursor: default;
+  border: #e8e8e8 solid 1px;
+  color: #d1d1d1;
+  background-color: #f1f2f1;
+}
+
+.drbid-submit-listitem-view-container-out--320 {
+  display: none;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1000 < size <= 1920
+@media all and (min-width: 1000px) and (max-width: 1920px) {
+  .drbid-submit-listitem-container {
+    font-size: 1rem;
+  }
+}
+
+// 720 < size <= 1000
+@media all and (min-width: 720px) and (max-width: 1000px) {
+  .drbid-submit-listitem-container {
+    font-size: 0.8rem;
+  }
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .drbid-submit-listitem-container {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .drbid-submit-listitem-container {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+  .drbid-submit-listitem-date {
+    flex-basis: 35%;
+  }
+
+  .drbid-submit-listitem-mode {
+    flex-basis: 25%;
+  }
+
+  .drbid-submit-listitem-volume {
+    flex-basis: 30%;
+  }
+
+  .drbid-submit-listitem-view-container-out--320 {
+    display: block;
+    flex-basis: 10%;
+  }
+
+  .drbid-submit-listitem-button-container {
+    display: none;
+  }
+
+  .drbid-submit-listitem-price {
+    display: none;
+  }
+
+  .drbid-submit-listitem-total {
+    display: none;
+  }
+
+}

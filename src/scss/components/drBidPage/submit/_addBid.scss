@@ -1,79 +1,106 @@
 .drbid-submit-addbid-container-in {
+  margin-left: 3%;
+  margin-right: 3%;
   height: 100%;
   background-color: white;
+
+  ::placeholder {
+    color: #d1d2d1;
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #d1d2d1;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #d1d2d1;
+  }
 }
 
 .drbid-submit-addbid-form {
-  margin-left: 3%;
-  margin-right: 3%;
-  width: 94%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1vw;
 }
 
 .drbid-submit-addbid-form-date {
   cursor: pointer;
-  margin: 1%;
-  width: 18%;
+  margin: 3.25%;
+  width: 16%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
-  text-align: right;
-  display: flex;
-  align-items: flex-end;
+  border-radius: 5px;
+  border: #d1d2d1 solid 1px;
 }
 
 .drbid-submit-addbid-form-date:hover {
-  border-bottom: #707070 solid 1px;
+  border: #707070 solid 1px;
 }
 
 .drbid-submit-addbid-form-select {
   cursor: pointer;
+  text-align-last: right;
   margin: 1%;
-  width: 18%;
+  width: 13%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
-  border-bottom: #d1d2d1 solid 1px;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
 }
 
 .drbid-submit-addbid-form-select:hover {
-  border-bottom: #707070 solid 1px;
+  border: #707070 solid 1px;
+}
+
+.drbid-submit-addbid-form-select--invalid {
+  cursor: pointer;
+  text-align-last: right;
+  margin: 1%;
+  width: 13%;
+  height: 70%;
+  color: #d1d2d1;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
+}
+
+.drbid-submit-addbid-form-select--invalid:hover {
+  border: #707070 solid 1px;
+}
+
+.drbid-submit-addbid-form-select--invalid:focus {
+  color: #707070;
 }
 
 .drbid-submit-addbid-form-volume {
-  margin: 1%;
-  width: 15%;
+  margin: 2%;
+  width: 13%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
-  border-bottom: #d1d2d1 solid 1px;
   text-align: right;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
 }
 
 .drbid-submit-addbid-form-volume:hover, :focus {
-  border-bottom: #707070 solid 1px;
+  border: #707070 solid 1px;
 }
 
 .drbid-submit-addbid-form-price {
-  margin: 1%;
-  width: 16%;
+  margin: 3%;
+  width: 14.5%;
   height: 70%;
-  outline: 0;
-  border: 0;
   color: #707070;
-  border-bottom: #d1d2d1 solid 1px;
   text-align: right;
+  border-bottom: #707070 solid 1px;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
 }
 
 .drbid-submit-addbid-form-price:hover, :focus {
-  border-bottom: #707070 solid 1px;
+  border: #707070 solid 1px;
 }
 
 .drbid-submit-addbid-form-total {
@@ -84,52 +111,41 @@
   border: 0;
   color: #707070;
   background-color: white;
-  border-bottom: #d1d2d1 solid 1px;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
   text-align: right;
 }
 
 .drbid-submit-addbid-form-submit {
   cursor: pointer;
-  width: 5%;
-  height: 60%;
-  font-size: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0;
+  border-radius: 5px;
   outline: 0;
-  padding: 0.5%;
-  background-color: transparent;
+  margin: 1%;
+  width: 8%;
+  height: auto;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  color: white;
+  background-color: #2e7d32;
 }
 
-.drbid-submit-addbid-form-submit-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
+.drbid-submit-addbid-form-submit:hover:not([disabled]) {
+  margin: 0.5%;
+  width: 9%;
+  height: 70%;
+  background-color: #389c3d;
+  box-shadow: 0px 3px 10px #aaaaaa;
 }
 
 .drbid-submit-addbid-form-submit:disabled {
-  display: none;
-}
-
-.drbid-submit-addbid-form-reset {
-  cursor: pointer;
-  width: 5%;
-  height: 60%;
-  font-size: 0;
-  border: 0;
-  outline: 0;
-  padding: 0.5%;
-  background-color: transparent;
-}
-
-.drbid-submit-addbid-form-reset-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-.drbid-submit-addbid-form-reset:disabled {
-  display: none;
+  cursor: default;
+  border: #e8e8e8 solid 1px;
+  color: #d1d1d1;
+  background-color: #f1f2f1;
 }
 
 // 1920 < size
