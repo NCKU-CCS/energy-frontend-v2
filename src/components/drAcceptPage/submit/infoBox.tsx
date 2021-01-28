@@ -87,7 +87,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <span>{t('drbidpage.date')} :&nbsp;</span>
+                    <span>{t('dracceptpage.date')} :&nbsp;</span>
                     <span>{date}</span>
                   </div>
                   <div
@@ -96,7 +96,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <span>{t('drbidpage.mode')} :&nbsp;</span>
+                    <span>{t('dracceptpage.mode')} :&nbsp;</span>
                     <span>{data.mode}</span>
                   </div>
                   <div
@@ -105,7 +105,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <span>{t('drbidpage.volume')} :&nbsp;</span>
+                    <span>{t('dracceptpage.volume')} :&nbsp;</span>
                     <span>{data.total_volume.toFixed(1)}kWh</span>
                   </div>
                   <div
@@ -114,7 +114,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <span>{t('drbidpage.price')} :&nbsp;</span>
+                    <span>{t('dracceptpage.price')} :&nbsp;</span>
                     <span>${data.price.toFixed(1)}/kWh</span>
                   </div>
                   <div
@@ -123,7 +123,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
-                    <span>{t('drbidpage.total')} :&nbsp;</span>
+                    <span>{t('dracceptpage.total')} :&nbsp;</span>
                     <span>${data.total_price.toFixed(1)}</span>
                   </div>
                 </div>
@@ -142,8 +142,8 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 disabled={data.is_submitted}
               >
                 {data.is_submitted
-                  ? t('drbidpage.accepted')
-                  : t('drbidpage.accept')}
+                  ? t('dracceptpage.accepted')
+                  : t('dracceptpage.accept')}
               </button>
             </div>
           </div>

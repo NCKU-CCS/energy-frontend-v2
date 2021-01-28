@@ -14,22 +14,24 @@ const ListTitle: React.FC<IProps> = ({ userType }) => {
   return (
     <div className={classNames('draccept-submit-list-title-container')}>
       <div className={classNames('draccept-submit-list-title-mode')}>
-        {t('drbidpage.mode')}
+        {t('dracceptpage.mode')}
       </div>
       <div className={classNames('draccept-submit-list-title-user')}>
-        {userType === 'taipower' ? '提報者' : '執行者'}
+        {userType === 'taipower'
+          ? t('dracceptpage.aggregator')
+          : t('dracceptpage.executor')}
       </div>
       <div className={classNames('draccept-submit-list-title-interval')}>
-        時段
+        {t('dracceptpage.interval')}
       </div>
       <div className={classNames('draccept-submit-list-title-volume')}>
-        {t('drbidpage.volume')}
+        {t('dracceptpage.volume')}
       </div>
       <div className={classNames('draccept-submit-list-title-price')}>
-        {t('drbidpage.price')}
+        {t('dracceptpage.price')}
       </div>
       <div className={classNames('draccept-submit-list-title-totalprice')}>
-        {t('drbidpage.total')}
+        {t('dracceptpage.total')}
       </div>
       <div className={classNames('draccept-submit-list-title-button')}>
         <AddBidBtn />

@@ -136,7 +136,7 @@ const AddBidBtn: React.FC = () => {
                       'draccept-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.date')} :
+                    {t('dracceptpage.date')} :
                   </div>
                   <div
                     className={classNames(
@@ -182,7 +182,7 @@ const AddBidBtn: React.FC = () => {
                       'draccept-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.mode')} :
+                    {t('dracceptpage.mode')} :
                   </div>
                   <select
                     className={classNames(
@@ -206,7 +206,7 @@ const AddBidBtn: React.FC = () => {
                       'draccept-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.volume')} :
+                    {t('dracceptpage.volume')} :
                   </div>
                   <input
                     className={classNames(
@@ -229,7 +229,7 @@ const AddBidBtn: React.FC = () => {
                       'draccept-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.price')} :
+                    {t('dracceptpage.price')} :
                   </div>
                   <input
                     className={classNames(
@@ -252,7 +252,7 @@ const AddBidBtn: React.FC = () => {
                       'draccept-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
-                    {t('drbidpage.total')} :
+                    {t('dracceptpage.total')} :
                   </div>
                   <input
                     type="number"
@@ -289,7 +289,7 @@ const AddBidBtn: React.FC = () => {
                     submitDisabled ? 'disabled' : 'white'
                   }.png`}
                 />
-                {t('drbidpage.confirm')}
+                {t('dracceptpage.confirm')}
               </button>
               <button
                 type="button"
@@ -302,7 +302,7 @@ const AddBidBtn: React.FC = () => {
                   alt="submit"
                   src={`${process.env.PUBLIC_URL}/drBidPage/reset-white.png`}
                 />
-                {t('drbidpage.reset')}
+                {t('dracceptpage.reset')}
               </button>
             </div>
           </div>

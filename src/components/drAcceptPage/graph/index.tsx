@@ -221,12 +221,12 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       <div className={classNames('draccept-graph-title')}>
         <div className={classNames('draccept-graph-title-date')}>{date}</div>
         <div className={classNames('draccept-graph-title-sub')}>
-          {t('drbidpage.businessModelDrSummary')}
+          {t('dracceptpage.businessModelDrSummary')}
         </div>
       </div>
       <svg className={classNames('draccept-graph-svg')} ref={svgRef} />
       <div className={classNames('draccept-graph-bottom')}>
-        {t('drbidpage.transactionMode')}
+        {t('dracceptpage.transactionMode')}
       </div>
     </div>
   );

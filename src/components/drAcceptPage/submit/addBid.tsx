@@ -70,7 +70,7 @@ const AddBid: React.FC = () => {
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
               }
               format="yyyy/MM/dd"
-              emptyLabel={t('drbidpage.date')}
+              emptyLabel={t('dracceptpage.date')}
               showTodayButton
               disablePast
               allowKeyboardControl
@@ -87,7 +87,7 @@ const AddBid: React.FC = () => {
           onChange={(e) => setMode(parseInt(e.target.value, 10))}
         >
           <option dir="rtl" value="0" selected>
-            {t('drbidpage.mode')}
+            {t('dracceptpage.mode')}
           </option>
           {createOptions}
         </select>
@@ -98,7 +98,7 @@ const AddBid: React.FC = () => {
           step="0.1"
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           value={volume}
-          placeholder={t('drbidpage.volume')}
+          placeholder={t('dracceptpage.volume')}
           required
         />
         <input
@@ -108,7 +108,7 @@ const AddBid: React.FC = () => {
           step="0.1"
           onChange={(e) => setPrice(parseFloat(e.target.value))}
           value={price}
-          placeholder={t('drbidpage.price')}
+          placeholder={t('dracceptpage.price')}
           required
         />
         <input
@@ -120,7 +120,7 @@ const AddBid: React.FC = () => {
               ? (price * volume).toFixed(1)
               : undefined
           }
-          placeholder={t('drbidpage.total')}
+          placeholder={t('dracceptpage.total')}
           disabled
         />
         <button
@@ -130,7 +130,7 @@ const AddBid: React.FC = () => {
           onClick={() => handleSubmit()}
           disabled={submitDisabled}
         >
-          {t('drbidpage.new')}
+          {t('dracceptpage.new')}
         </button>
       </form>
     </div>

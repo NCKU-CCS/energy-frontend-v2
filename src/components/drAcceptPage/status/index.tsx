@@ -41,7 +41,7 @@ const BiddingStatus: React.FC<IProps> = ({
               <div
                 className={classNames('draccept-status-total-text-price-title')}
               >
-                {t('drbidpage.totalPrice')}
+                {t('dracceptpage.totalPrice')}
               </div>
             </div>
             <div
@@ -61,7 +61,7 @@ const BiddingStatus: React.FC<IProps> = ({
                   'draccept-status-total-text-volume-title',
                 )}
               >
-                {t('drbidpage.totalVolume')}
+                {t('dracceptpage.totalVolume')}
               </div>
             </div>
           </div>

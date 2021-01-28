@@ -64,8 +64,8 @@ const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
           onClick={() => alert('success')}
         >
           {newData.is_accepted
-            ? t('drbidpage.accepted')
-            : t('drbidpage.accept')}
+            ? t('dracceptpage.accepted')
+            : t('dracceptpage.accept')}
         </button>
       </div>
       <div
