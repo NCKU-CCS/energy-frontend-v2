@@ -123,7 +123,13 @@ const DrAcceptPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('draccept-right')}>
-        <Submit date={date} apiData={apiData} setDataType={setDataType} />
+        <Submit
+          date={date}
+          userType={userType}
+          apiData={apiData}
+          newApiData={newApiData}
+          setDataType={setDataType}
+        />
       </div>
     </div>
   );

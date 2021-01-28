@@ -14,12 +14,26 @@ interface IData {
   is_submitted: boolean;
 }
 
-interface IProps {
-  date: string;
-  data: IData;
+interface INewData {
+  mode: number;
+  aggregator?: string;
+  executor?: string;
+  interval: string;
+  total_volume: number;
+  price: number;
+  total_price: number;
+  is_accepted: boolean;
 }
 
-const ListItem: React.FC<IProps> = ({ date, data }) => {
+interface IProps {
+  date: string;
+  userType: string;
+  data: IData;
+  newData: INewData;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
   // i18n
   const { t } = useTranslation();
 

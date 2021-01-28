@@ -12,15 +12,35 @@ interface IData {
   is_submitted: boolean;
 }
 
-interface IProps {
-  date: string;
-  apiData: IData[];
+interface INewData {
+  mode: number;
+  aggregator?: string;
+  executor?: string;
+  interval: string;
+  total_volume: number;
+  price: number;
+  total_price: number;
+  is_accepted: boolean;
 }
 
-const List: React.FC<IProps> = ({ date, apiData }) => {
+interface IProps {
+  date: string;
+  userType: string;
+  apiData: IData[];
+  newApiData: INewData[];
+}
+
+const List: React.FC<IProps> = ({ date, userType, apiData, newApiData }) => {
   // map data and create list items
   const createList = apiData.map((d) => {
-    return <ListItem date={date} data={d} />;
+    return (
+      <ListItem
+        date={date}
+        userType={userType}
+        data={d}
+        newData={newApiData[0]}
+      />
+    );
   });
 
   return (
