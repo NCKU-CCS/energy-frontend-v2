@@ -133,16 +133,20 @@
     height: 25%;
   }
 
-  .draccept-submit-listitem-date {
-    flex-basis: 35%;
+  .draccept-submit-listitem-mode {
+    flex-basis: 30%;
   }
 
-  .draccept-submit-listitem-mode {
-    flex-basis: 25%;
+  .draccept-submit-listitem-user {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-listitem-interval {
+    flex-basis: 30%;
   }
 
   .draccept-submit-listitem-volume {
-    flex-basis: 30%;
+    display: none;
   }
 
   .draccept-submit-listitem-view-container-out--320 {

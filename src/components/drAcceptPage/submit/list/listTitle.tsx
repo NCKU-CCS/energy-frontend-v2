@@ -33,12 +33,7 @@ const ListTitle: React.FC<IProps> = ({ userType }) => {
       <div className={classNames('draccept-submit-list-title-totalprice')}>
         {t('dracceptpage.total')}
       </div>
-      <div
-        className={classNames(
-          'draccept-submit-list-title-button',
-          `draccept-submit-list-title-button--${userType}`,
-        )}
-      >
+      <div className={classNames('draccept-submit-list-title-button')}>
         <AddBidBtn />
       </div>
     </div>

@@ -103,22 +103,24 @@
     height: 20%;
   }
 
-  .draccept-submit-list-title-date {
-    flex-basis: 35%;
+  .draccept-submit-list-title-mode {
+    flex-basis: 30%;
   }
 
-  .draccept-submit-list-title-mode {
-    flex-basis: 25%;
-  }
-  .draccept-submit-list-title-volume {
+  .draccept-submit-list-title-user {
     flex-basis: 30%;
+  }
+
+  .draccept-submit-list-title-interval {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-list-title-volume {
+    display: none;
   }
 
   .draccept-submit-list-title-button {
     flex-basis: 10%;
-  }
-
-  .draccept-submit-list-title-button--taipower {
     display: none;
   }
 

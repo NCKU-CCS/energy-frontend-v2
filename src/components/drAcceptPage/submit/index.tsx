@@ -44,12 +44,7 @@ const Submit: React.FC<IProps> = ({
       <div className={classNames('draccept-submit-modebutton-container-out')}>
         <TypeButton setDataType={setDataType} />
       </div>
-      <div
-        className={classNames(
-          'draccept-submit-list-container-out',
-          `draccept-submit-list-container-out--${userType}`,
-        )}
-      >
+      <div className={classNames('draccept-submit-list-container-out')}>
         <List
           date={date}
           userType={userType}
@@ -57,12 +52,7 @@ const Submit: React.FC<IProps> = ({
           newApiData={newApiData}
         />
       </div>
-      <div
-        className={classNames(
-          'draccept-submit-addbid-container-out',
-          `draccept-submit-addbid-container-out--${userType}`,
-        )}
-      >
+      <div className={classNames('draccept-submit-addbid-container-out')}>
         {userType === 'aggregator' && <AddBid />}
       </div>
       <div className={classNames('draccept-submit-pagecontrol-container-out')}>
