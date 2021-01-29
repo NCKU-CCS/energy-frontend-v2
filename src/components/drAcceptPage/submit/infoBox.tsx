@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import classNames from 'classnames';
@@ -12,26 +13,27 @@ interface IData {
   is_submitted: boolean;
 }
 
-interface IProps {
-  date: string;
-  data: IData;
+interface INewData {
+  mode: number;
+  aggregator?: string;
+  executor?: string;
+  interval: string;
+  total_volume: number;
+  price: number;
+  total_price: number;
+  is_accepted: boolean;
 }
 
-const InfoBox: React.FC<IProps> = ({ date, data }) => {
+interface IProps {
+  userType: string;
+  date: string;
+  data: IData;
+  newData: INewData;
+}
+
+const InfoBox: React.FC<IProps> = ({ userType, data, newData }) => {
   // i18n
   const { t } = useTranslation();
-
-  // get user from local storage or session storage
-  const user = JSON.parse(
-    localStorage.getItem('BEMS_USER') ||
-      sessionStorage.getItem('BEMS_USER') ||
-      '{}',
-  );
-
-  // user type: user, aggregator
-  const [userType] = useState<string>(
-    user.is_aggregator ? 'aggregator' : 'user',
-  );
 
   // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
@@ -83,15 +85,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 >
                   <div
                     className={classNames(
-                      'draccept-submit-infobox-content-center-inside-date--show',
-                      'draccept-submit-infobox-content-center-inside-item--show',
-                    )}
-                  >
-                    <span>{t('dracceptpage.date')} :&nbsp;</span>
-                    <span>{date}</span>
-                  </div>
-                  <div
-                    className={classNames(
                       'draccept-submit-infobox-content-center-inside-interval--show',
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
@@ -101,12 +94,39 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
+                      'draccept-submit-infobox-content-center-inside-user--show',
+                      'draccept-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>
+                      {userType === 'taipower'
+                        ? t('dracceptpage.aggregator')
+                        : t('dracceptpage.executor')}{' '}
+                      :&nbsp;
+                    </span>
+                    <span>
+                      {userType === 'taipower'
+                        ? newData.aggregator
+                        : newData.executor}
+                    </span>
+                  </div>
+                  <div
+                    className={classNames(
+                      'draccept-submit-infobox-content-center-inside-interval--show',
+                      'draccept-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('dracceptpage.interval')} :&nbsp;</span>
+                    <span>{newData.interval}</span>
+                  </div>
+                  <div
+                    className={classNames(
                       'draccept-submit-infobox-content-center-inside-volume--show',
                       'draccept-submit-infobox-content-center-inside-item--show',
                     )}
                   >
                     <span>{t('dracceptpage.volume')} :&nbsp;</span>
-                    <span>{data.total_volume.toFixed(1)}kWh</span>
+                    <span>{newData.total_volume.toFixed(1)}kWh</span>
                   </div>
                   <div
                     className={classNames(
@@ -115,7 +135,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('dracceptpage.price')} :&nbsp;</span>
-                    <span>${data.price.toFixed(1)}/kWh</span>
+                    <span>${newData.price.toFixed(1)}/kWh</span>
                   </div>
                   <div
                     className={classNames(
@@ -124,7 +144,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('dracceptpage.total')} :&nbsp;</span>
-                    <span>${data.total_price.toFixed(1)}</span>
+                    <span>${newData.total_price.toFixed(1)}</span>
                   </div>
                 </div>
               </div>
@@ -139,11 +159,16 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   'draccept-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={data.is_submitted}
+                disabled={newData.is_accepted}
+                onClick={() => alert('success')}
               >
-                {data.is_submitted
-                  ? t('dracceptpage.accepted')
-                  : t('dracceptpage.accept')}
+                {newData.is_accepted
+                  ? userType === 'taipower'
+                    ? t('dracceptpage.announced')
+                    : t('dracceptpage.bidAccepted')
+                  : userType === 'taipower'
+                  ? t('dracceptpage.accept')
+                  : t('dracceptpage.acceptBid')}
               </button>
             </div>
           </div>

@@ -79,7 +79,12 @@ const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
           'draccept-submit-listitem-view-container-out--320',
         )}
       >
-        <InfoBox date={date} data={data} />
+        <InfoBox
+          userType={userType}
+          date={date}
+          data={data}
+          newData={newData}
+        />
       </div>
     </div>
   );
