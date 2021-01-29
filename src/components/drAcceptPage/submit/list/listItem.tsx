@@ -7,15 +7,6 @@ import classNames from 'classnames';
 import InfoBox from '../infoBox';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   mode: number;
   aggregator?: string;
   executor?: string;
@@ -27,14 +18,11 @@ interface INewData {
 }
 
 interface IProps {
-  date: string;
   userType: string;
-  data: IData;
-  newData: INewData;
+  newData: IData;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
+const ListItem: React.FC<IProps> = ({ userType, newData }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -79,12 +67,7 @@ const ListItem: React.FC<IProps> = ({ date, data, userType, newData }) => {
           'draccept-submit-listitem-view-container-out--320',
         )}
       >
-        <InfoBox
-          userType={userType}
-          date={date}
-          data={data}
-          newData={newData}
-        />
+        <InfoBox userType={userType} newData={newData} />
       </div>
     </div>
   );

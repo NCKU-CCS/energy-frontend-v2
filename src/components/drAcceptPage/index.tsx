@@ -6,20 +6,10 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
-import allTestData from './data.json';
 import taipowerData from './taipower.json';
 import aggregatorData from './aggregator.json';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   mode: number;
   aggregator?: string;
   executor?: string;
@@ -37,12 +27,8 @@ const DrAcceptPageContainer: React.FC = () => {
   // data type: dayBefore(日前), realTime(即時)
   const [dataType, setDataType] = useState<string>('dayBefore');
 
-  // api data
-  const [apiData, setApiData] = useState<IData[]>([]);
-
   // new api data
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [newApiData, setNewApiData] = useState<INewData[]>([]);
+  const [apiData, setApiData] = useState<IData[]>([]);
 
   // get user from local storage or session storage
   const user = JSON.parse(
@@ -58,15 +44,12 @@ const DrAcceptPageContainer: React.FC = () => {
 
   // fetch api data
   useEffect(() => {
-    setApiData([
-      ...allTestData.filter((d) => d.day === dayjs(date).day())[0].data,
-    ]);
     if (userType === 'aggregator') {
-      setNewApiData([
+      setApiData([
         ...aggregatorData.filter((d) => d.day === dayjs(date).day())[0].data,
       ]);
     } else {
-      setNewApiData([
+      setApiData([
         ...taipowerData.filter((d) => d.day === dayjs(date).day())[0].data,
       ]);
     }
@@ -100,11 +83,11 @@ const DrAcceptPageContainer: React.FC = () => {
         <div className={classNames('draccept-left-top')}>
           <Status
             userType={userType}
-            totalPrice={newApiData
+            totalPrice={apiData
               .filter((d) => d.is_accepted)
               .map((d) => d.total_price)
               .reduce((a, b) => a + b, 0)}
-            totalVolume={newApiData
+            totalVolume={apiData
               .filter((d) => d.is_accepted)
               .map((d) => d.total_volume)
               .reduce((a, b) => a + b, 0)}
@@ -114,7 +97,7 @@ const DrAcceptPageContainer: React.FC = () => {
           <Graph
             date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
-              return newApiData
+              return apiData
                 .filter((d) => d.is_accepted && d.mode === i)
                 .map((d) => d.total_price)
                 .reduce((a, b) => a + b, 0);
@@ -124,10 +107,8 @@ const DrAcceptPageContainer: React.FC = () => {
       </div>
       <div className={classNames('draccept-right')}>
         <Submit
-          date={date}
           userType={userType}
           apiData={apiData}
-          newApiData={newApiData}
           setDataType={setDataType}
         />
       </div>

@@ -5,15 +5,6 @@ import List from './list/index';
 import AddBid from './addBid';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   mode: number;
   aggregator?: string;
   executor?: string;
@@ -25,32 +16,19 @@ interface INewData {
 }
 
 interface IProps {
-  date: string;
   userType: string;
   apiData: IData[];
-  newApiData: INewData[];
   setDataType(type: string): void;
 }
 
-const Submit: React.FC<IProps> = ({
-  date,
-  userType,
-  apiData,
-  newApiData,
-  setDataType,
-}) => {
+const Submit: React.FC<IProps> = ({ userType, apiData, setDataType }) => {
   return (
     <div className={classNames('draccept-submit-container-in')}>
       <div className={classNames('draccept-submit-modebutton-container-out')}>
         <TypeButton setDataType={setDataType} />
       </div>
       <div className={classNames('draccept-submit-list-container-out')}>
-        <List
-          date={date}
-          userType={userType}
-          apiData={apiData}
-          newApiData={newApiData}
-        />
+        <List userType={userType} apiData={apiData} />
       </div>
       <div className={classNames('draccept-submit-addbid-container-out')}>
         {userType === 'aggregator' && <AddBid />}

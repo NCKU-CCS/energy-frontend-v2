@@ -4,15 +4,6 @@ import ListTitle from './listTitle';
 import ListItem from './listItem';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   mode: number;
   aggregator?: string;
   executor?: string;
@@ -24,18 +15,14 @@ interface INewData {
 }
 
 interface IProps {
-  date: string;
   userType: string;
   apiData: IData[];
-  newApiData: INewData[];
 }
 
-const List: React.FC<IProps> = ({ date, userType, apiData, newApiData }) => {
+const List: React.FC<IProps> = ({ userType, apiData }) => {
   // map data and create list items
-  const createList = newApiData.map((d) => {
-    return (
-      <ListItem date={date} userType={userType} data={apiData[0]} newData={d} />
-    );
+  const createList = apiData.map((d) => {
+    return <ListItem userType={userType} newData={d} />;
   });
 
   return (

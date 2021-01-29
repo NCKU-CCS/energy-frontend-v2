@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
@@ -5,15 +6,6 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   mode: number;
   aggregator?: string;
   executor?: string;
@@ -26,12 +18,10 @@ interface INewData {
 
 interface IProps {
   userType: string;
-  date: string;
-  data: IData;
-  newData: INewData;
+  newData: IData;
 }
 
-const InfoBox: React.FC<IProps> = ({ userType, data, newData }) => {
+const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -90,7 +80,7 @@ const InfoBox: React.FC<IProps> = ({ userType, data, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.mode')} :&nbsp;</span>
-                    <span>{data.mode}</span>
+                    <span>{newData.mode}</span>
                   </div>
                   <div
                     className={classNames(
