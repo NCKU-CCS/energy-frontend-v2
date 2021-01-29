@@ -52,6 +52,12 @@ const DrBidPageContainer: React.FC = () => {
         <div className={classNames('drbid-dr-date')}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
+              inputProps={{
+                style: {
+                  color: `${date ? '#707070' : '#d1d2d1'}`,
+                  cursor: 'pointer',
+                },
+              }}
               value={date}
               onChange={(d) =>
                 setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
@@ -79,6 +85,7 @@ const DrBidPageContainer: React.FC = () => {
         </div>
         <div className={classNames('drbid-left-bottom')}>
           <Graph
+            date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
               return apiData
                 .filter((d) => d.is_submitted && d.mode === i)

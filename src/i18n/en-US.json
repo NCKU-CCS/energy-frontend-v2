@@ -66,6 +66,8 @@
     "reset": "Reset",
     "edit": "Edit",
     "cancel": "Cancel",
+    "transactionMode": "Transaction Mode",
+    "businessModelDrSummary": "Business Model DR Summary (kWh)",
     "null": "No information yet"
   },
   "greenpage": {
