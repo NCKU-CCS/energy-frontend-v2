@@ -86,6 +86,14 @@
   box-shadow: 0px 3px 10px #cccccc;
 }
 
+.draccept-submit-listitem-button-btn--accept {
+  background-color: #3b9c40;
+}
+
+.draccept-submit-listitem-button-btn--accept:hover:not([disabled]) {
+  background-color: #4cc252;
+}
+
 .draccept-submit-listitem-button-btn:disabled {
   cursor: default;
   border: #e8e8e8 solid 1px;

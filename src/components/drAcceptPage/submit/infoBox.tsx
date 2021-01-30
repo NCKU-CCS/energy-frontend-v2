@@ -18,10 +18,10 @@ interface IData {
 
 interface IProps {
   userType: string;
-  newData: IData;
+  data: IData;
 }
 
-const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
+const InfoBox: React.FC<IProps> = ({ userType, data }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -80,7 +80,7 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.mode')} :&nbsp;</span>
-                    <span>{newData.mode}</span>
+                    <span>{data.mode}</span>
                   </div>
                   <div
                     className={classNames(
@@ -96,8 +96,8 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     </span>
                     <span>
                       {userType === 'taipower'
-                        ? newData.aggregator
-                        : newData.executor}
+                        ? data.aggregator
+                        : data.executor}
                     </span>
                   </div>
                   <div
@@ -107,7 +107,7 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.interval')} :&nbsp;</span>
-                    <span>{newData.interval}</span>
+                    <span>{data.interval}</span>
                   </div>
                   <div
                     className={classNames(
@@ -116,7 +116,7 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.volume')} :&nbsp;</span>
-                    <span>{newData.total_volume.toFixed(1)}kWh</span>
+                    <span>{data.total_volume.toFixed(1)}kWh</span>
                   </div>
                   <div
                     className={classNames(
@@ -125,7 +125,7 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.price')} :&nbsp;</span>
-                    <span>${newData.price.toFixed(1)}/kWh</span>
+                    <span>${data.price.toFixed(1)}/kWh</span>
                   </div>
                   <div
                     className={classNames(
@@ -134,7 +134,7 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                     )}
                   >
                     <span>{t('dracceptpage.total')} :&nbsp;</span>
-                    <span>${newData.total_price.toFixed(1)}</span>
+                    <span>${data.total_price.toFixed(1)}</span>
                   </div>
                 </div>
               </div>
@@ -149,10 +149,10 @@ const InfoBox: React.FC<IProps> = ({ userType, newData }) => {
                   'draccept-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={newData.is_accepted}
+                disabled={data.is_accepted}
                 onClick={() => alert('success')}
               >
-                {newData.is_accepted
+                {data.is_accepted
                   ? userType === 'taipower'
                     ? t('dracceptpage.announced')
                     : t('dracceptpage.bidAccepted')
