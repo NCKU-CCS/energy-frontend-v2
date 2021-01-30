@@ -72,7 +72,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
           data.is_accepted ? (
             data.interval
           ) : (
-            '未決標'
+            t('dracceptpage.bidNotAccepted')
           )
         ) : (
           <div>

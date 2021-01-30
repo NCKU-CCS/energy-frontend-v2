@@ -88,6 +88,7 @@
     "accepted": "已接受",
     "acceptBid": "決標",
     "bidAccepted": "已決標",
+    "bidNotAccepted": "未決標",
     "announced": "已公告",
     "confirm": "確認",
     "new": "新增",

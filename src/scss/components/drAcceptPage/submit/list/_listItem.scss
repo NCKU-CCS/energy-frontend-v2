@@ -30,6 +30,17 @@
   align-items: center;
   flex-basis: 18.5%;
   height: 100%;
+  select {
+    cursor: pointer;
+    text-align-last: right;
+    color: #707070;
+    border-radius: 5px;
+    border: #c0c0c0 solid 1px;
+  }
+
+  select:hover {
+    border: #707070 solid 1px;
+  }
 }
 
 .draccept-submit-listitem-volume {
