@@ -28,8 +28,8 @@ const Navbar: React.FC = () => {
       <Title />
       <User />
       <Content
-        isUser={!user.is_aggregator}
-        isAggregator={user.is_aggregator}
+        isUser={!user.is_aggregator && !taipower.is_taipower}
+        isAggregator={user.is_aggregator && !taipower.is_taipower}
         isTaipower={taipower.is_taipower}
       />
       <Time />
