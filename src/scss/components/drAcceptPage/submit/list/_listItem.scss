@@ -1,0 +1,188 @@
+.draccept-submit-listitem-container {
+  height: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  text-align: center;
+  // overflow: hidden;
+  border-bottom: #d1d2d1 solid 1px;
+}
+
+.draccept-submit-listitem-mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.draccept-submit-listitem-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.draccept-submit-listitem-interval {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 18.5%;
+  height: 100%;
+  select {
+    cursor: pointer;
+    text-align-last: right;
+    color: #707070;
+    border-radius: 5px;
+    border: #c0c0c0 solid 1px;
+  }
+
+  select:hover {
+    border: #707070 solid 1px;
+  }
+}
+
+.draccept-submit-listitem-volume {
+  flex-basis: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.draccept-submit-listitem-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 16.5%;
+  height: 100%;
+}
+
+.draccept-submit-listitem-total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 12%;
+  height: 100%;
+}
+
+.draccept-submit-listitem-button-container {
+  flex-basis: 10%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.draccept-submit-listitem-button-btn {
+  cursor: pointer;
+  width: 80%;
+  height: auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #FFA000;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+}
+
+.draccept-submit-listitem-button-btn:hover:not([disabled]) {
+  cursor: pointer;
+  width: 85%;
+  height: 45%;
+  background-color: #fcb43a;
+  box-shadow: 0px 3px 10px #cccccc;
+}
+
+.draccept-submit-listitem-button-btn--accept {
+  background-color: #3b9c40;
+}
+
+.draccept-submit-listitem-button-btn--accept:hover:not([disabled]) {
+  background-color: #4cc252;
+}
+
+.draccept-submit-listitem-button-btn:disabled {
+  cursor: default;
+  border: #e8e8e8 solid 1px;
+  color: #d1d1d1;
+  background-color: #f1f2f1;
+}
+
+.draccept-submit-listitem-view-container-out--320 {
+  display: none;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1000 < size <= 1920
+@media all and (min-width: 1000px) and (max-width: 1920px) {
+  .draccept-submit-listitem-container {
+    font-size: 0.85rem;
+  }
+}
+
+// 720 < size <= 1000
+@media all and (min-width: 720px) and (max-width: 1000px) {
+  .draccept-submit-listitem-container {
+    font-size: 0.8rem;
+  }
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .draccept-submit-listitem-container {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .draccept-submit-listitem-container {
+    font-size: 0.8rem;
+    height: 25%;
+  }
+
+  .draccept-submit-listitem-mode {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-listitem-user {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-listitem-interval {
+    flex-basis: 30%;
+  }
+
+  .draccept-submit-listitem-volume {
+    display: none;
+  }
+
+  .draccept-submit-listitem-view-container-out--320 {
+    display: block;
+    flex-basis: 10%;
+  }
+
+  .draccept-submit-listitem-button-container {
+    display: none;
+  }
+
+  .draccept-submit-listitem-price {
+    display: none;
+  }
+
+  .draccept-submit-listitem-total {
+    display: none;
+  }
+
+}

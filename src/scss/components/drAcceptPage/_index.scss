@@ -1,0 +1,170 @@
+@import './status/';
+@import './submit/';
+@import './graph/';
+
+.draccept-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 80%;
+}
+
+.draccept-date-container {
+  flex-basis: 100%;
+  height: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.draccept-dr-date {
+  margin-left: 3.5%;
+  width: 150px;
+  height: 65%;
+  text-align: center;
+  outline: 0;
+  border-radius: 5px;
+  color: #707070;
+  display: flex;
+  align-items: flex-end;
+}
+
+.draccept-left {
+  flex-basis: 30%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-right {
+  flex-basis: 70%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-left-top {
+  flex-basis: 100%;
+  height: 35%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.draccept-left-bottom {
+  flex-basis: 100%;
+  height: 65%;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .draccept-date-container {
+    flex-basis: 100%;
+    height: 10%;
+  }
+
+  .draccept-dr-date {
+    width: 150px;
+  }
+
+  .draccept-left {
+    flex-basis: 100%;
+    height: 40%;
+  }
+
+  .draccept-right {
+    flex-basis: 100%;
+    height: 65%;
+  }
+
+  .draccept-left-top {
+    flex-basis: 40%;
+    height: 100%;
+  }
+
+  .draccept-left-bottom {
+    flex-basis: 60%;
+    height: 100%;
+  }
+
+  .draccept-left-top-c1 {
+    flex-basis: 100%;
+    height: 50%;;
+  }
+
+  .draccept-left-top-c2 {
+    flex-basis: 100%;
+    height: 50%;;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .draccept-container {
+    height: 90%;
+  }
+
+  .draccept-date-container {
+    flex-basis: 100%;
+    height: 8%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    padding-top: 8%;
+  }
+
+  .draccept-dr-date {
+    padding-left: 40%;
+    padding-right: 0%;
+    margin: 0;
+    height: 40%;
+    width: 90%;
+    font-size: 1.5vh;
+    color: white;
+    justify-content: flex-start;
+  }
+
+  .draccept-left {
+    flex-basis: 100%;
+    height: 48%;
+  }
+
+  .draccept-right {
+    flex-basis: 100%;
+    height: 40%;
+  }
+
+  .draccept-left-top {
+    flex-basis: 100%;
+    height: 33%;
+  }
+
+  .draccept-left-bottom {
+    flex-basis: 100%;
+    height: 69.5%;
+  }
+
+  .draccept-left-top-c1 {
+    flex-basis: 30%;
+    height: 100%;
+  }
+
+  .draccept-left-top-c2 {
+    flex-basis: 70%;
+    height: 100%;
+  }
+}
