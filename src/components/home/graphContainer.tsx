@@ -50,10 +50,12 @@ const GraphContainer: React.FC = () => {
   // lighting info, record each lighting is on which fragment of it's path
   const lightingFrag: number[] = [];
   // define image
-  let building1: HTMLImageElement;
-  let building2: HTMLImageElement;
-  let building3: HTMLImageElement;
-  let building4: HTMLImageElement;
+  const [building1, setBuilding1] = useState<HTMLImageElement>();
+  const [building2, setBuilding2] = useState<HTMLImageElement>();
+  const [building3, setBuilding3] = useState<HTMLImageElement>();
+  const [building4, setBuilding4] = useState<HTMLImageElement>();
+  // current interval
+  const [currIntervalId, setCurrIntervalId] = useState<any>();
 
   // init data
   useEffect(() => {
@@ -107,7 +109,12 @@ const GraphContainer: React.FC = () => {
   }, [inputData, currUser, dataReady]);
 
   useEffect(() => {
-    if (inputData !== emptyData && currUser) {
+    if (currUser) {
+      // load image
+      setBuilding1(document.getElementById('building1') as HTMLImageElement);
+      setBuilding2(document.getElementById('building2') as HTMLImageElement);
+      setBuilding3(document.getElementById('building3') as HTMLImageElement);
+      setBuilding4(document.getElementById('building4') as HTMLImageElement);
       // init lighting info.
       // prettier-ignore
       const currLightingType = [
@@ -133,17 +140,6 @@ const GraphContainer: React.FC = () => {
   }, [inputData, currUser]);
 
   const initDraw = () => {
-    // init img element
-    building1 = document.createElement('img');
-    building2 = document.createElement('img');
-    building3 = document.createElement('img');
-    building4 = document.createElement('img');
-    // load image
-    building1.src = `${process.env.PUBLIC_URL}/home/Carlab.png`;
-    building2.src = `${process.env.PUBLIC_URL}/home/NCKU.png`;
-    building3.src = `${process.env.PUBLIC_URL}/home/SGESC_C.png`;
-    building4.src = `${process.env.PUBLIC_URL}/home/ABRI.png`;
-
     // init lighing pos & frag
     for (const path of paths) {
       if (path.length === 0) {
@@ -156,7 +152,10 @@ const GraphContainer: React.FC = () => {
       }
     }
 
-    setInterval(drawGraph, refreshTime);
+    if (currIntervalId) {
+      clearInterval(currIntervalId);
+    }
+    setCurrIntervalId(setInterval(drawGraph, refreshTime));
   };
 
   const drawGraph = () => {
@@ -200,10 +199,12 @@ const GraphContainer: React.FC = () => {
     }
 
     // draw building
-    ctx.drawImage(building1, buildingsPos[0][0], buildingsPos[0][1]);
-    ctx.drawImage(building2, buildingsPos[1][0], buildingsPos[1][1]);
-    ctx.drawImage(building3, buildingsPos[2][0], buildingsPos[2][1]);
-    ctx.drawImage(building4, buildingsPos[3][0], buildingsPos[3][1]);
+    if (building1 && building2 && building3 && building4) {
+      ctx.drawImage(building1, buildingsPos[0][0], buildingsPos[0][1]);
+      ctx.drawImage(building2, buildingsPos[1][0], buildingsPos[1][1]);
+      ctx.drawImage(building3, buildingsPos[2][0], buildingsPos[2][1]);
+      ctx.drawImage(building4, buildingsPos[3][0], buildingsPos[3][1]);
+    }
 
     // draw buildings' name
     drawBuildingName(ctx);
@@ -329,12 +330,39 @@ const GraphContainer: React.FC = () => {
   };
 
   return (
-    <canvas
-      id="transmit"
-      className={classnames('home-canvas')}
-      width="2700"
-      height="930"
-    />
+    <>
+      <canvas
+        id="transmit"
+        className={classnames('home-canvas')}
+        width="2700"
+        height="930"
+      />
+      {/* img for canvas */}
+      <img
+        id="building1"
+        src={`${process.env.PUBLIC_URL}/home/Carlab.png`}
+        alt="building1"
+        style={{ display: 'none' }}
+      />
+      <img
+        id="building2"
+        src={`${process.env.PUBLIC_URL}/home/NCKU.png`}
+        alt="building1"
+        style={{ display: 'none' }}
+      />
+      <img
+        id="building3"
+        src={`${process.env.PUBLIC_URL}/home/SGESC_C.png`}
+        alt="building1"
+        style={{ display: 'none' }}
+      />
+      <img
+        id="building4"
+        src={`${process.env.PUBLIC_URL}/home/ABRI.png`}
+        alt="building1"
+        style={{ display: 'none' }}
+      />
+    </>
   );
 };
 
