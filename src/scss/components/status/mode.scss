@@ -3,38 +3,216 @@
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: -5%;
-	left: 18%;
 }
 
 .status-changeMode-taipower{
-	color: #707070;
+  color: #707070;
 }
 
 .status-changeMode-button{
-  font-size: 0.7rem;
   cursor: pointer;
+  border: #d8d8d8 solid 0.5px;
+  outline: none;
 }
 
 .status-changeMode-button--click{
   background-color: #ffa200;
   color: white;
-  border: 1px solid #9e9e9e;
+  border: #d8d8d8 solid 0.5px;
   outline: none;
 }
 
 .status-changeMode-buttonGreen{
-	
+	border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: 0.25px;
 }
 
 .status-changeMode-buttonDR{
-	
+	border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: 1rem;
 }
 
 .status-changeMode-buttonDRBid{
-	
+  border-radius: 5px;
+  margin-right: 0.3rem;
 }
 
 .status-changeMode-buttonDRAccept{
-	
+	border-radius: 5px;
+}
+
+@media all and (min-width: 1600px){
+  .status-changeMode{
+    top: -3.5%;
+    left: 16%;
+  }
+  .status-changeMode-button{
+    font-size: 1rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 1rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+  }
+}
+
+@media all and (min-width: 1450px) and (max-width: 1600px){
+  .status-changeMode{
+    top: -5%;
+    left: 18%;
+  }
+  .status-changeMode-button{
+    font-size: 0.8rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.8rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 1.3rem;
+    margin-top: 0.9rem;
+  }
+}
+
+@media all and (min-width: 1280px) and (max-width: 1450px){
+  .status-changeMode{
+    top: -5%;
+    left: 20%;
+  }
+  .status-changeMode-button{
+    font-size: 0.8rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.8rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 1.2rem;
+    margin-top: 0.9rem;
+  }
+}
+
+@media all and (min-width: 1280px) and (max-width: 1600px) and (max-height:800px){
+  .status-changeMode{
+    top: -6%;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 1280px){
+  .status-changeMode-button{
+    font-size: 0.7rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.7rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 1rem;
+    margin-top: 0.7rem;
+  }
+}
+
+@media all and (min-width: 1100px) and (max-width: 1280px){
+  .status-changeMode{
+    top: -4%;
+    left: 19%;
+  }
+}
+
+@media all and (min-width: 980px) and (max-width: 1100px){
+  .status-changeMode{
+    top: -4%;
+    left: 22%;
+  }
+}
+
+@media all and (min-width: 840px) and (max-width: 980px){
+  .status-changeMode{
+    top: -4%;
+    left: 26%;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 840px){
+  .status-changeMode{
+    top: -4%;
+    left: 31%;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 840px){
+  .status-changeMode{
+    top: -4%;
+    left: 31%;
+  }
+}
+
+@media all and (min-width: 440px) and (max-width: 720px){
+  .status-changeMode-button{
+    font-size: 0.55rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.55rem;
+  }
+}
+
+@media all and (min-width: 550px) and (max-width: 720px){
+  .status-changeMode{
+    top: -3.5%;
+    left: 20%;
+  }
+  .status-changeMode-taipower{
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+  }
+}
+
+@media all and (min-width: 440px) and (max-width: 550px){
+  .status-changeMode{
+    top: -4%;
+    left: 25%;
+  }
+  .status-changeMode-taipower{
+    font-size: 0.6rem;
+    margin-top: 0.4rem;
+  }
+}
+
+@media all and (min-width: 320px) and (max-width: 440px){
+  .status-changeMode{
+    top: -4%;
+    left: 34%;
+  }
+  .status-changeMode-button{
+    font-size: 0.5rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.5rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 0.5rem;
+    margin-top: 0.4rem;
+  }
+}
+
+@media all and (max-width: 320px){
+  .status-changeMode{
+    top: -5%;
+    left: 4%;
+  }
+  .status-changeMode-button{
+    font-size: 0.5rem;
+  }
+  .status-changeMode-button--click{
+    font-size: 0.5rem;
+  }
+  .status-changeMode-taipower{
+    font-size: 0.6rem;
+    margin-top: -1.5rem;
+    margin-left: 4rem;
+  }
+  .status-changeMode-buttonDR{
+    margin-right: 0.2rem;
+  }
 }
