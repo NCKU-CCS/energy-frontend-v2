@@ -201,6 +201,7 @@
     "accept": "drAccept",
     "Bid": "drBid",
     "green": "Green Energy Trading",
-    "dr": "DR"
+    "dr": "DR",
+    "mode": "Mode"
   }
 }

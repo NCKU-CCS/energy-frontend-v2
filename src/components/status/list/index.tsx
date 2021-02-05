@@ -30,9 +30,10 @@ interface IListInfo {
 interface IAListInfo {
   listInfo: IListInfo[];
   changeIndex: (display: number) => void;
+  isDR: boolean;
 }
 
-const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
+const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
   const { t } = useTranslation();
 
   const [page, setPage] = useState<number>(1);
@@ -63,6 +64,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         winsValue={content.wins.value}
         winsPrice={content.wins.price}
         achievement={content.achievement}
+        isDR={isDR}
       />
     );
     if (page === 1) return info;
@@ -138,6 +140,11 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex }) => {
         <div className={classnames('status-list-titleType')}>
           {t('statuspage.type')}
         </div>
+        {isDR && (
+          <div className={classnames('status-list-titleMode')}>
+            {t('statuspage.mode')}
+          </div>
+        )}
         <div className={classnames('status-list-titleStatus')}>
           {t('statuspage.state')}
         </div>

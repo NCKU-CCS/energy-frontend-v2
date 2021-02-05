@@ -2,9 +2,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
-	top: 8.7%;
-	left: 29%;
+	position: absolute;
+	top: -5%;
+	left: 18%;
 }
 
 .status-changeMode-taipower{
@@ -13,11 +13,7 @@
 
 .status-changeMode-button{
   font-size: 0.7rem;
-}
-
-.status-changeMode-button:hover{
-  background-color: #ffa200;
-  color: white;
+  cursor: pointer;
 }
 
 .status-changeMode-button--click{

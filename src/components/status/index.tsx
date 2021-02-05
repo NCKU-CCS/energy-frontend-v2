@@ -72,6 +72,10 @@ const Status: React.FC = () => {
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
   const [isAggregator, setIsAggregator] = useState<boolean>();
+  const [isGreen, setIsGreen] = useState<boolean>(true);
+  const [isDR, setIsDR] = useState<boolean>(false);
+  const [isDRBid, setIsDRBid] = useState<boolean>(true);
+  const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
 
   const fetchMatchResult = async () => {
     // get bearer token
@@ -254,12 +258,21 @@ const Status: React.FC = () => {
 
   return (
     <div className={classnames('status')}>
-      <Mode />
+      <Mode
+        isDR={isDR}
+        isGreen={isGreen}
+        isDRBid={isDRBid}
+        isDRAccept={isDRAccept}
+        setIsGreen={setIsGreen}
+        setIsDR={setIsDR}
+        setIsDRBid={setIsDRBid}
+        setIsDRAccept={setIsDRAccept}
+      />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
         <Train input={trainInfo} index={nowIndex} />
       </div>
-      <List listInfo={listInfo} changeIndex={setNowIndex} />
+      <List listInfo={listInfo} changeIndex={setNowIndex} isDR={isDR} />
     </div>
   );
 };

@@ -22,6 +22,7 @@ interface IContent {
   winsValue: number;
   winsPrice: number;
   achievement: number;
+  isDR: boolean;
 }
 
 const Content: React.FC<IContent> = ({
@@ -43,6 +44,7 @@ const Content: React.FC<IContent> = ({
   winsValue,
   winsPrice,
   achievement,
+  isDR,
 }) => {
   const { t } = useTranslation();
 
@@ -176,6 +178,7 @@ const Content: React.FC<IContent> = ({
         aria-labelledby="onClick info"
       />
       <div className={bidTypeClass}>{bidTypeText}</div>
+      {isDR && <div className={classnames('status-list-content-mode')}>1</div>}
       <div className={classnames('status-list-content-status')}>
         {i18nStatus}
       </div>

@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import taipower from './taipower.json';
 
-const Mode: React.FC = () => {
+interface IButtonStatus {
+  isGreen: boolean;
+  isDR: boolean;
+  isDRBid: boolean;
+  isDRAccept: boolean;
+  setIsGreen: (display: boolean) => void;
+  setIsDR: (display: boolean) => void;
+  setIsDRBid: (display: boolean) => void;
+  setIsDRAccept: (display: boolean) => void;
+}
+
+const Mode: React.FC<IButtonStatus> = ({
+  isGreen,
+  isDR,
+  isDRBid,
+  isDRAccept,
+  setIsGreen,
+  setIsDR,
+  setIsDRBid,
+  setIsDRAccept,
+}) => {
   const { t } = useTranslation();
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
       sessionStorage.getItem('BEMS_USER') ||
       '{}',
   );
-
-  const [isGreen, setIsGreen] = useState<boolean>(true);
-  const [isDR, setIsDR] = useState<boolean>(false);
-  const [isDRBid, setIsDRBid] = useState<boolean>(true);
-  const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
 
   const GreenOnClick = () => {
     setIsGreen(true);
@@ -37,10 +52,6 @@ const Mode: React.FC = () => {
     setIsDRAccept(true);
     setIsDRBid(false);
   };
-
-  // const pageOnClick = () => {
-  //   setPage(pageIndex);
-  // };
 
   return (
     <div className={classnames('status-changeMode')}>
