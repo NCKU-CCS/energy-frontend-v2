@@ -1,0 +1,44 @@
+.status-changeMode{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 8.7%;
+	left: 29%;
+}
+
+.status-changeMode-taipower{
+	color: #707070;
+}
+
+.status-changeMode-button{
+  font-size: 0.7rem;
+}
+
+.status-changeMode-button:hover{
+  background-color: #ffa200;
+  color: white;
+}
+
+.status-changeMode-button--click{
+  background-color: #ffa200;
+  color: white;
+  border: 1px solid #9e9e9e;
+  outline: none;
+}
+
+.status-changeMode-buttonGreen{
+	
+}
+
+.status-changeMode-buttonDR{
+	
+}
+
+.status-changeMode-buttonDRBid{
+	
+}
+
+.status-changeMode-buttonDRAccept{
+	
+}

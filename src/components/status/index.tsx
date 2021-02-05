@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import List from './list';
 import Percentage from './percentage';
 import Train from './train';
+import Mode from './mode';
 
 interface IListInfo {
   bid_type: string;
@@ -253,6 +254,7 @@ const Status: React.FC = () => {
 
   return (
     <div className={classnames('status')}>
+      <Mode />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
         <Train input={trainInfo} index={nowIndex} />
