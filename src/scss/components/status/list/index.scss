@@ -38,13 +38,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
+  width: 11.5%;
 }
 
 .status-list-titleMode{
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 6%;
 }
 
 .status-list-titleType320{
@@ -64,7 +66,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 17%;
 }
 
 .status-list-titleDate{
@@ -72,8 +74,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
-  margin-left: 1%;
+  width: 11.5%;
+  margin-right: 0.5%;
 }
 
 .status-list-titleTime{
@@ -81,7 +83,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 12.5%;
 }
 
 .status-list-titlePrice{
@@ -89,7 +91,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 11.5%;
 }
 
 .status-list-titleURL{
@@ -97,7 +99,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12%;
+  width: 11%;
 }
 
 @media all and (min-width: 1500px){
@@ -109,11 +111,7 @@
     font-size: 1.3vw;
   }
   .status-list-titleType{
-    margin-left: 4.5%;
-  }
-  .status-list-titleSchedule{
-    margin-left: 1%;
-    margin-right: 0%;
+    margin-left: 6.5%;
   }
 }
 
@@ -126,11 +124,7 @@
     font-size: 1.3vw;
   }
   .status-list-titleType{
-    margin-left: 4.5%;
-  }
-  .status-list-titleSchedule{
-    margin-left: 1%;
-    margin-right: 0.5%;
+    margin-left: 6.5%;
   }
 }
 
@@ -144,11 +138,7 @@
     font-size: 1.7vw;
   }
   .status-list-titleType{
-    margin-left: 5%;
-  }
-  .status-list-titleSchedule{
-    margin-left: 1%;
-    margin-right: 0%;
+    margin-left: 6.7%;
   }
 }
 
@@ -162,7 +152,7 @@
     font-size: 1.5vw;
   }
   .status-list-titleType{
-    margin-left: 5.5%;
+    margin-left: 7%;
   }
   .status-list-titleSchedule{
     margin-left: 1%;
@@ -180,11 +170,7 @@
     font-size: 2.1vw;
   }
   .status-list-titleType{
-    margin-left: 5.5%;
-  }
-  .status-list-titleSchedule{
-    margin-left: 1%;
-    margin-right: 0%;
+    margin-left: 7.3%;
   }
 }
 
@@ -234,6 +220,7 @@
   .status-list-titleContainer{
     width: 100%;
     height: 10%;
+    justify-content: center;
   }
   .status-list-contentContainer{
     height: 87.5%;
@@ -244,24 +231,29 @@
   }
   .status-list-titleType320{
     width: 20%;
-    font-size: 5vw;
+    font-size: 4.5vw;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .status-list-titleStatus{
-    width: 20%;
-    font-size: 5vw;
+    width: 17.5%;
+    font-size: 4.5vw;
+  }
+  .status-list-titleMode{
+    width: 12.5%;
+    font-size: 4.5vw;
   }
   .status-list-titleSchedule{
     display: none;
   }
   .status-list-titleDate{
-    width: 37%;
+    width: 27%;
     margin-left: 0%;
     margin-right: 3%;
-    font-size: 5vw;
+    font-size: 4.5vw;
+    margin-right: 23%;
   }
   .status-list-titleTime{
     display: none;

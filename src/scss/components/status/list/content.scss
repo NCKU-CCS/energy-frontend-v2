@@ -10,8 +10,8 @@
 }
 
 .status-list-content-button{
-  margin-left: 1.5%;
-  margin-right: 1.5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
   height:18%;
   cursor: pointer;
 }
@@ -24,7 +24,7 @@
 
 .status-list-content-bidType{
   height: 100%;
-  width: 10%;
+  width: 11.5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,11 @@
 }
 
 .status-list-content-mode{
-  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6%;
 }
 
 .status-list-content-status{
@@ -59,7 +63,7 @@
   align-items: center;
   justify-content: center;
   width: 17%;
-  height:100%
+  height:100%;
 }
 
 .status-list-content-statusBox{
@@ -85,7 +89,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 12.5%;
 }
 
 .status-list-content-time{
@@ -93,7 +97,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 12.5%;
 }
 
 .status-list-content-price{
@@ -101,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 11.5%;
 }
 
 .status-list-content-URL{
@@ -175,7 +179,7 @@
 // 720 < size < 900
 @media all and (min-width: 720px) and (max-width: 900px){
   .status-list-content-contentContainer{
-    font-size: 1.5vw;
+    font-size: 1.25vw;
   }
   .status-list-content-button{
     width: 1.5%;
@@ -188,7 +192,7 @@
 // 500 < size < 720
 @media all and (min-width: 500px) and (max-width: 720px){
   .status-list-content-contentContainer{
-    font-size: 2.2vw;
+    font-size: 1.7vw;
   }
   .status-list-content-button{
     width: 1%;
@@ -202,7 +206,7 @@
 // 320 < size < 500
 @media all and (min-width: 320px) and (max-width: 500px){
   .status-list-content-contentContainer{
-    font-size: 1.9vw;
+    font-size: 1.65vw;
   }
   .status-list-content-button{
     width: 1%;
@@ -217,24 +221,29 @@
 @media all and (max-width: 320px){
   .status-list-content-contentContainer{
     height: 10%;
+    justify-content: center;
   }
   .status-list-content-button{
     display: none;
   }
   .status-list-content-bidType{
     width: 20%;
-    font-size: 4vw;
+    font-size: 3.2vw;
+  }
+  .status-list-content-mode{
+    width: 12.5%;
+    font-size: 3.2vw;
   }
   .status-list-content-status{
-    width: 20%;
-    font-size: 4vw;
+    width: 17.5%;
+    font-size: 3.5vw;
     color: #5c5c5c;
   }
   .status-list-content-statusBox-Container{
     display: none;
   }
   .status-list-content-date{
-    width: 40%;
+    width: 30%;
     font-size: 4vw;
     color: #5e5e5e;
   }
@@ -259,7 +268,7 @@
     height: 60%;
     margin-top: 20%;
     margin-bottom: 20%;
-    border-radius: 2%;
+    border-radius: 4px;
     background-color: #ffa200;
     border: 1px solid #cc8100;
     outline: none;
