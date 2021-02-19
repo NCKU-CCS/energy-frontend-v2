@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
+import taipower from './taipower.json';
 
 type SuccessReturn = {
   id: string;
@@ -43,7 +44,7 @@ const LoginForm: React.FC = () => {
         sessionStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
       }
       sessionStorage.setItem('Language', i18n.language);
-      window.location.replace('/');
+      window.location.replace(taipower.is_taipower ? '/dr_accept' : '/');
     } else {
       // Login Fail
       const failureMsg: FailureReturn = await response.json();
