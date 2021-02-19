@@ -10,8 +10,8 @@ export const buildingsPos = [
 export const buildingsNamePos = [
   [310, 260],
   [890, 80],
-  [1500, 430],
-  [2120, 360],
+  [1440, 430],
+  [2150, 360],
 ];
 
 // path point
