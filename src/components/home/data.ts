@@ -3,12 +3,12 @@ export const testingData = {
   time: '15:55',
   transactions: [
     {
-      seller: 'Carlab_BEMS',
+      seller: 'Carlab_CEMS',
       buyer: 'SGESC_C_BEMS',
       achievement: 0.3,
     },
     {
-      seller: 'Carlab_BEMS',
+      seller: 'Carlab_CEMS',
       buyer: 'NCKU_BEMS',
       achievement: 0.5,
     },
@@ -18,7 +18,7 @@ export const testingData = {
       achievement: 0.15,
     },
     {
-      seller: 'Carlab_BEMS',
+      seller: 'Carlab_CEMS',
       buyer: 'ABRI_BEMS',
       achievement: 0.2,
     },
