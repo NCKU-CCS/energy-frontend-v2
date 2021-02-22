@@ -13,7 +13,7 @@ const User: React.FC = () => {
   const [info, setInfo] = useState<IUserInfo>({
     username: '--',
     avatar: `${process.env.PUBLIC_URL}/nav/avatar.png`,
-    role: '',
+    role: 'aggregator',
   });
 
   const fetchUser = async () => {
@@ -57,9 +57,7 @@ const User: React.FC = () => {
     <div className="navbar-user">
       <img className="navbar-avatar" alt="" src={info.avatar} />
       <div className="navbar-username-box">
-        {info.role === 'aggregator'
-          ? true
-          : false && <span className="navbar-star">★</span>}
+        {info.role === 'aggregator' && <span className="navbar-star">★</span>}
         <span className="navbar-username">{info.username}</span>
       </div>
     </div>
