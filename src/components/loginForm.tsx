@@ -2,12 +2,11 @@ import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
-import taipower from './taipower.json';
 
 type SuccessReturn = {
   id: string;
   bearer: string;
-  is_aggregator: boolean;
+  role: string;
 };
 
 type FailureReturn = {
@@ -44,7 +43,7 @@ const LoginForm: React.FC = () => {
         sessionStorage.setItem('BEMS_USER', JSON.stringify(successMsg));
       }
       sessionStorage.setItem('Language', i18n.language);
-      window.location.replace(taipower.is_taipower ? '/dr_accept' : '/');
+      window.location.replace(successMsg.role === 'tpc' ? '/dr_accept' : '/');
     } else {
       // Login Fail
       const failureMsg: FailureReturn = await response.json();
