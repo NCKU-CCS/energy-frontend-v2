@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 interface IProps {
   name: string;
@@ -8,7 +9,7 @@ interface IProps {
 }
 
 const NavLink: React.FC<IProps> = ({ pathname, name, imgName, onLogout }) => (
-  <div className="navbar-link">
+  <div className={classnames('navbar-link')}>
     <div>
       <img
         alt=""
@@ -17,7 +18,15 @@ const NavLink: React.FC<IProps> = ({ pathname, name, imgName, onLogout }) => (
         }/${imgName}.png`}
       />
     </div>
-    <a href={pathname} onClick={onLogout}>
+    <a
+      href={pathname}
+      onClick={onLogout}
+      className={
+        window.location.pathname === pathname
+          ? classnames('navbar-link-fontColor', 'navbar-link-fontColor--active')
+          : classnames('navbar-link-fontColor')
+      }
+    >
       {name}
     </a>
   </div>

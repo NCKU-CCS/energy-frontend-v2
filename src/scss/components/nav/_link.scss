@@ -10,12 +10,15 @@
     align-items: center;
     margin: 10px;
   }
-  > a {
+  .navbar-link-fontColor{
     font-size: 16px;
     color: #fff;
     &:active {
       color: #ffa200;
     }
+  }
+  .navbar-link-fontColor--active{
+    color: #ffa200;
   }
 }
 
