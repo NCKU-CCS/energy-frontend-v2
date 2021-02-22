@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import taipower from './taipower.json';
 
 interface IButtonStatus {
   isGreen: boolean;
@@ -55,12 +54,12 @@ const Mode: React.FC<IButtonStatus> = ({
 
   return (
     <div className={classnames('status-changeMode')}>
-      {taipower.isTaipower && (
+      {user.role === 'tpc' && (
         <div className={classnames('status-changeMode-taipower')}>
           {t('statuspage.drAccept')}
         </div>
       )}
-      {!taipower.isTaipower && (
+      {user.role !== 'tpc' && (
         <button
           type="button"
           className={classnames(
@@ -74,7 +73,7 @@ const Mode: React.FC<IButtonStatus> = ({
           {t('statuspage.green')}
         </button>
       )}
-      {!taipower.isTaipower && (
+      {user.role !== 'tpc' && (
         <button
           type="button"
           className={classnames(
@@ -85,10 +84,12 @@ const Mode: React.FC<IButtonStatus> = ({
           )}
           onClick={DROnClick}
         >
-          {user.is_aggregator ? t('statuspage.dr') : t('statuspage.drBid')}
+          {user.role === 'aggregator'
+            ? t('statuspage.dr')
+            : t('statuspage.drBid')}
         </button>
       )}
-      {user.is_aggregator && isDR && (
+      {user.role === 'aggregator' && isDR && (
         <button
           type="button"
           className={classnames(
@@ -102,7 +103,7 @@ const Mode: React.FC<IButtonStatus> = ({
           {t('statuspage.Bid')}
         </button>
       )}
-      {user.is_aggregator && isDR && (
+      {user.role === 'aggregator' && isDR && (
         <button
           type="button"
           className={classnames(
