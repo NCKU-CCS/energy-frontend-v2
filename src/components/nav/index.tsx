@@ -4,7 +4,6 @@ import Content from './content';
 import Title from './title';
 import Time from './time';
 import User from './user';
-import taipower from '../taipower.json';
 
 const Navbar: React.FC = () => {
   const user = JSON.parse(
@@ -16,21 +15,21 @@ const Navbar: React.FC = () => {
   const [navbarType, setNavbarType] = useState<string>('');
 
   useEffect(() => {
-    if (user.is_aggregator && !taipower.is_taipower)
+    if (user.role === 'aggregator')
       setNavbarType(classnames('navbar', 'navbar--Aggregator'));
-    else if (taipower.is_taipower)
+    else if (user.role === 'tpc')
       setNavbarType(classnames('navbar', 'navbar--Taipower'));
     else setNavbarType(classnames('navbar'));
-  }, [user.is_aggregator]);
+  }, [user.role]);
 
   return (
     <nav className={navbarType}>
       <Title />
       <User />
       <Content
-        isUser={!user.is_aggregator && !taipower.is_taipower}
-        isAggregator={user.is_aggregator && !taipower.is_taipower}
-        isTaipower={taipower.is_taipower}
+        isUser={user.role === 'user'}
+        isAggregator={user.role === 'aggregator'}
+        isTaipower={user.role === 'tpc'}
       />
       <Time />
     </nav>
