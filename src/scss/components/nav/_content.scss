@@ -18,7 +18,9 @@
   .navbar-content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    height:45%;
+    width: 100%;
     .navbar-button {
       display: none;
     }
@@ -33,13 +35,22 @@
   .navbar-content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    height:53%;
+    width: 100%;
     .navbar-button {
       display: none;
     }
     .navbar-dropdown {
       display: block;
     }
+  }
+}
+
+@media all and (min-width: 720px) and (max-height:900px){
+  .navbar-content {
+    height: 56%;
+    padding-top: 18%;
   }
 }
 

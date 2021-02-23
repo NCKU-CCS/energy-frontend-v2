@@ -8,7 +8,6 @@
   color: #fff;
   background-color: #39625e;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   z-index: 100;
 }
@@ -27,7 +26,6 @@
     flex-direction: column;
     width: 262px;
     font-size: 24px;
-    padding: 32px 0px 54px 0px;
   }
 }
 
@@ -37,7 +35,6 @@
     flex-direction: column;
     width: 175px;
     font-size: 18px;
-    padding: 22px 0px 36px 0px;
   }
 }
 
@@ -45,6 +42,7 @@
 @media all and (min-width: 320px) and (max-width: 720px) {
   .navbar {
     flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 64px;
     font-size: 20px;
@@ -55,6 +53,7 @@
 // size <= 320px
 @media all and (max-width: 320px) {
   .navbar {
+    justify-content: space-between;
     width: 100%;
     height: 48px;
     font-size: 16px;
