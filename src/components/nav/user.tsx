@@ -13,7 +13,7 @@ const User: React.FC = () => {
   const [info, setInfo] = useState<IUserInfo>({
     username: '--',
     avatar: `${process.env.PUBLIC_URL}/nav/avatar.png`,
-    role: 'aggregator',
+    role: 'user',
   });
 
   const fetchUser = async () => {
