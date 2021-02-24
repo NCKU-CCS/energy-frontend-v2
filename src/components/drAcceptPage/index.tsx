@@ -38,9 +38,7 @@ const DrAcceptPageContainer: React.FC = () => {
   );
 
   // user type: aggregator, taipower
-  const [userType] = useState<string>(
-    user.is_aggregator ? 'aggregator' : 'taipower',
-  );
+  const [userType] = useState<string>(user.role);
 
   // fetch api data
   useEffect(() => {

@@ -65,7 +65,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         {data.mode}
       </div>
       <div className={classNames('draccept-submit-listitem-user')}>
-        {userType === 'taipower' ? data.aggregator : data.executor}
+        {userType === 'tpc' ? data.aggregator : data.executor}
       </div>
       <div className={classNames('draccept-submit-listitem-interval')}>
         {!inputMode ? (
@@ -106,10 +106,10 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
           onClick={() => handleClickBtn()}
         >
           {data.is_accepted
-            ? userType === 'taipower'
+            ? userType === 'tpc'
               ? t('dracceptpage.announced')
               : t('dracceptpage.bidAccepted')
-            : userType === 'taipower'
+            : userType === 'tpc'
             ? inputMode
               ? t('dracceptpage.confirm')
               : t('dracceptpage.accept')
