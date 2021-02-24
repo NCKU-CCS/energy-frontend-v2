@@ -77,13 +77,13 @@ const Status: React.FC = () => {
   const [isDRBid, setIsDRBid] = useState<boolean>(true);
   const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
 
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
   const fetchMatchResult = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
@@ -108,12 +108,6 @@ const Status: React.FC = () => {
   const fetchDR = async () => {
     const day = dayjs().add(2, 'day');
     const endTime = day.format('YYYY-MM-DD');
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${endTime}`,
@@ -134,12 +128,6 @@ const Status: React.FC = () => {
   };
 
   const fetchUser = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`,
@@ -257,7 +245,13 @@ const Status: React.FC = () => {
   }, [DRResult]);
 
   return (
-    <div className={classnames('status')}>
+    <div
+      className={
+        user.role === 'tpc'
+          ? classnames('status', 'status--tpc')
+          : classnames('status')
+      }
+    >
       <Mode
         isDR={isDR}
         isGreen={isGreen}
