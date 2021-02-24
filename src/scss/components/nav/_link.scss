@@ -10,12 +10,15 @@
     align-items: center;
     margin: 10px;
   }
-  > a {
+  .navbar-link-fontColor{
     font-size: 16px;
     color: #fff;
     &:active {
       color: #ffa200;
     }
+  }
+  .navbar-link-fontColor--active{
+    color: #ffa200;
   }
 }
 
@@ -24,8 +27,8 @@
     > div {
       height: 17px;
     }
-    > a {
-      font-size: 13px;
+    .navbar-link-fontColor{
+      font-size: 14px;
     }
   }
 }
@@ -33,8 +36,8 @@
 // 720 < size <= 1280
 @media all and (min-width: 720px) and (max-width: 1280px) {
   .navbar-link {
-    > a {
-      font-size: 12px;
+    .navbar-link-fontColor{
+      font-size: 13px;
     }
   }
 }
