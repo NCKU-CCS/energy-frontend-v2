@@ -1,7 +1,24 @@
 .navbar-title {
   text-align: center;
-  
+
   span {
     color: #fff;
+  }
+}
+
+@media all and (min-width: 720px){
+  .navbar-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 15%;
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 720px) and (max-width: 1280px){
+  .navbar-title{
+    font-size: 17px;
   }
 }

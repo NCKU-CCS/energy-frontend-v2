@@ -36,7 +36,7 @@ const GraphContainer: React.FC = () => {
   const [dataReady, setDataReady] = useState(false);
   // parameter
   const refreshTime = 50;
-  const buildings = ['Carlab_BEMS', 'NCKU_BEMS', 'SGESC_C_BEMS', 'ABRI_BEMS'];
+  const buildings = ['Carlab_CEMS', 'NCKU_BEMS', 'SGESC_C_BEMS', 'ABRI_BEMS'];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
@@ -118,10 +118,10 @@ const GraphContainer: React.FC = () => {
     building3 = document.createElement('img');
     building4 = document.createElement('img');
     // load image
-    building1.src = `${process.env.PUBLIC_URL}/home/Carlab.png`;
-    building2.src = `${process.env.PUBLIC_URL}/home/NCKU.png`;
-    building3.src = `${process.env.PUBLIC_URL}/home/SGESC_C.png`;
-    building4.src = `${process.env.PUBLIC_URL}/home/ABRI.png`;
+    building1.src = `${process.env.PUBLIC_URL}/home/Asset 20@2x.png`;
+    building2.src = `${process.env.PUBLIC_URL}/home/Asset 19@2x.png`;
+    building3.src = `${process.env.PUBLIC_URL}/home/Asset 21@2x.png`;
+    building4.src = `${process.env.PUBLIC_URL}/home/Asset 22@2x.png`;
 
     // init lighing pos & frag
     for (const path of paths) {

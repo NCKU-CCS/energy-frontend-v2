@@ -1,14 +1,14 @@
 .navbar-user {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   width: 100%;
-  padding: 0px 15px;
+  height: 30%;
   .navbar-avatar {
     background-color: #fff;
     border-radius: 50%;
-    margin: 28px 0px;
+    margin-bottom: 5%;
   }
   .navbar-username-box{
     display: flex;
