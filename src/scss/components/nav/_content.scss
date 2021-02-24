@@ -58,8 +58,10 @@
 @media all and (min-width: 320px) and (max-width: 720px) {
   .navbar-content {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    height: 100%;
+    padding-top: 0%;
     .navbar-button {
       display: block;
     }
@@ -75,6 +77,9 @@
     }
     .navbar-dropdown--Aggregator{
       background-color: #464147;
+    }
+    .navbar-dropdown--Taipower{
+      background-color: #394662;
     }
   }
 }
@@ -97,6 +102,9 @@
     }
     .navbar-dropdown--Aggregator{
       background-color: #464147;
+    }
+    .navbar-dropdown--Taipower{
+      background-color: #394662;
     }
   }
 }

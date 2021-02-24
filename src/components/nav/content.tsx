@@ -38,14 +38,17 @@ const Content: React.FC<IContent> = ({ isUser, isAggregator, isTaipower }) => {
   };
 
   useEffect(() => {
-    setNavbarClass(
-      `${
-        isAggregator
-          ? classnames('navbar-dropdown', 'navbar-dropdown--Aggregator')
-          : classnames('navbar-dropdown')
-      }`,
-    );
-  }, [isAggregator]);
+    let navbarstyle = '';
+    if (isAggregator)
+      navbarstyle = classnames(
+        'navbar-dropdown',
+        'navbar-dropdown--Aggregator',
+      );
+    else if (isTaipower)
+      navbarstyle = classnames('navbar-dropdown', 'navbar-dropdown--Taipower');
+    else navbarstyle = classnames('navbar-dropdown');
+    setNavbarClass(navbarstyle);
+  }, [isAggregator, isTaipower]);
 
   return (
     <div className="navbar-content">
