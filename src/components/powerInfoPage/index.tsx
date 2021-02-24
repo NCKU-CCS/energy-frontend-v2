@@ -5,7 +5,6 @@ import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
 import Chart from './chart';
 import ModeButton from './modeButton';
-// import DatePicker from './datePicker';
 import Summary from './summary';
 import Table from './table';
 
