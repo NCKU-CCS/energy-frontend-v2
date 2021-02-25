@@ -63,7 +63,7 @@ const AddBid: React.FC = () => {
   }, [mode]);
 
   // create options for <select>
-  const createOptions = [1, 2, 3, 4, 5].map((i) => {
+  const createOptions = [1, 2, 3].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
