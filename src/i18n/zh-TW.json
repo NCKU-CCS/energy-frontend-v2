@@ -194,6 +194,13 @@
     "executing": "執行中",
     "settling": "結算中",
     "end": "已結算",
-    "view": "查看"
+    "view": "查看",
+    "drAccept": "需量反應 一 決標",
+    "drBid": "需量反應 一 投標",
+    "accept": "決標",
+    "Bid": "投標",
+    "green": "綠電交易",
+    "dr": "需量反應",
+    "mode": "模式"
   }
 }

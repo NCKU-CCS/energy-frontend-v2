@@ -1,12 +1,14 @@
 @import './train/';
 @import './percentage/';
 @import './list/';
+@import './mode.scss/';
 
 .status{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	position: relative;
 }
 
 .status-upContainer{
@@ -95,8 +97,11 @@
 @media all and (max-width: 320px){
 	.status{
 		position: fixed;
-		top: 100px;
+		top: 110px;
 		height:85%;
+	}
+	.status--tpc{
+		top: 90px;
 	}
 	.status-upContainer{
 		display: none;

@@ -195,6 +195,13 @@
     "executing": "Executing",
     "settling": "Settling",
     "end": "End",
-    "view": "view"
+    "view": "view",
+    "drAccept": "DR 一 Accept",
+    "drBid": "DR 一 Bid",
+    "accept": "drAccept",
+    "Bid": "drBid",
+    "green": "Green Energy Trading",
+    "dr": "DR",
+    "mode": "Mode"
   }
 }

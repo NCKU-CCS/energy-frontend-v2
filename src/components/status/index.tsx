@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import List from './list';
 import Percentage from './percentage';
 import Train from './train';
+import Mode from './mode';
 
 interface IListInfo {
   bid_type: string;
@@ -70,15 +71,18 @@ const Status: React.FC = () => {
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
-  const [isAggregator, setIsAggregator] = useState<boolean>();
+  const [isGreen, setIsGreen] = useState<boolean>(true);
+  const [isDR, setIsDR] = useState<boolean>(false);
+  const [isDRBid, setIsDRBid] = useState<boolean>(true);
+  const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
+
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
 
   const fetchMatchResult = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
@@ -103,12 +107,6 @@ const Status: React.FC = () => {
   const fetchDR = async () => {
     const day = dayjs().add(2, 'day');
     const endTime = day.format('YYYY-MM-DD');
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${endTime}`,
@@ -128,49 +126,24 @@ const Status: React.FC = () => {
     }
   };
 
-  const fetchUser = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // GET to User Info API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-      },
-    );
-    if (response.status === 200) {
-      // fetch success
-      const data = await response.json();
-      setIsAggregator(data.is_aggregator);
-    }
-  };
-
   useEffect(() => {
     (async () => {
       await fetchMatchResult();
       await fetchDR();
-      await fetchUser();
     })();
   }, []);
 
   // add list data
   useEffect(() => {
-    if (DRResult.length > 0 && isAggregator != null) {
+    if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         const APItime = dayjs(DRResult[i].start_time);
         let name = '';
         name =
-          isAggregator === true ? DRResult[i].executor : DRResult[i].acceptor;
+          user.role === 'aggregator'
+            ? DRResult[i].executor
+            : DRResult[i].acceptor;
         let { rate } = DRResult[i];
         if (rate == null) rate = 0;
         const DBdata: IListInfo = {
@@ -201,16 +174,18 @@ const Status: React.FC = () => {
       }
       setListInfo([...listInfo, ...listDBData]);
     }
-  }, [DRResult, isAggregator]);
+  }, [DRResult]);
 
   // add train data
   useEffect(() => {
-    if (DRResult.length > 0 && isAggregator != null) {
+    if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         let name = '';
         name =
-          isAggregator === true ? DRResult[i].executor : DRResult[i].acceptor;
+          user.role === 'aggregator'
+            ? DRResult[i].executor
+            : DRResult[i].acceptor;
         const DBdata: ITrainInfo = {
           status: DRResult[i].status,
           bids: {
@@ -232,7 +207,7 @@ const Status: React.FC = () => {
       }
       setTrainInfo([...trainInfo, ...listDBData]);
     }
-  }, [DRResult, isAggregator]);
+  }, [DRResult]);
 
   // add status data
   useEffect(() => {
@@ -252,12 +227,28 @@ const Status: React.FC = () => {
   }, [DRResult]);
 
   return (
-    <div className={classnames('status')}>
+    <div
+      className={
+        user.role === 'tpc'
+          ? classnames('status', 'status--tpc')
+          : classnames('status')
+      }
+    >
+      <Mode
+        isDR={isDR}
+        isGreen={isGreen}
+        isDRBid={isDRBid}
+        isDRAccept={isDRAccept}
+        setIsGreen={setIsGreen}
+        setIsDR={setIsDR}
+        setIsDRBid={setIsDRBid}
+        setIsDRAccept={setIsDRAccept}
+      />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
         <Train input={trainInfo} index={nowIndex} />
       </div>
-      <List listInfo={listInfo} changeIndex={setNowIndex} />
+      <List listInfo={listInfo} changeIndex={setNowIndex} isDR={isDR} />
     </div>
   );
 };
