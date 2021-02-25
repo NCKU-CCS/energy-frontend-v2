@@ -39,10 +39,10 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // bar width
   const [barWidth, setBarWidth] = useState<number>(0);
 
-  // d3 scale x: 1 ~ 5
+  // d3 scale x: 1 ~ 3
   const scaleX = d3
     .scaleLinear()
-    .domain([1, 5])
+    .domain([1, 3])
     .range([0, width - (padding.left + padding.right)]);
 
   // d3 scale y
@@ -60,7 +60,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // axis x
   const axisX = d3
     .axisBottom(scaleX)
-    .ticks(5)
+    .ticks(2)
     .tickPadding(5)
     .tickFormat(null)
     .tickSize(0);
@@ -102,10 +102,10 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
     setPadding({
       top: height * 0.1,
       bottom: height * 0.15,
-      left: width * 0.2,
-      right: width * 0.2,
+      left: width * 0.25,
+      right: width * 0.25,
     });
-    setBarWidth(width * 0.1);
+    setBarWidth(width * 0.12);
   }, [width, height]);
 
   // render chart
@@ -198,10 +198,6 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             return '#705341';
           case 3:
             return '#696464';
-          case 4:
-            return '#AB50CE';
-          case 5:
-            return '#39625E';
           default:
             return '#fff';
         }
