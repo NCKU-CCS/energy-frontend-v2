@@ -29,9 +29,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
   );
 
   // user type: user, aggregator
-  const [userType] = useState<string>(
-    user.is_aggregator ? 'aggregator' : 'user',
-  );
+  const [userType] = useState<string>(user.role);
 
   // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
