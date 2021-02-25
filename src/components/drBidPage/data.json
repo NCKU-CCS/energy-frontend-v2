@@ -28,7 +28,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 6,
         "price": 6,
         "total_price": 36,
@@ -44,7 +44,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 9,
         "price": 8,
         "total_price": 72,
@@ -60,7 +60,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 4,
         "price": 9,
         "total_price": 36,
@@ -105,7 +105,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 9,
         "price": 7,
         "total_price": 63,
@@ -113,7 +113,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 10,
         "total_price": 70,
@@ -161,7 +161,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 2,
         "price": 8,
         "total_price": 16,
@@ -222,7 +222,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 3,
         "price": 11,
         "total_price": 33,
@@ -230,7 +230,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 2,
         "price": 15,
         "total_price": 60,
@@ -238,7 +238,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 16,
         "price": 5,
         "total_price": 80,
@@ -246,7 +246,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 3,
         "price": 2,
         "total_price": 6,
@@ -267,7 +267,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 9,
         "price": 16,
         "total_price": 144,
@@ -299,7 +299,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 4,
         "total_price": 28,
@@ -307,7 +307,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 2,
         "price": 3,
         "total_price": 6,
@@ -315,7 +315,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 5,
         "price": 2,
         "total_price": 10,
@@ -376,7 +376,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 9,
         "price": 3,
         "total_price": 27,
@@ -400,7 +400,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 7,
         "total_price": 49,
@@ -408,7 +408,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 6,
         "price": 4,
         "total_price": 24,
@@ -416,7 +416,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 15,
         "price": 2,
         "total_price": 30,
@@ -429,7 +429,7 @@
     "data": [
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 14,
         "price": 5,
         "total_price": 70,
@@ -437,7 +437,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 11,
         "price": 2,
         "total_price": 22,
@@ -469,7 +469,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 19,
         "price": 6,
         "total_price": 144,
@@ -477,7 +477,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 14,
         "price": 4,
         "total_price": 56,
@@ -485,7 +485,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 3,
         "price": 7,
         "total_price": 21,
@@ -546,7 +546,7 @@
       },
       {
         "date": "null",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 8,
         "price": 5,
         "total_price": 40,
@@ -554,7 +554,7 @@
       },
       {
         "date": "null",
-        "mode": 4,
+        "mode": 3,
         "total_volume": 3,
         "price": 8,
         "total_price": 24,
