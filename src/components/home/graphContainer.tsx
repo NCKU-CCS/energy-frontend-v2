@@ -15,8 +15,8 @@ const emptyData = {
   time: '00:00',
   transactions: [
     {
-      seller: 'NCKU_BEMS',
-      buyer: 'NCKU_BEMS',
+      seller: 'Juguang_Tower',
+      buyer: 'Juguang_Tower',
       achievement: 0.0,
     },
   ],
@@ -36,7 +36,7 @@ const GraphContainer: React.FC = () => {
   const [dataReady, setDataReady] = useState(false);
   // parameter
   const refreshTime = 50;
-  const buildings = ['Carlab_CEMS', 'NCKU_BEMS', 'SGESC_C_BEMS', 'ABRI_BEMS'];
+  const buildings = ['KKL', 'Juguang_Tower', 'NQU', 'Ever_Rich'];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
