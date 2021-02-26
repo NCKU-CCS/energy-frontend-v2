@@ -122,15 +122,13 @@ const InfoBox: React.FC<IProps> = ({ userType, data }) => {
                     )}
                   >
                     <span>
-                      {userType === 'taipower'
+                      {userType === 'tpc'
                         ? t('dracceptpage.aggregator')
                         : t('dracceptpage.executor')}{' '}
                       :&nbsp;
                     </span>
                     <span>
-                      {userType === 'taipower'
-                        ? data.aggregator
-                        : data.executor}
+                      {userType === 'tpc' ? data.aggregator : data.executor}
                     </span>
                   </div>
                   <div
@@ -212,10 +210,10 @@ const InfoBox: React.FC<IProps> = ({ userType, data }) => {
                 onClick={() => handleClickBtn()}
               >
                 {data.is_accepted
-                  ? userType === 'taipower'
+                  ? userType === 'tpc'
                     ? t('dracceptpage.announced')
                     : t('dracceptpage.bidAccepted')
-                  : userType === 'taipower'
+                  : userType === 'tpc'
                   ? inputMode
                     ? t('dracceptpage.confirm')
                     : t('dracceptpage.accept')

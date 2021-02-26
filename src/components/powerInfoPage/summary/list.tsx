@@ -149,7 +149,6 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
       <div className={classNames('powerinfo-summary-list-date')}>{date}</div>
       <div className={classNames('powerinfo-summary-list-mode')}>
         {t('powerinfopage.netLoadSummary')}
-        {/* <span>({t('powerinfopage.consume')}-{t('powerinfopage.generate')})</span> */}
       </div>
       <div className={classNames('powerinfo-summary-list-data-container')}>
         <div className={classNames('powerinfo-summary-list-posdata-container')}>

@@ -144,7 +144,6 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
       </div>
       <div className={classNames('powerinfo-summary-barchart-mode')}>
         {t('powerinfopage.equipmentSummary')}
-        {/* <span>(kWh)</span> */}
       </div>
       <svg
         ref={svgRef}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
@@ -29,7 +30,6 @@ const Table: React.FC<IProps> = ({ date }) => {
 
   // api parameters
   const correctDate = date.getTime() > new Date().getTime() ? new Date() : date;
-  // eslint-disable-next-line @typescript-eslint/camelcase
   const [per_page, setPerPage] = useState('5');
   const [page, setPage] = useState(1);
 
@@ -67,7 +67,6 @@ const Table: React.FC<IProps> = ({ date }) => {
     const response = await fetch(
       `${
         process.env.REACT_APP_BACKEND_ENDPOINT
-        // eslint-disable-next-line @typescript-eslint/camelcase
       }/power_info?per_page=${per_page}&page=${page}&time=${dayjs(
         correctDate,
       ).format('YYYY/MM/DD')}`,
@@ -210,7 +209,6 @@ const Table: React.FC<IProps> = ({ date }) => {
     (async () => {
       await fetchApiData();
     })();
-    // eslint-disable-next-line @typescript-eslint/camelcase
   }, [correctDate, per_page, page]);
 
   useEffect(() => {

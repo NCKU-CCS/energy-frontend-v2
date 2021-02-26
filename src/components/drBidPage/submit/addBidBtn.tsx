@@ -18,9 +18,7 @@ const AddBidBtn: React.FC = () => {
   );
 
   // user type: user, aggregator
-  const [userType] = useState<string>(
-    user.is_aggregator ? 'aggregator' : 'user',
-  );
+  const [userType] = useState<string>(user.role);
 
   // click add bid btn or not
   const [add, setAdd] = useState<boolean>(false);
