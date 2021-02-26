@@ -9,7 +9,6 @@ interface IUserInfo {
   balance?: number;
   address: string;
   eth_address: string;
-  is_aggregator?: boolean;
   username: string;
 }
 
