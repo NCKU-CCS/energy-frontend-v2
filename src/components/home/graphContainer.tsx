@@ -46,6 +46,8 @@ const GraphContainer: React.FC = () => {
   let building2: HTMLImageElement;
   let building3: HTMLImageElement;
   let building4: HTMLImageElement;
+  // current interval
+  const [currIntervalId, setCurrIntervalId] = useState<any>();
 
   // init data
   useEffect(() => {
@@ -135,7 +137,10 @@ const GraphContainer: React.FC = () => {
       }
     }
 
-    setInterval(drawGraph, refreshTime);
+    if (currIntervalId) {
+      clearInterval(currIntervalId);
+    }
+    setCurrIntervalId(setInterval(drawGraph, refreshTime));
   };
 
   const drawGraph = () => {
