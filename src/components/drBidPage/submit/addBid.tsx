@@ -22,6 +22,9 @@ const AddBid: React.FC = () => {
   // price
   const [price, setPrice] = useState<number | undefined>(undefined);
 
+  // price input disable
+  const [priceDisable, setPriceDisable] = useState<boolean>(false);
+
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
@@ -34,8 +37,33 @@ const AddBid: React.FC = () => {
     }
   }, [date, mode, volume, price]);
 
-  // creat options for <select>
-  const createOptions = [1, 2, 3, 4, 5].map((i) => {
+  // determine price by mode
+  useEffect(() => {
+    switch (mode) {
+      default:
+        break;
+      case 1: {
+        setPriceDisable(true);
+        const hr = dayjs().get('hour');
+        if (hr >= 23 || hr < 8) {
+          setPrice(4.97);
+        } else if (hr < 18) {
+          setPrice(7.59);
+        } else setPrice(9.89);
+        break;
+      }
+      case 2:
+        setPriceDisable(false);
+        break;
+      case 3:
+        setPriceDisable(true);
+        setPrice(1);
+        break;
+    }
+  }, [mode]);
+
+  // create options for <select>
+  const createOptions = [1, 2, 3].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -108,6 +136,7 @@ const AddBid: React.FC = () => {
           value={price}
           placeholder={t('drbidpage.price')}
           required
+          disabled={priceDisable}
         />
         <input
           className={classNames('drbid-submit-addbid-form-total')}

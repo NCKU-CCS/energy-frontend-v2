@@ -47,7 +47,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           disabled={data.is_submitted}
           onClick={() => alert('success')}
         >
-          {data.is_submitted ? t('drbidpage.accepted') : t('drbidpage.accept')}
+          {data.is_submitted ? t('drbidpage.reported') : t('drbidpage.report')}
         </button>
       </div>
       <div

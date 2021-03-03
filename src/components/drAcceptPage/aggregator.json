@@ -32,7 +32,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 6,
         "price": 6,
         "total_price": 36,
@@ -50,7 +50,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 9,
         "price": 8,
         "total_price": 72,
@@ -68,7 +68,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 4,
         "price": 9,
         "total_price": 36,
@@ -118,7 +118,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 9,
         "price": 7,
         "total_price": 63,
@@ -127,7 +127,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 10,
         "total_price": 70,
@@ -181,7 +181,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 2,
         "price": 8,
         "total_price": 16,
@@ -249,7 +249,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 3,
         "price": 11,
         "total_price": 33,
@@ -258,7 +258,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 2,
         "price": 15,
         "total_price": 60,
@@ -267,7 +267,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 16,
         "price": 5,
         "total_price": 80,
@@ -276,7 +276,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 3,
         "price": 2,
         "total_price": 6,
@@ -299,7 +299,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 9,
         "price": 16,
         "total_price": 144,
@@ -335,7 +335,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 4,
         "total_price": 28,
@@ -344,7 +344,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 2,
         "price": 3,
         "total_price": 6,
@@ -353,7 +353,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 5,
         "price": 2,
         "total_price": 10,
@@ -421,7 +421,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 9,
         "price": 3,
         "total_price": 27,
@@ -448,7 +448,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 7,
         "price": 7,
         "total_price": 49,
@@ -457,7 +457,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 6,
         "price": 4,
         "total_price": 24,
@@ -466,7 +466,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 15,
         "price": 2,
         "total_price": 30,
@@ -480,7 +480,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 14,
         "price": 5,
         "total_price": 70,
@@ -489,7 +489,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 11,
         "price": 2,
         "total_price": 22,
@@ -525,7 +525,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 19,
         "price": 6,
         "total_price": 144,
@@ -534,7 +534,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 14,
         "price": 4,
         "total_price": 56,
@@ -543,7 +543,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 3,
         "price": 7,
         "total_price": 21,
@@ -611,7 +611,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 5,
+        "mode": 1,
         "total_volume": 8,
         "price": 5,
         "total_price": 40,
@@ -620,7 +620,7 @@
       {
         "executor": "Exec. A",
         "interval": "15:00 - 16:00",
-        "mode": 4,
+        "mode": 2,
         "total_volume": 3,
         "price": 8,
         "total_price": 24,

@@ -35,14 +35,42 @@ const AddBidBtn: React.FC = () => {
   // price
   const [price, setPrice] = useState<number | undefined>(undefined);
 
+  // price input disable
+  const [priceDisable, setPriceDisable] = useState<boolean>(false);
+
   // click reset btn or not
   const [reset, setReset] = useState<boolean>(true);
 
   // control submit btn disabled or not
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
+  // determine price by mode
+  useEffect(() => {
+    switch (mode) {
+      default:
+        break;
+      case 1: {
+        setPriceDisable(true);
+        const hr = dayjs().get('hour');
+        if (hr >= 23 || hr < 8) {
+          setPrice(4.97);
+        } else if (hr < 18) {
+          setPrice(7.59);
+        } else setPrice(9.89);
+        break;
+      }
+      case 2:
+        setPriceDisable(false);
+        break;
+      case 3:
+        setPriceDisable(true);
+        setPrice(1);
+        break;
+    }
+  }, [mode]);
+
   // creat options for <select>
-  const createOptions = [1, 2, 3, 4, 5].map((i) => {
+  const createOptions = [1, 2, 3].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -234,6 +262,7 @@ const AddBidBtn: React.FC = () => {
                     step="0.1"
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
                     value={reset ? '' : price}
+                    disabled={priceDisable}
                   />
                 </div>
                 <div
