@@ -8,9 +8,9 @@ export const buildingsPos = [
 
 // building's name
 export const buildingsNamePos = [
-  [310, 260],
-  [890, 80],
-  [1440, 430],
+  [385, 260],
+  [860, 80],
+  [1560, 430],
   [2150, 360],
 ];
 
