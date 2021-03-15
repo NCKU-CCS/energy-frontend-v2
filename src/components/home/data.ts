@@ -3,23 +3,23 @@ export const testingData = {
   time: '15:55',
   transactions: [
     {
-      seller: 'KKL',
-      buyer: 'NQU',
+      seller: '金門酒廠',
+      buyer: '金門大學',
       achievement: 0.3,
     },
     {
-      seller: 'KKL',
-      buyer: 'Juguang_Tower',
+      seller: '金門酒廠',
+      buyer: '莒光樓',
       achievement: 0.5,
     },
     {
-      seller: 'NQU',
-      buyer: 'Ever_Rich',
+      seller: '金門大學',
+      buyer: '金湖飯店',
       achievement: 0.15,
     },
     {
-      seller: 'KKL',
-      buyer: 'Ever_Rich',
+      seller: '金門酒廠',
+      buyer: '金湖飯店',
       achievement: 0.2,
     },
   ],

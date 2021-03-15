@@ -36,7 +36,7 @@ const GraphContainer: React.FC = () => {
   const [dataReady, setDataReady] = useState(false);
   // parameter
   const refreshTime = 50;
-  const buildings = ['KKL', 'Juguang_Tower', 'NQU', 'Ever_Rich'];
+  const buildings = ['金門酒廠', '莒光樓', '金門大學', '金湖飯店'];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
