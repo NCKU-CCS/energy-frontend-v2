@@ -55,22 +55,30 @@ interface IStatus {
 interface IDR {
   acceptor: string;
   blockchain_url: string;
+  counterpart_address: string;
+  counterpart_name: string;
   end_time: string;
   executor: string;
+  order_method: string;
   price: number;
   rate: number;
+  result: boolean;
+  settlement: number;
   start_time: string;
   status: string;
+  trading_mode: number;
   uuid: string;
   volume: number;
 }
 
 const Status: React.FC = () => {
+  // data
   const [listInfo, setListInfo] = useState<IListInfo[]>([]);
   const [DRResult, setDRResult] = useState<IDR[]>([]);
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
+  // user state
   const [isGreen, setIsGreen] = useState<boolean>(true);
   const [isDR, setIsDR] = useState<boolean>(false);
   const [isDRBid, setIsDRBid] = useState<boolean>(true);
@@ -83,7 +91,6 @@ const Status: React.FC = () => {
   );
 
   const fetchMatchResult = async () => {
-    // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
       {
@@ -96,7 +103,6 @@ const Status: React.FC = () => {
       },
     );
     if (response.status === 200) {
-      // fetch success
       const data = await response.json();
       setListInfo(data);
       setTrainInfo(data);
@@ -105,11 +111,11 @@ const Status: React.FC = () => {
   };
 
   const fetchDR = async () => {
-    const day = dayjs().add(2, 'day');
-    const endTime = day.format('YYYY-MM-DD');
-    // GET to User Info API
+    let DRType = '';
+    if (user.role === 'aggregator')
+      DRType = isDRBid ? '&acceptor_role=tcp' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${endTime}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=10000&page=1${DRType}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -120,7 +126,6 @@ const Status: React.FC = () => {
       },
     );
     if (response.status === 200) {
-      // fetch success
       const data = await response.json();
       setDRResult(data);
     }
@@ -128,10 +133,10 @@ const Status: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      await fetchMatchResult();
-      await fetchDR();
+      if (isGreen && user.role !== 'tpc') await fetchMatchResult();
+      else if (isDR || user.role === 'tpc') await fetchDR();
     })();
-  }, []);
+  }, [isGreen, isDR, isDRBid, isDRAccept]);
 
   // add list data
   useEffect(() => {
@@ -145,7 +150,7 @@ const Status: React.FC = () => {
             ? DRResult[i].executor
             : DRResult[i].acceptor;
         let { rate } = DRResult[i];
-        if (rate == null) rate = 0;
+        if (rate === null) rate = 0;
         const DBdata: IListInfo = {
           bid_type: 'dr',
           status: DRResult[i].status,
@@ -172,7 +177,7 @@ const Status: React.FC = () => {
         };
         listDBData.push(DBdata);
       }
-      setListInfo([...listInfo, ...listDBData]);
+      setListInfo(listDBData);
     }
   }, [DRResult]);
 
@@ -205,7 +210,7 @@ const Status: React.FC = () => {
         };
         listDBData.push(DBdata);
       }
-      setTrainInfo([...trainInfo, ...listDBData]);
+      setTrainInfo(listDBData);
     }
   }, [DRResult]);
 
@@ -215,14 +220,14 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         let { rate } = DRResult[i];
-        if (rate == null) rate = 0;
+        if (rate === null) rate = 0;
         const DBdata: IStatus = {
           status: DRResult[i].status,
           achievement: rate,
         };
         listDBData.push(DBdata);
       }
-      setStatusInfo([...statusInfo, ...listDBData]);
+      setStatusInfo(listDBData);
     }
   }, [DRResult]);
 
