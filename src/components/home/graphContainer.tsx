@@ -15,8 +15,8 @@ const emptyData = {
   time: '00:00',
   transactions: [
     {
-      seller: 'Juguang_Tower',
-      buyer: 'Juguang_Tower',
+      seller: '莒光樓',
+      buyer: '莒光樓',
       achievement: 0.0,
     },
   ],
