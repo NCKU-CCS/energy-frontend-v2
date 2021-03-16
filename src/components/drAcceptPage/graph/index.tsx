@@ -42,7 +42,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // d3 scale x: 1 ~ 3
   const scaleX = d3
     .scaleLinear()
-    .domain([1, 3])
+    .domain([1, 4])
     .range([0, width - (padding.left + padding.right)]);
 
   // d3 scale y
@@ -60,7 +60,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // axis x
   const axisX = d3
     .axisBottom(scaleX)
-    .ticks(2)
+    .ticks(4)
     .tickPadding(5)
     .tickFormat(null)
     .tickSize(0);
@@ -198,6 +198,8 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             return '#705341';
           case 3:
             return '#696464';
+          case 4:
+            return '#123456';
           default:
             return '#fff';
         }
