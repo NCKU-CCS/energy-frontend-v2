@@ -84,7 +84,6 @@ const AddBid: React.FC = () => {
         break;
       }
     }
-    // alert(mode);
   }, [mode]);
 
   // create options for <select>
@@ -167,7 +166,7 @@ const AddBid: React.FC = () => {
           min="0"
           value={
             price !== undefined && volume !== undefined
-              ? (price * volume).toFixed(1)
+              ? (price * volume).toFixed(2)
               : undefined
           }
           placeholder={t('drbidpage.total')}
