@@ -15,8 +15,8 @@ const emptyData = {
   time: '00:00',
   transactions: [
     {
-      seller: '莒光樓',
-      buyer: '莒光樓',
+      seller: 'Juguang_Tower',
+      buyer: 'Juguang_Tower',
       achievement: 0.0,
     },
   ],
@@ -36,7 +36,8 @@ const GraphContainer: React.FC = () => {
   const [dataReady, setDataReady] = useState(false);
   // parameter
   const refreshTime = 50;
-  const buildings = ['金門酒廠', '莒光樓', '金門大學', '金湖飯店'];
+  const buildings = ['KKL', 'Juguang_Tower', 'NQU', 'Ever_Rich'];
+  const buildingsChinese = ['金門酒廠', '莒光樓', '金門大學', '金湖飯店'];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
@@ -286,7 +287,7 @@ const GraphContainer: React.FC = () => {
     for (let i = 0; i < buildingsNamePos.length; i += 1) {
       ctx.fillStyle = buildings[i] === currUser ? '#ffa000' : '#000000';
       ctx.fillText(
-        buildings[i],
+        buildingsChinese[i],
         buildingsNamePos[i][0],
         buildingsNamePos[i][1],
       );
