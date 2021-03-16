@@ -4,6 +4,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 10,
         "price": 3,
@@ -12,6 +13,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 12,
         "price": 5,
@@ -20,6 +22,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 1,
         "total_volume": 3,
         "price": 13,
@@ -28,6 +31,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 6,
         "price": 6,
@@ -36,6 +40,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 12,
         "price": 1,
@@ -44,6 +49,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 3,
         "total_volume": 9,
         "price": 8,
@@ -52,6 +58,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 3,
         "total_volume": 8,
         "price": 2,
@@ -60,6 +67,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 1,
         "total_volume": 4,
         "price": 9,
@@ -68,6 +76,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 2,
         "total_volume": 7,
         "price": 6,
@@ -76,6 +85,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 1,
         "total_volume": 10,
         "price": 4,
@@ -89,6 +99,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 14,
         "price": 4,
@@ -97,6 +108,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 6,
         "price": 2,
@@ -105,6 +117,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 3,
         "total_volume": 9,
         "price": 7,
@@ -113,6 +126,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 7,
         "price": 10,
@@ -121,6 +135,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 2,
         "total_volume": 9,
         "price": 6,
@@ -129,6 +144,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 2,
         "total_volume": 17,
         "price": 2,
@@ -137,6 +153,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 2,
         "total_volume": 6,
         "price": 9,
@@ -145,6 +162,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 1,
         "total_volume": 5,
         "price": 5,
@@ -153,6 +171,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 3,
         "total_volume": 15,
         "price": 6,
@@ -161,6 +180,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 3,
         "total_volume": 2,
         "price": 8,
@@ -174,6 +194,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 11,
         "price": 4,
@@ -182,6 +203,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 8,
         "price": 9,
@@ -190,6 +212,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 1,
         "total_volume": 7,
         "price": 11,
@@ -198,6 +221,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 2,
         "total_volume": 12,
         "price": 4,
@@ -206,6 +230,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 6,
         "price": 5,
@@ -214,6 +239,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 3,
         "total_volume": 19,
         "price": 2,
@@ -222,6 +248,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 3,
         "total_volume": 3,
         "price": 11,
@@ -230,6 +257,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 1,
         "total_volume": 2,
         "price": 15,
@@ -238,6 +266,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 3,
         "total_volume": 16,
         "price": 5,
@@ -246,6 +275,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 1,
         "total_volume": 3,
         "price": 2,
@@ -259,6 +289,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 2,
         "price": 15,
@@ -267,6 +298,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 9,
         "price": 16,
@@ -275,6 +307,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 3,
         "total_volume": 7,
         "price": 5,
@@ -283,6 +316,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 9,
         "price": 2,
@@ -291,6 +325,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 3,
         "price": 14,
@@ -299,6 +334,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 1,
         "total_volume": 7,
         "price": 4,
@@ -307,6 +343,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 1,
         "total_volume": 2,
         "price": 3,
@@ -315,6 +352,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 3,
         "total_volume": 5,
         "price": 2,
@@ -323,6 +361,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 2,
         "total_volume": 4,
         "price": 4,
@@ -331,6 +370,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 3,
         "total_volume": 13,
         "price": 5,
@@ -344,6 +384,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 2,
         "price": 13,
@@ -352,6 +393,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 3,
         "price": 4,
@@ -360,6 +402,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 4,
         "total_volume": 5,
         "price": 11,
@@ -368,6 +411,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 8,
         "price": 7,
@@ -376,6 +420,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 3,
         "total_volume": 9,
         "price": 3,
@@ -384,6 +429,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 3,
         "total_volume": 2,
         "price": 6,
@@ -392,6 +438,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 2,
         "total_volume": 9,
         "price": 6,
@@ -400,6 +447,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 1,
         "total_volume": 7,
         "price": 7,
@@ -408,6 +456,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 3,
         "total_volume": 6,
         "price": 4,
@@ -416,6 +465,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 3,
         "total_volume": 15,
         "price": 2,
@@ -429,6 +479,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 4,
         "total_volume": 14,
         "price": 5,
@@ -437,6 +488,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 4,
         "total_volume": 11,
         "price": 2,
@@ -445,6 +497,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 3,
         "total_volume": 12,
         "price": 5,
@@ -453,6 +506,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 15,
         "price": 7,
@@ -461,6 +515,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 4,
         "price": 8,
@@ -469,6 +524,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 3,
         "total_volume": 19,
         "price": 6,
@@ -477,6 +533,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 3,
         "total_volume": 14,
         "price": 4,
@@ -485,6 +542,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 3,
         "total_volume": 3,
         "price": 7,
@@ -493,6 +551,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 1,
         "total_volume": 4,
         "price": 7,
@@ -501,6 +560,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 3,
         "total_volume": 1,
         "price": 2,
@@ -514,6 +574,7 @@
     "data": [
       {
         "date": "null",
+        "interval": "1:00 - 2:00",
         "mode": 3,
         "total_volume": 4,
         "price": 6,
@@ -522,6 +583,7 @@
       },
       {
         "date": "null",
+        "interval": "3:00 - 4:00",
         "mode": 2,
         "total_volume": 2,
         "price": 12,
@@ -530,6 +592,7 @@
       },
       {
         "date": "null",
+        "interval": "7:00 - 8:00",
         "mode": 2,
         "total_volume": 11,
         "price": 3,
@@ -538,6 +601,7 @@
       },
       {
         "date": "null",
+        "interval": "12:00 - 13:00",
         "mode": 1,
         "total_volume": 11,
         "price": 6,
@@ -546,6 +610,7 @@
       },
       {
         "date": "null",
+        "interval": "15:00 - 16:00",
         "mode": 1,
         "total_volume": 8,
         "price": 5,
@@ -554,6 +619,7 @@
       },
       {
         "date": "null",
+        "interval": "16:00 - 17:00",
         "mode": 3,
         "total_volume": 3,
         "price": 8,
@@ -562,6 +628,7 @@
       },
       {
         "date": "null",
+        "interval": "19:00 - 20:00",
         "mode": 1,
         "total_volume": 6,
         "price": 9,
@@ -570,6 +637,7 @@
       },
       {
         "date": "null",
+        "interval": "20:00 - 21:00",
         "mode": 3,
         "total_volume": 14,
         "price": 3,
@@ -578,6 +646,7 @@
       },
       {
         "date": "null",
+        "interval": "21:00 - 22:00",
         "mode": 2,
         "total_volume": 17,
         "price": 9,
@@ -586,6 +655,7 @@
       },
       {
         "date": "null",
+        "interval": "22:00 - 23:00",
         "mode": 2,
         "total_volume": 11,
         "price": 8,
