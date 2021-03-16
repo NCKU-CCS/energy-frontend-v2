@@ -25,6 +25,7 @@ interface IListInfo {
   id: string;
   upload: string;
   achievement: number;
+  mode: number;
 }
 
 interface IAListInfo {
@@ -65,6 +66,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
         winsPrice={content.wins.price}
         achievement={content.achievement}
         isDR={isDR}
+        mode={content.mode}
       />
     );
     if (page === 1) return info;
@@ -77,7 +79,8 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
       if (
         content.status === '未得標' ||
         content.status === '已得標' ||
-        content.status === '執行中'
+        content.status === '執行中' ||
+        content.status === '得標'
       )
         return info;
       return null;

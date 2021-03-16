@@ -192,6 +192,7 @@
     "bidding": "Bidding",
     "finish": "Finish",
     "win": "Win",
+    "DRwin": "Win",
     "or": "or",
     "fail": "Fail",
     "executing": "Executing",
@@ -204,6 +205,8 @@
     "Bid": "drBid",
     "green": "Green Energy Trading",
     "dr": "DR",
-    "mode": "Mode"
+    "mode": "Mode",
+    "now": "real time",
+    "before": "yesterday"
   }
 }

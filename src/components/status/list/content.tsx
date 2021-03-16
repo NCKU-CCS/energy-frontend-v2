@@ -23,6 +23,7 @@ interface IContent {
   winsPrice: number;
   achievement: number;
   isDR: boolean;
+  mode: number;
 }
 
 const Content: React.FC<IContent> = ({
@@ -45,6 +46,7 @@ const Content: React.FC<IContent> = ({
   winsPrice,
   achievement,
   isDR,
+  mode,
 }) => {
   const { t } = useTranslation();
 
@@ -98,6 +100,14 @@ const Content: React.FC<IContent> = ({
     'status-list-content-bidTypeNeed',
     'status-list-content-bidType',
   );
+  const bidTypeNow = classnames(
+    'status-list-content-bidTypeNow',
+    'status-list-content-bidType',
+  );
+  const bidTypeYesterday = classnames(
+    'status-list-content-bidTypeYesterday',
+    'status-list-content-bidType',
+  );
   let bidTypeClass = '';
   let bidTypeText = '';
   if (bidType === 'buy') {
@@ -109,6 +119,12 @@ const Content: React.FC<IContent> = ({
   } else if (bidType === 'dr') {
     bidTypeClass = bidTypeNeed;
     bidTypeText = t('statuspage.need');
+  } else if (bidType === '日前') {
+    bidTypeClass = bidTypeYesterday;
+    bidTypeText = t('statuspage.before');
+  } else if (bidType === '即時') {
+    bidTypeClass = bidTypeNow;
+    bidTypeText = t('statuspage.now');
   }
 
   // status box
@@ -151,6 +167,13 @@ const Content: React.FC<IContent> = ({
       for (let i = 0; i < 6; i += 1)
         list.push(<div className={statusBoxWhite} />);
     }
+    if (status === '得標') {
+      list = [];
+      for (let i = 0; i < 3; i += 1)
+        list.push(<div className={statusBoxGreen} />);
+      for (let i = 0; i < 3; i += 1)
+        list.push(<div className={statusBoxGrey} />);
+    }
     return (
       <div className={classnames('status-list-content-statusBox-Container')}>
         {list}
@@ -166,8 +189,11 @@ const Content: React.FC<IContent> = ({
   else if (status === '執行中') i18nStatus = t('statuspage.executing');
   else if (status === '結算中') i18nStatus = t('statuspage.settling');
   else if (status === '已結算') i18nStatus = t('statuspage.end');
+  else if (status === '得標') i18nStatus = t('statuspage.DRwin');
 
-  const href = 'https://ropsten.etherscan.io/tx/'.concat(hash);
+  let href = 'https://ropsten.etherscan.io/tx/';
+  if (hash !== null)
+    href = hash.substring(0, 5) === 'https:' ? hash : href + hash;
 
   return (
     <div className={classnames('status-list-content-contentContainer')}>
@@ -178,7 +204,9 @@ const Content: React.FC<IContent> = ({
         aria-labelledby="onClick info"
       />
       <div className={bidTypeClass}>{bidTypeText}</div>
-      {isDR && <div className={classnames('status-list-content-mode')}>1</div>}
+      {isDR && (
+        <div className={classnames('status-list-content-mode')}>{mode}</div>
+      )}
       <div className={classnames('status-list-content-status')}>
         {i18nStatus}
       </div>
@@ -216,6 +244,7 @@ const Content: React.FC<IContent> = ({
           winsPrice={winsPrice}
           achievement={achievement}
           setView={setView}
+          isDR={isDR}
         />
       )}
     </div>

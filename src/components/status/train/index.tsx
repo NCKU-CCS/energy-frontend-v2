@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import TrainBox from './trainBox';
@@ -62,7 +63,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         const dataStatus = input[index].status;
         if (dataStatus === '投標中') setNowIndex(0);
         if (dataStatus === '已投標') setNowIndex(1);
-        if (dataStatus === '已得標') setNowIndex(2);
+        if (dataStatus === '已得標' || dataStatus === '得標') setNowIndex(2);
         if (dataStatus === '執行中') setNowIndex(3);
         if (dataStatus === '結算中') setNowIndex(4);
         if (dataStatus === '已結算') setNowIndex(5);
@@ -75,7 +76,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
       let dataBidsPrice = '-----';
       let dataWinsValue = '-----';
       let dataWinsPrice = '-----';
-      const upload = input[index].upload.split(' ');
+      const upload = dayjs(input[index].upload);
       if (input[index].counterpart.address)
         dataCounterpartAddress = input[index].counterpart.address.toString();
       if (input[index].counterpart.name)
@@ -94,7 +95,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         counterpartAddress: dataCounterpartAddress,
         counterpartName: dataCounterpartName,
         id: input[index].id,
-        upload: upload[4],
+        upload: upload.format('HH:mm'),
         winsPrice: dataWinsPrice,
         winsValue: dataWinsValue,
         status: input[index].status,
