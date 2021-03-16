@@ -63,6 +63,7 @@ const DrBidPageContainer: React.FC = () => {
               format="yyyy/MM/dd"
               showTodayButton
               allowKeyboardControl
+              autoOk
             />
           </MuiPickersUtilsProvider>
         </div>

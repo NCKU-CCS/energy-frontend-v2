@@ -39,7 +39,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // bar width
   const [barWidth, setBarWidth] = useState<number>(0);
 
-  // d3 scale x: 1 ~ 3
+  // d3 scale x: 1 ~ 4
   const scaleX = d3
     .scaleLinear()
     .domain([1, 4])
