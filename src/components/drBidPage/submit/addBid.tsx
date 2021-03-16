@@ -22,9 +22,6 @@ const AddBid: React.FC = () => {
   // price
   const [price, setPrice] = useState<number | undefined>(undefined);
 
-  // price input disable
-  const [priceDisable, setPriceDisable] = useState<boolean>(false);
-
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
@@ -40,30 +37,58 @@ const AddBid: React.FC = () => {
   // determine price by mode
   useEffect(() => {
     switch (mode) {
-      default:
-        break;
-      case 1: {
-        setPriceDisable(true);
+      default: {
         const hr = dayjs().get('hour');
-        if (hr >= 23 || hr < 8) {
-          setPrice(4.97);
-        } else if (hr < 18) {
-          setPrice(7.59);
-        } else setPrice(9.89);
+        const mth = dayjs().get('month');
+        if (mth >= 5 && mth <= 8) {
+          // summer
+          if (hr >= 23 || hr < 8) {
+            setPrice(4.97);
+          } else if (hr < 18) {
+            setPrice(7.59);
+          } else setPrice(9.89);
+        } else {
+          // not summer
+          // eslint-disable-next-line no-lonely-if
+          if (hr >= 17 && hr < 22) {
+            setPrice(5.71);
+          } else {
+            setPrice(4.55);
+          }
+        }
         break;
       }
-      case 2:
-        setPriceDisable(false);
+      case 0: {
+        setPrice(undefined);
         break;
-      case 3:
-        setPriceDisable(true);
-        setPrice(1);
+      }
+      case 2: {
+        const hr = dayjs().get('hour');
+        const mth = dayjs().get('month');
+        if (mth >= 5 && mth <= 8) {
+          // summer
+          if (hr >= 23 || hr < 8) {
+            setPrice(4.74);
+          } else if (hr < 18) {
+            setPrice(7.36);
+          } else setPrice(9.66);
+        } else {
+          // not summer
+          // eslint-disable-next-line no-lonely-if
+          if (hr >= 17 && hr < 22) {
+            setPrice(1.34);
+          } else {
+            setPrice(0.18);
+          }
+        }
         break;
+      }
     }
+    // alert(mode);
   }, [mode]);
 
   // create options for <select>
-  const createOptions = [1, 2, 3].map((i) => {
+  const createOptions = [1, 2, 3, 4].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -131,12 +156,10 @@ const AddBid: React.FC = () => {
           className={classNames('drbid-submit-addbid-form-price')}
           type="number"
           min="0"
-          step="0.1"
-          onChange={(e) => setPrice(parseFloat(e.target.value))}
           value={price}
           placeholder={t('drbidpage.price')}
           required
-          disabled={priceDisable}
+          disabled
         />
         <input
           className={classNames('drbid-submit-addbid-form-total')}
