@@ -79,7 +79,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 >
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-date--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -88,7 +87,14 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-interval--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('drbidpage.interval')} :&nbsp;</span>
+                    <span>23:00 - 8:00</span>
+                  </div>
+                  <div
+                    className={classNames(
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -97,7 +103,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-volume--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -106,7 +111,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-price--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -115,7 +119,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-total--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -138,8 +141,8 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 disabled={data.is_submitted}
               >
                 {data.is_submitted
-                  ? t('drbidpage.accepted')
-                  : t('drbidpage.accept')}
+                  ? t('drbidpage.reported')
+                  : t('drbidpage.report')}
               </button>
             </div>
           </div>
