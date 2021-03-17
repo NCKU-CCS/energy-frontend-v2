@@ -130,9 +130,17 @@ const AddBid: React.FC = () => {
             />
           </MuiPickersUtilsProvider>
         </div>
+        <select className={classNames('drbid-submit-addbid-form-interval')}>
+          <option dir="rtl" value="0" selected>
+            {t('drbidpage.interval')}
+          </option>
+          <option>23:00 - 8:00</option>
+          <option>8:00 - 18:00</option>
+          <option>18:00 - 23:00</option>
+        </select>
         <select
           className={classNames(
-            `drbid-submit-addbid-form-select${mode === 0 ? '--invalid' : ''}`,
+            `drbid-submit-addbid-form-mode${mode === 0 ? '--invalid' : ''}`,
           )}
           onChange={(e) => setMode(parseInt(e.target.value, 10))}
         >
