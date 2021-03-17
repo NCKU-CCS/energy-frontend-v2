@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,6 +27,12 @@ const AddBidBtn: React.FC = () => {
   // date
   const [date, setDate] = useState<string | null>(null);
 
+  // interval array
+  const [intervalArr, setIntervalArr] = useState<string[]>([]);
+
+  // interval
+  const [interval, setInterval] = useState<string>('');
+
   // mode
   const [mode, setMode] = useState<number>(0);
 
@@ -40,6 +47,18 @@ const AddBidBtn: React.FC = () => {
 
   // control submit btn disabled or not
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
+
+  // determine interval array by selected month
+  useEffect(() => {
+    if (date) {
+      const mth = dayjs(date).get('month');
+      if (mth >= 5 && mth <= 8) {
+        setIntervalArr(['23:00 - 8:00', '8:00 - 18:00', '18:00 - 23:00']);
+      } else {
+        setIntervalArr(['22:00 - 17:00', '17:00 - 22:00']);
+      }
+    }
+  }, [date]);
 
   // determine price by mode
   useEffect(() => {
@@ -93,8 +112,17 @@ const AddBidBtn: React.FC = () => {
     }
   }, [mode]);
 
-  // creat options for <select>
-  const createOptions = [1, 2, 3, 4].map((i) => {
+  // create options for interval
+  const createIntervalOptions = intervalArr.map((str) => {
+    return (
+      <option dir="rtl" value={str}>
+        {str}
+      </option>
+    );
+  });
+
+  // create options for mode
+  const createModeOptions = [1, 2, 3, 4].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -116,13 +144,21 @@ const AddBidBtn: React.FC = () => {
 
   // determine data validity
   useEffect(() => {
-    if (date && mode !== 0 && volume && volume !== 0 && price && price !== 0) {
+    if (
+      date &&
+      interval !== '' &&
+      mode !== 0 &&
+      volume &&
+      volume !== 0 &&
+      price &&
+      price !== 0
+    ) {
       setSubmitDisabled(false);
     } else {
       setReset(false);
       setSubmitDisabled(true);
     }
-  }, [date, mode, volume, price]);
+  }, [date, interval, mode, volume, price]);
 
   // when reset, clear data
   useEffect(() => {
@@ -186,7 +222,7 @@ const AddBidBtn: React.FC = () => {
                   </div>
                   <div
                     className={classNames(
-                      '.drbid-submit-addbidbtn-infobox-center-item-input',
+                      'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
                   >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -228,6 +264,27 @@ const AddBidBtn: React.FC = () => {
                       'drbid-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
+                    {t('drbidpage.interval')} :
+                  </div>
+                  <select
+                    className={classNames(
+                      'drbid-submit-addbidbtn-infobox-center-item-input',
+                    )}
+                    onChange={(e) => setInterval(e.target.value)}
+                  >
+                    {createIntervalOptions}
+                  </select>
+                </div>
+                <div
+                  className={classNames(
+                    'drbid-submit-addbidbtn-infobox-center-item-container',
+                  )}
+                >
+                  <div
+                    className={classNames(
+                      'drbid-submit-addbidbtn-infobox-center-item-text',
+                    )}
+                  >
                     {t('drbidpage.mode')} :
                   </div>
                   <select
@@ -239,7 +296,7 @@ const AddBidBtn: React.FC = () => {
                     <option dir="rtl" value="0" selected={reset}>
                       {}
                     </option>
-                    {createOptions}
+                    {createModeOptions}
                   </select>
                 </div>
                 <div

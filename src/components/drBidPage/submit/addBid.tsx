@@ -113,7 +113,7 @@ const AddBid: React.FC = () => {
     }
   }, [mode]);
 
-  // create options for <select>
+  // create options for interval
   const createIntervalOptions = intervalArr.map((str) => {
     return (
       <option dir="rtl" value={str}>
