@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
@@ -32,16 +33,46 @@ const DrBidPageContainer: React.FC = () => {
   const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
 
   // data type: dayBefore(日前), realTime(即時)
-  const [dataType, setDataType] = useState<string>('dayBefore');
+  const [dataType, setDataType] = useState<string>('日前');
 
   // api data
   const [apiData, setApiData] = useState<IData[]>([]);
+
+  // fetch api data
+  const fetchApiData = async () => {
+    // GET DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${dayjs(
+        date,
+      ).format('YYYY-MM-DD')}&order_method=${dataType}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      // fetch success
+      const tmp = await response.json();
+      console.log(tmp);
+    } else {
+      alert('failed');
+    }
+  };
 
   // fetch api data
   useEffect(() => {
     setApiData([
       ...allTestData.filter((d) => d.day === dayjs(date).day())[0].data,
     ]);
+    (async () => {
+      await fetchApiData();
+    })();
   }, [date, dataType]);
 
   return (
