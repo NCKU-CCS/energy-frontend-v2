@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,12 @@ const AddBid: React.FC = () => {
   // date
   const [date, setDate] = useState<string | null>(null);
 
+  // interval array
+  const [intervalArr, setIntervalArr] = useState<string[]>([]);
+
+  // interval
+  const [interval, setInterval] = useState<string>('');
+
   // mode
   const [mode, setMode] = useState<number>(0);
 
@@ -25,14 +32,34 @@ const AddBid: React.FC = () => {
   // set submit button disabled
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
+  // determine interval array by selected month
+  useEffect(() => {
+    if (date) {
+      const mth = dayjs(date).get('month');
+      if (mth >= 5 && mth <= 8) {
+        setIntervalArr(['23:00 - 8:00', '8:00 - 18:00', '18:00 - 23:00']);
+      } else {
+        setIntervalArr(['22:00 - 17:00', '17:00 - 22:00']);
+      }
+    }
+  }, [date]);
+
   // determine data validity
   useEffect(() => {
-    if (date && mode !== 0 && volume && volume !== 0 && price && price !== 0) {
+    if (
+      date &&
+      interval !== '' &&
+      mode !== 0 &&
+      volume &&
+      volume !== 0 &&
+      price &&
+      price !== 0
+    ) {
       setSubmitDisabled(false);
     } else {
       setSubmitDisabled(true);
     }
-  }, [date, mode, volume, price]);
+  }, [date, interval, mode, volume, price]);
 
   // determine price by mode
   useEffect(() => {
@@ -87,7 +114,16 @@ const AddBid: React.FC = () => {
   }, [mode]);
 
   // create options for <select>
-  const createOptions = [1, 2, 3, 4].map((i) => {
+  const createIntervalOptions = intervalArr.map((str) => {
+    return (
+      <option dir="rtl" value={str}>
+        {str}
+      </option>
+    );
+  });
+
+  // create options for mode
+  const createModeOptions = [1, 2, 3, 4].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -130,13 +166,18 @@ const AddBid: React.FC = () => {
             />
           </MuiPickersUtilsProvider>
         </div>
-        <select className={classNames('drbid-submit-addbid-form-interval')}>
-          <option dir="rtl" value="0" selected>
+        <select
+          className={classNames(
+            `drbid-submit-addbid-form-interval${
+              interval === '' ? '--invalid' : ''
+            }`,
+          )}
+          onChange={(e) => setInterval(e.target.value)}
+        >
+          <option dir="rtl" value="" selected>
             {t('drbidpage.interval')}
           </option>
-          <option>23:00 - 8:00</option>
-          <option>8:00 - 18:00</option>
-          <option>18:00 - 23:00</option>
+          {createIntervalOptions}
         </select>
         <select
           className={classNames(
@@ -147,7 +188,7 @@ const AddBid: React.FC = () => {
           <option dir="rtl" value="0" selected>
             {t('drbidpage.mode')}
           </option>
-          {createOptions}
+          {createModeOptions}
         </select>
         <input
           className={classNames('drbid-submit-addbid-form-volume')}

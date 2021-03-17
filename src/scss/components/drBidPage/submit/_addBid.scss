@@ -51,6 +51,25 @@
   border: #c0c0c0 solid 1px;
 }
 
+.drbid-submit-addbid-form-interval--invalid {
+  cursor: pointer;
+  text-align-last: right;
+  // margin: 1%;
+  width: 14.5%;
+  height: 70%;
+  color: #d1d2d1;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
+
+  &:hover {
+    border: #707070 solid 1px;
+  }
+
+  &:focus {
+    color: #707070;
+  }
+}
+
 .drbid-submit-addbid-form-mode {
   cursor: pointer;
   text-align-last: right;
