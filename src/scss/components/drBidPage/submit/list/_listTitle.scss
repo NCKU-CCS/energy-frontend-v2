@@ -97,9 +97,6 @@
 @media all and (max-width: 320px) {
   .drbid-submit-list-title-container {
     font-size: 0.8rem;
-  }
-
-  .drbid-submit-list-title-container {
     height: 20%;
   }
 
@@ -107,15 +104,20 @@
     flex-basis: 35%;
   }
 
+  .drbid-submit-list-title-interval {
+    flex-basis: 30%;
+  }
+
   .drbid-submit-list-title-mode {
     flex-basis: 25%;
-  }
-  .drbid-submit-list-title-volume {
-    flex-basis: 30%;
   }
 
   .drbid-submit-list-title-button {
     flex-basis: 10%;
+  }
+
+  .drbid-submit-list-title-volume {
+    display: none;
   }
 
   .drbid-submit-list-title-price {
