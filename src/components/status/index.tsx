@@ -115,7 +115,7 @@ const Status: React.FC = () => {
     if (user.role === 'aggregator')
       DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=100&page=1${DRType}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=10&page=1${DRType}`,
       {
         method: 'GET',
         mode: 'cors',

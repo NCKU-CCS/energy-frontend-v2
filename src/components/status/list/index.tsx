@@ -169,6 +169,47 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
       </div>
       <div className={classnames('status-list-contentContainer')}>
         {listItem}
+        {isDR && (
+          <div className={classnames('status-list-nextPageContainer')}>
+            <select
+              id="page"
+              // onChange={(e) => handlePageChange(e)}
+              className={classnames('status-list-rowSelector')}
+            >
+              <option selected value="1">
+                15 rows
+              </option>
+              <option value="2">20 rows</option>
+              <option value="3">25 rows</option>
+              <option value="4">30 rows</option>
+            </select>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+            >
+              &Iota;&#60;
+            </button>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+            >
+              &#60;
+            </button>
+            <div className={classnames('status-list-nextPageText')}>ss</div>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+            >
+              &#62;
+            </button>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+            >
+              &#62;&Iota;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
