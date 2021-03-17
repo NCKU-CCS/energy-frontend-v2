@@ -28,6 +28,9 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
       <div className={classNames('drbid-submit-listitem-date')}>
         {dayjs(date).format('YYYY /MM/DD')}
       </div>
+      <div className={classNames('drbid-submit-listitem-interval')}>
+        12:00 - 13:00
+      </div>
       <div className={classNames('drbid-submit-listitem-mode')}>
         {data.mode}
       </div>

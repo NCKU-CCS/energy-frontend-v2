@@ -12,6 +12,9 @@ const ListTitle: React.FC = () => {
       <div className={classNames('drbid-submit-list-title-date')}>
         {t('drbidpage.date')}
       </div>
+      <div className={classNames('drbid-submit-list-title-interval')}>
+        {t('drbidpage.interval')}
+      </div>
       <div className={classNames('drbid-submit-list-title-mode')}>
         {t('drbidpage.mode')}
       </div>

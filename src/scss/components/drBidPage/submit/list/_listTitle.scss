@@ -10,7 +10,15 @@
 }
 
 .drbid-submit-list-title-date {
-  flex-basis: 22.5%;
+  flex-basis: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drbid-submit-list-title-interval {
+  flex-basis: 18.5%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -26,7 +34,7 @@
 }
 
 .drbid-submit-list-title-volume {
-  flex-basis: 17%;
+  flex-basis: 12%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -34,7 +42,7 @@
 }
 
 .drbid-submit-list-title-price {
-  flex-basis: 20.5%;
+  flex-basis: 16.5%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -42,7 +50,7 @@
 }
 
 .drbid-submit-list-title-totalprice {
-  flex-basis: 15%;
+  flex-basis: 12%;
   height: 100%;
   display: flex;
   align-items: center;
