@@ -138,7 +138,11 @@
     "buy": "買",
     "sell": "賣",
     "sellSuccess": "得標",
-    "sellFail": "未得標"
+    "sellFail": "未得標",
+    "KKL": "金門酒廠",
+    "Juguang_Tower": "      莒光樓",
+    "NQU": "金門大學",
+    "Ever_Rich": "金湖飯店"
   },
   "powerinfopage": {
     "pageTitle": "電力資訊",
