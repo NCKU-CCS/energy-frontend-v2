@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { testingData } from './data';
 import {
   buildingsPos,
@@ -23,6 +24,8 @@ const emptyData = {
 };
 
 const GraphContainer: React.FC = () => {
+  const { t } = useTranslation();
+
   const [inputData, setInputData] = useState(emptyData);
   const [currUser, setCurrUser] = useState('');
   // 4*4 matrix, record if the lighting are triggered and the role of transaction
@@ -37,6 +40,12 @@ const GraphContainer: React.FC = () => {
   // parameter
   const refreshTime = 50;
   const buildings = ['KKL', 'Juguang_Tower', 'NQU', 'Ever_Rich'];
+  const buildingsName = [
+    t('indexpage.KKL'),
+    t('indexpage.Juguang_Tower'),
+    t('indexpage.NQU'),
+    t('indexpage.Ever_Rich'),
+  ];
   // lighting info, record each lighting's position
   const lightingPos: number[][] = [];
   // lighting info, record each lighting is on which fragment of it's path
@@ -286,7 +295,7 @@ const GraphContainer: React.FC = () => {
     for (let i = 0; i < buildingsNamePos.length; i += 1) {
       ctx.fillStyle = buildings[i] === currUser ? '#ffa000' : '#000000';
       ctx.fillText(
-        buildings[i],
+        buildingsName[i],
         buildingsNamePos[i][0],
         buildingsNamePos[i][1],
       );

@@ -139,7 +139,11 @@
     "buy": "Buy",
     "sell": "Sell",
     "sellSuccess": "Get",
-    "sellFail": "Fail"
+    "sellFail": "Fail",
+    "KKL": "    KKL",
+    "Juguang_Tower": "Juguang_Tower",
+    "NQU": "    NQU",
+    "Ever_Rich": "Ever_Rich"
   },
   "powerinfopage": {
     "pageTitle": "Power Information",

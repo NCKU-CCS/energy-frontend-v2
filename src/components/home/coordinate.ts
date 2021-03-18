@@ -8,10 +8,10 @@ export const buildingsPos = [
 
 // building's name
 export const buildingsNamePos = [
-  [385, 260],
-  [860, 80],
-  [1560, 430],
-  [2150, 360],
+  [345, 260],
+  [870, 80],
+  [1525, 430],
+  [2155, 360],
 ];
 
 // path point
