@@ -4,12 +4,13 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  result: boolean;
 }
 
 interface IProps {
@@ -107,7 +108,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('drbidpage.volume')} :&nbsp;</span>
-                    <span>{data.total_volume.toFixed(1)}kWh</span>
+                    <span>{data.volume.toFixed(1)}kWh</span>
                   </div>
                   <div
                     className={classNames(
@@ -123,7 +124,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('drbidpage.total')} :&nbsp;</span>
-                    <span>${data.total_price.toFixed(1)}</span>
+                    <span>${data.price.toFixed(1)}</span>
                   </div>
                 </div>
               </div>
@@ -138,11 +139,9 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   'drbid-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={data.is_submitted}
+                disabled={data.result}
               >
-                {data.is_submitted
-                  ? t('drbidpage.reported')
-                  : t('drbidpage.report')}
+                {data.result ? t('drbidpage.reported') : t('drbidpage.report')}
               </button>
             </div>
           </div>

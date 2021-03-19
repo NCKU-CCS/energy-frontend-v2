@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -8,18 +7,8 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
-import allTestData from './data.json';
 
 interface IData {
-  date: string;
-  mode: number;
-  total_volume: number;
-  price: number;
-  total_price: number;
-  is_submitted: boolean;
-}
-
-interface INewData {
   uuid: string;
   startTime: string;
   endTime: string;
@@ -48,9 +37,6 @@ const DrBidPageContainer: React.FC = () => {
 
   // api data
   const [apiData, setApiData] = useState<IData[]>([]);
-
-  // api data
-  const [newApiData, setNewApiData] = useState<INewData[]>([]);
 
   // fetch api data
   const fetchApiData = async () => {
@@ -84,7 +70,7 @@ const DrBidPageContainer: React.FC = () => {
           result: item.data.result,
         };
       });
-      setNewApiData([...extract]);
+      setApiData([...extract]);
     } else {
       alert('failed');
     }
@@ -92,9 +78,6 @@ const DrBidPageContainer: React.FC = () => {
 
   // fetch api data
   useEffect(() => {
-    setApiData([
-      ...allTestData.filter((d) => d.day === dayjs(date).day())[0].data,
-    ]);
     (async () => {
       await fetchApiData();
     })();
@@ -129,12 +112,12 @@ const DrBidPageContainer: React.FC = () => {
           <Status
             userType={userType}
             totalPrice={apiData
-              .filter((d) => d.is_submitted)
-              .map((d) => d.total_price)
+              .filter((d) => d.result)
+              .map((d) => d.price)
               .reduce((a, b) => a + b, 0)}
             totalVolume={apiData
-              .filter((d) => d.is_submitted)
-              .map((d) => d.total_volume)
+              .filter((d) => d.result)
+              .map((d) => d.volume)
               .reduce((a, b) => a + b, 0)}
           />
         </div>
@@ -143,8 +126,8 @@ const DrBidPageContainer: React.FC = () => {
             date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
               return apiData
-                .filter((d) => d.is_submitted && d.mode === i)
-                .map((d) => d.total_price)
+                .filter((d) => d.result && d.mode === i)
+                .map((d) => d.price)
                 .reduce((a, b) => a + b, 0);
             })}
           />

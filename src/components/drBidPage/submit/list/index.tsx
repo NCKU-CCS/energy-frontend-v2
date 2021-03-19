@@ -4,12 +4,13 @@ import ListTitle from './listTitle';
 import ListItem from './listItem';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  result: boolean;
 }
 
 interface IProps {

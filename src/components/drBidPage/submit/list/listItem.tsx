@@ -6,12 +6,13 @@ import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  result: boolean;
 }
 
 interface IProps {
@@ -35,22 +36,22 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
         {data.mode}
       </div>
       <div className={classNames('drbid-submit-listitem-volume')}>
-        {data.total_volume.toFixed(1)}&thinsp;kWh
+        {data.volume.toFixed(1)}&thinsp;kWh
       </div>
       <div className={classNames('drbid-submit-listitem-price')}>
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('drbid-submit-listitem-total')}>
-        $&thinsp;{data.total_price.toFixed(1)}
+        $&thinsp;{data.price.toFixed(1)}
       </div>
       <div className={classNames('drbid-submit-listitem-button-container')}>
         <button
           className={classNames('drbid-submit-listitem-button-btn')}
           type="button"
-          disabled={data.is_submitted}
+          disabled={data.result}
           onClick={() => alert('success')}
         >
-          {data.is_submitted ? t('drbidpage.reported') : t('drbidpage.report')}
+          {data.result ? t('drbidpage.reported') : t('drbidpage.report')}
         </button>
       </div>
       <div
