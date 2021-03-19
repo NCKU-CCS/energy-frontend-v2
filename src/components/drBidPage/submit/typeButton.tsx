@@ -13,15 +13,15 @@ const TypeButton: React.FC<IProps> = ({ setDataType }) => {
   // disabled
   const [disabled, setDisabled] = useState(true);
 
-  // click buy button
-  const handleClickBuy = () => {
-    setDataType('buy');
+  // click day ahead btn
+  const handleClickDayAhead = () => {
+    setDataType('日前');
     setDisabled(true);
   };
 
-  // click sell button
-  const handleClickSell = () => {
-    setDataType('sell');
+  // click real time btn
+  const handleClickRealTime = () => {
+    setDataType('即時');
     setDisabled(false);
   };
 
@@ -34,7 +34,7 @@ const TypeButton: React.FC<IProps> = ({ setDataType }) => {
           'drbid-submit-modebutton-button-buy',
         )}
         disabled={disabled}
-        onClick={() => handleClickBuy()}
+        onClick={() => handleClickDayAhead()}
       >
         {t('drbidpage.dayAhead')}
       </button>
@@ -45,7 +45,7 @@ const TypeButton: React.FC<IProps> = ({ setDataType }) => {
           'drbid-submit-modebutton-button-sell',
         )}
         disabled={!disabled}
-        onClick={() => handleClickSell()}
+        onClick={() => handleClickRealTime()}
       >
         {t('drbidpage.realTime')}
       </button>
