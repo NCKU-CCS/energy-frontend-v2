@@ -24,11 +24,46 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
   // i18n
   const { t } = useTranslation();
 
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
   // get interval
   const getInterval = () => {
     const startHr = dayjs(data.startTime).get('hour');
     const endHr = dayjs(data.endTime).get('hour');
     return `${startHr}:00 - ${endHr ? `${endHr}:00` : 'null'}`;
+  };
+
+  // patch api
+  const patch = async () => {
+    alert('patch');
+    // PATCH DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          uuid: data.uuid,
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
   };
 
   return (
@@ -56,7 +91,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           className={classNames('drbid-submit-listitem-button-btn')}
           type="button"
           disabled={data.result}
-          onClick={() => alert('success')}
+          onClick={() => patch()}
         >
           {data.result ? t('drbidpage.reported') : t('drbidpage.report')}
         </button>
