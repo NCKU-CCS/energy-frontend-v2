@@ -130,7 +130,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       .attr('font-size', 10)
       .attr(
         'transform',
-        `translate(${padding.left}, ${height - padding.bottom})`,
+        `translate(${padding.left}, ${height - padding.bottom + 5})`,
       );
 
     // append axis y
@@ -206,7 +206,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       })
       .style('cursor', 'pointer')
       .append('title')
-      .text((d: number) => d);
+      .text((d: number) => d.toFixed(1));
 
     // clear effect
     return () => {

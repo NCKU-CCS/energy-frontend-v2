@@ -44,7 +44,9 @@ const DrBidPageContainer: React.FC = () => {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${dayjs(
         date,
-      ).format('YYYY-MM-DD')}&order_method=${dataType}`,
+      ).format('YYYY-MM-DD')}&order_method=${dataType}${
+        user.role === 'aggregator' ? '&acceptor_role=tpc' : ''
+      }`,
       {
         method: 'GET',
         mode: 'cors',
