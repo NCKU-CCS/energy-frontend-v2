@@ -17,7 +17,7 @@ const ListTitle: React.FC<IProps> = ({ userType }) => {
         {t('dracceptpage.mode')}
       </div>
       <div className={classNames('draccept-submit-list-title-user')}>
-        {userType === 'taipower'
+        {userType === 'tpc'
           ? t('dracceptpage.aggregator')
           : t('dracceptpage.executor')}
       </div>
