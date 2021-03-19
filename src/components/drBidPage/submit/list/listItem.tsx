@@ -24,13 +24,20 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
   // i18n
   const { t } = useTranslation();
 
+  // get interval
+  const getInterval = () => {
+    const startHr = dayjs(data.startTime).get('hour');
+    const endHr = dayjs(data.endTime).get('hour');
+    return `${startHr}:00 - ${endHr ? `${endHr}:00` : 'null'}`;
+  };
+
   return (
     <div className={classNames('drbid-submit-listitem-container')}>
       <div className={classNames('drbid-submit-listitem-date')}>
         {dayjs(date).format('YYYY /MM/DD')}
       </div>
       <div className={classNames('drbid-submit-listitem-interval')}>
-        12:00 - 13:00
+        {getInterval()}
       </div>
       <div className={classNames('drbid-submit-listitem-mode')}>
         {data.mode}

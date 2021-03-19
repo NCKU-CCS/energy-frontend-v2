@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
 interface IData {
@@ -31,6 +32,13 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
 
   // user type: user, aggregator
   const [userType] = useState<string>(user.role);
+
+  // get interval
+  const getInterval = () => {
+    const startHr = dayjs(data.startTime).get('hour');
+    const endHr = dayjs(data.endTime).get('hour');
+    return `${startHr}:00 - ${endHr ? `${endHr}:00` : 'null'}`;
+  };
 
   // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
@@ -92,7 +100,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('drbidpage.interval')} :&nbsp;</span>
-                    <span>23:00 - 8:00</span>
+                    <span>{getInterval()}</span>
                   </div>
                   <div
                     className={classNames(
