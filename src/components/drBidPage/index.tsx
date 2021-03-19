@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -16,6 +17,16 @@ interface IData {
   price: number;
   total_price: number;
   is_submitted: boolean;
+}
+
+interface INewData {
+  uuid: string;
+  startTime: string;
+  endTime: string;
+  mode: number;
+  volume: number;
+  price: number;
+  result: boolean;
 }
 
 const DrBidPageContainer: React.FC = () => {
@@ -38,6 +49,9 @@ const DrBidPageContainer: React.FC = () => {
   // api data
   const [apiData, setApiData] = useState<IData[]>([]);
 
+  // api data
+  const [newApiData, setNewApiData] = useState<INewData[]>([]);
+
   // fetch api data
   const fetchApiData = async () => {
     // GET DR_bid
@@ -59,7 +73,18 @@ const DrBidPageContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const tmp = await response.json();
-      console.log(tmp);
+      const extract = await tmp.map((item: any) => {
+        return {
+          uuid: item.data.uuid,
+          startTime: item.data.start_time,
+          endTime: item.data.end_time,
+          mode: item.data.trading_mode,
+          volume: item.data.volume,
+          price: item.data.price,
+          result: item.data.result,
+        };
+      });
+      setNewApiData([...extract]);
     } else {
       alert('failed');
     }
