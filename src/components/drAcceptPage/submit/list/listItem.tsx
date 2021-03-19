@@ -4,18 +4,20 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
 import { hrArr } from '../../../../constants/constant';
 
 interface IData {
+  uuid: string;
+  executor: string;
+  acceptor: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  aggregator?: string;
-  executor?: string;
-  interval: string;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_accepted: boolean;
+  result: boolean;
 }
 
 interface IProps {
@@ -36,6 +38,13 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
   // end hour
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [endHr, setEndHr] = useState<number>(0);
+
+  // get interval
+  const getInterval = () => {
+    const startHour = dayjs(data.startTime).get('hour');
+    const endHour = dayjs(data.endTime).get('hour');
+    return `${startHour}:00 - ${endHour ? `${endHour}:00` : 'null'}`;
+  };
 
   // create <select> start hour options
   const startHrOptions = hrArr.slice(0, 23).map((hr) => {
@@ -65,12 +74,12 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         {data.mode}
       </div>
       <div className={classNames('draccept-submit-listitem-user')}>
-        {userType === 'tpc' ? data.aggregator : data.executor}
+        {userType === 'tpc' ? data.acceptor || 'null' : data.executor || 'null'}
       </div>
       <div className={classNames('draccept-submit-listitem-interval')}>
         {!inputMode ? (
-          data.is_accepted ? (
-            data.interval
+          data.result ? (
+            getInterval()
           ) : (
             t('dracceptpage.bidNotAccepted')
           )
@@ -87,13 +96,13 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         )}
       </div>
       <div className={classNames('draccept-submit-listitem-volume')}>
-        {data.total_volume.toFixed(1)}&thinsp;kWh
+        {data.volume.toFixed(1)}&thinsp;kWh
       </div>
       <div className={classNames('draccept-submit-listitem-price')}>
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('draccept-submit-listitem-total')}>
-        $&thinsp;{data.total_price.toFixed(1)}
+        $&thinsp;{data.price.toFixed(1)}
       </div>
       <div className={classNames('draccept-submit-listitem-button-container')}>
         <button
@@ -102,10 +111,10 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
             `${inputMode && 'draccept-submit-listitem-button-btn--accept'}`,
           )}
           type="button"
-          disabled={data.is_accepted}
+          disabled={data.result}
           onClick={() => handleClickBtn()}
         >
-          {data.is_accepted
+          {data.result
             ? userType === 'tpc'
               ? t('dracceptpage.announced')
               : t('dracceptpage.bidAccepted')

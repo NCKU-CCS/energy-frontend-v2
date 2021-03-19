@@ -5,14 +5,15 @@ import List from './list/index';
 import AddBid from './addBid';
 
 interface IData {
+  uuid: string;
+  executor: string;
+  acceptor: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  aggregator?: string;
-  executor?: string;
-  interval: string;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_accepted: boolean;
+  result: boolean;
 }
 
 interface IProps {
