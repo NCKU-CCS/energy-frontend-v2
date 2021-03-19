@@ -77,9 +77,9 @@ const DrAcceptPageContainer: React.FC = () => {
         };
       });
       setApiData([...extract]);
-      console.log(extract);
     } else {
       alert('failed');
+      setApiData([]);
     }
   };
 
