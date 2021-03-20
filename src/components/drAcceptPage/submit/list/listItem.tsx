@@ -81,7 +81,8 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
           data.result ? (
             getInterval()
           ) : (
-            t('dracceptpage.bidNotAccepted')
+            // t('dracceptpage.bidNotAccepted')
+            getInterval()
           )
         ) : (
           <div>
