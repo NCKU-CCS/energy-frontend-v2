@@ -206,7 +206,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       })
       .style('cursor', 'pointer')
       .append('title')
-      .text((d: number) => d);
+      .text((d: number) => d.toFixed(1));
 
     // clear effect
     return () => {
