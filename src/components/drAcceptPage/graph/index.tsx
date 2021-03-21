@@ -48,13 +48,13 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // d3 scale y
   const scaleY = d3
     .scaleLinear()
-    .domain([0, Math.max(...values)])
+    .domain([0, Math.max(...values) || 5])
     .range([0, height - (padding.top + padding.bottom)]);
 
   // d3 axis scale y
   const axisScaleY = d3
     .scaleLinear()
-    .domain([0, Math.max(...values)])
+    .domain([0, Math.max(...values) || 5])
     .range([height - (padding.top + padding.bottom), 0]);
 
   // axis x
@@ -186,9 +186,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             arg0: d3.Transition<HTMLElement, unknown, null, undefined>,
           ) => any;
         }) =>
-          enter
-            .transition(transition)
-            .attr('height', (d: number) => scaleY(d + 0.5)),
+          enter.transition(transition).attr('height', (d: number) => scaleY(d)),
       )
       .attr('fill', (_: number, i: number) => {
         switch (i + 1) {
