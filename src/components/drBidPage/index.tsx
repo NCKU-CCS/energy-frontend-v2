@@ -61,22 +61,17 @@ const DrBidPageContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const tmp = await response.json();
-      const extract = tmp
-        // .filter(
-        //   (item: any) =>
-        //     item.data.status === '已投標' || item.data.status === '投標中',
-        // )
-        .map((item: any) => {
-          return {
-            uuid: item.data.uuid,
-            startTime: item.data.start_time,
-            endTime: item.data.end_time,
-            mode: item.data.trading_mode,
-            volume: item.data.volume,
-            price: item.data.price,
-            status: item.data.status,
-          };
-        });
+      const extract = tmp.map((item: any) => {
+        return {
+          uuid: item.data.uuid,
+          startTime: item.data.start_time,
+          endTime: item.data.end_time,
+          mode: item.data.trading_mode,
+          volume: item.data.volume,
+          price: item.data.price,
+          status: item.data.status,
+        };
+      });
       setApiData([...extract]);
     } else {
       alert('failed');

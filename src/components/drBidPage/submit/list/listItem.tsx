@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
@@ -22,7 +22,7 @@ interface IProps {
 
 const ListItem: React.FC<IProps> = ({ date, data }) => {
   // i18n
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   // get user from local storage or session storage
   const user = JSON.parse(
@@ -93,7 +93,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           disabled={data.status !== '投標中'}
           onClick={() => patch()}
         >
-          {data.status}
+          {data.status !== '投標中' ? data.status : t('drbidpage.report')}
         </button>
       </div>
       <div
