@@ -39,6 +39,13 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [endHr, setEndHr] = useState<number>(0);
 
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
   // get interval
   const getInterval = () => {
     const startHour = dayjs(data.startTime).get('hour');
@@ -57,11 +64,38 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
   });
 
   // handle click button
-  const handleClickBtn = () => {
+  const handleClickBtn = async () => {
     if (inputMode) {
       setInputMode(false);
-      alert('success');
-      window.location.reload();
+      // PATCH DR_bid
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+        {
+          method: 'PATCH',
+          mode: 'cors',
+          headers: new Headers({
+            Authorization: `Bearer ${user.bearer}`,
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({
+            uuid: data.uuid,
+            start_time: dayjs(data.startTime)
+              .set('hour', startHr)
+              .format('YYYY-MM-DD H:00:00'),
+            end_time: dayjs(data.endTime)
+              .set('hour', endHr)
+              .format('YYYY-MM-DD H:00:00'),
+          }),
+        },
+      );
+
+      // response
+      if (response.status === 200) {
+        alert('success');
+        window.location.reload();
+      } else {
+        alert('failed');
+      }
     } else setInputMode(true);
   };
 
