@@ -64,6 +64,17 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
     return <option value={hr}>{hr}</option>;
   });
 
+  // insert space to string for RWD
+  const insertSpace = (str: string) => {
+    let result = '';
+    for (let i = 0; i < str.length; i += 1) {
+      if (str[i] === str[i].toUpperCase()) {
+        result += ` ${str[i]}`;
+      } else result += str[i];
+    }
+    return result;
+  };
+
   // handle click button
   const handleClickBtn = async () => {
     if (inputMode) {
@@ -109,7 +120,8 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         {data.mode}
       </div>
       <div className={classNames('draccept-submit-listitem-user')}>
-        {data.executor}
+        {insertSpace(data.executor)}
+        {/* {data.executor} */}
       </div>
       <div className={classNames('draccept-submit-listitem-interval')}>
         {!inputMode ? (
