@@ -62,10 +62,10 @@ const DrBidPageContainer: React.FC = () => {
       // fetch success
       const tmp = await response.json();
       const extract = tmp
-        .filter(
-          (item: any) =>
-            item.data.status === '已投標' || item.data.status === '投標中',
-        )
+        // .filter(
+        //   (item: any) =>
+        //     item.data.status === '已投標' || item.data.status === '投標中',
+        // )
         .map((item: any) => {
           return {
             uuid: item.data.uuid,
@@ -131,9 +131,14 @@ const DrBidPageContainer: React.FC = () => {
         <div className={classNames('drbid-left-bottom')}>
           <Graph
             date={date}
-            values={[1, 2, 3, 4, 5].map((i) => {
+            values={[1, 2, 3, 4].map((i) => {
               return apiData
-                .filter((d) => d.status === '已投標' && d.mode === i)
+                .filter(
+                  (d) =>
+                    d.status !== '投標中' &&
+                    d.status !== '未得標' &&
+                    d.mode === i,
+                )
                 .map((d) => d.price)
                 .reduce((a, b) => a + b, 0);
             })}
