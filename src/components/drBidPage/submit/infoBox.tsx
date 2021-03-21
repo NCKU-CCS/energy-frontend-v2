@@ -43,6 +43,33 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
   // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
 
+  // patch api
+  const patch = async () => {
+    // PATCH DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          uuid: data.uuid,
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
+  };
+
   return (
     <div className={classNames('drbid-submit-infobox-container-in')}>
       {!openInfoBox ? (
@@ -132,7 +159,7 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                     )}
                   >
                     <span>{t('drbidpage.total')} :&nbsp;</span>
-                    <span>${data.price.toFixed(1)}</span>
+                    <span>${(data.price * data.volume).toFixed(1)}</span>
                   </div>
                 </div>
               </div>
@@ -147,11 +174,10 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   'drbid-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={data.status === '已投標'}
+                disabled={data.status !== '投標中'}
+                onClick={() => patch()}
               >
-                {data.status === '已投標'
-                  ? t('drbidpage.reported')
-                  : t('drbidpage.report')}
+                {data.status !== '投標中' ? data.status : t('drbidpage.report')}
               </button>
             </div>
           </div>

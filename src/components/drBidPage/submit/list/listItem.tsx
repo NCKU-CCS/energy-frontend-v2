@@ -40,7 +40,6 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
 
   // patch api
   const patch = async () => {
-    alert('patch');
     // PATCH DR_bid
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
@@ -84,7 +83,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('drbid-submit-listitem-total')}>
-        $&thinsp;{data.price.toFixed(1)}
+        $&thinsp;{(data.price * data.volume).toFixed(1)}
       </div>
       <div className={classNames('drbid-submit-listitem-button-container')}>
         <button

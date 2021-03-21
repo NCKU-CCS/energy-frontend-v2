@@ -113,12 +113,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
       </div>
       <div className={classNames('draccept-submit-listitem-interval')}>
         {!inputMode ? (
-          data.result ? (
-            getInterval()
-          ) : (
-            // t('dracceptpage.bidNotAccepted')
-            getInterval()
-          )
+          getInterval()
         ) : (
           <div>
             <select onChange={(e) => setStartHr(parseInt(e.target.value, 10))}>
