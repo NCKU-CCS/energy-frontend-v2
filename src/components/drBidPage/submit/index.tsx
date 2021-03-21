@@ -11,7 +11,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
-  result: boolean;
+  status: string;
 }
 
 interface IProps {

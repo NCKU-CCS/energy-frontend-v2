@@ -12,7 +12,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
-  result: boolean;
+  status: string;
 }
 
 interface IProps {
@@ -90,10 +90,12 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
         <button
           className={classNames('drbid-submit-listitem-button-btn')}
           type="button"
-          disabled={data.result}
+          disabled={data.status === '已投標'}
           onClick={() => patch()}
         >
-          {data.result ? t('drbidpage.reported') : t('drbidpage.report')}
+          {data.status === '已投標'
+            ? t('drbidpage.reported')
+            : t('drbidpage.report')}
         </button>
       </div>
       <div

@@ -15,7 +15,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
-  result: boolean;
+  status: string;
 }
 
 const DrBidPageContainer: React.FC = () => {
@@ -61,17 +61,22 @@ const DrBidPageContainer: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const tmp = await response.json();
-      const extract = await tmp.map((item: any) => {
-        return {
-          uuid: item.data.uuid,
-          startTime: item.data.start_time,
-          endTime: item.data.end_time,
-          mode: item.data.trading_mode,
-          volume: item.data.volume,
-          price: item.data.price,
-          result: item.data.result,
-        };
-      });
+      const extract = tmp
+        .filter(
+          (item: any) =>
+            item.data.status === '已投標' || item.data.status === '投標中',
+        )
+        .map((item: any) => {
+          return {
+            uuid: item.data.uuid,
+            startTime: item.data.start_time,
+            endTime: item.data.end_time,
+            mode: item.data.trading_mode,
+            volume: item.data.volume,
+            price: item.data.price,
+            status: item.data.status,
+          };
+        });
       setApiData([...extract]);
     } else {
       alert('failed');
@@ -114,11 +119,11 @@ const DrBidPageContainer: React.FC = () => {
           <Status
             userType={userType}
             totalPrice={apiData
-              .filter((d) => d.result)
+              .filter((d) => d.status === '已投標')
               .map((d) => d.price)
               .reduce((a, b) => a + b, 0)}
             totalVolume={apiData
-              .filter((d) => d.result)
+              .filter((d) => d.status === '已投標')
               .map((d) => d.volume)
               .reduce((a, b) => a + b, 0)}
           />
@@ -128,7 +133,7 @@ const DrBidPageContainer: React.FC = () => {
             date={date}
             values={[1, 2, 3, 4, 5].map((i) => {
               return apiData
-                .filter((d) => d.result && d.mode === i)
+                .filter((d) => d.status === '已投標' && d.mode === i)
                 .map((d) => d.price)
                 .reduce((a, b) => a + b, 0);
             })}

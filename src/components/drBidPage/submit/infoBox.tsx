@@ -11,7 +11,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
-  result: boolean;
+  status: string;
 }
 
 interface IProps {
@@ -147,9 +147,11 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   'drbid-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={data.result}
+                disabled={data.status === '已投標'}
               >
-                {data.result ? t('drbidpage.reported') : t('drbidpage.report')}
+                {data.status === '已投標'
+                  ? t('drbidpage.reported')
+                  : t('drbidpage.report')}
               </button>
             </div>
           </div>
