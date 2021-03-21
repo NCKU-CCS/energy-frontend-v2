@@ -17,6 +17,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
+  status: string;
   result: boolean;
 }
 
@@ -73,6 +74,7 @@ const DrAcceptPageContainer: React.FC = () => {
           mode: item.data.trading_mode,
           volume: item.data.volume,
           price: item.data.price,
+          status: item.data.status,
           result: item.data.result,
         };
       });
@@ -131,9 +133,9 @@ const DrAcceptPageContainer: React.FC = () => {
         <div className={classNames('draccept-left-bottom')}>
           <Graph
             date={date}
-            values={[1, 2, 3, 4, 5].map((i) => {
+            values={[1, 2, 3, 4].map((i) => {
               return apiData
-                .filter((d) => d.result && d.mode === i)
+                .filter((d) => d.status !== '未得標' && d.mode === i)
                 .map((d) => d.price)
                 .reduce((a, b) => a + b, 0);
             })}

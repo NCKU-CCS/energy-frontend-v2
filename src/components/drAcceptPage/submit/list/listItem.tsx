@@ -17,6 +17,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
+  status: string;
   result: boolean;
 }
 
@@ -137,7 +138,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('draccept-submit-listitem-total')}>
-        $&thinsp;{data.price.toFixed(1)}
+        $&thinsp;{(data.price * data.volume).toFixed(1)}
       </div>
       <div className={classNames('draccept-submit-listitem-button-container')}>
         <button
@@ -152,7 +153,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
           {data.result
             ? userType === 'tpc'
               ? t('dracceptpage.announced')
-              : t('dracceptpage.bidAccepted')
+              : data.status
             : userType === 'tpc'
             ? inputMode
               ? t('dracceptpage.confirm')

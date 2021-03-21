@@ -13,6 +13,7 @@ interface IData {
   mode: number;
   volume: number;
   price: number;
+  status: string;
   result: boolean;
 }
 
