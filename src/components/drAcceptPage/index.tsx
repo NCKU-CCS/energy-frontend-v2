@@ -121,11 +121,11 @@ const DrAcceptPageContainer: React.FC = () => {
           <Status
             userType={userType}
             totalPrice={apiData
-              .filter((d) => d.result)
-              .map((d) => d.price)
+              .filter((d) => d.status !== '投標中' && d.status !== '未得標')
+              .map((d) => d.price * d.volume)
               .reduce((a, b) => a + b, 0)}
             totalVolume={apiData
-              .filter((d) => d.result)
+              .filter((d) => d.status !== '投標中' && d.status !== '未得標')
               .map((d) => d.volume)
               .reduce((a, b) => a + b, 0)}
           />

@@ -109,7 +109,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
         {data.mode}
       </div>
       <div className={classNames('draccept-submit-listitem-user')}>
-        {userType === 'tpc' ? data.acceptor || 'null' : data.executor || 'null'}
+        {data.executor}
       </div>
       <div className={classNames('draccept-submit-listitem-interval')}>
         {!inputMode ? (
