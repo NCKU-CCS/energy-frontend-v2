@@ -13,6 +13,7 @@
 @import "base/body";
 @import "base/main";
 @import "base/a";
+@import "base/reset";
 
 /*
   layout
@@ -26,3 +27,8 @@
 @import "components/loginContainer";
 @import "components/loginForm";
 @import "components/nav/";
+@import "components/settingpage/";
+@import "components/status/";
+@import "components/biddingPage/";
+@import "components/powerInfoPage/";
+@import "components/home/";

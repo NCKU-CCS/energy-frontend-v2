@@ -10,9 +10,16 @@
     border-radius: 50%;
     margin: 28px 0px;
   }
+  .navbar-username-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .navbar-username {
-    font-family: Roboto;
     text-align: center;
+  }
+  .navbar-star{
+    color: #ffa02a;
   }
 }
 

@@ -1,0 +1,152 @@
+@import './list';
+@import './pageControl';
+@import './listItem';
+@import './addBid';
+@import './addBidBtn';
+@import './infoBox';
+
+.bidding-dr-container-in {
+  flex-basis: 95%;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.bidding-dr-title-container--aggr {
+  width: 100%;
+  margin-top: 3%;
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2d3161;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.bidding-dr-list-container-out--aggr {
+  width: 100%;
+  height: 80%;
+}
+
+.bidding-dr-pagecontrol-container-out--aggr {
+  width: 100%;
+  height: 10%;
+}
+
+.bidding-dr-title-container--user {
+  width: 100%;
+  margin-top: 3%;
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2d3161;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.bidding-dr-list-container-out--user {
+  width: 100%;
+  height: 70%;
+}
+
+.bidding-dr-addbid-container-out--user {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bidding-dr-pagecontrol-container-out--user {
+  width: 100%;
+  height: 10%;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+  .bidding-dr-title-container--user {
+    font-size: 1.4rem;
+  }
+
+  .bidding-dr-title-container--aggr {
+    font-size: 1.4rem;
+  }
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-dr-container-in {
+    flex-basis: 95.4%;
+    margin-left: 2%;
+  }
+
+  .bidding-dr-title-container--user {
+    font-size: 1.2rem;
+  }
+
+  .bidding-dr-title-container--aggr {
+    font-size: 1.2rem;
+  }
+
+  .bidding-dr-list-container-out--user {
+    height: 65%;
+  }
+
+  .bidding-dr-addbid-container-out--user {
+    height: 12.5%;
+  }
+
+  .bidding-dr-pagecontrol-container-out--user {
+    height: 12.5%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-dr-container-in {
+    flex-basis: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
+  }
+
+  .bidding-dr-title-container--user {
+    font-size: 1rem;
+  }
+
+  .bidding-dr-list-container-out--user {
+    height: 75%;
+  }
+
+  .bidding-dr-addbid-container-out--user {
+    display: none;
+  }
+
+  .bidding-dr-pagecontrol-container-out--user {
+    height: 15%;
+  }
+
+  .bidding-dr-title-container--aggr {
+    font-size: 1rem;
+  }
+
+  .bidding-dr-list-container-out--aggr {
+    height: 75%;
+  }
+
+  .bidding-dr-pagecontrol-container-out--aggr {
+    height: 15%;
+  }
+
+}
