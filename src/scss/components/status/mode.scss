@@ -21,6 +21,9 @@
   border: #d8d8d8 solid 0.5px;
   outline: none;
 }
+.status-changeMode-button--click:focus{
+  border: #d8d8d8 solid 0.5px;
+}
 
 .status-changeMode-buttonGreen{
 	border-top-left-radius: 5px;

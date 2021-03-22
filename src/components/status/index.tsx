@@ -72,6 +72,12 @@ interface IDR {
   volume: number;
 }
 
+interface IDRPage {
+  current_page: number;
+  data: IDR;
+  max_page: number;
+}
+
 const Status: React.FC = () => {
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
@@ -81,6 +87,7 @@ const Status: React.FC = () => {
   // data
   const [listInfo, setListInfo] = useState<IListInfo[]>([]);
   const [DRResult, setDRResult] = useState<IDR[]>([]);
+  const [DRPage, setDRPage] = useState<IDRPage[]>([]);
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
@@ -89,6 +96,9 @@ const Status: React.FC = () => {
   const [isDR, setIsDR] = useState<boolean>(user.role === 'tpc');
   const [isDRBid, setIsDRBid] = useState<boolean>(true);
   const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(0);
+  const [pageSize, setPagesize] = useState<number>(15);
 
   const fetchMatchResult = async () => {
     const response = await fetch(
@@ -115,7 +125,7 @@ const Status: React.FC = () => {
     if (user.role === 'aggregator')
       DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=10&page=1${DRType}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -127,7 +137,7 @@ const Status: React.FC = () => {
     );
     if (response.status === 200) {
       const data = await response.json();
-      setDRResult(data);
+      setDRPage(data);
     }
   };
 
@@ -136,7 +146,17 @@ const Status: React.FC = () => {
       if (isGreen) await fetchMatchResult();
       else if (isDR) await fetchDR();
     })();
-  }, [isGreen, isDR, isDRBid, isDRAccept]);
+  }, [isGreen, isDR, isDRBid, isDRAccept, pageSize, currentPage]);
+
+  useEffect(() => {
+    if (DRPage.length > 0) {
+      const listDBData = [];
+      for (let i = 0; i < DRPage.length; i += 1)
+        listDBData.push(DRPage[i].data);
+      setDRResult(listDBData);
+      setMaxPage(DRPage[0].max_page);
+    }
+  }, [DRPage]);
 
   // add list data
   useEffect(() => {
@@ -239,12 +259,22 @@ const Status: React.FC = () => {
         setIsDR={setIsDR}
         setIsDRBid={setIsDRBid}
         setIsDRAccept={setIsDRAccept}
+        setCurrentPage={setCurrentPage}
       />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
         <Train input={trainInfo} index={nowIndex} />
       </div>
-      <List listInfo={listInfo} changeIndex={setNowIndex} isDR={isDR} />
+      <List
+        listInfo={listInfo}
+        changeIndex={setNowIndex}
+        isDR={isDR}
+        setPagesize={setPagesize}
+        maxPage={maxPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageSize={pageSize}
+      />
     </div>
   );
 };

@@ -32,9 +32,23 @@ interface IAListInfo {
   listInfo: IListInfo[];
   changeIndex: (display: number) => void;
   isDR: boolean;
+  setPagesize: (display: number) => void;
+  setCurrentPage: (display: number) => void;
+  maxPage: number;
+  currentPage: number;
+  pageSize: number;
 }
 
-const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
+const List: React.FC<IAListInfo> = ({
+  listInfo,
+  changeIndex,
+  isDR,
+  setPagesize,
+  maxPage,
+  currentPage,
+  setCurrentPage,
+  pageSize,
+}) => {
   const { t } = useTranslation();
 
   const [page, setPage] = useState<number>(1);
@@ -95,6 +109,23 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
 
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setPage(parseInt(e.target.value, 10));
+
+  const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newPageSize = 10 + parseInt(e.target.value, 10) * 5;
+    if (currentPage * newPageSize > maxPage * pageSize)
+      setCurrentPage((maxPage * pageSize) / newPageSize);
+    setPagesize(newPageSize);
+  };
+
+  const changePageOnClick = (mode: number) => {
+    if (currentPage - 10 >= 1 && mode === 1) setCurrentPage(currentPage - 10);
+    else if (currentPage - 1 >= 1 && mode === 2)
+      setCurrentPage(currentPage - 1);
+    else if (currentPage + 1 <= maxPage && mode === 3)
+      setCurrentPage(currentPage + 1);
+    else if (currentPage + 10 <= maxPage && mode === 4)
+      setCurrentPage(currentPage + 10);
+  };
 
   return (
     <div className={classnames('status-list')}>
@@ -173,7 +204,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
           <div className={classnames('status-list-nextPageContainer')}>
             <select
               id="page"
-              // onChange={(e) => handlePageChange(e)}
+              onChange={(e) => handleChangePageSize(e)}
               className={classnames('status-list-rowSelector')}
             >
               <option selected value="1">
@@ -186,25 +217,31 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
             <button
               type="button"
               className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(1)}
             >
               &Iota;&#60;
             </button>
             <button
               type="button"
               className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(2)}
             >
               &#60;
             </button>
-            <div className={classnames('status-list-nextPageText')}>ss</div>
+            <div className={classnames('status-list-nextPageText')}>
+              {currentPage}/{maxPage}
+            </div>
             <button
               type="button"
               className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(3)}
             >
               &#62;
             </button>
             <button
               type="button"
               className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(4)}
             >
               &#62;&Iota;
             </button>
