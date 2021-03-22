@@ -70,10 +70,10 @@ const AddBid: React.FC = () => {
         if (mth >= 5 && mth <= 8) {
           // summer
           if (hr >= 23 || hr < 8) {
-            setPrice(4.97);
+            setPrice(4.74);
           } else if (hr < 18) {
-            setPrice(7.59);
-          } else setPrice(9.89);
+            setPrice(7.36);
+          } else setPrice(9.66);
         } else {
           // not summer
           // eslint-disable-next-line no-lonely-if
@@ -95,10 +95,10 @@ const AddBid: React.FC = () => {
         if (mth >= 5 && mth <= 8) {
           // summer
           if (hr >= 23 || hr < 8) {
-            setPrice(4.74);
+            setPrice(0.37);
           } else if (hr < 18) {
-            setPrice(7.36);
-          } else setPrice(9.66);
+            setPrice(2.99);
+          } else setPrice(5.29);
         } else {
           // not summer
           // eslint-disable-next-line no-lonely-if
