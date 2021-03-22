@@ -87,7 +87,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
               Number(scale(Math.abs(apiData.PV))),
       )
       .attr('width', width * 0.154)
-      .attr('height', scale(Math.abs(apiData.PV)))
+      .attr('height', apiData.PV !== 0 ? scale(Math.abs(apiData.PV)) : 0)
       .attr('fill', '#f7be16');
 
     // append rect-WT
@@ -103,9 +103,9 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
               Number(scale(Math.abs(apiData.WT))),
       )
       .attr('width', width * 0.154)
-      .attr('height', () => {
-        return scale(Math.abs(apiData.WT));
-      })
+      .attr('height', () =>
+        apiData.WT !== 0 ? scale(Math.abs(apiData.WT)) : 0,
+      )
       .attr('fill', '#2d3361');
 
     // append rect-ESS
@@ -121,7 +121,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
               Number(scale(Math.abs(apiData.ESS))),
       )
       .attr('width', width * 0.154)
-      .attr('height', scale(Math.abs(apiData.ESS)))
+      .attr('height', apiData.ESS !== 0 ? scale(Math.abs(apiData.ESS)) : 0)
       .attr('fill', '#696464');
 
     // append rect-EV
@@ -137,7 +137,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
               Number(scale(Math.abs(apiData.EV))),
       )
       .attr('width', width * 0.154)
-      .attr('height', scale(Math.abs(apiData.EV)))
+      .attr('height', apiData.EV !== 0 ? scale(Math.abs(apiData.EV)) : 0)
       .attr('fill', '#ab50ce');
 
     // return function -> clear effect
