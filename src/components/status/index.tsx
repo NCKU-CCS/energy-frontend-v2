@@ -260,6 +260,7 @@ const Status: React.FC = () => {
         setIsDRBid={setIsDRBid}
         setIsDRAccept={setIsDRAccept}
         setCurrentPage={setCurrentPage}
+        setNowIndex={setNowIndex}
       />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
@@ -267,13 +268,14 @@ const Status: React.FC = () => {
       </div>
       <List
         listInfo={listInfo}
-        changeIndex={setNowIndex}
+        setNowIndex={setNowIndex}
         isDR={isDR}
         setPagesize={setPagesize}
         maxPage={maxPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         pageSize={pageSize}
+        nowIndex={nowIndex}
       />
     </div>
   );

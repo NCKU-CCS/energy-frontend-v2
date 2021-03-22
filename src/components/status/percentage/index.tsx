@@ -21,14 +21,17 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
   const [percent, setPercent] = useState<string>('—');
   useEffect(() => {
     if (input.length > 0) {
-      if (nowIndex > -1)
+      if (nowIndex > -1) {
         setImgSrc(`${process.env.PUBLIC_URL}/status/box_orange.png`);
-      else setImgSrc(`${process.env.PUBLIC_URL}/status/box_grey.png`);
-      setPercent(
-        input[nowIndex].achievement === null
-          ? '—'
-          : (input[nowIndex].achievement * 100).toString(),
-      );
+        setPercent(
+          input[nowIndex].achievement === null
+            ? '—'
+            : (input[nowIndex].achievement * 100).toString(),
+        );
+      } else {
+        setImgSrc(`${process.env.PUBLIC_URL}/status/box_grey.png`);
+        setPercent('—');
+      }
     }
   }, [nowIndex]);
   return (

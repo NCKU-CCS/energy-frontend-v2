@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import PageButton from './pageButton';
@@ -30,33 +30,30 @@ interface IListInfo {
 
 interface IAListInfo {
   listInfo: IListInfo[];
-  changeIndex: (display: number) => void;
+  setNowIndex: (display: number) => void;
   isDR: boolean;
   setPagesize: (display: number) => void;
   setCurrentPage: (display: number) => void;
   maxPage: number;
   currentPage: number;
   pageSize: number;
+  nowIndex: number;
 }
 
 const List: React.FC<IAListInfo> = ({
   listInfo,
-  changeIndex,
+  setNowIndex,
   isDR,
   setPagesize,
   maxPage,
   currentPage,
   setCurrentPage,
   pageSize,
+  nowIndex,
 }) => {
   const { t } = useTranslation();
 
   const [page, setPage] = useState<number>(1);
-  const [nowIndex, setNowIndex] = useState<number>(-1);
-
-  useEffect(() => {
-    changeIndex(nowIndex);
-  }, [nowIndex]);
 
   const listItem = listInfo.map((content, index) => {
     const info = (

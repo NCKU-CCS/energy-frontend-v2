@@ -100,6 +100,19 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         winsValue: dataWinsValue,
         status: input[index].status,
       });
+    } else {
+      setAllInfo({
+        bidsPrice: '-----',
+        bidsValue: '-----',
+        counterpartAddress: '-----',
+        counterpartName: '-----',
+        id: '-----',
+        upload: '-----',
+        winsPrice: '-----',
+        winsValue: '-----',
+        status: '-',
+      });
+      setNowIndex(-1);
     }
   }, [index]);
 

@@ -12,6 +12,7 @@ interface IButtonStatus {
   setIsDRBid: (display: boolean) => void;
   setIsDRAccept: (display: boolean) => void;
   setCurrentPage: (currentPage: number) => void;
+  setNowIndex: (currentPage: number) => void;
 }
 
 const Mode: React.FC<IButtonStatus> = ({
@@ -24,6 +25,7 @@ const Mode: React.FC<IButtonStatus> = ({
   setIsDRBid,
   setIsDRAccept,
   setCurrentPage,
+  setNowIndex,
 }) => {
   const { t } = useTranslation();
   const user = JSON.parse(
@@ -37,24 +39,28 @@ const Mode: React.FC<IButtonStatus> = ({
     setIsDR(false);
     setIsDRBid(true);
     setIsDRAccept(false);
+    setNowIndex(-1);
   };
 
   const DROnClick = () => {
     setIsDR(true);
     setIsGreen(false);
     setCurrentPage(1);
+    setNowIndex(-1);
   };
 
   const DRBidOnClick = () => {
     setIsDRBid(true);
     setIsDRAccept(false);
     setCurrentPage(1);
+    setNowIndex(-1);
   };
 
   const DRAcceptOnClick = () => {
     setIsDRAccept(true);
     setIsDRBid(false);
     setCurrentPage(1);
+    setNowIndex(-1);
   };
 
   return (
