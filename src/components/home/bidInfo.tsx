@@ -56,7 +56,9 @@ const BidInfo: React.FC = () => {
 
   useEffect(() => {
     const allList: IResult[] = JSON.parse(JSON.stringify(result)); // deep copy `result`
-    setList(allList.filter((r) => r.status === '已得標'));
+    setList(
+      allList.filter((r) => r.status === '已得標' || r.status === '未得標'),
+    );
   }, [result]);
 
   useEffect(() => {
