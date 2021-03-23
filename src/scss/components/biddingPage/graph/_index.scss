@@ -1,0 +1,46 @@
+@import './barChart';
+@import './lineChart';
+
+.bidding-graph-container {
+  width: 92%;
+  margin-left: 5%;
+  height: 96.7%;
+  margin-top: 2%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-graph-container {
+    width: 92%;
+    margin-left: 4%;
+    height: 95%;
+    margin-top: 0%;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-graph-container {
+    width: 90%;
+    margin-left: 5%;
+    height: 95%;
+    margin-top: 2%;
+  }
+}

@@ -1,0 +1,320 @@
+@import './infoBox.scss/';
+
+.setting-right-container{
+    width: 50%;
+    margin-right: 5%;
+    height: 60%;
+    background-color: white;
+}
+
+.setting-right-title{
+	display: flex;
+  align-items: center;
+  margin-left: 5%;
+	height: 20%;
+	width: 95%;
+	font-size: 22px;
+	font-weight: bold;
+	color: rgb(97, 97, 97);
+}
+
+.setting-right-listTitleContainer{
+  display: flex;
+  height: 5%;
+  width: 100%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+}
+
+.setting-right-contentcontainer{
+  overflow-y: auto;
+  height: 65%;
+  width: 100%;
+}
+
+.setting-right-number{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(61, 61, 61);
+  width: 25%;
+}
+
+.setting-right-code-generalWidth{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(61, 61, 61);
+  width: 58%;
+}
+
+.setting-right-code-width450{
+  display: none;
+}
+
+.setting-right-name{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(61, 61, 61);
+  width: 17%;
+}
+
+.setting-right-contentlistcontainer{
+  display: flex;
+  height: 20%;
+}
+
+.setting-right-content{
+  border-bottom:0.4px solid black;
+}
+
+.setting-right-viewButton{
+  display: none;
+}
+
+.setting-right-viewButtonContainer{
+  display: none;
+}
+
+// 1700 < size
+@media all and (min-width: 1700px) {
+  .setting-right-title{
+    font-size: 22px;
+  }
+  .setting-right-number{
+    font-size: 22px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 22px;
+  }
+  .setting-right-name{
+    font-size: 22px;
+  }
+  .setting-right-content{
+    font-size: 20px;
+  }
+}
+
+// 1560 < size <= 1700
+@media all and (min-width: 1560px) and (max-width: 1700px) {
+  .setting-right-title{
+    font-size: 20px;
+  }
+  .setting-right-number{
+    font-size: 20spx;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 20px;
+  }
+  .setting-right-name{
+    font-size: 20px;
+  }
+  .setting-right-content{
+    font-size: 18px;
+  }
+}
+
+// 1430 < size <= 1560
+@media all and (min-width: 1430px) and (max-width: 1560px) {
+  .setting-right-title{
+    font-size: 18px;
+  }
+  .setting-right-number{
+    font-size: 18px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 18px;
+  }
+  .setting-right-name{
+    font-size: 18px;
+  }
+  .setting-right-content{
+    font-size: 16px;
+  }
+}
+
+// 1300 < size <= 1430px 
+@media all and (min-width: 1300px) and (max-width: 1430px) {
+  .setting-right-title{
+    font-size: 16px;
+  }
+  .setting-right-number{
+    font-size: 16px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 16px;
+  }
+  .setting-right-name{
+    font-size: 16px;
+  }
+  .setting-right-content{
+    font-size: 14px;
+  }
+}
+
+// 1100 < size <= 1300px 
+@media all and (min-width: 1100px) and (max-width: 1300px) {
+  .setting-right-title{
+    font-size: 14px;
+  }
+  .setting-right-number{
+    font-size: 14px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 14px;
+  }
+  .setting-right-name{
+    font-size: 14px;
+  }
+  .setting-right-content{
+    font-size: 12px;
+  }
+}
+
+// 950 < size <= 1100px 
+@media all and (min-width: 950px) and (max-width: 1100px) {
+  .setting-right-title{
+    font-size: 12px;
+  }
+  .setting-right-number{
+    font-size: 12px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 12px;
+  }
+  .setting-right-name{
+    font-size: 12px;
+  }
+  .setting-right-content{
+    font-size: 10px;
+  }
+}
+
+// 550 < size <= 950
+@media all and (min-width: 550px) and (max-width: 950px) {
+  .setting-right-title{
+    font-size: 16px;
+  }
+  .setting-right-number{
+    font-size: 16px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 16px;
+  }
+  .setting-right-name{
+    font-size: 16px;
+  }
+  .setting-right-content{
+    font-size: 14px;
+  }
+  .setting-right-container{
+    width: 95%;
+    height: 58%;
+    margin-bottom: 2%;
+    margin-right: 0%;
+  }
+  .setting-right-contentlistcontainer{
+    height: 25%;
+  }
+}
+
+// 450 < size <= 550
+@media all and (min-width: 450px) and (max-width: 550px) {
+  .setting-right-title{
+    font-size: 14px;
+  }
+  .setting-right-number{
+    font-size: 14px;
+  }
+  .setting-right-code-generalWidth{
+    font-size: 14px;
+  }
+  .setting-right-name{
+    font-size: 14px;
+  }
+  .setting-right-content{
+    font-size: 12px;
+  }
+  .setting-right-container{
+    width: 95%;
+    height: 55%;
+    margin-bottom: 0%;
+    margin-right: 0%;
+  }
+  .setting-right-contentlistcontainer{
+    height: 25%;
+  }
+}
+
+// size <= 450 
+@media all and (max-width: 450px){
+  .setting-right-title{
+    display: none;
+  }
+  .setting-right-number{
+    font-size: 16px;
+    width: 33.333%;
+    color: rgb(90, 90, 90);
+  }
+  .setting-right-code-generalWidth{
+    display: none;
+  }
+  .setting-right-name{
+    font-size: 16px;
+    justify-content: center;
+    width: 33.333%;
+    color: rgb(90, 90, 90);
+  }
+  .setting-right-content{
+    font-size: 16px;
+  }
+  .setting-right-container{
+    width: 95%;
+    height: 48%;
+    margin-bottom: 0%;
+    margin-top: 2%;
+    margin-right: 0%;
+  }
+  .setting-right-contentlistcontainer{
+    height: 20%;
+  }
+  .setting-right-content{
+    border-bottom:none;
+  }
+  .setting-right-listTitleContainer{
+    font-weight: bold;
+    height: 15%;
+    margin-bottom: 0%;;
+  }
+  .setting-right-contentcontainer{
+    height: 80%;
+  }
+  .setting-right-code-width450{
+    display: flex;
+    width: 33.333%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    color: rgb(90, 90, 90);
+  }
+  .setting-right-viewButton{
+    display: block;
+    width: 60%;
+    height: 80%;
+    background-color: rgb(240, 152, 0);
+    border-color: rgb(255, 210, 133);
+    color: white;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  .setting-right-viewButtonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.3333%;
+    height: 100%;
+  }
+}

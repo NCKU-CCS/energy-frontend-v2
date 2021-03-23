@@ -6,13 +6,14 @@ interface IUserInfo {
   balance?: number;
   address?: string;
   eth_address?: string;
-  is_aggregator?: boolean;
+  is_aggregator: boolean;
 }
 
 const User: React.FC = () => {
   const [info, setInfo] = useState<IUserInfo>({
     username: '--',
     avatar: `${process.env.PUBLIC_URL}/nav/avatar.png`,
+    is_aggregator: false,
   });
 
   const fetchUser = async () => {
@@ -27,10 +28,10 @@ const User: React.FC = () => {
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`,
       {
         method: 'GET',
+        mode: 'cors',
         headers: new Headers({
           Authorization: `Bearer ${user.bearer}`,
-          'Content-Tpye': 'application/json',
-          'API-version': '0.1',
+          'Content-Type': 'application/json',
         }),
       },
     );
@@ -55,7 +56,10 @@ const User: React.FC = () => {
   return (
     <div className="navbar-user">
       <img className="navbar-avatar" alt="" src={info.avatar} />
-      <span className="navbar-username">{info.username}</span>
+      <div className="navbar-username-box">
+        {info.is_aggregator && <span className="navbar-star">★</span>}
+        <span className="navbar-username">{info.username}</span>
+      </div>
     </div>
   );
 };

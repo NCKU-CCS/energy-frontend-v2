@@ -1,10 +1,98 @@
 .general-layout {
   display: flex;
   flex-direction: row;
+  background-color: rgb(241, 242, 241);
+  overflow: hidden;
 }
 
-@media all and (max-width: 720px) {
+.general-title{
+  width: auto;
+  height: auto;
+  text-align: left;
+  color:rgb(112, 112, 112);
+}
+
+.general-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// 1280 < size
+@media all and (min-width: 1280px) {
+  .general-title {
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 40px;
+  }
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+	.general-title{
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 32px;
+  }
+}
+
+// 320 < size <= 720px - horizen layout
+@media all and (min-width: 320px) and (max-width: 720px) {
   .general-layout {
     flex-direction: column;
+  }
+  .general-title{
+    margin-top: 16px;
+    margin-left: 24px;
+    font-size: 20px;
+  }
+}
+
+// size <= 320px
+@media all and (max-width: 320px) {
+  .general-layout {
+    flex-direction: column;
+  }
+  .general-title{
+    margin-top: 16px;
+    margin-left: 15px;
+    font-size: 16px;
+  }
+}
+
+// size <= 320 for phone
+@media all and (max-width: 320px) and (max-device-height: 600px) {
+  .general-layout {
+    flex-direction: column;
+  }
+  .general-title{
+    margin-top: 16px;
+    margin-left: 24px;
+    font-size: 18px;
+  }
+}
+
+// size <= 320px
+@media all and (max-width: 320px) {
+  .general-layout {
+    flex-direction: column;
+  }
+  .general-title{
+    margin-top: 16px;
+    margin-left: 15px;
+    font-size: 16px;
+  }
+}
+
+// size <= 320 for phone
+@media all and (max-width: 320px) and (max-device-height: 600px) {
+  .general-layout {
+    flex-direction: column;
+  }
+  .general-title{
+    top: 16px;
+    left: 15px;
+    font-size: 16px;
   }
 }

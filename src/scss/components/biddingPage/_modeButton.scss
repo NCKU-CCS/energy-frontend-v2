@@ -1,0 +1,88 @@
+.bidding-modebutton-container-in {
+  width: 25%;
+  height: 100%;
+  margin-left: 2.35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bidding-modebutton-button {
+  cursor: pointer;
+  width: 48%;
+  height: 65%;
+  padding: 0.5%;
+  outline: 0;
+  color: #707070;
+  font-size: 1.1rem;
+  background-color: white;
+  border: #e3e3e3 solid 1px;
+  border-radius: 5px;
+}
+
+.bidding-modebutton-button:active {
+  background-color: #ededed;
+}
+
+.bidding-modebutton-button-green:disabled {
+  color: white;
+  background-color: #ffa000;
+  cursor: default;
+}
+
+.bidding-modebutton-button-need:disabled {
+  color: white;
+  background-color: #2d3161;
+  cursor: default;
+}
+
+
+.bidding-modebutton-button-green {
+  margin-right: 1%;
+}
+
+// 1920 < size
+@media all and (min-width: 1920px) {
+
+}
+
+// 1280 < size <= 1920
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+// 720 < size <= 1280
+@media all and (min-width: 720px) and (max-width: 1280px) {
+
+}
+
+// 320 < size <= 720
+@media all and (min-width: 320px) and (max-width: 720px) {
+  .bidding-modebutton-container-in {
+    width: 45%;
+  }
+
+  .bidding-modebutton-button {
+    font-size: 0.9rem;
+  }
+}
+
+// size <= 320
+@media all and (max-width: 320px) {
+  .bidding-modebutton-container-in {
+    width: 90%;
+    height: 60%;
+    margin: 0;
+  }
+
+  .bidding-modebutton-button {
+    width: 49%;
+    height: 70%;
+    font-size: 0.9rem;
+  }
+
+  .bidding-modebutton-button-need {
+    margin-left: 1%;
+  }
+
+}
