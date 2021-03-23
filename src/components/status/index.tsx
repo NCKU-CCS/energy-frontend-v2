@@ -182,8 +182,8 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: 0,
-            value: 0,
+            price: DRResult[i].result ? DRResult[i].settlement : 0,
+            value: DRResult[i].volume,
           },
           transaction_hash: DRResult[i].blockchain_url,
           id: DRResult[i].uuid,
@@ -213,8 +213,8 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: 0,
-            value: 0,
+            price: DRResult[i].result ? DRResult[i].settlement : 0,
+            value: DRResult[i].volume,
           },
           id: DRResult[i].uuid,
           upload: DRResult[i].start_time,
