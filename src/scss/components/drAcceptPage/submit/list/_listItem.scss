@@ -127,6 +127,10 @@
   .draccept-submit-listitem-container {
     font-size: 0.85rem;
   }
+
+  .draccept-submit-listitem-user {
+    line-height: 1.2rem;
+  }
 }
 
 // 720 < size <= 1000
@@ -135,6 +139,9 @@
     font-size: 0.8rem;
   }
 
+  .draccept-submit-listitem-user {
+    line-height: 1rem;
+  }
 }
 
 // 320 < size <= 720
@@ -144,6 +151,9 @@
     height: 25%;
   }
 
+  .draccept-submit-listitem-user {
+    line-height: 1rem;
+  }
 }
 
 // size <= 320
@@ -151,6 +161,10 @@
   .draccept-submit-listitem-container {
     font-size: 0.8rem;
     height: 25%;
+  }
+
+  .draccept-submit-listitem-user {
+    line-height: 1rem;
   }
 
   .draccept-submit-listitem-mode {
