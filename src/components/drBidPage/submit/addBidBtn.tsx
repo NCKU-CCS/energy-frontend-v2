@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
@@ -7,7 +8,11 @@ import dayjs from 'dayjs';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 
-const AddBidBtn: React.FC = () => {
+interface IProps {
+  dataType: string;
+}
+
+const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
   // i18n
   const { t } = useTranslation();
 

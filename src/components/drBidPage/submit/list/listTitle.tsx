@@ -3,7 +3,11 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import AddBidBtn from '../addBidBtn';
 
-const ListTitle: React.FC = () => {
+interface IProps {
+  dataType: string;
+}
+
+const ListTitle: React.FC<IProps> = ({ dataType }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -28,7 +32,7 @@ const ListTitle: React.FC = () => {
         {t('drbidpage.total')}
       </div>
       <div className={classNames('drbid-submit-list-title-button')}>
-        <AddBidBtn />
+        <AddBidBtn dataType={dataType} />
       </div>
     </div>
   );

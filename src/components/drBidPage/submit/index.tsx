@@ -17,20 +17,21 @@ interface IData {
 interface IProps {
   date: string;
   apiData: IData[];
+  dataType: string;
   setDataType(type: string): void;
 }
 
-const Submit: React.FC<IProps> = ({ date, apiData, setDataType }) => {
+const Submit: React.FC<IProps> = ({ date, apiData, dataType, setDataType }) => {
   return (
     <div className={classNames('drbid-submit-container-in')}>
       <div className={classNames('drbid-submit-modebutton-container-out')}>
         <TypeButton setDataType={setDataType} />
       </div>
       <div className={classNames('drbid-submit-list-container-out')}>
-        <List date={date} apiData={apiData} />
+        <List date={date} apiData={apiData} dataType={dataType} />
       </div>
       <div className={classNames('drbid-submit-addbid-container-out')}>
-        <AddBid />
+        <AddBid dataType={dataType} />
       </div>
       <div className={classNames('drbid-submit-pagecontrol-container-out')}>
         {}

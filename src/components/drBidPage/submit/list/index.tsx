@@ -16,9 +16,10 @@ interface IData {
 interface IProps {
   date: string;
   apiData: IData[];
+  dataType: string;
 }
 
-const List: React.FC<IProps> = ({ date, apiData }) => {
+const List: React.FC<IProps> = ({ date, apiData, dataType }) => {
   // map data and create list items
   const createList = apiData.map((d) => {
     return <ListItem date={date} data={d} />;
@@ -26,7 +27,7 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
 
   return (
     <div className={classNames('drbid-submit-list-container-in')}>
-      <ListTitle />
+      <ListTitle dataType={dataType} />
       <div className={classNames('drbid-submit-list-listitem-container')}>
         {createList}
       </div>

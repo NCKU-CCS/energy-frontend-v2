@@ -141,7 +141,12 @@ const DrBidPageContainer: React.FC = () => {
         </div>
       </div>
       <div className={classNames('drbid-right')}>
-        <Submit date={date} apiData={apiData} setDataType={setDataType} />
+        <Submit
+          date={date}
+          apiData={apiData}
+          dataType={dataType}
+          setDataType={setDataType}
+        />
       </div>
     </div>
   );
