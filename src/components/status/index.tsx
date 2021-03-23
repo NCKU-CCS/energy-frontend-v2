@@ -173,7 +173,7 @@ const Status: React.FC = () => {
           DRResult[i].status === '已結算' ||
           DRResult[i].status === '結算中' ||
           DRResult[i].status === '執行中' ||
-          DRResult[i].status === '得標'
+          DRResult[i].status === '已得標'
         )
           winsValue = DRResult[i].volume;
         const DBdata: IListInfo = {
@@ -219,7 +219,7 @@ const Status: React.FC = () => {
           DRResult[i].status === '已結算' ||
           DRResult[i].status === '結算中' ||
           DRResult[i].status === '執行中' ||
-          DRResult[i].status === '得標'
+          DRResult[i].status === '已得標'
         )
           winsValue = DRResult[i].volume;
         const DBdata: ITrainInfo = {
