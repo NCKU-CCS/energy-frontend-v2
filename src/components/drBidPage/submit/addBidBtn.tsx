@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
@@ -65,26 +66,27 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
     }
   }, [date]);
 
-  // determine price by mode
+  // determine price by date, mode, and interval
   useEffect(() => {
     switch (mode) {
       default: {
-        const hr = dayjs().get('hour');
-        const mth = dayjs().get('month');
+        const mth = dayjs(date || '').get('month');
         if (mth >= 5 && mth <= 8) {
           // summer
-          if (hr >= 23 || hr < 8) {
+          if (interval === '23:00 - 8:00') {
             setPrice(4.74);
-          } else if (hr < 18) {
+          } else if (interval === '8:00 - 18:00') {
             setPrice(7.36);
-          } else setPrice(9.66);
-        } else {
-          // not summer
-          // eslint-disable-next-line no-lonely-if
-          if (hr >= 17 && hr < 22) {
-            setPrice(5.71);
           } else {
+            setPrice(9.66);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
             setPrice(4.55);
+          } else {
+            setPrice(5.71);
           }
         }
         break;
@@ -94,28 +96,29 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
         break;
       }
       case 2: {
-        const hr = dayjs().get('hour');
-        const mth = dayjs().get('month');
+        const mth = dayjs(date || '').get('month');
         if (mth >= 5 && mth <= 8) {
           // summer
-          if (hr >= 23 || hr < 8) {
+          if (interval === '23:00 - 8:00') {
             setPrice(0.37);
-          } else if (hr < 18) {
+          } else if (interval === '8:00 - 18:00') {
             setPrice(2.99);
-          } else setPrice(5.29);
-        } else {
-          // not summer
-          // eslint-disable-next-line no-lonely-if
-          if (hr >= 17 && hr < 22) {
-            setPrice(1.34);
           } else {
+            setPrice(5.29);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
             setPrice(0.18);
+          } else {
+            setPrice(1.34);
           }
         }
         break;
       }
     }
-  }, [mode]);
+  }, [date, mode, interval]);
 
   // create options for interval
   const createIntervalOptions = intervalArr.map((str) => {
@@ -136,9 +139,74 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
   });
 
   // handle click submit
-  const handleSubmit = () => {
-    alert('success');
-    window.location.reload();
+  const postDrBid = async () => {
+    // determine hour
+    let startHr = 0;
+    let endHr = 1;
+    switch (interval) {
+      default:
+        break;
+      case '23:00 - 8:00':
+        startHr = 23;
+        endHr = 8;
+        break;
+      case '8:00 - 18:00':
+        startHr = 8;
+        endHr = 18;
+        break;
+      case '18:00 - 23:00':
+        startHr = 18;
+        endHr = 23;
+        break;
+      case '22:00 - 17:00':
+        startHr = 22;
+        endHr = 17;
+        break;
+      case '17:00 - 22:00':
+        startHr = 17;
+        endHr = 22;
+        break;
+    }
+
+    // POST DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          price,
+          volume,
+          settlement: (price || 0) * (volume || 0),
+          trading_mode: mode,
+          order_method: dataType,
+          start_time: dayjs(date || '')
+            .set('hour', startHr)
+            .format('YYYY-MM-DD HH:00:00'),
+          end_time:
+            startHr > endHr
+              ? dayjs(date || '')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00')
+              : dayjs(date || '')
+                  .add(1, 'day')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00'),
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
   };
 
   // handle click close btn
@@ -386,7 +454,7 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
                 className={classNames(
                   'drbid-submit-addbidbtn-infobox-footer-leftbtn',
                 )}
-                onClick={() => handleSubmit()}
+                onClick={() => postDrBid()}
                 disabled={submitDisabled}
               >
                 <img
