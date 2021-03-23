@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   font-size: 1rem;
   text-align: center;
-  overflow: hidden;
   border-bottom: #d1d2d1 solid 1px;
 }
 
@@ -12,7 +11,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 22.5%;
+  flex-basis: 15%;
+  height: 100%;
+}
+
+.drbid-submit-listitem-interval {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 18.5%;
   height: 100%;
 }
 
@@ -25,7 +32,7 @@
 }
 
 .drbid-submit-listitem-volume {
-  flex-basis: 17%;
+  flex-basis: 12%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +43,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20.5%;
+  flex-basis: 16.5%;
   height: 100%;
 }
 
@@ -44,7 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 15%;
+  flex-basis: 12%;
   height: 100%;
 }
 
@@ -68,6 +75,7 @@
   border: 0;
   outline: 0;
   border-radius: 5px;
+  font-size: 0.5rem;
 }
 
 .drbid-submit-listitem-button-btn:hover:not([disabled]) {
@@ -76,6 +84,7 @@
   height: 45%;
   background-color: #fcb43a;
   box-shadow: 0px 3px 10px #cccccc;
+  font-size: 0.8rem;
 }
 
 .drbid-submit-listitem-button-btn:disabled {
@@ -97,7 +106,7 @@
 // 1000 < size <= 1920
 @media all and (min-width: 1000px) and (max-width: 1920px) {
   .drbid-submit-listitem-container {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -129,12 +138,16 @@
     flex-basis: 35%;
   }
 
+  .drbid-submit-listitem-interval {
+    flex-basis: 30%;
+  }
+
   .drbid-submit-listitem-mode {
     flex-basis: 25%;
   }
 
   .drbid-submit-listitem-volume {
-    flex-basis: 30%;
+    display: none;
   }
 
   .drbid-submit-listitem-view-container-out--320 {

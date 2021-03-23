@@ -39,28 +39,28 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
   // bar width
   const [barWidth, setBarWidth] = useState<number>(0);
 
-  // d3 scale x: 1 ~ 3
+  // d3 scale x: 1 ~ 4
   const scaleX = d3
     .scaleLinear()
-    .domain([1, 3])
+    .domain([1, 4])
     .range([0, width - (padding.left + padding.right)]);
 
   // d3 scale y
   const scaleY = d3
     .scaleLinear()
-    .domain([0, Math.max(...values)])
+    .domain([0, Math.max(...values) || 5])
     .range([0, height - (padding.top + padding.bottom)]);
 
   // d3 axis scale y
   const axisScaleY = d3
     .scaleLinear()
-    .domain([0, Math.max(...values)])
+    .domain([0, Math.max(...values) || 5])
     .range([height - (padding.top + padding.bottom), 0]);
 
   // axis x
   const axisX = d3
     .axisBottom(scaleX)
-    .ticks(2)
+    .ticks(4)
     .tickPadding(5)
     .tickFormat(null)
     .tickSize(0);
@@ -130,7 +130,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
       .attr('font-size', 10)
       .attr(
         'transform',
-        `translate(${padding.left}, ${height - padding.bottom})`,
+        `translate(${padding.left}, ${height - padding.bottom + 5})`,
       );
 
     // append axis y
@@ -186,9 +186,7 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             arg0: d3.Transition<HTMLElement, unknown, null, undefined>,
           ) => any;
         }) =>
-          enter
-            .transition(transition)
-            .attr('height', (d: number) => scaleY(d + 0.5)),
+          enter.transition(transition).attr('height', (d: number) => scaleY(d)),
       )
       .attr('fill', (_: number, i: number) => {
         switch (i + 1) {
@@ -198,13 +196,15 @@ const Graph: React.FC<IProps> = ({ date, values }) => {
             return '#705341';
           case 3:
             return '#696464';
+          case 4:
+            return '#123456';
           default:
             return '#fff';
         }
       })
       .style('cursor', 'pointer')
       .append('title')
-      .text((d: number) => d);
+      .text((d: number) => d.toFixed(1));
 
     // clear effect
     return () => {

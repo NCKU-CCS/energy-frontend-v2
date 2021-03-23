@@ -1,15 +1,17 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  status: string;
 }
 
 interface IProps {
@@ -31,8 +33,42 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
   // user type: user, aggregator
   const [userType] = useState<string>(user.role);
 
+  // get interval
+  const getInterval = () => {
+    const startHr = dayjs(data.startTime).get('hour');
+    const endHr = dayjs(data.endTime).get('hour');
+    return `${startHr}:00 - ${endHr ? `${endHr}:00` : 'null'}`;
+  };
+
   // click open or not
   const [openInfoBox, setOpenInfoBox] = useState<boolean>(false);
+
+  // patch api
+  const patch = async () => {
+    // PATCH DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          uuid: data.uuid,
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
+  };
 
   return (
     <div className={classNames('drbid-submit-infobox-container-in')}>
@@ -79,7 +115,6 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                 >
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-date--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -88,7 +123,14 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-interval--show',
+                      'drbid-submit-infobox-content-center-inside-item--show',
+                    )}
+                  >
+                    <span>{t('drbidpage.interval')} :&nbsp;</span>
+                    <span>{getInterval()}</span>
+                  </div>
+                  <div
+                    className={classNames(
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -97,16 +139,14 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-volume--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
                     <span>{t('drbidpage.volume')} :&nbsp;</span>
-                    <span>{data.total_volume.toFixed(1)}kWh</span>
+                    <span>{data.volume.toFixed(1)}kWh</span>
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-price--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
@@ -115,12 +155,11 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   </div>
                   <div
                     className={classNames(
-                      'drbid-submit-infobox-content-center-inside-total--show',
                       'drbid-submit-infobox-content-center-inside-item--show',
                     )}
                   >
                     <span>{t('drbidpage.total')} :&nbsp;</span>
-                    <span>${data.total_price.toFixed(1)}</span>
+                    <span>${(data.price * data.volume).toFixed(1)}</span>
                   </div>
                 </div>
               </div>
@@ -135,11 +174,10 @@ const InfoBox: React.FC<IProps> = ({ date, data }) => {
                   'drbid-submit-infobox-content-footer-btn',
                 )}
                 type="button"
-                disabled={data.is_submitted}
+                disabled={data.status !== '投標中'}
+                onClick={() => patch()}
               >
-                {data.is_submitted
-                  ? t('drbidpage.accepted')
-                  : t('drbidpage.accept')}
+                {data.status !== '投標中' ? data.status : t('drbidpage.report')}
               </button>
             </div>
           </div>

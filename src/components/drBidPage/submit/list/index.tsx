@@ -4,20 +4,22 @@ import ListTitle from './listTitle';
 import ListItem from './listItem';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  status: string;
 }
 
 interface IProps {
   date: string;
   apiData: IData[];
+  dataType: string;
 }
 
-const List: React.FC<IProps> = ({ date, apiData }) => {
+const List: React.FC<IProps> = ({ date, apiData, dataType }) => {
   // map data and create list items
   const createList = apiData.map((d) => {
     return <ListItem date={date} data={d} />;
@@ -25,7 +27,7 @@ const List: React.FC<IProps> = ({ date, apiData }) => {
 
   return (
     <div className={classNames('drbid-submit-list-container-in')}>
-      <ListTitle />
+      <ListTitle dataType={dataType} />
       <div className={classNames('drbid-submit-list-listitem-container')}>
         {createList}
       </div>

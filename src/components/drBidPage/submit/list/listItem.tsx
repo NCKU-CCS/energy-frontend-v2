@@ -6,12 +6,13 @@ import dayjs from 'dayjs';
 import InfoBox from '../infoBox';
 
 interface IData {
-  date: string;
+  uuid: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_submitted: boolean;
+  status: string;
 }
 
 interface IProps {
@@ -23,31 +24,75 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
   // i18n
   const { t } = useTranslation();
 
+  // get user from local storage or session storage
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
+  // get interval
+  const getInterval = () => {
+    const startHr = dayjs(data.startTime).get('hour');
+    const endHr = dayjs(data.endTime).get('hour');
+    return `${startHr}:00 - ${endHr ? `${endHr}:00` : 'null'}`;
+  };
+
+  // patch api
+  const patch = async () => {
+    // PATCH DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          uuid: data.uuid,
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
+  };
+
   return (
     <div className={classNames('drbid-submit-listitem-container')}>
       <div className={classNames('drbid-submit-listitem-date')}>
         {dayjs(date).format('YYYY /MM/DD')}
       </div>
+      <div className={classNames('drbid-submit-listitem-interval')}>
+        {getInterval()}
+      </div>
       <div className={classNames('drbid-submit-listitem-mode')}>
         {data.mode}
       </div>
       <div className={classNames('drbid-submit-listitem-volume')}>
-        {data.total_volume.toFixed(1)}&thinsp;kWh
+        {data.volume.toFixed(1)}&thinsp;kWh
       </div>
       <div className={classNames('drbid-submit-listitem-price')}>
         $&thinsp;{data.price.toFixed(1)}&thinsp;/&thinsp;kWh
       </div>
       <div className={classNames('drbid-submit-listitem-total')}>
-        $&thinsp;{data.total_price.toFixed(1)}
+        $&thinsp;{(data.price * data.volume).toFixed(1)}
       </div>
       <div className={classNames('drbid-submit-listitem-button-container')}>
         <button
           className={classNames('drbid-submit-listitem-button-btn')}
           type="button"
-          disabled={data.is_submitted}
-          onClick={() => alert('success')}
+          disabled={data.status !== '投標中'}
+          onClick={() => patch()}
         >
-          {data.is_submitted ? t('drbidpage.reported') : t('drbidpage.report')}
+          {data.status !== '投標中' ? data.status : t('drbidpage.report')}
         </button>
       </div>
       <div

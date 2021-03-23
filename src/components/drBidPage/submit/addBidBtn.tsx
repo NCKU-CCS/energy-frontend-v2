@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +9,11 @@ import dayjs from 'dayjs';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 
-const AddBidBtn: React.FC = () => {
+interface IProps {
+  dataType: string;
+}
+
+const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
   // i18n
   const { t } = useTranslation();
 
@@ -26,6 +33,12 @@ const AddBidBtn: React.FC = () => {
   // date
   const [date, setDate] = useState<string | null>(null);
 
+  // interval array
+  const [intervalArr, setIntervalArr] = useState<string[]>([]);
+
+  // interval
+  const [interval, setInterval] = useState<string>('');
+
   // mode
   const [mode, setMode] = useState<number>(0);
 
@@ -35,42 +48,89 @@ const AddBidBtn: React.FC = () => {
   // price
   const [price, setPrice] = useState<number | undefined>(undefined);
 
-  // price input disable
-  const [priceDisable, setPriceDisable] = useState<boolean>(false);
-
   // click reset btn or not
   const [reset, setReset] = useState<boolean>(true);
 
   // control submit btn disabled or not
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
 
-  // determine price by mode
+  // determine interval array by selected month
+  useEffect(() => {
+    if (date) {
+      const mth = dayjs(date).get('month');
+      if (mth >= 5 && mth <= 8) {
+        setIntervalArr(['23:00 - 8:00', '8:00 - 18:00', '18:00 - 23:00']);
+      } else {
+        setIntervalArr(['22:00 - 17:00', '17:00 - 22:00']);
+      }
+    }
+  }, [date]);
+
+  // determine price by date, mode, and interval
   useEffect(() => {
     switch (mode) {
-      default:
-        break;
-      case 1: {
-        setPriceDisable(true);
-        const hr = dayjs().get('hour');
-        if (hr >= 23 || hr < 8) {
-          setPrice(4.97);
-        } else if (hr < 18) {
-          setPrice(7.59);
-        } else setPrice(9.89);
+      default: {
+        const mth = dayjs(date || '').get('month');
+        if (mth >= 5 && mth <= 8) {
+          // summer
+          if (interval === '23:00 - 8:00') {
+            setPrice(4.74);
+          } else if (interval === '8:00 - 18:00') {
+            setPrice(7.36);
+          } else {
+            setPrice(9.66);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
+            setPrice(4.55);
+          } else {
+            setPrice(5.71);
+          }
+        }
         break;
       }
-      case 2:
-        setPriceDisable(false);
+      case 0: {
+        setPrice(undefined);
         break;
-      case 3:
-        setPriceDisable(true);
-        setPrice(1);
+      }
+      case 2: {
+        const mth = dayjs(date || '').get('month');
+        if (mth >= 5 && mth <= 8) {
+          // summer
+          if (interval === '23:00 - 8:00') {
+            setPrice(0.37);
+          } else if (interval === '8:00 - 18:00') {
+            setPrice(2.99);
+          } else {
+            setPrice(5.29);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
+            setPrice(0.18);
+          } else {
+            setPrice(1.34);
+          }
+        }
         break;
+      }
     }
-  }, [mode]);
+  }, [date, mode, interval]);
 
-  // creat options for <select>
-  const createOptions = [1, 2, 3].map((i) => {
+  // create options for interval
+  const createIntervalOptions = intervalArr.map((str) => {
+    return (
+      <option dir="rtl" value={str}>
+        {str}
+      </option>
+    );
+  });
+
+  // create options for mode
+  const createModeOptions = [1, 2, 3, 4].map((i) => {
     return (
       <option dir="rtl" value={i}>
         {i}
@@ -79,9 +139,74 @@ const AddBidBtn: React.FC = () => {
   });
 
   // handle click submit
-  const handleSubmit = () => {
-    alert('success');
-    window.location.reload();
+  const postDrBid = async () => {
+    // determine hour
+    let startHr = 0;
+    let endHr = 1;
+    switch (interval) {
+      default:
+        break;
+      case '23:00 - 8:00':
+        startHr = 23;
+        endHr = 8;
+        break;
+      case '8:00 - 18:00':
+        startHr = 8;
+        endHr = 18;
+        break;
+      case '18:00 - 23:00':
+        startHr = 18;
+        endHr = 23;
+        break;
+      case '22:00 - 17:00':
+        startHr = 22;
+        endHr = 17;
+        break;
+      case '17:00 - 22:00':
+        startHr = 17;
+        endHr = 22;
+        break;
+    }
+
+    // POST DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          price,
+          volume,
+          settlement: (price || 0) * (volume || 0),
+          trading_mode: mode,
+          order_method: dataType,
+          start_time: dayjs(date || '')
+            .set('hour', startHr)
+            .format('YYYY-MM-DD HH:00:00'),
+          end_time:
+            startHr > endHr
+              ? dayjs(date || '')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00')
+              : dayjs(date || '')
+                  .add(1, 'day')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00'),
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
   };
 
   // handle click close btn
@@ -92,13 +217,21 @@ const AddBidBtn: React.FC = () => {
 
   // determine data validity
   useEffect(() => {
-    if (date && mode !== 0 && volume && volume !== 0 && price && price !== 0) {
+    if (
+      date &&
+      interval !== '' &&
+      mode !== 0 &&
+      volume &&
+      volume !== 0 &&
+      price &&
+      price !== 0
+    ) {
       setSubmitDisabled(false);
     } else {
       setReset(false);
       setSubmitDisabled(true);
     }
-  }, [date, mode, volume, price]);
+  }, [date, interval, mode, volume, price]);
 
   // when reset, clear data
   useEffect(() => {
@@ -162,7 +295,7 @@ const AddBidBtn: React.FC = () => {
                   </div>
                   <div
                     className={classNames(
-                      '.drbid-submit-addbidbtn-infobox-center-item-input',
+                      'drbid-submit-addbidbtn-infobox-center-item-input',
                     )}
                   >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -204,6 +337,27 @@ const AddBidBtn: React.FC = () => {
                       'drbid-submit-addbidbtn-infobox-center-item-text',
                     )}
                   >
+                    {t('drbidpage.interval')} :
+                  </div>
+                  <select
+                    className={classNames(
+                      'drbid-submit-addbidbtn-infobox-center-item-input',
+                    )}
+                    onChange={(e) => setInterval(e.target.value)}
+                  >
+                    {createIntervalOptions}
+                  </select>
+                </div>
+                <div
+                  className={classNames(
+                    'drbid-submit-addbidbtn-infobox-center-item-container',
+                  )}
+                >
+                  <div
+                    className={classNames(
+                      'drbid-submit-addbidbtn-infobox-center-item-text',
+                    )}
+                  >
                     {t('drbidpage.mode')} :
                   </div>
                   <select
@@ -215,7 +369,7 @@ const AddBidBtn: React.FC = () => {
                     <option dir="rtl" value="0" selected={reset}>
                       {}
                     </option>
-                    {createOptions}
+                    {createModeOptions}
                   </select>
                 </div>
                 <div
@@ -259,10 +413,7 @@ const AddBidBtn: React.FC = () => {
                     )}
                     type="number"
                     min="0"
-                    step="0.1"
-                    onChange={(e) => setPrice(parseFloat(e.target.value))}
                     value={reset ? '' : price}
-                    disabled={priceDisable}
                   />
                 </div>
                 <div
@@ -285,7 +436,7 @@ const AddBidBtn: React.FC = () => {
                     min="0"
                     value={
                       !reset && price !== undefined && volume !== undefined
-                        ? (price * volume).toFixed(1)
+                        ? (price * volume).toFixed(2)
                         : ''
                     }
                     disabled
@@ -303,7 +454,7 @@ const AddBidBtn: React.FC = () => {
                 className={classNames(
                   'drbid-submit-addbidbtn-infobox-footer-leftbtn',
                 )}
-                onClick={() => handleSubmit()}
+                onClick={() => postDrBid()}
                 disabled={submitDisabled}
               >
                 <img

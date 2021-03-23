@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
@@ -6,18 +7,18 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
-import taipowerData from './taipower.json';
-import aggregatorData from './aggregator.json';
 
 interface IData {
+  uuid: string;
+  executor: string;
+  acceptor: string;
+  startTime: string;
+  endTime: string;
   mode: number;
-  aggregator?: string;
-  executor?: string;
-  interval: string;
-  total_volume: number;
+  volume: number;
   price: number;
-  total_price: number;
-  is_accepted: boolean;
+  status: string;
+  result: boolean;
 }
 
 const DrAcceptPageContainer: React.FC = () => {
@@ -25,7 +26,7 @@ const DrAcceptPageContainer: React.FC = () => {
   const [date, setDate] = useState<string>(dayjs().format('YYYY/MM/DD'));
 
   // data type: dayBefore(日前), realTime(即時)
-  const [dataType, setDataType] = useState<string>('dayBefore');
+  const [dataType, setDataType] = useState<string>('日前');
 
   // new api data
   const [apiData, setApiData] = useState<IData[]>([]);
@@ -41,16 +42,54 @@ const DrAcceptPageContainer: React.FC = () => {
   const [userType] = useState<string>(user.role);
 
   // fetch api data
-  useEffect(() => {
-    if (userType === 'aggregator') {
-      setApiData([
-        ...aggregatorData.filter((d) => d.day === dayjs(date).day())[0].data,
-      ]);
+  const fetchApiData = async () => {
+    // GET DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${dayjs(
+        date,
+      ).format('YYYY-MM-DD')}&order_method=${dataType}${
+        user.role === 'aggregator' ? '&acceptor_role=aggregator' : ''
+      }`,
+      {
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      // fetch success
+      const tmp = await response.json();
+      const extract = await tmp.map((item: any) => {
+        return {
+          uuid: item.data.uuid,
+          executor: item.data.executor,
+          acceptor: item.data.acceptor,
+          startTime: item.data.start_time,
+          endTime: item.data.end_time,
+          mode: item.data.trading_mode,
+          volume: item.data.volume,
+          price: item.data.price,
+          status: item.data.status,
+          result: item.data.result,
+        };
+      });
+      setApiData([...extract]);
     } else {
-      setApiData([
-        ...taipowerData.filter((d) => d.day === dayjs(date).day())[0].data,
-      ]);
+      alert('failed');
+      setApiData([]);
     }
+  };
+
+  // fetch api data
+  useEffect(() => {
+    (async () => {
+      await fetchApiData();
+    })();
   }, [date, dataType]);
 
   return (
@@ -82,22 +121,22 @@ const DrAcceptPageContainer: React.FC = () => {
           <Status
             userType={userType}
             totalPrice={apiData
-              .filter((d) => d.is_accepted)
-              .map((d) => d.total_price)
+              .filter((d) => d.status !== '投標中' && d.status !== '未得標')
+              .map((d) => d.price * d.volume)
               .reduce((a, b) => a + b, 0)}
             totalVolume={apiData
-              .filter((d) => d.is_accepted)
-              .map((d) => d.total_volume)
+              .filter((d) => d.status !== '投標中' && d.status !== '未得標')
+              .map((d) => d.volume)
               .reduce((a, b) => a + b, 0)}
           />
         </div>
         <div className={classNames('draccept-left-bottom')}>
           <Graph
             date={date}
-            values={[1, 2, 3, 4, 5].map((i) => {
+            values={[1, 2, 3, 4].map((i) => {
               return apiData
-                .filter((d) => d.is_accepted && d.mode === i)
-                .map((d) => d.total_price)
+                .filter((d) => d.status !== '未得標' && d.mode === i)
+                .map((d) => d.price)
                 .reduce((a, b) => a + b, 0);
             })}
           />

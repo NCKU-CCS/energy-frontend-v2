@@ -22,74 +22,104 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .drbid-submit-addbid-form-date {
   cursor: pointer;
-  margin: 3.25%;
-  width: 16%;
+  // margin: 1%;
+  width: 13%;
   height: 70%;
   color: #707070;
   border-radius: 5px;
   border: #d1d2d1 solid 1px;
+
+  &:hover {
+    border: #707070 solid 1px;
+  }
 }
 
-.drbid-submit-addbid-form-date:hover {
-  border: #707070 solid 1px;
-}
-
-.drbid-submit-addbid-form-select {
+.drbid-submit-addbid-form-interval {
   cursor: pointer;
   text-align-last: right;
-  margin: 1%;
-  width: 13%;
+  // margin: 2%;
+  width: 14.5%;
   height: 70%;
   color: #707070;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
 }
 
-.drbid-submit-addbid-form-select:hover {
-  border: #707070 solid 1px;
-}
-
-.drbid-submit-addbid-form-select--invalid {
+.drbid-submit-addbid-form-interval--invalid {
   cursor: pointer;
   text-align-last: right;
-  margin: 1%;
+  // margin: 1%;
+  width: 14.5%;
+  height: 70%;
+  color: #d1d2d1;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
+
+  &:hover {
+    border: #707070 solid 1px;
+  }
+
+  &:focus {
+    color: #707070;
+  }
+}
+
+.drbid-submit-addbid-form-mode {
+  cursor: pointer;
+  text-align-last: right;
+  // margin: 1%;
+  width: 13%;
+  height: 70%;
+  color: #707070;
+  border-radius: 5px;
+  border: #c0c0c0 solid 1px;
+
+  &:hover {
+    border: #707070 solid 1px;
+  }
+}
+
+.drbid-submit-addbid-form-mode--invalid {
+  cursor: pointer;
+  text-align-last: right;
+  // margin: 1%;
   width: 13%;
   height: 70%;
   color: #d1d2d1;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
-}
 
-.drbid-submit-addbid-form-select--invalid:hover {
-  border: #707070 solid 1px;
-}
+  &:hover {
+    border: #707070 solid 1px;
+  }
 
-.drbid-submit-addbid-form-select--invalid:focus {
-  color: #707070;
+  &:focus {
+    color: #707070;
+  }
 }
 
 .drbid-submit-addbid-form-volume {
-  margin: 2%;
-  width: 13%;
+  // margin: 1%;
+  width: 10%;
   height: 70%;
   color: #707070;
   text-align: right;
   border-radius: 5px;
   border: #c0c0c0 solid 1px;
-}
 
-.drbid-submit-addbid-form-volume:hover, :focus {
-  border: #707070 solid 1px;
+  &:hover, &:focus {
+    border: #707070 solid 1px;
+  }
 }
 
 .drbid-submit-addbid-form-price {
-  margin: 3%;
+  // margin: 1%;
   width: 14.5%;
   height: 70%;
   color: #707070;
@@ -104,8 +134,8 @@
 }
 
 .drbid-submit-addbid-form-total {
-  margin: 1%;
-  width: 13%;
+  // margin: 1%;
+  width: 10%;
   height: 70%;
   outline: 0;
   border: 0;
@@ -124,7 +154,7 @@
   border: 0;
   border-radius: 5px;
   outline: 0;
-  margin: 1%;
+  // margin: 1%;
   width: 8%;
   height: auto;
   padding-top: 0.5%;
@@ -134,7 +164,7 @@
 }
 
 .drbid-submit-addbid-form-submit:hover:not([disabled]) {
-  margin: 0.5%;
+  // margin: 0.5%;
   width: 9%;
   height: 70%;
   background-color: #389c3d;
