@@ -17,21 +17,21 @@ interface IResult {
 const TimeInfo: React.FC = () => {
   const { t } = useTranslation();
 
+  const user = JSON.parse(
+    localStorage.getItem('BEMS_USER') ||
+      sessionStorage.getItem('BEMS_USER') ||
+      '{}',
+  );
+
   const [result, setResult] = useState<IResult[]>([]);
   const [currTime, setCurrTime] = useState<string>('');
   const [time, setTime] = useState<string>('');
-  const [buyValue, setBuyValue] = useState<string>('');
-  const [buyPrice, setBuyPrice] = useState<string>('');
-  const [sellValue, setSellValue] = useState<string>('');
-  const [sellPrice, setSellPrice] = useState<string>('');
+  const [buyValue, setBuyValue] = useState<string>('0');
+  const [buyPrice, setBuyPrice] = useState<string>('0');
+  const [sellValue, setSellValue] = useState<string>('0');
+  const [sellPrice, setSellPrice] = useState<string>('0');
 
   const fetchMatchResult = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
     // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
@@ -45,7 +45,6 @@ const TimeInfo: React.FC = () => {
       },
     );
     if (response.status === 200) {
-      // fetch success
       const data = await response.json();
       setResult(data);
     }

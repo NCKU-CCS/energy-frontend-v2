@@ -164,8 +164,18 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         const APItime = dayjs(DRResult[i].start_time);
-        let { rate } = DRResult[i];
-        if (rate === null) rate = 0;
+        let rate = 0;
+        if (DRResult[i].status === '已結算') rate = 1;
+        let winsPrice = 0;
+        if (DRResult[i].status === '已結算') winsPrice = DRResult[i].settlement;
+        let winsValue = 0;
+        if (
+          DRResult[i].status === '已結算' ||
+          DRResult[i].status === '結算中' ||
+          DRResult[i].status === '執行中' ||
+          DRResult[i].status === '得標'
+        )
+          winsValue = DRResult[i].volume;
         const DBdata: IListInfo = {
           bid_type: DRResult[i].order_method,
           status: DRResult[i].status,
@@ -182,8 +192,8 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: DRResult[i].result ? DRResult[i].settlement : 0,
-            value: DRResult[i].volume,
+            price: winsPrice,
+            value: winsValue,
           },
           transaction_hash: DRResult[i].blockchain_url,
           id: DRResult[i].uuid,
@@ -202,6 +212,16 @@ const Status: React.FC = () => {
     if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
+        let winsPrice = 0;
+        if (DRResult[i].status === '已結算') winsPrice = DRResult[i].settlement;
+        let winsValue = 0;
+        if (
+          DRResult[i].status === '已結算' ||
+          DRResult[i].status === '結算中' ||
+          DRResult[i].status === '執行中' ||
+          DRResult[i].status === '得標'
+        )
+          winsValue = DRResult[i].volume;
         const DBdata: ITrainInfo = {
           status: DRResult[i].status,
           bids: {
@@ -213,8 +233,8 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: DRResult[i].result ? DRResult[i].settlement : 0,
-            value: DRResult[i].volume,
+            price: winsPrice,
+            value: winsValue,
           },
           id: DRResult[i].uuid,
           upload: DRResult[i].start_time,
@@ -230,8 +250,8 @@ const Status: React.FC = () => {
     if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
-        let { rate } = DRResult[i];
-        if (rate === null) rate = 0;
+        let rate = 0;
+        if (DRResult[i].status === '已結算') rate = 1;
         const DBdata: IStatus = {
           status: DRResult[i].status,
           achievement: rate,

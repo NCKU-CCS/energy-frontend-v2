@@ -156,7 +156,7 @@ const Train: React.FC<IInput> = ({ input, index }) => {
             {t('statuspage.winsValue')}：{allInfo.winsValue}kWh
           </div>
           <div className={classnames('status-train-price')}>
-            {t('statuspage.bidsPrice')}：＄{allInfo.bidsPrice}
+            {t('statuspage.bidsPrice')}：${allInfo.bidsPrice}
           </div>
           <div className={classnames('status-train-getPrice')}>
             {t('statuspage.winsPrice')}：${allInfo.winsPrice}
