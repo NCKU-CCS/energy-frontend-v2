@@ -85,9 +85,15 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         dataBidsValue = input[index].bids.value.toString();
       if (input[index].bids.price)
         dataBidsPrice = input[index].bids.price.toString();
-      if (input[index].wins.value)
+      if (
+        input[index].wins.value &&
+        (input[index].status === '已得標' ||
+          input[index].status === '執行中' ||
+          input[index].status === '結算中' ||
+          input[index].status === '已結算')
+      )
         dataWinsValue = input[index].wins.value.toString();
-      if (input[index].wins.price)
+      if (input[index].wins.price && input[index].status === '已結算')
         dataWinsPrice = input[index].wins.price.toString();
       setAllInfo({
         bidsPrice: dataBidsPrice,
