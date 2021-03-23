@@ -66,7 +66,13 @@ const ListContent: React.FC<IResult> = ({
       </button>
       <div className={classnames('home-bid-info-listContent-date')}>{date}</div>
       <div className={classnames('home-bid-info-listContent-time')}>{time}</div>
-      <div className={classnames('home-bid-info-listContent-success')}>
+      <div
+        className={
+          status === '已得標'
+            ? classnames('home-bid-info-listContent-success')
+            : classnames('home-bid-info-listContent-failed')
+        }
+      >
         {sellState}
       </div>
       <div className={classnames('home-bid-info-listContent-number')}>
