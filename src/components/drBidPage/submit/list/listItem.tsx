@@ -92,7 +92,9 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
           disabled={data.status !== '投標中'}
           onClick={() => patch()}
         >
-          {data.status !== '投標中' ? data.status : t('drbidpage.report')}
+          {data.status !== '投標中'
+            ? t('drbidpage.reported')
+            : t('drbidpage.report')}
         </button>
       </div>
       <div

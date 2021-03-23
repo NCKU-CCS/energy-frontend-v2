@@ -160,7 +160,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
           {data.result
             ? userType === 'tpc'
               ? t('dracceptpage.announced')
-              : data.status
+              : t('dracceptpage.bidAccepted')
             : userType === 'tpc'
             ? inputMode
               ? t('dracceptpage.confirm')
