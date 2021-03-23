@@ -104,8 +104,8 @@ const Content: React.FC<IContent> = ({
     'status-list-content-bidTypeNow',
     'status-list-content-bidType',
   );
-  const bidTypeYesterday = classnames(
-    'status-list-content-bidTypeYesterday',
+  const bidTypeDayAhead = classnames(
+    'status-list-content-bidTypeDayAhead',
     'status-list-content-bidType',
   );
   let bidTypeClass = '';
@@ -120,7 +120,7 @@ const Content: React.FC<IContent> = ({
     bidTypeClass = bidTypeNeed;
     bidTypeText = t('statuspage.need');
   } else if (bidType === '日前') {
-    bidTypeClass = bidTypeYesterday;
+    bidTypeClass = bidTypeDayAhead;
     bidTypeText = t('statuspage.before');
   } else if (bidType === '即時') {
     bidTypeClass = bidTypeNow;

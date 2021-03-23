@@ -72,7 +72,7 @@ interface IDR {
   volume: number;
 }
 
-interface IDRPage {
+interface IDRData {
   current_page: number;
   data: IDR;
   max_page: number;
@@ -87,7 +87,7 @@ const Status: React.FC = () => {
   // data
   const [listInfo, setListInfo] = useState<IListInfo[]>([]);
   const [DRResult, setDRResult] = useState<IDR[]>([]);
-  const [DRPage, setDRPage] = useState<IDRPage[]>([]);
+  const [DRData, setDRData] = useState<IDRData[]>([]);
   const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
@@ -137,7 +137,7 @@ const Status: React.FC = () => {
     );
     if (response.status === 200) {
       const data = await response.json();
-      setDRPage(data);
+      setDRData(data);
     }
   };
 
@@ -149,14 +149,14 @@ const Status: React.FC = () => {
   }, [isGreen, isDR, isDRBid, isDRAccept, pageSize, currentPage]);
 
   useEffect(() => {
-    if (DRPage.length > 0) {
+    if (DRData.length > 0) {
       const listDBData = [];
-      for (let i = 0; i < DRPage.length; i += 1)
-        listDBData.push(DRPage[i].data);
+      for (let i = 0; i < DRData.length; i += 1)
+        listDBData.push(DRData[i].data);
       setDRResult(listDBData);
-      setMaxPage(DRPage[0].max_page);
+      setMaxPage(DRData[0].max_page);
     }
-  }, [DRPage]);
+  }, [DRData]);
 
   // add list data
   useEffect(() => {
