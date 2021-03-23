@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
+import { add } from 'date-fns';
 
 interface IProps {
   dataType: string;
@@ -139,35 +140,82 @@ const AddBid: React.FC<IProps> = ({ dataType }) => {
   });
 
   // handle click submit
-  // const postDrBid = async () => {
-  //   // get user from local storage or session storage
-  //   const user = JSON.parse(
-  //     localStorage.getItem('BEMS_USER') ||
-  //       sessionStorage.getItem('BEMS_USER') ||
-  //       '{}',
-  //   );
+  const postDrBid = async () => {
+    // determine hour
+    let startHr = 0;
+    let endHr = 1;
+    switch (interval) {
+      default:
+        break;
+      case '23:00 - 8:00':
+        startHr = 23;
+        endHr = 8;
+        break;
+      case '8:00 - 18:00':
+        startHr = 8;
+        endHr = 18;
+        break;
+      case '18:00 - 23:00':
+        startHr = 18;
+        endHr = 23;
+        break;
+      case '22:00 - 17:00':
+        startHr = 22;
+        endHr = 17;
+        break;
+      case '17:00 - 22:00':
+        startHr = 17;
+        endHr = 22;
+        break;
+    }
 
-  //   // POST DR_bid
-  //   const response = await fetch(
-  //     `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
-  //     {
-  //       method: 'POST',
-  //       mode: 'cors',
-  //       headers: new Headers({
-  //         Authorization: `Bearer ${user.bearer}`,
-  //         'Content-Type': 'application/json',
-  //       }),
-  //       body: JSON.stringify({
-  //         price,
-  //         volume,
-  //         settlement: (price || 0) * (volume || 0),
-  //         trading_mode: mode,
-  //         order_method: dataType,
+    // get user from local storage or session storage
+    const user = JSON.parse(
+      localStorage.getItem('BEMS_USER') ||
+        sessionStorage.getItem('BEMS_USER') ||
+        '{}',
+    );
 
-  //       });
-  //     }
-  //   );
-  // };
+    // POST DR_bid
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: new Headers({
+          Authorization: `Bearer ${user.bearer}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          price,
+          volume,
+          settlement: (price || 0) * (volume || 0),
+          trading_mode: mode,
+          order_method: dataType,
+          start_time: dayjs(date || '')
+            .set('hour', startHr)
+            .format('YYYY-MM-DD HH:00:00'),
+          end_time:
+            startHr > endHr
+              ? dayjs(date || '')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00')
+              : dayjs(date || '')
+                  .add(1, 'day')
+                  .set('hour', endHr)
+                  .format('YYYY-MM-DD HH:00:00'),
+        }),
+      },
+    );
+
+    // response
+    if (response.status === 200) {
+      alert('success');
+      window.location.reload();
+    } else {
+      alert('failed');
+    }
+  };
 
   return (
     <div className={classNames('drbid-submit-addbid-container-in')}>
@@ -257,7 +305,7 @@ const AddBid: React.FC<IProps> = ({ dataType }) => {
           type="button"
           className={classNames('drbid-submit-addbid-form-submit')}
           title="Submit"
-          onClick={() => {}}
+          onClick={() => postDrBid()}
           disabled={submitDisabled}
         >
           {t('drbidpage.new')}
