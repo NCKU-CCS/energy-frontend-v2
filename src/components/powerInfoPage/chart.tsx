@@ -1828,7 +1828,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                         ),
                       )
                     ].Consume
-                  : 0) -
+                  : 0) +
                 (bisectDate(
                   apiDataArr,
                   timeFormat(
