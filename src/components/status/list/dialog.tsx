@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 
@@ -14,6 +15,7 @@ interface IDialog {
   winsPrice: number;
   achievement: number;
   setView: (state: boolean) => void;
+  isDR: boolean;
 }
 
 const Dialog: React.FC<IDialog> = ({
@@ -27,6 +29,7 @@ const Dialog: React.FC<IDialog> = ({
   winsPrice,
   achievement,
   setView,
+  isDR,
 }) => {
   const { t } = useTranslation();
 
@@ -36,8 +39,8 @@ const Dialog: React.FC<IDialog> = ({
     setPercent(achievement === null ? '—' : (achievement * 100).toString());
   }, [achievement]);
   useEffect(() => {
-    const timeSplit = upload.split(' ');
-    setTime(timeSplit[4]);
+    const uploadTime = dayjs(upload);
+    setTime(uploadTime.format('HH:mm'));
   }, [upload]);
 
   return (
@@ -84,7 +87,8 @@ const Dialog: React.FC<IDialog> = ({
         </div>
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
-            {t('statuspage.bidsPrice')}：{bidsPrice}
+            {t('statuspage.bidsPrice')}：
+            {isDR ? Math.round(bidsPrice * bidsValue * 1000) / 1000 : bidsPrice}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
             {t('statuspage.winsPrice')}：{winsPrice}

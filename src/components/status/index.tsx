@@ -27,6 +27,7 @@ interface IListInfo {
   id: string;
   upload: string;
   achievement: number;
+  mode: number;
 }
 
 interface ITrainInfo {
@@ -55,35 +56,51 @@ interface IStatus {
 interface IDR {
   acceptor: string;
   blockchain_url: string;
+  counterpart_address: string;
+  counterpart_name: string;
   end_time: string;
   executor: string;
+  order_method: string;
   price: number;
   rate: number;
+  result: boolean;
+  settlement: number;
   start_time: string;
   status: string;
+  trading_mode: number;
   uuid: string;
   volume: number;
 }
 
-const Status: React.FC = () => {
-  const [listInfo, setListInfo] = useState<IListInfo[]>([]);
-  const [DRResult, setDRResult] = useState<IDR[]>([]);
-  const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
-  const [nowIndex, setNowIndex] = useState<number>(-1);
-  const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
-  const [isGreen, setIsGreen] = useState<boolean>(true);
-  const [isDR, setIsDR] = useState<boolean>(false);
-  const [isDRBid, setIsDRBid] = useState<boolean>(true);
-  const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
+interface IDRData {
+  current_page: number;
+  data: IDR;
+  max_page: number;
+}
 
+const Status: React.FC = () => {
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
       sessionStorage.getItem('BEMS_USER') ||
       '{}',
   );
+  // data
+  const [listInfo, setListInfo] = useState<IListInfo[]>([]);
+  const [DRResult, setDRResult] = useState<IDR[]>([]);
+  const [DRData, setDRData] = useState<IDRData[]>([]);
+  const [trainInfo, setTrainInfo] = useState<ITrainInfo[]>([]);
+  const [nowIndex, setNowIndex] = useState<number>(-1);
+  const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
+  // user state
+  const [isGreen, setIsGreen] = useState<boolean>(user.role !== 'tpc');
+  const [isDR, setIsDR] = useState<boolean>(user.role === 'tpc');
+  const [isDRBid, setIsDRBid] = useState<boolean>(true);
+  const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(0);
+  const [pageSize, setPagesize] = useState<number>(15);
 
   const fetchMatchResult = async () => {
-    // GET to User Info API
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_ENDPOINT}/matchresult`,
       {
@@ -96,7 +113,6 @@ const Status: React.FC = () => {
       },
     );
     if (response.status === 200) {
-      // fetch success
       const data = await response.json();
       setListInfo(data);
       setTrainInfo(data);
@@ -105,11 +121,11 @@ const Status: React.FC = () => {
   };
 
   const fetchDR = async () => {
-    const day = dayjs().add(2, 'day');
-    const endTime = day.format('YYYY-MM-DD');
-    // GET to User Info API
+    let DRType = '';
+    if (user.role === 'aggregator')
+      DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_result?start_date=2021-01-01&end_date=${endTime}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -120,18 +136,27 @@ const Status: React.FC = () => {
       },
     );
     if (response.status === 200) {
-      // fetch success
       const data = await response.json();
-      setDRResult(data);
+      setDRData(data);
     }
   };
 
   useEffect(() => {
     (async () => {
-      await fetchMatchResult();
-      await fetchDR();
+      if (isGreen) await fetchMatchResult();
+      else if (isDR) await fetchDR();
     })();
-  }, []);
+  }, [isGreen, isDR, isDRBid, isDRAccept, pageSize, currentPage]);
+
+  useEffect(() => {
+    if (DRData.length > 0) {
+      const listDBData = [];
+      for (let i = 0; i < DRData.length; i += 1)
+        listDBData.push(DRData[i].data);
+      setDRResult(listDBData);
+      setMaxPage(DRData[0].max_page);
+    }
+  }, [DRData]);
 
   // add list data
   useEffect(() => {
@@ -139,40 +164,36 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         const APItime = dayjs(DRResult[i].start_time);
-        let name = '';
-        name =
-          user.role === 'aggregator'
-            ? DRResult[i].executor
-            : DRResult[i].acceptor;
         let { rate } = DRResult[i];
-        if (rate == null) rate = 0;
+        if (rate === null) rate = 0;
         const DBdata: IListInfo = {
-          bid_type: 'dr',
+          bid_type: DRResult[i].order_method,
           status: DRResult[i].status,
           date: APItime.format('YYYY-MM-DD'),
           time: `${APItime.format('HH:mm')}-${APItime.add(1, 'hour').format(
             'HH:mm',
           )}`,
           bids: {
-            price: Math.round(DRResult[i].price * DRResult[i].volume),
-            value: 0,
+            price: DRResult[i].price,
+            value: DRResult[i].volume,
           },
           counterpart: {
-            address: '',
-            name,
+            address: DRResult[i].counterpart_address,
+            name: DRResult[i].counterpart_name,
           },
           wins: {
             price: 0,
-            value: DRResult[i].volume,
+            value: 0,
           },
           transaction_hash: DRResult[i].blockchain_url,
           id: DRResult[i].uuid,
-          upload: '',
+          upload: DRResult[i].start_time,
           achievement: rate,
+          mode: DRResult[i].trading_mode,
         };
         listDBData.push(DBdata);
       }
-      setListInfo([...listInfo, ...listDBData]);
+      setListInfo(listDBData);
     }
   }, [DRResult]);
 
@@ -181,31 +202,26 @@ const Status: React.FC = () => {
     if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
-        let name = '';
-        name =
-          user.role === 'aggregator'
-            ? DRResult[i].executor
-            : DRResult[i].acceptor;
         const DBdata: ITrainInfo = {
           status: DRResult[i].status,
           bids: {
-            price: Math.round(DRResult[i].price * DRResult[i].volume),
-            value: 0,
+            price: DRResult[i].settlement,
+            value: DRResult[i].volume,
           },
           counterpart: {
-            address: '',
-            name,
+            address: DRResult[i].counterpart_address,
+            name: DRResult[i].counterpart_name,
           },
           wins: {
             price: 0,
-            value: DRResult[i].volume,
+            value: 0,
           },
           id: DRResult[i].uuid,
-          upload: '',
+          upload: DRResult[i].start_time,
         };
         listDBData.push(DBdata);
       }
-      setTrainInfo([...trainInfo, ...listDBData]);
+      setTrainInfo(listDBData);
     }
   }, [DRResult]);
 
@@ -215,14 +231,14 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         let { rate } = DRResult[i];
-        if (rate == null) rate = 0;
+        if (rate === null) rate = 0;
         const DBdata: IStatus = {
           status: DRResult[i].status,
           achievement: rate,
         };
         listDBData.push(DBdata);
       }
-      setStatusInfo([...statusInfo, ...listDBData]);
+      setStatusInfo(listDBData);
     }
   }, [DRResult]);
 
@@ -243,12 +259,24 @@ const Status: React.FC = () => {
         setIsDR={setIsDR}
         setIsDRBid={setIsDRBid}
         setIsDRAccept={setIsDRAccept}
+        setCurrentPage={setCurrentPage}
+        setNowIndex={setNowIndex}
       />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
         <Train input={trainInfo} index={nowIndex} />
       </div>
-      <List listInfo={listInfo} changeIndex={setNowIndex} isDR={isDR} />
+      <List
+        listInfo={listInfo}
+        setNowIndex={setNowIndex}
+        isDR={isDR}
+        setPagesize={setPagesize}
+        maxPage={maxPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageSize={pageSize}
+        nowIndex={nowIndex}
+      />
     </div>
   );
 };

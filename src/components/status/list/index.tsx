@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import PageButton from './pageButton';
@@ -25,23 +25,35 @@ interface IListInfo {
   id: string;
   upload: string;
   achievement: number;
+  mode: number;
 }
 
 interface IAListInfo {
   listInfo: IListInfo[];
-  changeIndex: (display: number) => void;
+  setNowIndex: (display: number) => void;
   isDR: boolean;
+  setPagesize: (display: number) => void;
+  setCurrentPage: (display: number) => void;
+  maxPage: number;
+  currentPage: number;
+  pageSize: number;
+  nowIndex: number;
 }
 
-const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
+const List: React.FC<IAListInfo> = ({
+  listInfo,
+  setNowIndex,
+  isDR,
+  setPagesize,
+  maxPage,
+  currentPage,
+  setCurrentPage,
+  pageSize,
+  nowIndex,
+}) => {
   const { t } = useTranslation();
 
   const [page, setPage] = useState<number>(1);
-  const [nowIndex, setNowIndex] = useState<number>(-1);
-
-  useEffect(() => {
-    changeIndex(nowIndex);
-  }, [nowIndex]);
 
   const listItem = listInfo.map((content, index) => {
     const info = (
@@ -65,6 +77,7 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
         winsPrice={content.wins.price}
         achievement={content.achievement}
         isDR={isDR}
+        mode={content.mode}
       />
     );
     if (page === 1) return info;
@@ -77,7 +90,8 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
       if (
         content.status === '未得標' ||
         content.status === '已得標' ||
-        content.status === '執行中'
+        content.status === '執行中' ||
+        content.status === '得標'
       )
         return info;
       return null;
@@ -92,6 +106,23 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
 
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setPage(parseInt(e.target.value, 10));
+
+  const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newPageSize = 10 + parseInt(e.target.value, 10) * 5;
+    if (currentPage * newPageSize > maxPage * pageSize)
+      setCurrentPage((maxPage * pageSize) / newPageSize);
+    setPagesize(newPageSize);
+  };
+
+  const changePageOnClick = (mode: number) => {
+    if (currentPage - 10 >= 1 && mode === 1) setCurrentPage(currentPage - 10);
+    else if (currentPage - 1 >= 1 && mode === 2)
+      setCurrentPage(currentPage - 1);
+    else if (currentPage + 1 <= maxPage && mode === 3)
+      setCurrentPage(currentPage + 1);
+    else if (currentPage + 10 <= maxPage && mode === 4)
+      setCurrentPage(currentPage + 10);
+  };
 
   return (
     <div className={classnames('status-list')}>
@@ -166,6 +197,53 @@ const List: React.FC<IAListInfo> = ({ listInfo, changeIndex, isDR }) => {
       </div>
       <div className={classnames('status-list-contentContainer')}>
         {listItem}
+        {isDR && (
+          <div className={classnames('status-list-nextPageContainer')}>
+            <select
+              id="page"
+              onChange={(e) => handleChangePageSize(e)}
+              className={classnames('status-list-rowSelector')}
+            >
+              <option selected value="1">
+                15 rows
+              </option>
+              <option value="2">20 rows</option>
+              <option value="3">25 rows</option>
+              <option value="4">30 rows</option>
+            </select>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(1)}
+            >
+              &Iota;&#60;
+            </button>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(2)}
+            >
+              &#60;
+            </button>
+            <div className={classnames('status-list-nextPageText')}>
+              {currentPage}/{maxPage}
+            </div>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(3)}
+            >
+              &#62;
+            </button>
+            <button
+              type="button"
+              className={classnames('status-list-nextPageButton')}
+              onClick={() => changePageOnClick(4)}
+            >
+              &#62;&Iota;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
