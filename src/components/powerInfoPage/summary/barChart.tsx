@@ -80,7 +80,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
       .attr('x', width * 0.193)
       .attr(
         'y',
-        apiData.PV < 0
+        apiData.PV >= 0
           ? height * 0.849 - Number(scale(maxValue))
           : height * 0.849 -
               Number(scale(maxValue)) -
@@ -96,7 +96,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
       .attr('x', width * 0.347)
       .attr(
         'y',
-        apiData.WT < 0
+        apiData.WT >= 0
           ? height * 0.849 - Number(scale(maxValue))
           : height * 0.849 -
               Number(scale(maxValue)) -
@@ -114,7 +114,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
       .attr('x', width * 0.502)
       .attr(
         'y',
-        apiData.ESS < 0
+        apiData.ESS >= 0
           ? height * 0.849 - Number(scale(maxValue))
           : height * 0.849 -
               Number(scale(maxValue)) -
@@ -130,7 +130,7 @@ const BarChart: React.FC<IProps> = ({ date, apiData }) => {
       .attr('x', width * 0.656)
       .attr(
         'y',
-        apiData.EV < 0
+        apiData.EV >= 0
           ? height * 0.849 - Number(scale(maxValue))
           : height * 0.849 -
               Number(scale(maxValue)) -
