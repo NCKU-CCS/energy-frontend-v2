@@ -61,26 +61,27 @@ const AddBid: React.FC = () => {
     }
   }, [date, interval, mode, volume, price]);
 
-  // determine price by mode
+  // determine price by date, mode, and interval
   useEffect(() => {
     switch (mode) {
       default: {
-        const hr = dayjs().get('hour');
-        const mth = dayjs().get('month');
+        const mth = dayjs(date || '').get('month');
         if (mth >= 5 && mth <= 8) {
           // summer
-          if (hr >= 23 || hr < 8) {
+          if (interval === '23:00 - 8:00') {
             setPrice(4.74);
-          } else if (hr < 18) {
+          } else if (interval === '8:00 - 18:00') {
             setPrice(7.36);
-          } else setPrice(9.66);
-        } else {
-          // not summer
-          // eslint-disable-next-line no-lonely-if
-          if (hr >= 17 && hr < 22) {
-            setPrice(5.71);
           } else {
+            setPrice(9.66);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
             setPrice(4.55);
+          } else {
+            setPrice(5.71);
           }
         }
         break;
@@ -90,28 +91,29 @@ const AddBid: React.FC = () => {
         break;
       }
       case 2: {
-        const hr = dayjs().get('hour');
-        const mth = dayjs().get('month');
+        const mth = dayjs(date || '').get('month');
         if (mth >= 5 && mth <= 8) {
           // summer
-          if (hr >= 23 || hr < 8) {
+          if (interval === '23:00 - 8:00') {
             setPrice(0.37);
-          } else if (hr < 18) {
+          } else if (interval === '8:00 - 18:00') {
             setPrice(2.99);
-          } else setPrice(5.29);
-        } else {
-          // not summer
-          // eslint-disable-next-line no-lonely-if
-          if (hr >= 17 && hr < 22) {
-            setPrice(1.34);
           } else {
+            setPrice(5.29);
+          }
+        } else {
+          // winter
+          // eslint-disable-next-line no-lonely-if
+          if (interval === '22:00 - 17:00') {
             setPrice(0.18);
+          } else {
+            setPrice(1.34);
           }
         }
         break;
       }
     }
-  }, [mode]);
+  }, [date, mode, interval]);
 
   // create options for interval
   const createIntervalOptions = intervalArr.map((str) => {
@@ -132,10 +134,35 @@ const AddBid: React.FC = () => {
   });
 
   // handle click submit
-  const handleSubmit = () => {
-    alert('success');
-    window.location.reload();
-  };
+  // const postDrBid = async () => {
+  //   // get user from local storage or session storage
+  //   const user = JSON.parse(
+  //     localStorage.getItem('BEMS_USER') ||
+  //       sessionStorage.getItem('BEMS_USER') ||
+  //       '{}',
+  //   );
+
+  //   // POST DR_bid
+  //   const response = await fetch(
+  //     `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid`,
+  //     {
+  //       method: 'POST',
+  //       mode: 'cors',
+  //       headers: new Headers({
+  //         Authorization: `Bearer ${user.bearer}`,
+  //         'Content-Type': 'application/json',
+  //       }),
+  //       body: JSON.stringify({
+  //         price,
+  //         volume,
+  //         settlement: (price || 0) * (volume || 0),
+  //         trading_mode: mode,
+  //         order_method: dataType,
+
+  //       });
+  //     }
+  //   );
+  // };
 
   return (
     <div className={classNames('drbid-submit-addbid-container-in')}>
@@ -225,7 +252,7 @@ const AddBid: React.FC = () => {
           type="button"
           className={classNames('drbid-submit-addbid-form-submit')}
           title="Submit"
-          onClick={() => handleSubmit()}
+          onClick={() => {}}
           disabled={submitDisabled}
         >
           {t('drbidpage.new')}
