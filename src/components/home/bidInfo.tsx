@@ -55,16 +55,8 @@ const BidInfo: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const allList = result;
-    for (let i = 0; i < allList.length; i += 1) {
-      if (
-        !(allList[i].status === '得標成功' || allList[i].status === '未得標')
-      ) {
-        allList.splice(i, 1);
-        i -= 1;
-      }
-    }
-    setList(allList);
+    const allList: IResult[] = JSON.parse(JSON.stringify(result)); // deep copy `result`
+    setList(allList.filter((r) => r.status === '已得標'));
   }, [result]);
 
   useEffect(() => {

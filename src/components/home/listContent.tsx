@@ -31,7 +31,7 @@ const ListContent: React.FC<IResult> = ({
   };
 
   useEffect(() => {
-    if (status === '得標成功') setSellState(t('indexpage.sellSuccess'));
+    if (status === '已得標') setSellState(t('indexpage.sellSuccess'));
     else if (status === '未得標') setSellState(t('indexpage.sellFail'));
   }, [status]);
 
