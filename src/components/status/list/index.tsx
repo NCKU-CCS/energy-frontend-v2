@@ -90,8 +90,7 @@ const List: React.FC<IAListInfo> = ({
       if (
         content.status === '未得標' ||
         content.status === '已得標' ||
-        content.status === '執行中' ||
-        content.status === '得標'
+        content.status === '執行中'
       )
         return info;
       return null;

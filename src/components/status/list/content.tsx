@@ -167,13 +167,6 @@ const Content: React.FC<IContent> = ({
       for (let i = 0; i < 6; i += 1)
         list.push(<div className={statusBoxWhite} />);
     }
-    if (status === '得標') {
-      list = [];
-      for (let i = 0; i < 3; i += 1)
-        list.push(<div className={statusBoxGreen} />);
-      for (let i = 0; i < 3; i += 1)
-        list.push(<div className={statusBoxGrey} />);
-    }
     return (
       <div className={classnames('status-list-content-statusBox-Container')}>
         {list}
@@ -189,7 +182,6 @@ const Content: React.FC<IContent> = ({
   else if (status === '執行中') i18nStatus = t('statuspage.executing');
   else if (status === '結算中') i18nStatus = t('statuspage.settling');
   else if (status === '已結算') i18nStatus = t('statuspage.end');
-  else if (status === '得標') i18nStatus = t('statuspage.DRwin');
 
   let href = 'https://ropsten.etherscan.io/tx/';
   if (hash !== null)
