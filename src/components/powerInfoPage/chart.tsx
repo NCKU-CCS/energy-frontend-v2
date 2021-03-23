@@ -1024,7 +1024,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].PV
+                    ].PV.toFixed(1)
                   : 0
               }`,
             )
@@ -1077,7 +1077,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].WT
+                    ].WT.toFixed(1)
                   : 0
               }`,
             )
@@ -1130,7 +1130,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].ESS
+                    ].ESS.toFixed(1)
                   : 0
               }`,
             )
@@ -1183,7 +1183,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].EV
+                    ].EV.toFixed(1)
                   : 0
               }`,
             )
@@ -1725,7 +1725,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].Consume
+                    ].Consume.toFixed(1)
                   : 0
               }`,
             )
@@ -1776,7 +1776,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                           ),
                         ),
                       )
-                    ].Generate
+                    ].Generate.toFixed(1)
                   : 0
               }`,
             )
@@ -1807,7 +1807,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
 
           tooltipDataDemand
             .text(
-              `${
+              `${(
                 (bisectDate(
                   apiDataArr,
                   timeFormat(
@@ -1850,7 +1850,7 @@ const Chart: React.FC<IProps> = ({ mode, date }) => {
                       )
                     ].Generate
                   : 0)
-              }`,
+              ).toFixed(1)}`,
             )
             .attr('text-anchor', 'end')
             .attr(
