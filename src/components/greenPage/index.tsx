@@ -5,6 +5,9 @@ import Submit from './submit';
 import Graph from './graph';
 
 const GreenPageContainer: React.FC = () => {
+  // mode -> buy or sell
+  const [type, setType] = useState('buy');
+
   // get user from local storage or session storage
   const user = JSON.parse(
     localStorage.getItem('BEMS_USER') ||
@@ -23,11 +26,11 @@ const GreenPageContainer: React.FC = () => {
           <Status userType={userType} />
         </div>
         <div className={classNames('green-left-bottom')}>
-          <Graph />
+          <Graph dataType={type} />
         </div>
       </div>
       <div className={classNames('green-right')}>
-        <Submit />
+        <Submit type={type} setType={setType} />
       </div>
     </div>
   );
