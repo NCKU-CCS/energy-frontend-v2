@@ -163,7 +163,8 @@ const Status: React.FC = () => {
     if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
-        const APItime = dayjs(DRResult[i].start_time);
+        const startTime = dayjs(DRResult[i].start_time);
+        const endTime = dayjs(DRResult[i].end_time);
         let rate = 0;
         if (DRResult[i].status === '已結算') rate = 1;
         let winsPrice = 0;
@@ -179,10 +180,8 @@ const Status: React.FC = () => {
         const DBdata: IListInfo = {
           bid_type: DRResult[i].order_method,
           status: DRResult[i].status,
-          date: APItime.format('YYYY-MM-DD'),
-          time: `${APItime.format('HH:mm')}-${APItime.add(1, 'hour').format(
-            'HH:mm',
-          )}`,
+          date: startTime.format('YYYY-MM-DD'),
+          time: `${startTime.format('HH:mm')}-${endTime.format('HH:mm')}`,
           bids: {
             price: DRResult[i].price,
             value: DRResult[i].volume,
