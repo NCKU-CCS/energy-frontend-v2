@@ -162,10 +162,16 @@ const Train: React.FC<IInput> = ({ input, index }) => {
             {t('statuspage.winsValue')}：{allInfo.winsValue}kWh
           </div>
           <div className={classnames('status-train-price')}>
-            {t('statuspage.bidsPrice')}：${allInfo.bidsPrice}
+            {t('statuspage.bidsPrice')}：$
+            {allInfo.bidsPrice !== '-----'
+              ? Math.round(parseFloat(allInfo.bidsPrice) * 100) / 100
+              : '-----'}
           </div>
           <div className={classnames('status-train-getPrice')}>
-            {t('statuspage.winsPrice')}：${allInfo.winsPrice}
+            {t('statuspage.winsPrice')}：$
+            {allInfo.winsPrice !== '-----'
+              ? Math.round(parseFloat(allInfo.winsPrice) * 100) / 100
+              : '-----'}
           </div>
         </div>
       </div>

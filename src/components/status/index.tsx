@@ -92,8 +92,8 @@ const Status: React.FC = () => {
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [statusInfo, setStatusInfo] = useState<IStatus[]>([]);
   // user state
-  const [isGreen, setIsGreen] = useState<boolean>(user.role !== 'tpc');
-  const [isDR, setIsDR] = useState<boolean>(user.role === 'tpc');
+  const [isGreen, setIsGreen] = useState<boolean>(true);
+  const [isDR, setIsDR] = useState<boolean>(false);
   const [isDRBid, setIsDRBid] = useState<boolean>(true);
   const [isDRAccept, setIsDRAccept] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -262,13 +262,7 @@ const Status: React.FC = () => {
   }, [DRResult]);
 
   return (
-    <div
-      className={
-        user.role === 'tpc'
-          ? classnames('status', 'status--tpc')
-          : classnames('status')
-      }
-    >
+    <div className={classnames('status')}>
       <Mode
         isDR={isDR}
         isGreen={isGreen}
