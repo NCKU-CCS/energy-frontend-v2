@@ -71,7 +71,7 @@ const Graph: React.FC<IProps> = ({ dataType }) => {
     (async () => {
       await fetchApiData();
     })();
-  }, []);
+  }, [dataType]);
 
   // get data to display on chart
   useEffect(() => {
