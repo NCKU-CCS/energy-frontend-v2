@@ -72,7 +72,13 @@ const BarChart: React.FC<IProps> = ({ dataType, data }) => {
     .axisBottom(scaleX)
     .ticks(prices.length)
     .tickPadding(5)
-    .tickFormat((i) => prices[i.valueOf() - 1].toString())
+    .tickFormat((i) => {
+      // console.log(i);
+      return Number.isInteger(i.valueOf())
+        ? prices[i.valueOf() - 1].toString()
+        : '';
+      // return `${i}`;
+    })
     .tickSize(0);
 
   // axis y
@@ -111,10 +117,10 @@ const BarChart: React.FC<IProps> = ({ dataType, data }) => {
   useEffect(() => {
     // set padding
     setPadding({
-      top: height * 0.15,
-      bottom: height * 0.15,
-      left: width * 0.15,
-      right: width * 0.15,
+      top: height * 0.2,
+      bottom: height * 0.1,
+      left: width * 0.2,
+      right: width * 0.2,
     });
 
     // set bar width
@@ -211,7 +217,7 @@ const BarChart: React.FC<IProps> = ({ dataType, data }) => {
       .append('text')
       .attr('text-anchor', 'middle')
       .attr('x', width / 2)
-      .attr('y', padding.top / 1.5)
+      .attr('y', padding.top / 2)
       .attr('fill', dataType === 'buy' ? '#D32F2F' : '#2E7E32')
       .attr('font-size', data.length !== 0 ? '2vh' : 0)
       .attr('font-weight', 'bold')
@@ -221,7 +227,7 @@ const BarChart: React.FC<IProps> = ({ dataType, data }) => {
     svg
       .append('text')
       .attr('text-anchor', 'start')
-      .attr('x', width - padding.right / 1.85)
+      .attr('x', width - padding.right / 2.5)
       .attr('y', height - padding.bottom / 1.5)
       .attr('fill', '#707070')
       .attr('font-size', data.length !== 0 ? '1.7vh' : 0)
@@ -232,8 +238,8 @@ const BarChart: React.FC<IProps> = ({ dataType, data }) => {
     svg
       .append('text')
       .attr('text-anchor', 'end')
-      .attr('x', padding.right / 1.5)
-      .attr('y', padding.bottom / 1.5)
+      .attr('x', padding.right / 2.5)
+      .attr('y', padding.bottom / 1)
       .attr('fill', '#707070')
       .attr('font-size', data.length !== 0 ? '1.7vh' : 0)
       .attr('font-weight', 'bold')
