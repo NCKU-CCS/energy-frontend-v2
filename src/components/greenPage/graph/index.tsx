@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import LineChart from './lineChart';
+import BarChart from './barChart';
 
 interface IData {
   bid_type: string;
@@ -22,23 +22,23 @@ interface IApiData {
   totalCount: number;
 }
 
-const Graph: React.FC = () => {
-  // api data of buy
-  const [apiDataBuy, setApiDataBuy] = useState<IApiData>({
+interface IProps {
+  dataType: string;
+}
+
+const Graph: React.FC<IProps> = ({ dataType }) => {
+  // api data
+  const [apiData, setApiData] = useState<IApiData>({
     data: [],
     page: 0,
     totalCount: 0,
   });
 
-  // api data of sell
-  const [apiDataSell, setApiDataSell] = useState<IApiData>({
-    data: [],
-    page: 0,
-    totalCount: 0,
-  });
+  // display data
+  const [displayData, setDisplayData] = useState<IData[]>([]);
 
   // fetch api data of buy
-  const fetchApiDataBuy = async () => {
+  const fetchApiData = async () => {
     // get bearer token
     const user = JSON.parse(
       localStorage.getItem('BEMS_USER') ||
@@ -47,7 +47,7 @@ const Graph: React.FC = () => {
     );
     // GET to bidsubmit buy  API
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=1000&page=1&bid_type=buy`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=1000&page=1&bid_type=${dataType}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -60,37 +60,7 @@ const Graph: React.FC = () => {
     if (response.status === 200) {
       // fetch success
       const tmp = await response.json();
-      setApiDataBuy(tmp);
-    } else {
-      // fetch failure
-      alert('failed');
-    }
-  };
-
-  // fetch api data of sell
-  const fetchApiDataSell = async () => {
-    // get bearer token
-    const user = JSON.parse(
-      localStorage.getItem('BEMS_USER') ||
-        sessionStorage.getItem('BEMS_USER') ||
-        '{}',
-    );
-    // GET to bidsubmit sell API
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/bidsubmit?per_page=1000&page=1&bid_type=sell`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        headers: new Headers({
-          Authorization: `Bearer ${user.bearer}`,
-          'Content-Type': 'application/json',
-        }),
-      },
-    );
-    if (response.status === 200) {
-      // fetch success
-      const tmp = await response.json();
-      setApiDataSell(tmp);
+      setApiData(tmp);
     } else {
       // fetch failure
       alert('failed');
@@ -99,24 +69,47 @@ const Graph: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      await fetchApiDataBuy();
-      await fetchApiDataSell();
+      await fetchApiData();
     })();
   }, []);
 
+  // get data to display on chart
+  useEffect(() => {
+    const tmpArr: IData[] = [];
+    const now = new Date();
+    const validTime = now.getHours() + 1 === 24 ? 0 : now.getHours() + 1;
+    const dateStr: string = `${now.getFullYear().toString()}/${(
+      now.getMonth() + 1
+    ).toString()}/${now.getDate().toString()}`;
+    apiData.data.map((d) => {
+      if (
+        new Date(d.date).getTime() === new Date(dateStr).getTime() &&
+        d.time === validTime &&
+        validTime !== 0
+      ) {
+        tmpArr.push(d);
+      }
+      return null;
+    });
+    setDisplayData(tmpArr);
+  }, [apiData]);
+
   return (
     <div className={classNames('green-graph-container')}>
-      <LineChart
-        dataBuy={apiDataBuy.data.sort((a, b) => {
-          if (a.volume > b.volume) return 1;
-          if (a.volume < b.volume) return -1;
-          return 0;
-        })}
-        dataSell={apiDataSell.data.sort((a, b) => {
-          if (a.volume > b.volume) return 1;
-          if (a.volume < b.volume) return -1;
-          return 0;
-        })}
+      <BarChart
+        dataType={dataType}
+        data={displayData
+          .map((d) => {
+            return {
+              price: d.price,
+              volume: d.volume,
+            };
+          })
+          .sort((a, b) => {
+            if (a.price > b.price) return 1;
+            if (a.price < b.price) return -1;
+            return 0;
+          })}
       />
     </div>
   );

@@ -24,10 +24,12 @@ interface IApiData {
   totalCount: number;
 }
 
-const Submit: React.FC = () => {
-  // mode -> buy or sell
-  const [type, setType] = useState('buy');
+interface IProps {
+  type: string;
+  setType(t: string): void;
+}
 
+const Submit: React.FC<IProps> = ({ type, setType }) => {
   // data per page
   const [perPage, setPerPage] = useState(5);
 
