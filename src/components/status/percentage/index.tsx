@@ -45,7 +45,7 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
         {t('statuspage.achievementRate')}
       </div>
       <div className={classnames('status-percentage-percentage')}>
-        {percent}%
+        {percent !== '—' ? Math.round(parseInt(percent, 10)) : '—'}%
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ const Dialog: React.FC<IDialog> = ({
           {t('statuspage.achievementRate')}
         </div>
         <div className={classnames('status-percentage-dialog-percentage')}>
-          {percent}%
+          {percent !== '—' ? parseInt(percent, 10) : '—'}%
         </div>
         <div className={classnames('status-percentage-dialog-idTitle')}>
           {t('statuspage.id')}：
@@ -88,10 +88,12 @@ const Dialog: React.FC<IDialog> = ({
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
             {t('statuspage.bidsPrice')}：
-            {isDR ? Math.round(bidsPrice * bidsValue * 1000) / 1000 : bidsPrice}
+            {isDR
+              ? Math.round(bidsPrice * bidsValue * 1000) / 1000
+              : Math.round(bidsPrice * 100) / 100}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
-            {t('statuspage.winsPrice')}：{winsPrice}
+            {t('statuspage.winsPrice')}：{Math.round(winsPrice * 100) / 100}
           </div>
         </div>
       </div>

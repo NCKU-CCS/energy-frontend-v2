@@ -63,43 +63,35 @@ const Mode: React.FC<IButtonStatus> = ({
     setNowIndex(-1);
   };
 
+  let DRText = '';
+  if (user.role === 'aggregator') DRText = t('statuspage.dr');
+  else if (user.role === 'tpc') DRText = t('statuspage.drAccept');
+  else DRText = t('statuspage.drBid');
+
   return (
     <div className={classnames('status-changeMode')}>
-      {user.role === 'tpc' && (
-        <div className={classnames('status-changeMode-taipower')}>
-          {t('statuspage.drAccept')}
-        </div>
-      )}
-      {user.role !== 'tpc' && (
-        <button
-          type="button"
-          className={classnames(
-            'status-changeMode-buttonGreen',
-            isGreen
-              ? 'status-changeMode-button--click'
-              : 'status-changeMode-button',
-          )}
-          onClick={GreenOnClick}
-        >
-          {t('statuspage.green')}
-        </button>
-      )}
-      {user.role !== 'tpc' && (
-        <button
-          type="button"
-          className={classnames(
-            'status-changeMode-buttonDR',
-            isDR
-              ? 'status-changeMode-button--click'
-              : 'status-changeMode-button',
-          )}
-          onClick={DROnClick}
-        >
-          {user.role === 'aggregator'
-            ? t('statuspage.dr')
-            : t('statuspage.drBid')}
-        </button>
-      )}
+      <button
+        type="button"
+        className={classnames(
+          'status-changeMode-buttonGreen',
+          isGreen
+            ? 'status-changeMode-button--click'
+            : 'status-changeMode-button',
+        )}
+        onClick={GreenOnClick}
+      >
+        {t('statuspage.green')}
+      </button>
+      <button
+        type="button"
+        className={classnames(
+          'status-changeMode-buttonDR',
+          isDR ? 'status-changeMode-button--click' : 'status-changeMode-button',
+        )}
+        onClick={DROnClick}
+      >
+        {DRText}
+      </button>
       {user.role === 'aggregator' && isDR && (
         <button
           type="button"
