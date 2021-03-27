@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
@@ -8,7 +7,6 @@ import classNames from 'classnames';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import dayjs from 'dayjs';
-import { add } from 'date-fns';
 
 interface IProps {
   dataType: string;
@@ -124,20 +122,12 @@ const AddBid: React.FC<IProps> = ({ dataType }) => {
 
   // create options for interval
   const createIntervalOptions = intervalArr.map((str) => {
-    return (
-      <option dir="rtl" value={str}>
-        {str}
-      </option>
-    );
+    return <option value={str}>{str}</option>;
   });
 
   // create options for mode
   const createModeOptions = [1, 2, 3, 4].map((i) => {
-    return (
-      <option dir="rtl" value={i}>
-        {i}
-      </option>
-    );
+    return <option value={i}>{i}</option>;
   });
 
   // handle click submit
@@ -197,7 +187,7 @@ const AddBid: React.FC<IProps> = ({ dataType }) => {
             .set('hour', startHr)
             .format('YYYY-MM-DD HH:00:00'),
           end_time:
-            startHr > endHr
+            startHr < endHr
               ? dayjs(date || '')
                   .set('hour', endHr)
                   .format('YYYY-MM-DD HH:00:00')
@@ -255,7 +245,7 @@ const AddBid: React.FC<IProps> = ({ dataType }) => {
           )}
           onChange={(e) => setInterval(e.target.value)}
         >
-          <option dir="rtl" value="" selected>
+          <option value="" selected>
             {t('drbidpage.interval')}
           </option>
           {createIntervalOptions}
