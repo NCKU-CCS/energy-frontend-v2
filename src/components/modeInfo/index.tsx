@@ -7,11 +7,10 @@ const ModeInfo: React.FC = () => {
 
   return (
     <div className={classNames('modeinfo-container')}>
-      {!open ? (
-        <button type="button" onClick={() => setOpen(true)}>
-          模式說明
-        </button>
-      ) : (
+      <button type="button" onClick={() => setOpen(true)}>
+        模式說明
+      </button>
+      {open && (
         <div className={classNames('modeinfo-modal-canvas')}>
           <div className={classNames('modeinfo-modal-container')}>
             <div className={classNames('modeinfo-modal-header')}>
