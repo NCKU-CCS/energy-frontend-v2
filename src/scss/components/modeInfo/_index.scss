@@ -1,0 +1,10 @@
+.modeinfo-container {
+  display: none;
+}
+
+// 1280 <= size
+@media all and (min-width: 1280px) {
+  .modeinfo-container {
+    display: block;
+  }
+}
