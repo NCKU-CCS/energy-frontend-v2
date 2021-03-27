@@ -79,19 +79,22 @@ const Dialog: React.FC<IDialog> = ({
         </div>
         <div className={classnames('status-percentage-dialog-value')}>
           <div className={classnames('status-percentage-dialog-bidsValue')}>
-            {t('statuspage.bidsValue')}：{bidsValue}
+            {t('statuspage.bidsValue')}：{bidsValue}度
           </div>
           <div className={classnames('status-percentage-dialog-winsValue')}>
-            {t('statuspage.winsValue')}：{winsValue}
+            {t('statuspage.winsValue')}：{winsValue}度
           </div>
         </div>
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
             {t('statuspage.bidsPrice')}：
-            {isDR ? Math.round(bidsPrice * bidsValue * 1000) / 1000 : bidsPrice}
+            {isDR
+              ? (bidsPrice * bidsValue).toFixed(2)
+              : (winsPrice * winsValue).toFixed(1)}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
-            {t('statuspage.winsPrice')}：{winsPrice}
+            {t('statuspage.winsPrice')}：
+            {(winsPrice * winsValue * achievement).toFixed(1)}
           </div>
         </div>
       </div>

@@ -65,7 +65,6 @@ const List: React.FC<IAListInfo> = ({
         status={content.status}
         date={content.date}
         time={content.time}
-        price={content.bids.price}
         hash={content.transaction_hash}
         id={content.id}
         upload={content.upload}

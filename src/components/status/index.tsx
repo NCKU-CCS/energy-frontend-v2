@@ -46,6 +46,7 @@ interface ITrainInfo {
     price: number;
     value: number;
   };
+  achievement: number;
 }
 
 interface IStatus {
@@ -125,7 +126,7 @@ const Status: React.FC = () => {
     if (user.role === 'aggregator')
       DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}&status="競標"`,
       {
         method: 'GET',
         mode: 'cors',
@@ -237,6 +238,7 @@ const Status: React.FC = () => {
           },
           id: DRResult[i].uuid,
           upload: DRResult[i].start_time,
+          achievement: DRResult[i].rate,
         };
         listDBData.push(DBdata);
       }
