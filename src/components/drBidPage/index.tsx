@@ -137,7 +137,7 @@ const DrBidPageContainer: React.FC = () => {
                     d.status !== '未得標' &&
                     d.mode === i,
                 )
-                .map((d) => d.price)
+                .map((d) => d.volume)
                 .reduce((a, b) => a + b, 0);
             })}
           />
