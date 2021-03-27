@@ -26,8 +26,7 @@ const ModeInfo: React.FC = () => {
               </p>
               <p>模式三：PV &rarr; 儲能系統 &rarr; 需量反應（即時電價）</p>
               <p>
-                模式一：模式四：PV(非FIT) &rarr; VPP 平台 &rarr;
-                需量反應（即時電價）
+                模式四：PV(非FIT) &rarr; VPP 平台 &rarr; 需量反應（即時電價）
               </p>
             </div>
           </div>
