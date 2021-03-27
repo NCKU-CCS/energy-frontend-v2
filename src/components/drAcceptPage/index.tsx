@@ -138,7 +138,7 @@ const DrAcceptPageContainer: React.FC = () => {
             values={[1, 2, 3, 4].map((i) => {
               return apiData
                 .filter((d) => d.status !== '未得標' && d.mode === i)
-                .map((d) => d.price)
+                .map((d) => d.volume)
                 .reduce((a, b) => a + b, 0);
             })}
           />
