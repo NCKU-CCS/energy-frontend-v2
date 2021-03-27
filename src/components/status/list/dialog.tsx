@@ -36,7 +36,7 @@ const Dialog: React.FC<IDialog> = ({
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
   useEffect(() => {
-    setPercent(achievement === null ? '—' : (achievement * 100).toString());
+    setPercent(achievement === null ? '—' : (achievement * 100).toFixed());
   }, [achievement]);
   useEffect(() => {
     const uploadTime = dayjs(upload);
@@ -82,19 +82,19 @@ const Dialog: React.FC<IDialog> = ({
             {t('statuspage.bidsValue')}：{bidsValue}度
           </div>
           <div className={classnames('status-percentage-dialog-winsValue')}>
-            {t('statuspage.winsValue')}：{winsValue}度
+            {t('statuspage.winsValue')}：{winsValue ? `${winsValue}度` : '---'}
           </div>
         </div>
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
             {t('statuspage.bidsPrice')}：
-            {isDR
-              ? (bidsPrice * bidsValue).toFixed(2)
-              : (winsPrice * winsValue).toFixed(1)}
+            {isDR ? bidsPrice.toFixed(2) : (winsPrice * winsValue).toFixed(2)}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
             {t('statuspage.winsPrice')}：
-            {(winsPrice * winsValue * achievement).toFixed(1)}
+            {isDR
+              ? (bidsPrice * achievement).toFixed(2)
+              : (winsPrice * winsValue * achievement).toFixed(2)}
           </div>
         </div>
       </div>

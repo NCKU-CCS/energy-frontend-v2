@@ -38,9 +38,10 @@ interface IInfo {
 interface IInput {
   input: ITrainInfo[];
   index: number;
+  isDR: boolean;
 }
 
-const Train: React.FC<IInput> = ({ input, index }) => {
+const Train: React.FC<IInput> = ({ input, index, isDR }) => {
   const { t } = useTranslation();
 
   const Chain = () => <div className={classnames('status-train-chain')} />;
@@ -91,9 +92,9 @@ const Train: React.FC<IInput> = ({ input, index }) => {
           input[index].status === '結算中' ||
           input[index].status === '已結算')
       )
-        dataBidsPrice = (input[index].wins.price * input[index].wins.value)
-          .toFixed(1)
-          .toString();
+        dataBidsPrice = isDR
+          ? input[index].wins.price.toFixed(2)
+          : (input[index].wins.price * input[index].wins.value).toFixed(2);
       if (
         input[index].wins.value &&
         (input[index].status === '已得標' ||
@@ -103,13 +104,12 @@ const Train: React.FC<IInput> = ({ input, index }) => {
       )
         dataWinsValue = `${input[index].wins.value.toString()}度`;
       if (input[index].wins.price && input[index].status === '已結算')
-        dataWinsPrice = (
-          input[index].wins.price *
-          input[index].wins.value *
-          input[index].achievement
-        )
-          .toFixed(1)
-          .toString();
+        dataWinsPrice = (isDR
+          ? input[index].wins.price * input[index].achievement
+          : input[index].wins.price *
+            input[index].wins.value *
+            input[index].achievement
+        ).toFixed(2);
       setAllInfo({
         bidsPrice: dataBidsPrice,
         bidsValue: dataBidsValue,

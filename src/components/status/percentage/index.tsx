@@ -26,7 +26,7 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
         setPercent(
           input[nowIndex].achievement === null
             ? '—'
-            : (input[nowIndex].achievement * 100).toString(),
+            : (input[nowIndex].achievement * 100).toFixed(),
         );
       } else {
         setImgSrc(`${process.env.PUBLIC_URL}/status/box_grey.png`);
