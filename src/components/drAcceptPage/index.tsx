@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
+import ModeInfo from '../modeInfo';
 
 interface IData {
   uuid: string;
@@ -114,6 +115,7 @@ const DrAcceptPageContainer: React.FC = () => {
               autoOk
             />
           </MuiPickersUtilsProvider>
+          <ModeInfo />
         </div>
       </div>
       <div className={classNames('draccept-left')}>
