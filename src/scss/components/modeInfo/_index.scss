@@ -2,7 +2,15 @@
   display: none;
 
   > button {
-    border: red solid 1px;
+    cursor: pointer;
+    justify-self: flex-end;
+    color: white;
+    background-color: #FFA200;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    font-size: 0.9rem;
+    line-height: 1.7rem;
   }
 }
 
@@ -18,7 +26,7 @@
 
 .modeinfo-modal-container {
   // top right bottom left
-  margin: 10% auto 0% auto;
+  margin: 15% auto 0% auto;
   height: 40%;
   width: 40%;
   background-color: white;
@@ -33,16 +41,31 @@
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  position: relative;
   background-color: #FFA200;
 
   > h5 {
-
+    color: white;
   }
 
   > button {
+    cursor: pointer;
+    position: absolute;
+    top: 15%;
+    right: 10px;
+    height: 70%;
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
 
+    &:hover {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -57,11 +80,6 @@
   align-items: flex-start;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-
-  > p {
-    // width: 100%;
-    // height: 25%;
-  }
 }
 
 // 1280 <= size
