@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-implied-eval */
 /* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
@@ -122,20 +121,12 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
 
   // create options for interval
   const createIntervalOptions = intervalArr.map((str) => {
-    return (
-      <option dir="rtl" value={str}>
-        {str}
-      </option>
-    );
+    return <option value={str}>{str}</option>;
   });
 
   // create options for mode
   const createModeOptions = [1, 2, 3, 4].map((i) => {
-    return (
-      <option dir="rtl" value={i}>
-        {i}
-      </option>
-    );
+    return <option value={i}>{i}</option>;
   });
 
   // handle click submit
@@ -188,7 +179,7 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
             .set('hour', startHr)
             .format('YYYY-MM-DD HH:00:00'),
           end_time:
-            startHr > endHr
+            startHr < endHr
               ? dayjs(date || '')
                   .set('hour', endHr)
                   .format('YYYY-MM-DD HH:00:00')
@@ -366,7 +357,7 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
                     )}
                     onChange={(e) => setMode(parseInt(e.target.value, 10))}
                   >
-                    <option dir="rtl" value="0" selected={reset}>
+                    <option value="0" selected={reset}>
                       {}
                     </option>
                     {createModeOptions}

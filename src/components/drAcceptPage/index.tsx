@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
+import ModeInfo from '../modeInfo';
 
 interface IData {
   uuid: string;
@@ -114,6 +115,7 @@ const DrAcceptPageContainer: React.FC = () => {
               autoOk
             />
           </MuiPickersUtilsProvider>
+          <ModeInfo />
         </div>
       </div>
       <div className={classNames('draccept-left')}>
@@ -136,7 +138,7 @@ const DrAcceptPageContainer: React.FC = () => {
             values={[1, 2, 3, 4].map((i) => {
               return apiData
                 .filter((d) => d.status !== '未得標' && d.mode === i)
-                .map((d) => d.price)
+                .map((d) => d.volume)
                 .reduce((a, b) => a + b, 0);
             })}
           />

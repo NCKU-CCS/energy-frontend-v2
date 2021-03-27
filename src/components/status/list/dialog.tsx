@@ -62,7 +62,7 @@ const Dialog: React.FC<IDialog> = ({
           {t('statuspage.achievementRate')}
         </div>
         <div className={classnames('status-percentage-dialog-percentage')}>
-          {percent}%
+          {percent !== '—' ? parseInt(percent, 10) : '—'}%
         </div>
         <div className={classnames('status-percentage-dialog-idTitle')}>
           {t('statuspage.id')}：

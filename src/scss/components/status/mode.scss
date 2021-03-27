@@ -5,10 +5,6 @@
 	position: absolute;
 }
 
-.status-changeMode-taipower{
-  color: #707070;
-}
-
 .status-changeMode-button{
   cursor: pointer;
   border: #d8d8d8 solid 0.5px;
@@ -59,9 +55,6 @@
     font-size: 1.1rem;
     margin-top: -7px;
   }
-  .status-changeMode-taipower{
-    font-size: 1.3rem;
-  }
 }
 
 @media all and (min-width: 1450px) and (max-width: 1600px){
@@ -76,9 +69,6 @@
   .status-changeMode-button--click{
     font-size: 1rem;
     margin-top: -6px;
-  }
-  .status-changeMode-taipower{
-    font-size: 1.3rem;
   }
 }
 
@@ -95,9 +85,6 @@
     font-size: 1rem;
     margin-top: -6px;
   }
-  .status-changeMode-taipower{
-    font-size: 1.2rem;
-  }
 }
 
 @media all and (min-width: 720px) and (max-width: 1280px){
@@ -112,9 +99,6 @@
   .status-changeMode-button--click{
     font-size: 0.9rem;
     margin-top: -6px;
-  }
-  .status-changeMode-taipower{
-    font-size: 1rem;
   }
 }
 
@@ -131,9 +115,6 @@
     font-size: 0.65rem;
     margin-top: -7px;
   }
-  .status-changeMode-taipower{
-    font-size: 0.7rem;
-  }
 }
 
 @media all and (min-width: 320px) and (max-width: 440px){
@@ -149,9 +130,6 @@
     font-size: 0.47rem;
     margin-top: -5px;
   }
-  .status-changeMode-taipower{
-    font-size: 0.65rem;
-  }
 }
 
 @media all and (max-width: 320px){
@@ -166,11 +144,6 @@
   .status-changeMode-button--click{
     font-size: 0.55rem;
     margin-top: -7px;
-  }
-  .status-changeMode-taipower{
-    font-size: 0.6rem;
-    margin-top: -5px;
-    margin-left: 73px;
   }
   .status-changeMode-buttonDR{
     margin-right: 0.2rem;
