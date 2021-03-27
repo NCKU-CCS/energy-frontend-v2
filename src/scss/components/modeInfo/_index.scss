@@ -1,5 +1,67 @@
 .modeinfo-container {
   display: none;
+
+  > button {
+    border: red solid 1px;
+  }
+}
+
+.modeinfo-modal-canvas {
+  z-index: 1;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4)
+}
+
+.modeinfo-modal-container {
+  // top right bottom left
+  margin: 10% auto 0% auto;
+  height: 40%;
+  width: 40%;
+  background-color: white;
+  opacity: 1;
+  color: #707070;
+  border-radius: 5px;
+}
+
+.modeinfo-modal-header {
+  width: 100%;
+  height: 15%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #FFA200;
+
+  > h5 {
+
+  }
+
+  > button {
+
+  }
+}
+
+.modeinfo-modal-content {
+  width: 100%;
+  height: 85%;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  > p {
+    // width: 100%;
+    // height: 25%;
+  }
 }
 
 // 1280 <= size

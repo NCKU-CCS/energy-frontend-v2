@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import Status from './status';
 import Submit from './submit';
 import Graph from './graph';
+import ModeInfo from '../modeInfo';
 
 interface IData {
   uuid: string;
@@ -108,7 +109,9 @@ const DrBidPageContainer: React.FC = () => {
             />
           </MuiPickersUtilsProvider>
         </div>
+        <ModeInfo />
       </div>
+
       <div className={classNames('drbid-left')}>
         <div className={classNames('drbid-left-top')}>
           <Status
