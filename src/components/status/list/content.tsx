@@ -204,7 +204,7 @@ const Content: React.FC<IContent> = ({
       <div className={classnames('status-list-content-date')}>{date}</div>
       <div className={classnames('status-list-content-time')}>{time}</div>
       <div className={classnames('status-list-content-price')}>
-        ${winsPrice}/kWh
+        ${winsPrice}/度
       </div>
       <a
         className={classnames('status-list-content-URL')}
