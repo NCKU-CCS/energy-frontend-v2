@@ -100,6 +100,7 @@ const Status: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(0);
   const [pageSize, setPagesize] = useState<number>(15);
+  const [page, setPage] = useState<number>(1);
 
   const fetchMatchResult = async () => {
     const response = await fetch(
@@ -125,8 +126,13 @@ const Status: React.FC = () => {
     let DRType = '';
     if (user.role === 'aggregator')
       DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
+    let status = '';
+    if (page === 1) status = '';
+    else if (page === 2) status = '&status=競標';
+    else if (page === 3) status = '&status=執行中';
+    else if (page === 4) status = '&status=結算';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}&status="競標"`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort=DESC${DRType}${status}`,
       {
         method: 'GET',
         mode: 'cors',
@@ -147,7 +153,7 @@ const Status: React.FC = () => {
       if (isGreen) await fetchMatchResult();
       else if (isDR) await fetchDR();
     })();
-  }, [isGreen, isDR, isDRBid, isDRAccept, pageSize, currentPage]);
+  }, [isGreen, isDR, isDRBid, isDRAccept, pageSize, currentPage, page]);
 
   useEffect(() => {
     if (DRData.length > 0) {
@@ -279,6 +285,8 @@ const Status: React.FC = () => {
         setCurrentPage={setCurrentPage}
         pageSize={pageSize}
         nowIndex={nowIndex}
+        page={page}
+        setPage={setPage}
       />
     </div>
   );

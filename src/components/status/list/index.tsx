@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import PageButton from './pageButton';
@@ -38,6 +38,8 @@ interface IAListInfo {
   currentPage: number;
   pageSize: number;
   nowIndex: number;
+  page: number;
+  setPage: (display: number) => void;
 }
 
 const List: React.FC<IAListInfo> = ({
@@ -50,10 +52,10 @@ const List: React.FC<IAListInfo> = ({
   setCurrentPage,
   pageSize,
   nowIndex,
+  page,
+  setPage,
 }) => {
   const { t } = useTranslation();
-
-  const [page, setPage] = useState<number>(1);
 
   const listItem = listInfo.map((content, index) => {
     const info = (
@@ -79,6 +81,7 @@ const List: React.FC<IAListInfo> = ({
         mode={content.mode}
       />
     );
+    if (isDR) return info;
     if (page === 1) return info;
     if (page === 2) {
       if (content.status === '投標中' || content.status === '已投標')
@@ -108,7 +111,7 @@ const List: React.FC<IAListInfo> = ({
   const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newPageSize = 10 + parseInt(e.target.value, 10) * 5;
     if (currentPage * newPageSize > maxPage * pageSize)
-      setCurrentPage((maxPage * pageSize) / newPageSize);
+      setCurrentPage(Math.floor((maxPage * pageSize) / newPageSize));
     setPagesize(newPageSize);
   };
 
@@ -142,24 +145,28 @@ const List: React.FC<IAListInfo> = ({
           pageIndex={1}
           setPage={setPage}
           isSelected={page === 1}
+          setCurrentPage={setCurrentPage}
         />
         <PageButton
           text="statuspage.bid"
           pageIndex={2}
           setPage={setPage}
           isSelected={page === 2}
+          setCurrentPage={setCurrentPage}
         />
         <PageButton
           text="statuspage.handle"
           pageIndex={3}
           setPage={setPage}
           isSelected={page === 3}
+          setCurrentPage={setCurrentPage}
         />
         <PageButton
           text="statuspage.settle"
           pageIndex={4}
           setPage={setPage}
           isSelected={page === 4}
+          setCurrentPage={setCurrentPage}
         />
       </div>
       <div className={classnames('status-list-titleContainer')}>
