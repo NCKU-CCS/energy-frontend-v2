@@ -20,6 +20,7 @@ interface ITrainInfo {
     price: number;
     value: number;
   };
+  achievement: number;
 }
 
 interface IInfo {
@@ -37,9 +38,10 @@ interface IInfo {
 interface IInput {
   input: ITrainInfo[];
   index: number;
+  isDR: boolean;
 }
 
-const Train: React.FC<IInput> = ({ input, index }) => {
+const Train: React.FC<IInput> = ({ input, index, isDR }) => {
   const { t } = useTranslation();
 
   const Chain = () => <div className={classnames('status-train-chain')} />;
@@ -82,9 +84,17 @@ const Train: React.FC<IInput> = ({ input, index }) => {
       if (input[index].counterpart.name)
         dataCounterpartName = input[index].counterpart.name.toString();
       if (input[index].bids.value)
-        dataBidsValue = input[index].bids.value.toString();
-      if (input[index].bids.price)
-        dataBidsPrice = input[index].bids.price.toString();
+        dataBidsValue = `${input[index].bids.value.toString()}度`;
+      if (
+        input[index].bids.price &&
+        (input[index].status === '已得標' ||
+          input[index].status === '執行中' ||
+          input[index].status === '結算中' ||
+          input[index].status === '已結算')
+      )
+        dataBidsPrice = isDR
+          ? input[index].wins.price.toFixed(2)
+          : (input[index].wins.price * input[index].wins.value).toFixed(2);
       if (
         input[index].wins.value &&
         (input[index].status === '已得標' ||
@@ -92,9 +102,14 @@ const Train: React.FC<IInput> = ({ input, index }) => {
           input[index].status === '結算中' ||
           input[index].status === '已結算')
       )
-        dataWinsValue = input[index].wins.value.toString();
+        dataWinsValue = `${input[index].wins.value.toString()}度`;
       if (input[index].wins.price && input[index].status === '已結算')
-        dataWinsPrice = input[index].wins.price.toString();
+        dataWinsPrice = (isDR
+          ? input[index].wins.price * input[index].achievement
+          : input[index].wins.price *
+            input[index].wins.value *
+            input[index].achievement
+        ).toFixed(2);
       setAllInfo({
         bidsPrice: dataBidsPrice,
         bidsValue: dataBidsValue,
@@ -156,10 +171,10 @@ const Train: React.FC<IInput> = ({ input, index }) => {
         </div>
         <div className={classnames('status-train-infoBox')}>
           <div className={classnames('status-train-number')}>
-            {t('statuspage.bidsValue')}：{allInfo.bidsValue}kWh
+            {t('statuspage.bidsValue')}：{allInfo.bidsValue}
           </div>
           <div className={classnames('status-train-getNumber')}>
-            {t('statuspage.winsValue')}：{allInfo.winsValue}kWh
+            {t('statuspage.winsValue')}：{allInfo.winsValue}
           </div>
           <div className={classnames('status-train-price')}>
             {t('statuspage.bidsPrice')}：$

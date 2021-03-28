@@ -11,7 +11,6 @@ interface IContent {
   status: string;
   date: string;
   time: string;
-  price: number;
   hash: string;
   id: string;
   upload: string;
@@ -34,7 +33,6 @@ const Content: React.FC<IContent> = ({
   status,
   date,
   time,
-  price,
   hash,
   id,
   upload,
@@ -206,7 +204,7 @@ const Content: React.FC<IContent> = ({
       <div className={classnames('status-list-content-date')}>{date}</div>
       <div className={classnames('status-list-content-time')}>{time}</div>
       <div className={classnames('status-list-content-price')}>
-        ${Math.round(price * 10) / 10}/kWh
+        ${winsPrice}/度
       </div>
       <a
         className={classnames('status-list-content-URL')}

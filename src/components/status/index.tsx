@@ -46,6 +46,7 @@ interface ITrainInfo {
     price: number;
     value: number;
   };
+  achievement: number;
 }
 
 interface IStatus {
@@ -125,7 +126,7 @@ const Status: React.FC = () => {
     if (user.role === 'aggregator')
       DRType = isDRBid ? '&acceptor_role=tpc' : '&acceptor_role=aggregator';
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}`,
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?per_page=${pageSize}&page=${currentPage}&sort="DESC"${DRType}&status="競標"`,
       {
         method: 'GET',
         mode: 'cors',
@@ -166,9 +167,7 @@ const Status: React.FC = () => {
         const startTime = dayjs(DRResult[i].start_time);
         const endTime = dayjs(DRResult[i].end_time);
         let rate = 0;
-        if (DRResult[i].status === '已結算') rate = 1;
-        let winsPrice = 0;
-        if (DRResult[i].status === '已結算') winsPrice = DRResult[i].settlement;
+        if (DRResult[i].status === '已結算') rate = DRResult[i].rate / 100;
         let winsValue = 0;
         if (
           DRResult[i].status === '已結算' ||
@@ -183,7 +182,7 @@ const Status: React.FC = () => {
           date: startTime.format('YYYY-MM-DD'),
           time: `${startTime.format('HH:mm')}-${endTime.format('HH:mm')}`,
           bids: {
-            price: DRResult[i].price,
+            price: DRResult[i].settlement,
             value: DRResult[i].volume,
           },
           counterpart: {
@@ -191,7 +190,7 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: winsPrice,
+            price: DRResult[i].price,
             value: winsValue,
           },
           transaction_hash: DRResult[i].blockchain_url,
@@ -211,16 +210,6 @@ const Status: React.FC = () => {
     if (DRResult.length > 0) {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
-        let winsPrice = 0;
-        if (DRResult[i].status === '已結算') winsPrice = DRResult[i].settlement;
-        let winsValue = 0;
-        if (
-          DRResult[i].status === '已結算' ||
-          DRResult[i].status === '結算中' ||
-          DRResult[i].status === '執行中' ||
-          DRResult[i].status === '已得標'
-        )
-          winsValue = DRResult[i].volume;
         const DBdata: ITrainInfo = {
           status: DRResult[i].status,
           bids: {
@@ -232,11 +221,12 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: winsPrice,
-            value: winsValue,
+            price: DRResult[i].settlement,
+            value: DRResult[i].volume,
           },
           id: DRResult[i].uuid,
           upload: DRResult[i].start_time,
+          achievement: DRResult[i].rate / 100,
         };
         listDBData.push(DBdata);
       }
@@ -250,7 +240,7 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         let rate = 0;
-        if (DRResult[i].status === '已結算') rate = 1;
+        if (DRResult[i].status === '已結算') rate = DRResult[i].rate / 100.0;
         const DBdata: IStatus = {
           status: DRResult[i].status,
           achievement: rate,
@@ -277,7 +267,7 @@ const Status: React.FC = () => {
       />
       <div className={classnames('status-upContainer')}>
         <Percentage input={statusInfo} nowIndex={nowIndex} />
-        <Train input={trainInfo} index={nowIndex} />
+        <Train input={trainInfo} index={nowIndex} isDR={isDR} />
       </div>
       <List
         listInfo={listInfo}

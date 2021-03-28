@@ -36,7 +36,7 @@ const Dialog: React.FC<IDialog> = ({
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
   useEffect(() => {
-    setPercent(achievement === null ? '—' : (achievement * 100).toString());
+    setPercent(achievement === null ? '—' : (achievement * 100).toFixed());
   }, [achievement]);
   useEffect(() => {
     const uploadTime = dayjs(upload);
@@ -79,21 +79,22 @@ const Dialog: React.FC<IDialog> = ({
         </div>
         <div className={classnames('status-percentage-dialog-value')}>
           <div className={classnames('status-percentage-dialog-bidsValue')}>
-            {t('statuspage.bidsValue')}：{bidsValue}
+            {t('statuspage.bidsValue')}：{bidsValue}度
           </div>
           <div className={classnames('status-percentage-dialog-winsValue')}>
-            {t('statuspage.winsValue')}：{winsValue}
+            {t('statuspage.winsValue')}：{winsValue ? `${winsValue}度` : '---'}
           </div>
         </div>
         <div className={classnames('status-percentage-dialog-price')}>
           <div className={classnames('status-percentage-dialog-bidsPrice')}>
             {t('statuspage.bidsPrice')}：
-            {isDR
-              ? Math.round(bidsPrice * bidsValue * 1000) / 1000
-              : Math.round(bidsPrice * 100) / 100}
+            {isDR ? bidsPrice.toFixed(2) : (winsPrice * winsValue).toFixed(2)}
           </div>
           <div className={classnames('status-percentage-dialog-winsPrice')}>
-            {t('statuspage.winsPrice')}：{Math.round(winsPrice * 100) / 100}
+            {t('statuspage.winsPrice')}：
+            {isDR
+              ? (bidsPrice * achievement).toFixed(2)
+              : (winsPrice * winsValue * achievement).toFixed(2)}
           </div>
         </div>
       </div>
