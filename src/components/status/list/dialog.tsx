@@ -19,6 +19,7 @@ interface IDialog {
 }
 
 const Dialog: React.FC<IDialog> = ({
+  status,
   id,
   upload,
   name,
@@ -35,6 +36,11 @@ const Dialog: React.FC<IDialog> = ({
 
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
+
+  let showOtherData = false;
+  if (status !== '已投標' && status !== '投標中' && status !== '未得標' && isDR)
+    showOtherData = true;
+
   useEffect(() => {
     setPercent(achievement === null ? '—' : (achievement * 100).toFixed());
   }, [achievement]);
@@ -97,6 +103,18 @@ const Dialog: React.FC<IDialog> = ({
               : (winsPrice * winsValue * achievement).toFixed(2)}
           </div>
         </div>
+        {showOtherData && isDR && (
+          <div className={classnames('status-percentage-dialog-otherData')}>
+            <div className={classnames('status-percentage-dialog-CBL')}>
+              CBL：
+            </div>
+            {status === '已結算' && (
+              <div className={classnames('status-percentage-dialog-winVolume')}>
+                {t('statuspage.winVolume')}：
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
