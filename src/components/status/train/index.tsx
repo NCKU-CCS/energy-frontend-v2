@@ -189,6 +189,12 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
               : '-----'}
           </div>
         </div>
+        <div className={classnames('status-train-infoBox')}>
+          <div className={classnames('status-train-CBL')}>CBL：</div>
+          <div className={classnames('status-train-winVolume')}>
+            {t('statuspage.winVolume')}：
+          </div>
+        </div>
       </div>
     </div>
   );
