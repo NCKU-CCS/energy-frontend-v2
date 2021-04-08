@@ -57,13 +57,6 @@ const Content: React.FC<IContent> = ({
   const [buttonClass, setbuttonClass] = useState<string>(button);
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [view, setView] = useState<boolean>(false);
-  const [showOtherData, setShowOtherData] = useState<boolean>(false);
-  const [contentContainerClass, setContentContainerClass] = useState<string>(
-    classnames('status-list-content-contentContainer'),
-  );
-  const [firstRowClass, setFirstRowClass] = useState<string>(
-    classnames('status-list-content-firstRow'),
-  );
 
   const handleOpen = () => {
     if (window.innerWidth > 320) {
@@ -86,42 +79,12 @@ const Content: React.FC<IContent> = ({
   useEffect(() => {
     if (nowIndex !== index) {
       setIsSelected(false);
-      if (
-        status !== '已投標' &&
-        status !== '投標中' &&
-        status !== '未得標' &&
-        isDR
-      ) {
-        setShowOtherData(false);
-        setContentContainerClass('status-list-content-contentContainer');
-        setFirstRowClass('status-list-content-firstRow');
-      }
     }
   }, [nowIndex]);
 
   const infoOnClick = () => {
     setIsSelected(true);
     changeIndex(index);
-    if (
-      status !== '已投標' &&
-      status !== '投標中' &&
-      status !== '未得標' &&
-      isDR
-    ) {
-      setShowOtherData(true);
-      setContentContainerClass(
-        classnames(
-          'status-list-content-contentContainer',
-          'status-list-content-contentContainer-otherData',
-        ),
-      );
-      setFirstRowClass(
-        classnames(
-          'status-list-content-firstRow',
-          'status-list-content-firstRow-otherData',
-        ),
-      );
-    }
   };
 
   // bidType text
@@ -225,68 +188,56 @@ const Content: React.FC<IContent> = ({
     href = hash.substring(0, 5) === 'https:' ? hash : href + hash;
 
   return (
-    <div className={contentContainerClass}>
-      <div className={firstRowClass}>
-        <button
-          type="button"
-          className={buttonClass}
-          onClick={infoOnClick}
-          aria-labelledby="onClick info"
-        />
-        <div className={bidTypeClass}>{bidTypeText}</div>
-        {isDR && (
-          <div className={classnames('status-list-content-mode')}>{mode}</div>
-        )}
-        <div className={classnames('status-list-content-status')}>
-          {i18nStatus}
-        </div>
-        <StatusBox />
-        <div className={classnames('status-list-content-date')}>{date}</div>
-        <div className={classnames('status-list-content-time')}>{time}</div>
-        <div className={classnames('status-list-content-price')}>
-          ${winsPrice}/度
-        </div>
-        <a
-          className={classnames('status-list-content-URL')}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          &lt; URL &gt;
-        </a>
-        <button
-          type="button"
-          className={classnames('status-list-content-view')}
-          onClick={() => setView(true)}
-        >
-          {t('statuspage.view')}
-        </button>
-        {view && (
-          <Dialog
-            status={status}
-            id={id}
-            upload={upload}
-            name={name}
-            address={address}
-            bidsValue={bidsValue}
-            bidsPrice={bidsPrice}
-            winsValue={winsValue}
-            winsPrice={winsPrice}
-            achievement={achievement}
-            setView={setView}
-            isDR={isDR}
-          />
-        )}
+    <div className={classnames('status-list-content-contentContainer')}>
+      <button
+        type="button"
+        className={buttonClass}
+        onClick={infoOnClick}
+        aria-labelledby="onClick info"
+      />
+      <div className={bidTypeClass}>{bidTypeText}</div>
+      {isDR && (
+        <div className={classnames('status-list-content-mode')}>{mode}</div>
+      )}
+      <div className={classnames('status-list-content-status')}>
+        {i18nStatus}
       </div>
-      {showOtherData && isDR && (
-        <div className={classnames('status-list-content-secondRow')}>
-          <div className={classnames('status-list-content-CBL')}>CBL：200</div>
-          {status === '已結算' && (
-            <div className={classnames('status-list-content-winVolume')}>
-              {t('statuspage.winVolume')}：200
-            </div>
-          )}
-        </div>
+      <StatusBox />
+      <div className={classnames('status-list-content-date')}>{date}</div>
+      <div className={classnames('status-list-content-time')}>{time}</div>
+      <div className={classnames('status-list-content-price')}>
+        ${winsPrice}/度
+      </div>
+      <a
+        className={classnames('status-list-content-URL')}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        &lt; URL &gt;
+      </a>
+      <button
+        type="button"
+        className={classnames('status-list-content-view')}
+        onClick={() => setView(true)}
+      >
+        {t('statuspage.view')}
+      </button>
+      {view && (
+        <Dialog
+          status={status}
+          id={id}
+          upload={upload}
+          name={name}
+          address={address}
+          bidsValue={bidsValue}
+          bidsPrice={bidsPrice}
+          winsValue={winsValue}
+          winsPrice={winsPrice}
+          achievement={achievement}
+          setView={setView}
+          isDR={isDR}
+        />
       )}
     </div>
   );

@@ -1,43 +1,12 @@
 @import './dialog.scss/';
 
 .status-list-content-contentContainer{
-  width: 100%;
-  height: 20%;
-}
-.status-list-content-contentContainer-otherData{
-  height: 25%;
-}
-
-.status-list-content-firstRow{
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 20%;
   border-bottom: 1px solid rgb(153, 153, 153);
   align-items: center;
   color: #636363;
-}
-.status-list-content-firstRow-otherData{
-  height: 75%;
-  border-bottom: none;
-}
-
-.status-list-content-secondRow{
-  display: flex;
-  width: 100%;
-  height: 25%;
-  border-bottom: 1px solid rgb(153, 153, 153);
-  color: #636363;
-}
-
-.status-list-content-CBL{
-  height: 100%;
-  width: 12%;
-  margin-left: 53%;
-}
-
-.status-list-content-winVolume{
-  height: 100%;
-  width: 15%;
 }
 
 .status-list-content-button{
@@ -162,10 +131,7 @@
 
 // 1280 < size
 @media all and (min-width: 1280px){
-  .status-list-content-firstRow{
-    font-size: 1.1vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.1vw;
   }
   .status-list-content-button{
@@ -187,10 +153,7 @@
 }
 
 @media all and (min-width: 1280px) and (max-width: 1650px) and (min-height:900px){
-  .status-list-content-firstRow{
-    font-size: 1.1vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.1vw;
   }
   .status-list-content-button{
@@ -200,10 +163,7 @@
 
 // 900 < size < 1280
 @media all and (min-width: 900px) and (max-width: 1280px){
-  .status-list-content-firstRow{
-    font-size: 1.3vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.3vw;
   }
   .status-list-content-button{
@@ -216,10 +176,7 @@
 }
 
 @media all and (min-width: 900px) and (max-width: 1280px) and (min-height:900px){
-  .status-list-content-firstRow{
-    font-size: 1.3vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.3vw;
   }
   .status-list-content-button{
@@ -229,10 +186,7 @@
 
 // 720 < size < 900
 @media all and (min-width: 720px) and (max-width: 900px){
-  .status-list-content-firstRow{
-    font-size: 1.25vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.25vw;
   }
   .status-list-content-button{
@@ -245,10 +199,7 @@
 
 // 500 < size < 720
 @media all and (min-width: 500px) and (max-width: 720px){
-  .status-list-content-firstRow{
-    font-size: 1.7vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.7vw;
   }
   .status-list-content-button{
@@ -262,10 +213,7 @@
 
 // 320 < size < 500
 @media all and (min-width: 320px) and (max-width: 500px){
-  .status-list-content-firstRow{
-    font-size: 1.65vw;
-  }
-  .status-list-content-secondRow{
+  .status-list-content-contentContainer{
     font-size: 1.65vw;
   }
   .status-list-content-button{
@@ -283,12 +231,9 @@
     height: 10%;
     justify-content: center;
   }
-  .status-list-content-firstRow{
+  .status-list-content-contentContainer{
     height: 100%;
     border-bottom: 1px solid rgb(153, 153, 153);
-  }
-  .status-list-content-secondRow{
-    display: none;
   }
   .status-list-content-button{
     display: none;
