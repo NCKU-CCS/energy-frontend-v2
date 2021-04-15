@@ -26,6 +26,8 @@ interface IListInfo {
   upload: string;
   achievement: number;
   mode: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface IAListInfo {
@@ -79,6 +81,8 @@ const List: React.FC<IAListInfo> = ({
         achievement={content.achievement}
         isDR={isDR}
         mode={content.mode}
+        cbl={content.cbl}
+        realVolume={content.real_volume}
       />
     );
     if (isDR) return info;
