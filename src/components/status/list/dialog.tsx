@@ -41,9 +41,8 @@ const Dialog: React.FC<IDialog> = ({
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
 
-  let showOtherData = false;
-  if (status !== '已投標' && status !== '投標中' && status !== '未得標' && isDR)
-    showOtherData = true;
+  const showOtherData =
+    status !== '已投標' && status !== '投標中' && status !== '未得標' && isDR;
 
   useEffect(() => {
     setPercent(achievement === null ? '—' : achievement.toFixed());

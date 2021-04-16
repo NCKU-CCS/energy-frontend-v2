@@ -151,13 +151,11 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
   }, [index]);
 
   useEffect(() => {
-    if (
+    setShowCBL(
       allInfo.status !== '已投標' &&
-      allInfo.status !== '投標中' &&
-      allInfo.status !== '未得標'
-    )
-      setShowCBL(true);
-    else setShowCBL(false);
+        allInfo.status !== '投標中' &&
+        allInfo.status !== '未得標',
+    );
   }, [allInfo.status]);
 
   return (
