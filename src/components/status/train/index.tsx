@@ -21,6 +21,8 @@ interface ITrainInfo {
     value: number;
   };
   achievement: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface IInfo {
@@ -33,6 +35,8 @@ interface IInfo {
   winsPrice: string;
   winsValue: string;
   status: string;
+  real_volume: string;
+  cbl: string;
 }
 
 interface IInput {
@@ -46,6 +50,7 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
 
   const Chain = () => <div className={classnames('status-train-chain')} />;
 
+  const [showCBL, setShowCBL] = useState<boolean>(false);
   const [nowIndex, setNowIndex] = useState<number>(-1);
   const [allInfo, setAllInfo] = useState<IInfo>({
     bidsPrice: '-----',
@@ -57,6 +62,8 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
     winsPrice: '-----',
     winsValue: '-----',
     status: '-',
+    real_volume: '-----',
+    cbl: '-----',
   });
 
   useEffect(() => {
@@ -120,6 +127,10 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
         winsPrice: dataWinsPrice,
         winsValue: dataWinsValue,
         status: input[index].status,
+        real_volume: !input[index].real_volume
+          ? '-----'
+          : `${input[index].real_volume.toString()}度`,
+        cbl: !input[index].cbl ? '-----' : `${input[index].cbl.toString()}度`,
       });
     } else {
       setAllInfo({
@@ -132,10 +143,20 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
         winsPrice: '-----',
         winsValue: '-----',
         status: '-',
+        real_volume: '-----',
+        cbl: '-----',
       });
       setNowIndex(-1);
     }
   }, [index]);
+
+  useEffect(() => {
+    setShowCBL(
+      allInfo.status !== '已投標' &&
+        allInfo.status !== '投標中' &&
+        allInfo.status !== '未得標',
+    );
+  }, [allInfo.status]);
 
   return (
     <div className={classnames('status-train')}>
@@ -187,6 +208,15 @@ const Train: React.FC<IInput> = ({ input, index, isDR }) => {
             {allInfo.winsPrice !== '-----'
               ? Math.round(parseFloat(allInfo.winsPrice) * 100) / 100
               : '-----'}
+          </div>
+        </div>
+        <div className={classnames('status-train-infoBox')}>
+          <div className={classnames('status-train-CBL')}>
+            CBL：{showCBL ? allInfo.cbl : '-----'}
+          </div>
+          <div className={classnames('status-train-winVolume')}>
+            {t('statuspage.winVolume')}：
+            {allInfo.status === '已結算' ? allInfo.real_volume : '-----'}
           </div>
         </div>
       </div>

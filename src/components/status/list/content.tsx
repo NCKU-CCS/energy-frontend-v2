@@ -23,6 +23,8 @@ interface IContent {
   achievement: number;
   isDR: boolean;
   mode: number;
+  realVolume: number;
+  cbl: number;
 }
 
 const Content: React.FC<IContent> = ({
@@ -45,6 +47,8 @@ const Content: React.FC<IContent> = ({
   achievement,
   isDR,
   mode,
+  cbl,
+  realVolume,
 }) => {
   const { t } = useTranslation();
 
@@ -77,7 +81,9 @@ const Content: React.FC<IContent> = ({
   }, [isSelected]);
 
   useEffect(() => {
-    if (nowIndex !== index) setIsSelected(false);
+    if (nowIndex !== index) {
+      setIsSelected(false);
+    }
   }, [nowIndex]);
 
   const infoOnClick = () => {
@@ -235,6 +241,8 @@ const Content: React.FC<IContent> = ({
           achievement={achievement}
           setView={setView}
           isDR={isDR}
+          cbl={cbl}
+          realVolume={realVolume}
         />
       )}
     </div>

@@ -28,6 +28,8 @@ interface IListInfo {
   upload: string;
   achievement: number;
   mode: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface ITrainInfo {
@@ -47,6 +49,8 @@ interface ITrainInfo {
     value: number;
   };
   achievement: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface IStatus {
@@ -63,14 +67,16 @@ interface IDR {
   executor: string;
   order_method: string;
   price: number;
-  rate: number;
+  rate: string;
   result: boolean;
-  settlement: number;
+  settlement: string;
   start_time: string;
   status: string;
   trading_mode: number;
   uuid: string;
   volume: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface IDRData {
@@ -173,7 +179,8 @@ const Status: React.FC = () => {
         const startTime = dayjs(DRResult[i].start_time);
         const endTime = dayjs(DRResult[i].end_time);
         let rate = 0;
-        if (DRResult[i].status === '已結算') rate = DRResult[i].rate / 100;
+        if (DRResult[i].status === '已結算')
+          rate = parseFloat(DRResult[i].rate);
         let winsValue = 0;
         if (
           DRResult[i].status === '已結算' ||
@@ -188,7 +195,7 @@ const Status: React.FC = () => {
           date: startTime.format('YYYY-MM-DD'),
           time: `${startTime.format('HH:mm')}-${endTime.format('HH:mm')}`,
           bids: {
-            price: DRResult[i].settlement,
+            price: parseFloat(DRResult[i].settlement),
             value: DRResult[i].volume,
           },
           counterpart: {
@@ -204,6 +211,8 @@ const Status: React.FC = () => {
           upload: DRResult[i].start_time,
           achievement: rate,
           mode: DRResult[i].trading_mode,
+          real_volume: DRResult[i].real_volume,
+          cbl: DRResult[i].cbl,
         };
         listDBData.push(DBdata);
       }
@@ -219,7 +228,7 @@ const Status: React.FC = () => {
         const DBdata: ITrainInfo = {
           status: DRResult[i].status,
           bids: {
-            price: DRResult[i].settlement,
+            price: parseFloat(DRResult[i].settlement),
             value: DRResult[i].volume,
           },
           counterpart: {
@@ -227,12 +236,14 @@ const Status: React.FC = () => {
             name: DRResult[i].counterpart_name,
           },
           wins: {
-            price: DRResult[i].settlement,
+            price: parseFloat(DRResult[i].settlement),
             value: DRResult[i].volume,
           },
           id: DRResult[i].uuid,
           upload: DRResult[i].start_time,
-          achievement: DRResult[i].rate / 100,
+          achievement: parseFloat(DRResult[i].rate),
+          real_volume: DRResult[i].real_volume,
+          cbl: DRResult[i].cbl,
         };
         listDBData.push(DBdata);
       }
@@ -246,7 +257,8 @@ const Status: React.FC = () => {
       const listDBData = [];
       for (let i = 0; i < DRResult.length; i += 1) {
         let rate = 0;
-        if (DRResult[i].status === '已結算') rate = DRResult[i].rate / 100.0;
+        if (DRResult[i].status === '已結算')
+          rate = parseFloat(DRResult[i].rate);
         const DBdata: IStatus = {
           status: DRResult[i].status,
           achievement: rate,

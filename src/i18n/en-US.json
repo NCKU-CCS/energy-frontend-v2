@@ -169,7 +169,7 @@
     "view": "View"
   },
   "statuspage": {
-    "pageTitle": "Bidding Status",
+    "pageTitle": "Status",
     "achievementRate": "Achievement Rate",
     "id": "ID",
     "uploadTime": "Upload Time",
@@ -211,6 +211,7 @@
     "dr": "DR",
     "mode": "Mode",
     "now": "real time",
-    "before": "yesterday"
+    "before": "yesterday",
+    "winVolume": "winVolume"
   }
 }

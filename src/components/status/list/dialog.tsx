@@ -16,9 +16,12 @@ interface IDialog {
   achievement: number;
   setView: (state: boolean) => void;
   isDR: boolean;
+  realVolume: number;
+  cbl: number;
 }
 
 const Dialog: React.FC<IDialog> = ({
+  status,
   id,
   upload,
   name,
@@ -30,13 +33,19 @@ const Dialog: React.FC<IDialog> = ({
   achievement,
   setView,
   isDR,
+  cbl,
+  realVolume,
 }) => {
   const { t } = useTranslation();
 
   const [time, setTime] = useState<string>('');
   const [percent, setPercent] = useState<string>('—');
+
+  const showOtherData =
+    status !== '已投標' && status !== '投標中' && status !== '未得標' && isDR;
+
   useEffect(() => {
-    setPercent(achievement === null ? '—' : (achievement * 100).toFixed());
+    setPercent(achievement === null ? '—' : achievement.toFixed());
   }, [achievement]);
   useEffect(() => {
     const uploadTime = dayjs(upload);
@@ -62,7 +71,7 @@ const Dialog: React.FC<IDialog> = ({
           {t('statuspage.achievementRate')}
         </div>
         <div className={classnames('status-percentage-dialog-percentage')}>
-          {percent !== '—' ? parseInt(percent, 10) : '—'}%
+          {percent !== '—' ? percent : '—'}%
         </div>
         <div className={classnames('status-percentage-dialog-idTitle')}>
           {t('statuspage.id')}：
@@ -97,6 +106,18 @@ const Dialog: React.FC<IDialog> = ({
               : (winsPrice * winsValue * achievement).toFixed(2)}
           </div>
         </div>
+        {showOtherData && isDR && (
+          <div className={classnames('status-percentage-dialog-otherData')}>
+            <div className={classnames('status-percentage-dialog-CBL')}>
+              CBL：{cbl}度
+            </div>
+            {status === '已結算' && (
+              <div className={classnames('status-percentage-dialog-winVolume')}>
+                {t('statuspage.winVolume')}：{realVolume}度
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

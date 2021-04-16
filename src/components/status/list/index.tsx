@@ -26,6 +26,8 @@ interface IListInfo {
   upload: string;
   achievement: number;
   mode: number;
+  real_volume: number;
+  cbl: number;
 }
 
 interface IAListInfo {
@@ -79,6 +81,8 @@ const List: React.FC<IAListInfo> = ({
         achievement={content.achievement}
         isDR={isDR}
         mode={content.mode}
+        cbl={content.cbl}
+        realVolume={content.real_volume}
       />
     );
     if (isDR) return info;
@@ -123,6 +127,7 @@ const List: React.FC<IAListInfo> = ({
       setCurrentPage(currentPage + 1);
     else if (currentPage + 10 <= maxPage && mode === 4)
       setCurrentPage(currentPage + 10);
+    setNowIndex(-1);
   };
 
   return (
@@ -146,6 +151,7 @@ const List: React.FC<IAListInfo> = ({
           setPage={setPage}
           isSelected={page === 1}
           setCurrentPage={setCurrentPage}
+          setNowIndex={setNowIndex}
         />
         <PageButton
           text="statuspage.bid"
@@ -153,6 +159,7 @@ const List: React.FC<IAListInfo> = ({
           setPage={setPage}
           isSelected={page === 2}
           setCurrentPage={setCurrentPage}
+          setNowIndex={setNowIndex}
         />
         <PageButton
           text="statuspage.handle"
@@ -160,6 +167,7 @@ const List: React.FC<IAListInfo> = ({
           setPage={setPage}
           isSelected={page === 3}
           setCurrentPage={setCurrentPage}
+          setNowIndex={setNowIndex}
         />
         <PageButton
           text="statuspage.settle"
@@ -167,6 +175,7 @@ const List: React.FC<IAListInfo> = ({
           setPage={setPage}
           isSelected={page === 4}
           setCurrentPage={setCurrentPage}
+          setNowIndex={setNowIndex}
         />
       </div>
       <div className={classnames('status-list-titleContainer')}>

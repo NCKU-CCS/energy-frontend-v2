@@ -26,7 +26,7 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
         setPercent(
           input[nowIndex].achievement === null
             ? '—'
-            : (input[nowIndex].achievement * 100).toFixed(),
+            : input[nowIndex].achievement.toFixed(),
         );
       } else {
         setImgSrc(`${process.env.PUBLIC_URL}/status/box_grey.png`);
@@ -45,7 +45,7 @@ const Percentage: React.FC<IInput> = ({ input, nowIndex }) => {
         {t('statuspage.achievementRate')}
       </div>
       <div className={classnames('status-percentage-percentage')}>
-        {percent !== '—' ? Math.round(parseInt(percent, 10)) : '—'}%
+        {percent !== '—' ? percent : '—'}%
       </div>
     </div>
   );
