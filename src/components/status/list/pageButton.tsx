@@ -8,6 +8,7 @@ interface IContent {
   pageIndex: number;
   isSelected: boolean;
   setCurrentPage: (display: number) => void;
+  setNowIndex: (display: number) => void;
 }
 
 const PageButton: React.FC<IContent> = ({
@@ -16,6 +17,7 @@ const PageButton: React.FC<IContent> = ({
   pageIndex,
   isSelected,
   setCurrentPage,
+  setNowIndex,
 }) => {
   const { t } = useTranslation();
 
@@ -34,6 +36,7 @@ const PageButton: React.FC<IContent> = ({
   const pageOnClick = () => {
     setPage(pageIndex);
     setCurrentPage(1);
+    setNowIndex(-1);
   };
 
   return (
