@@ -77,7 +77,7 @@ const AddBid: React.FC<IProps> = ({ type }) => {
         window.location.reload();
       } else {
         // eslint-disable-next-line no-alert
-        alert('failed');
+        // alert('failed');
       }
       setSubmitDisabled(true);
     } catch (error) {

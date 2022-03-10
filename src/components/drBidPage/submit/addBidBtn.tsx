@@ -196,7 +196,7 @@ const AddBidBtn: React.FC<IProps> = ({ dataType }) => {
       alert('success');
       window.location.reload();
     } else {
-      alert('failed');
+      // alert('failed');
     }
   };
 

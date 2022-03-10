@@ -61,7 +61,7 @@ const ListItem: React.FC<IProps> = ({ date, data }) => {
       alert('success');
       window.location.reload();
     } else {
-      alert('failed');
+      // alert('failed');
     }
   };
 

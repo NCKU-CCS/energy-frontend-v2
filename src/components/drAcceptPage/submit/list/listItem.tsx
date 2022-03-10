@@ -77,7 +77,7 @@ const ListItem: React.FC<IProps> = ({ userType, data }) => {
       alert('success');
       window.location.reload();
     } else {
-      alert('failed');
+      // alert('failed');
     }
   };
 

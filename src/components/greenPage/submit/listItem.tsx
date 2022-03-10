@@ -103,7 +103,7 @@ const ListItem: React.FC<IProps> = ({
       window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 
@@ -138,7 +138,7 @@ const ListItem: React.FC<IProps> = ({
       window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 

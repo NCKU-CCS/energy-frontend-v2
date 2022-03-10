@@ -97,7 +97,7 @@ const InfoBox: React.FC<IProps> = ({ userType, data }) => {
         alert('success');
         window.location.reload();
       } else {
-        alert('failed');
+        // alert('failed');
       }
     } else setInputMode(true);
   };

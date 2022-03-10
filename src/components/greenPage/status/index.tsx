@@ -47,7 +47,7 @@ const Status: React.FC<IProps> = ({ userType }) => {
       setApiData(tmp);
     } else {
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 

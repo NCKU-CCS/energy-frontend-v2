@@ -75,7 +75,7 @@ const DrBidPageContainer: React.FC = () => {
       });
       setApiData([...extract]);
     } else {
-      alert('failed');
+      // alert('failed');
     }
   };
 

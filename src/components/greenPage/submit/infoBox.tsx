@@ -97,7 +97,7 @@ const InfoBox: React.FC<IProps> = ({
       window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 
@@ -132,7 +132,7 @@ const InfoBox: React.FC<IProps> = ({
       window.location.reload();
     } else {
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 

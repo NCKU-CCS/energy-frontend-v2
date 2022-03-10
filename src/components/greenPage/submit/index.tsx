@@ -70,7 +70,7 @@ const Submit: React.FC<IProps> = ({ type, setType }) => {
     } else {
       // fetch failure
       // eslint-disable-next-line no-alert
-      alert('failed');
+      // alert('failed');
     }
   };
 

@@ -63,7 +63,7 @@ const Graph: React.FC<IProps> = ({ dataType }) => {
       setApiData(tmp);
     } else {
       // fetch failure
-      alert('failed');
+      // alert('failed');
     }
   };
 
