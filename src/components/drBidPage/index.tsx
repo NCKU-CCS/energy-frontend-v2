@@ -43,9 +43,7 @@ const DrBidPageContainer: React.FC = () => {
   const fetchApiData = async () => {
     // GET DR_bid
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${dayjs(
-        date,
-      ).format('YYYY-MM-DD')}&order_method=${dataType}${
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${date.split("/").join("-")}&order_method=${dataType}${
         user.role === 'aggregator' ? '&acceptor_role=tpc' : ''
       }`,
       {

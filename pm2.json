@@ -3,7 +3,7 @@
     {
       "name": "energy-frontend",
       "script": "npx",
-      "args": "serve -s build -l 6380"
+      "args": "serve -s build -l 5000"
     }
   ]
 }

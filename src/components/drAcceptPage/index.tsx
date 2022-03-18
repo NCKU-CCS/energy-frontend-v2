@@ -45,10 +45,9 @@ const DrAcceptPageContainer: React.FC = () => {
   // fetch api data
   const fetchApiData = async () => {
     // GET DR_bid
+    console.log(date);
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${dayjs(
-        date,
-      ).format('YYYY-MM-DD')}&order_method=${dataType}${
+      `${process.env.REACT_APP_BACKEND_ENDPOINT}/DR_bid?date=${date.split("/").join("-")}&order_method=${dataType}${
         user.role === 'aggregator' ? '&acceptor_role=aggregator' : ''
       }`,
       {
@@ -106,8 +105,8 @@ const DrAcceptPageContainer: React.FC = () => {
                 },
               }}
               value={date}
-              onChange={(d) =>
-                setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD'))
+              onChange={(d) => { console.log(d);
+                setDate(dayjs(String(d?.toDateString())).format('YYYY/MM/DD')); }
               }
               format="yyyy/MM/dd"
               showTodayButton
